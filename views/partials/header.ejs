@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <title>
+        Yelp Camp
+    </title>
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Spartan:300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+
+    <!-- Adding a NavBar -->
+<nav class="navbar navbar-expand-sm navbar-dark shadow mb-5" style="background-color:#EE8C89;">
+    <!-- Takes you to the landing page -->
+    <a class="navbar-brand" href="/">HAB Website</a>
+    
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation"></button>
+    
+    <!-- What will show in the Navbar will be decided now -->
+    <!-- It will be reponsive and will collapse on reducing screen size -->
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <!-- ml-auto will create auto left margin and align items to the right -->
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <%  if(!currentUser){  %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Register</a>
+                </li>
+            <% }else{  %>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Signed in as <%= currentUser.username %>  </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                <%}%>
+        </ul>
+    </div>
+</nav>

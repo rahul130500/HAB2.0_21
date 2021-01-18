@@ -1,0 +1,23 @@
+<%- include("./partials/header.ejs") %> 
+
+<h2>Notices</h2>
+
+<% notices.forEach((notice)=>{ %>
+    <div>
+        <h1><%= notice.title %></h1>
+        <form id="delete-form" action="/notice/<%=notice.id%>?_method=DELETE" method="POST">
+            <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+        </form>
+        <iframe src="<%= notice.path%>" width="60%" height="500px">
+        </iframe>
+    </div>
+<% }) %>
+
+<p>
+    <a href="/notice" class="btn btn-primary">Add Notice</a>
+</p>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js" integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ==" crossorigin="anonymous"></script>
+
+</html>

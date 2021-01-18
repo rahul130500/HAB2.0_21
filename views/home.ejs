@@ -1,0 +1,9 @@
+<h2>Notices</h2>
+
+<% notices.forEach((notice)=>{ %>
+    <div>
+        <h1><%= notice.title %></h1>
+        <p><%= notice.description %></p>
+        <iframe src="<%= notice.path%>" width="60%" height="500px"></iframe>
+    </div>
+<% }) %>
