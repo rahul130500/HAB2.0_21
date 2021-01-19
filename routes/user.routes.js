@@ -4,8 +4,11 @@ const Notice = require("../models/notice");
 
 router.get("/", async (req, res) => {
   //console.log(res.locals.currentUser);
-  const notices = await Notice.find({});
+  let notices = await Notice.find({});
   notices.sort(compare);
+  for (let i = 0; i < notices.length; i++) {
+    notices[i].creation = notices[i].creation.toString().split(" ");
+  }
   res.render("home", { notices });
 });
 

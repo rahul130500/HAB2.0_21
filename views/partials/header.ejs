@@ -2,56 +2,33 @@
 
 <head>
     <title>
-        Yelp Camp
+        HAB Website
     </title>
-    
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     
     <link href="https://fonts.googleapis.com/css?family=Spartan:300&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/main.css">
+    <!-- <link rel="stylesheet" href="/css/main.css"> -->
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-
-    <!-- Adding a NavBar -->
-<nav class="navbar navbar-expand-sm navbar-dark shadow mb-5" style="background-color:#EE8C89;">
-    <!-- Takes you to the landing page -->
-    <a class="navbar-brand" href="/">HAB Website</a>
-    
-    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-        aria-expanded="false" aria-label="Toggle navigation"></button>
-    
-    <!-- What will show in the Navbar will be decided now -->
-    <!-- It will be reponsive and will collapse on reducing screen size -->
-    <div class="collapse navbar-collapse" id="collapsibleNavId">
-        <!-- ml-auto will create auto left margin and align items to the right -->
-        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <%  if(!currentUser){  %>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/signup">Register</a>
-                </li>
-            <% }else{  %>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"> Signed in as <%= currentUser.username %>  </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                </li>
-                <%}%>
-        </ul>
+  
+<header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl">HAB Website</span>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <%  if(!currentUser){  %>
+        <a class="mr-5 hover:text-gray-900" href="/login">Login</a>
+        <a class="mr-5 hover:text-gray-900" href="/signup">Register</a>
+        <% }else{  %>
+            <a class="mr-5 hover:text-gray-900" >Signed in as <%= currentUser.username %> </a>
+            <a class="mr-5 hover:text-gray-900" href="/logout">Logout</a>
+        <%}%>
+      </nav>
     </div>
-</nav>
+  </header>

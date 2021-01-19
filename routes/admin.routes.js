@@ -83,7 +83,7 @@ router.post(
 router.get("/notice/:id", async (req, res) => {
   const id = req.params.id;
   const notice = await Notice.findById(id);
-  const filePath = notice.path;
+  const filePath = "uploads/" + notice.path;
   console.log(filePath);
   fs.readFile(filePath, (err, data) => {
     res.contentType("application/pdf");
