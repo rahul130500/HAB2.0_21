@@ -1,0 +1,29 @@
+<%- include("./partials/header.ejs") %> 
+<form action="/profile" method="post">
+    <div>
+        <div>Name</div>
+        <label for="Name" class="sr-only">Name</label>
+        <input id="Name" type="text" placeholder="Full Name" name="name">
+    </div>
+    <div>
+        <div>Email</div>
+        <label for="Email" class="sr-only">Email</label>
+        <input id="Email" type="email" placeholder=<%= currentUser.username %> name="email" disabled>
+    </div>
+    <div>
+        <div>Contact</div>
+        <label for="Contact" class="sr-only">Contact</label>
+        <input id="Contact" type="number" placeholder="Contact" name="contact">
+    </div>
+
+    <div>
+        <div>Role</div>
+        <label for="Role" class="sr-only">Role</label>
+        <input id="Role" type="number" placeholder=<%= currentUser.role %> name="role" disabled>
+    </div>
+
+    <div>
+        <button type="submit">Update</button>
+    </div>
+</form>
+<%- include("./partials/footer.ejs") %> 

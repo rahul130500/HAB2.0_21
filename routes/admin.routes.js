@@ -23,10 +23,13 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/admin", middleware.isLoggedIn, async (req, res) => {
-  //console.log(res.locals.currentUser);
+  res.render("admin");
+});
+
+router.get("/notice", middleware.isLoggedIn, async (req, res) => {
   const notices = await Notice.find({});
   notices.sort(compare);
-  res.render("admin", { notices });
+  res.render("notice", { notices });
 });
 
 router.get("/signup", (req, res) => {
@@ -61,7 +64,7 @@ router.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
-router.get("/notice", middleware.isLoggedIn, (req, res) => {
+router.get("/notice/add", middleware.isLoggedIn, (req, res) => {
   res.render("notice_add");
 });
 
@@ -76,7 +79,7 @@ router.post(
     const newNotice = new Notice({ title, description, path });
     await newNotice.save();
 
-    res.redirect("/admin");
+    res.redirect("/notice");
   }
 );
 
@@ -98,12 +101,23 @@ router.delete("/notice/:id", middleware.isLoggedIn, async (req, res) => {
     fs.unlinkSync(`uploads/${notice.path}`);
     console.log("successfully deleted /tmp/hello");
     await Notice.findByIdAndRemove(id);
-    res.redirect("/admin");
+    res.redirect("/notice");
   } catch (err) {
     // handle the error
     console.log(err);
-    res.redirect("/admin");
+    res.redirect("/notice");
   }
+});
+
+router.get("/profile", middleware.isLoggedIn, async (req, res) => {
+  res.render("profile");
+});
+
+router.post("/profile", middleware.isLoggedIn, async (req, res) => {
+  const { name, contact } = req.body;
+  const id = req.user.id;
+  const user = await User.findByIdAndUpdate(id, { name, contact });
+  res.redirect("/profile");
 });
 
 const compare = (a, b) => {
