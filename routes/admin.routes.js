@@ -126,6 +126,7 @@ router.post(
   upload.single("announcement"),
   async (req, res) => {
     const { description } = req.body;
+    console.log(req.body.important);
     if (typeof req.file !== "undefined") {
       const path = req.file.filename;
       const newAnnouncement = new Announcement({ description, path });
