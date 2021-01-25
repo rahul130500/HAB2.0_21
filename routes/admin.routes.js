@@ -5,6 +5,7 @@ const passport = require("passport");
 const middleware = require("../middleware");
 const User = require("../models/user");
 const Notice = require("../models/notice");
+const Announcement = require("../models/announcement");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -30,6 +31,12 @@ router.get("/notice", middleware.isLoggedIn, async (req, res) => {
   const notices = await Notice.find({});
   notices.sort(compare);
   res.render("notice", { notices });
+});
+
+router.get("/announcement", middleware.isLoggedIn, async (req, res) => {
+  const announcements = await Announcement.find({});
+  announcements.sort(compare);
+  res.render("announcement", { announcements });
 });
 
 router.get("/signup", (req, res) => {
@@ -106,6 +113,60 @@ router.delete("/notice/:id", middleware.isLoggedIn, async (req, res) => {
     // handle the error
     console.log(err);
     res.redirect("/notice");
+  }
+});
+
+router.get("/announcement/add", middleware.isLoggedIn, (req, res) => {
+  res.render("announcement_add");
+});
+
+router.post(
+  "/announcement",
+  middleware.isLoggedIn,
+  upload.single("announcement"),
+  async (req, res) => {
+    const { description } = req.body;
+    if (typeof req.file !== "undefined") {
+      const path = req.file.filename;
+      const newAnnouncement = new Announcement({ description, path });
+      await newAnnouncement.save();
+    } else {
+      const newAnnouncement = new Announcement({ description });
+      await newAnnouncement.save();
+    }
+
+    res.redirect("/announcement");
+  }
+);
+
+router.get("/announcement/:id", async (req, res) => {
+  const id = req.params.id;
+  const announcement = await Announcement.findById(id);
+
+  if (typeof announcement.path !== "undefined") {
+    const filePath = "uploads/" + announcement.path;
+    console.log(filePath);
+    fs.readFile(filePath, (err, data) => {
+      res.contentType("application/pdf");
+      res.send(data);
+    });
+  }
+});
+
+router.delete("/announcement/:id", middleware.isLoggedIn, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const announcement = await Announcement.findById(id);
+    if (typeof announcement.path !== "undefined") {
+      fs.unlinkSync(`uploads/${announcement.path}`);
+    }
+    console.log("successfully deleted /tmp/hello");
+    await Announcement.findByIdAndRemove(id);
+    res.redirect("/announcement");
+  } catch (err) {
+    // handle the error
+    console.log(err);
+    res.redirect("/announcement");
   }
 });
 
