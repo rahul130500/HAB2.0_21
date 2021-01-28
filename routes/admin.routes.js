@@ -126,7 +126,6 @@ router.post(
   upload.single("announcement"),
   async (req, res) => {
     const { description } = req.body;
-    console.log(req.body.important);
     if (typeof req.file !== "undefined") {
       const path = req.file.filename;
       const newAnnouncement = new Announcement({ description, path });
@@ -180,6 +179,9 @@ router.post("/profile", middleware.isLoggedIn, async (req, res) => {
   const id = req.user.id;
   const user = await User.findByIdAndUpdate(id, { name, contact });
   res.redirect("/profile");
+});
+router.get("/hostels", (req, res) => {
+  res.render("hostel");
 });
 
 const compare = (a, b) => {

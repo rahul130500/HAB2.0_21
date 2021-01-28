@@ -5,19 +5,18 @@ const methodOverride = require("method-override");
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
-const url = "mongodb+srv://jayk:jk1628@2018@cluster0.dhg1e.mongodb.net/test?retryWrites=true&w=majority";
+const url = "mongodb://localhost/HAB_DB";
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 require("./config/passport")(passport);
 
 mongoose.connect(url, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-
-}).then(() => console.log("Successful DB connection")).catch((err) => console.error("DB connection fail"));
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 
 const userRoutes = require("./routes/user.routes");
 const adminRoutes = require("./routes/admin.routes");
@@ -29,18 +28,18 @@ app.use(express.static(__dirname + "/uploads"));
 app.use(methodOverride("_method"));
 
 app.use(
-    session({
-        secret: "Once again rusty is the cutest dog",
-        resave: false,
-        saveUninitialized: false,
-    })
+  session({
+    secret: "Once again rusty is the cutest dog",
+    resave: false,
+    saveUninitialized: false,
+  })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
-    res.locals.currentUser = req.user;
-    next();
+  res.locals.currentUser = req.user;
+  next();
 });
 
 app.set("view engine", "ejs");
@@ -49,5 +48,5 @@ app.use("/", userRoutes);
 app.use("/", adminRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
+  console.log(`Server is running on port ${PORT}.`);
 });
