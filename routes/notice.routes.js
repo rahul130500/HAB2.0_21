@@ -4,7 +4,7 @@ const middleware = require("../middleware");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads/");
+    cb(null, "./uploads/notice");
   },
   filename: (req, file, cb) => {
     const fileName = file.originalname.replace(/\s/g, "");
@@ -26,9 +26,13 @@ router.post(
   noticeController.postNotice
 );
 
-router.get("/:id", noticeController.getOneNotice);
+router.get("/:notice_id", noticeController.getOneNotice);
 
-router.delete("/:id", middleware.isLoggedIn, noticeController.deleteNotice);
+router.delete(
+  "/:notice_id",
+  middleware.isLoggedIn,
+  noticeController.deleteNotice
+);
 
 const compare = (a, b) => {
   return b.creation - a.creation;

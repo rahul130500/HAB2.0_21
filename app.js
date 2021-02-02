@@ -21,6 +21,7 @@ mongoose.connect(url, {
 const userRoutes = require("./routes/user.routes");
 const adminRoutes = require("./routes/admin.routes");
 const noticeRoutes = require("./routes/notice.routes");
+const functionaryRoutes = require("./routes/functionary.routes");
 const announcementRoutes = require("./routes/announcement.routes");
 
 app.use(express.json());
@@ -50,6 +51,7 @@ app.use("/", userRoutes);
 app.use("/", adminRoutes);
 app.use("/notice", noticeRoutes);
 app.use("/announcement", announcementRoutes);
+app.use("/functionary", functionaryRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
