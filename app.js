@@ -22,11 +22,12 @@ const userRoutes = require("./routes/user.routes");
 const adminRoutes = require("./routes/admin.routes");
 const noticeRoutes = require("./routes/notice.routes");
 const announcementRoutes = require("./routes/announcement.routes");
+const hostelRoutes=require("./routes/hostel.routes");
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + "/uploads"));
+app.use("/uploads",express.static(__dirname + "/uploads"));
 app.use(methodOverride("_method"));
 
 app.use(
@@ -50,6 +51,7 @@ app.use("/", userRoutes);
 app.use("/", adminRoutes);
 app.use("/notice", noticeRoutes);
 app.use("/announcement", announcementRoutes);
+app.use("/hostels", hostelRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
