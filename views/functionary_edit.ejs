@@ -1,0 +1,50 @@
+<%- include("./partials/header.ejs") %> 
+
+<div class="container">
+    <div class="row">
+        
+        <div style="width: 30%; margin: 25px auto;">
+            <h1 style="text-align: center">Edit functionary</h1>
+            <form class="form-horizontal" action="/functionary/<%=functionary.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="control-label" for="name">Full Name:</label>
+                    <input class="form-control" type="text" id="name" name="name" value="<%= functionary.name %>" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="pic">Profile Image:</label>
+                    <input class="form-control" type="file" id="pic" name="pic" placeholder="image url">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="post">Post Name:</label>
+                    <input class="form-control" type="text" id="post" name="post" value="<%= functionary.post %>" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="priority">Priority Number:</label>
+                    <input class="form-control" type="number" id="priority" name="priority_number" value="<%= functionary.priority_number %>" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="contact1">Contact Line 1:</label>
+                    <input class="form-control" type="string" id="contact1" name="contact_line1" value="<%= functionary.contact[0] %>" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="contact2">Contact Line 2:</label>
+                    <input class="form-control" type="string" id="contact2" name="contact_line2" value="<%= functionary.contact[1] %>">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="contact3">Contact Line 3:</label>
+                    <input class="form-control" type="string" id="contact3" name="contact_line3" value="<%= functionary.contact[2] %>">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="contact4">Contact Line 4:</label>
+                    <input class="form-control" type="string" id="contact4" name="contact_line4" value="<%= functionary.contact[3] %>">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+            <a href="/functionary">Go Back</a>
+        </div>
+    </div>
+</div>
+
+<%- include("./partials/footer.ejs") %> 
