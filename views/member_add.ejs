@@ -7,25 +7,28 @@
             <h1 style="text-align: center">Add new member></h1>
             <form action="<%= link %>" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input class="form-control" type="text" name="name" placeholder="Member Name">
+                    <input class="form-control" type="text" name="Mname" placeholder="Member Name" required>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="position" placeholder="position">
+                    <input class="form-control" type="text" name="position" placeholder="position" required>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="number" name="contact" placeholder="contact no">
+                    <input class="form-control" type="number" name="priority" placeholder="priority number" required>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="email" placeholder="email">
+                    <input class="form-control" type="number" name="contact" placeholder="contact no" required>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="file" name="photo" placeholder="image url">
+                    <input class="form-control" type="text" name="email" placeholder="email" required>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+                    <input class="form-control" type="file" name="photo" placeholder="image url" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">Submit!</button>
                 </div>
             </form>
-            <a href="/hostels/<%=Hname%>">Go Back</a>
+            <a href="/hostels/<%=name%>">Go Back</a>
         </div>
     </div>
 </div>
