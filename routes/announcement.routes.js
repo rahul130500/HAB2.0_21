@@ -26,7 +26,7 @@ router.post(
   "/",
   middleware.isLoggedIn,
   upload.single("announcement"),
-  announcementController.postNotice
+  announcementController.postAnnouncement
 );
 
 router.get("/:id", announcementController.getOneAnnouncement);

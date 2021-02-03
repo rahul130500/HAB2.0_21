@@ -1,3 +1,25 @@
+<script>
+	function myFunction1() {
+		const val=document.getElementById("mysearch").value.toLowerCase();
+		const n = document.getElementsByClassName("imp-class").length;
+		for(var i = 0; i < n; i++) {
+			var id=document.getElementsByClassName("imp-class")[i].value;
+			var id1=id+'1';
+			var title=document.getElementById(id1).innerHTML.toLowerCase();
+			var id2=id+'2';
+			var desc=document.getElementById(id2).innerHTML.toLowerCase();
+			if(title.indexOf(val) > -1 || desc.indexOf(val) > -1) {
+				document.getElementById(id).style.display="";
+			}
+			else {
+				document.getElementById(id).style.display="none";
+			}
+			console.log(title);
+			console.log(desc);
+		}
+		
+	}
+</script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 crossorigin="anonymous"></script>

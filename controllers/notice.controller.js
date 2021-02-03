@@ -1,5 +1,6 @@
 const Notice = require("../models/notice");
 const fs = require("fs");
+const Announcement = require("../models/announcement");
 
 exports.getNotices = async (req, res) => {
   const notices = await Notice.find({});
@@ -11,11 +12,18 @@ exports.addNoticeForm = (req, res) => {
   res.render("notice_add");
 };
 exports.postNotice = async (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, imp } = req.body;
   const path = req.file.filename;
-
+  var important = 0;
+  if (imp != undefined) {
+    important = 1;
+  }
   const newNotice = new Notice({ title, description, path });
   await newNotice.save();
+  if (important) {
+    const newAnnouncement = new Announcement({ title, description, path });
+    await newAnnouncement.save();
+  }
 
   return res.redirect("/notice");
 };
