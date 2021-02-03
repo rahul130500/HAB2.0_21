@@ -11,15 +11,20 @@
     <div class="container px-5 py-24 mx-auto ">
       <div class="flex flex-wrap -mx-4 -my-8">
         <% announcements.forEach((announcement)=>{ %>
-        <div class="py-8 px-4 lg:w-1/3 bg-green-100 rounded mx-auto overflow-hidden shadow-md">
+        <input type="hidden" class="imp-class" value="<%= announcement.id %>" name="xyz">
+        <div class="py-8 px-4 lg:w-1/3 bg-green-100 rounded mx-auto overflow-hidden shadow-md" id="<%= announcement.id %>">
           <div class="h-full flex items-start">
             <div class="w-12 flex-shrink-0 flex flex-col text-center leading-none">
               <span class="text-gray-500 pb-2 mb-2 border-b-2 border-gray-200"><%= announcement.creation.toString().split(" ")[1] %></span>
               <span class="font-medium text-lg text-gray-800 title-font leading-none"><%= announcement.creation.toString().split(" ")[2] %></span>
             </div>
             <div class="flex-grow pl-6">
-              <h2 class="tracking-widest text-xs title-font font-medium text-indigo-500 mb-1">CATEGORY</h2>
-              <p class="leading-relaxed mb-5 overflow-hidden"><%= announcement.description %></p>
+              <h2 class="tracking-widest text-xs title-font font-medium text-indigo-500 mb-1" id="<%= announcement.id %>1">
+              <% if(announcement.important) { %>
+                IMP
+              <% } %>
+              CATEGORY</h2>
+              <p class="leading-relaxed mb-5 overflow-hidden" id="<%= announcement.id %>2"><%= announcement.description %></p>
               <a class="inline-flex items-center">
                 <span class="justify-between flex flex-col pl-3">
                     <form class="mx-2" action="/announcement/<%=announcement.id%>?_method=DELETE" method="POST"><button  class="bg-red-500 hover:bg-red-600 text-white cursor-pointer  py-2 px-4 rounded">Delete</button></form>

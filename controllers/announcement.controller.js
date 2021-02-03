@@ -30,7 +30,7 @@ exports.getOneAnnouncement = async (req, res) => {
   const announcement = await Announcement.findById(id);
 
   if (typeof announcement.path !== "undefined") {
-    const filePath = "uploads/" + announcement.path;
+    const filePath = "uploads/announcements/" + announcement.path;
     console.log(filePath);
     fs.readFile(filePath, (err, data) => {
       res.contentType("application/pdf");
@@ -44,7 +44,7 @@ exports.deleteAnnouncement = async (req, res) => {
     const id = req.params.id;
     const announcement = await Announcement.findById(id);
     if (typeof announcement.path !== "undefined") {
-      fs.unlinkSync(`uploads/${announcement.path}`);
+      fs.unlinkSync(`uploads/announcements/${announcement.path}`);
     }
     console.log("successfully deleted /tmp/hello");
     await Announcement.findByIdAndRemove(id);

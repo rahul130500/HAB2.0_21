@@ -4,7 +4,7 @@ const middleware = require("../middleware");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads/");
+    cb(null, "./uploads/announcements/");
   },
   filename: (req, file, cb) => {
     const fileName = file.originalname.replace(/\s/g, "");

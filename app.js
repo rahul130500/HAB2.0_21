@@ -22,6 +22,7 @@ const userRoutes = require("./routes/user.routes");
 const adminRoutes = require("./routes/admin.routes");
 const noticeRoutes = require("./routes/notice.routes");
 const announcementRoutes = require("./routes/announcement.routes");
+const formRoutes = require("./routes/form.routes");
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -50,6 +51,7 @@ app.use("/", userRoutes);
 app.use("/", adminRoutes);
 app.use("/notice", noticeRoutes);
 app.use("/announcement", announcementRoutes);
+app.use("/form", formRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
