@@ -23,11 +23,7 @@ exports.postNotice = async (req, res) => {
 exports.getOneNotice = async (req, res) => {
   const id = req.params.notice_id;
   const notice = await Notice.findById(id);
-<<<<<<< HEAD
   const filePath = "uploads/notices/" + notice.path;
-=======
-  const filePath = "uploads/notice/" + notice.path;
->>>>>>> 3ea9cccfb72f8376b64df74a6bdb954defcf76dd
   console.log(filePath);
   fs.readFile(filePath, (err, data) => {
     res.contentType("application/pdf");
@@ -39,13 +35,8 @@ exports.deleteNotice = async (req, res) => {
   try {
     const id = req.params.notice_id;
     const notice = await Notice.findById(id);
-<<<<<<< HEAD
     fs.unlinkSync(`uploads/notices/${notice.path}`);
     console.log("successfully deleted /tmp/hello");
-=======
-    fs.unlinkSync(`uploads/notice/${notice.path}`);
-    console.log("successfully deleted!");
->>>>>>> 3ea9cccfb72f8376b64df74a6bdb954defcf76dd
     await Notice.findByIdAndRemove(id);
     return res.redirect("/notice");
   } catch (err) {
