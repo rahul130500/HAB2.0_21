@@ -1,0 +1,34 @@
+<%- include("./partials/header.ejs") %> 
+
+<div class="flex justify-between">
+    <h1 class="mx-10 title-font text-xl font-bold text-gray-900 mb-3">Functionaries</h1>
+    <a href="/functionary/add"><button  class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mx-10">Add Functionary</button></a>
+</div>
+
+<div class="container">
+    <div class="row">
+        <% functionaries.forEach(functionary=>{ %>
+            <div class="col col-lg-3">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src=<%= functionary.pic %> alt="Card image cap">
+                    <div class="card-body">
+                      <p class="card-title"><%= functionary.name %></p>
+                      <p class="card-subtitle mb-2 text-muted"><%= functionary.post %></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <% functionary.contact.forEach(line=>{if(line!==''){ %>
+                                <li class="list-group-item"><%= line %></li>
+                        <% }}) %>
+                    </ul>
+                    <div class="card-body" class="flex">
+                      <a href="/functionary/<%=functionary.id%>" class="btn btn-primary">Edit</a>
+                      <form class="form-inline" action="/functionary/<%=functionary.id%>?_method=DELETE" method="POST"><input class="btn btn-danger" type="submit" value="Delete" /></form>
+                    </div>
+                  </div>
+            </div>
+         <% }) %>
+    </div>
+</div>
+
+
+<%- include("./partials/footer.ejs") %> 

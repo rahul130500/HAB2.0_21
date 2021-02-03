@@ -52,9 +52,8 @@ router.post("/profile", middleware.isLoggedIn, async (req, res) => {
   res.redirect("/profile");
 });
 
-router.get("/hostels", (req, res) => {
-  res.render("hostel");
-});
+
+
 
 const compare = (a, b) => {
   return b.creation - a.creation;

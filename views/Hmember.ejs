@@ -1,0 +1,60 @@
+<%- include("./partials/header.ejs") %> 
+
+<div class="flex justify-between">
+    <h1 class="mx-10 title-font text-xl font-bold text-gray-900 mb-3">Members</h1>
+    <a href="<%= link %>"><button  class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mx-10">Add Member</button></a>
+</div>
+
+
+<section class="text-gray-600 body-font">
+  
+    <div class="container px-12 py-24 mx-auto ">
+      <div class="flex flex-wrap -mx-auto -my-8">
+        <% members.forEach((member)=>{ %>
+            <div class="card mb-3 ml-12" style="max-width: 480px">
+                <div class="row g-0">
+                  <div class="col-md-12" style="max-height: 350px;" >
+                    <img
+                      src="../uploads/<%= member.photo %>"
+                      alt="..."
+                      class="img-fluid"
+                      style="width: 100%;height: 100%;"
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <div class="card-body">
+                      <h1 class="card-title"><%= member.name %></h1>
+                      <h4 class="card-title">Position: <%= member.position %></h4>
+                      <p class="card-text">Contact Number: <%= member.contact %></p>
+                      
+                      <p class="card-text">Email: <%= member.email %></p>
+                      
+                    </div>
+                  </div>
+                  <a class="inline-flex items-center">
+                    <span class="justify-between flex flex-col pl-3">
+                        <form class="mx-2" action="/hostels/<%=member.Hname%>/<%=member.id%>?_method=DELETE" method="POST"><button  class="bg-red-500 hover:bg-red-600 text-white cursor-pointer  py-2 px-4 rounded">Delete</button></form>
+                        
+                    </span>
+                  </a>
+                </div>
+              </div>
+            
+        <% }) %>
+      </div>
+    </div>
+    <a class="inline-flex items-center">
+      <span class="justify-between flex flex-col pl-3">
+          <form class="mx-2" action="/hostels/<%=name%>?_method=DELETE" method="POST"><button  class="bg-red-500 hover:bg-red-600 text-white cursor-pointer  py-2 px-4 rounded">Delete All</button></form>
+          <a href="/"><button  class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Home</button></a>
+      </span>
+    </a>
+
+  </section>
+
+
+
+
+  
+
+<%- include("./partials/footer.ejs") %> 

@@ -1,0 +1,16 @@
+body{padding-top:30px;}
+
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+display: block;
+line-height: 1.428571429;
+color: #999;
+}
+
+.card-body h1{
+    font-size: xx-large;
+}
+.card-body h4{
+    font-size:large;
+}
