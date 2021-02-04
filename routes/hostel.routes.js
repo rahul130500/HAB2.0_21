@@ -1,14 +1,13 @@
 const express = require("express");
 const fs = require("fs");
 const router = express.Router({ mergeParams: true });
-const passport = require("passport");
 const middleware = require("../middleware");
 const authController = require("../controllers/auth.controller");
 const hostelController = require("../controllers/hostel.controller");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads/");
+    cb(null, "./uploads/hostel/");
   },
   filename: (req, file, cb) => {
     const fileName = file.originalname.replace(/\s/g, "");
@@ -18,11 +17,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get("/", (req, res) => {
-    res.render("hostel");
-  });
+router.get("/", hostelController.getAllHostels);
 
 router.get("/:name/addMember",middleware.isLoggedIn,hostelController.addMemberForm);
+router.get("/addHostel",middleware.isLoggedIn,hostelController.addHostelForm);
+
 
 router.post(
   "/:name",
@@ -32,14 +31,18 @@ router.post(
 );
 
 router.delete("/:name/:id",middleware.isLoggedIn,hostelController.deleteMember);
+router.delete("/:id",middleware.isLoggedIn,hostelController.deleteHostel);
 
 
 
-router.get("/all",middleware.isLoggedIn,hostelController.getAllHostels);
+
+router.post(
+  "/",
+  middleware.isLoggedIn,upload.single("pic"), hostelController.createHostel);
 
   
-router.get("/:name",middleware.isLoggedIn, hostelController.getHostel);
-router.delete("/:name",middleware.isLoggedIn, hostelController.deleteHostelMembers);
+router.get("/:name", hostelController.getHostel);
+router.delete("/:name/deleteAll/members",middleware.isLoggedIn, hostelController.deleteHostelMembers);
 
 
   module.exports=router;

@@ -11,7 +11,7 @@ exports.addAnnouncementForm = (req, res) => {
   res.render("announcement_add");
 };
 
-exports.postNotice = async (req, res) => {
+exports.postAnnouncement = async (req, res) => {
   const { description } = req.body;
   if (typeof req.file !== "undefined") {
     const path = req.file.filename;
@@ -30,7 +30,7 @@ exports.getOneAnnouncement = async (req, res) => {
   const announcement = await Announcement.findById(id);
 
   if (typeof announcement.path !== "undefined") {
-    const filePath = "uploads/" + announcement.path;
+    const filePath = "uploads/announcements/" + announcement.path;
     console.log(filePath);
     fs.readFile(filePath, (err, data) => {
       res.contentType("application/pdf");
@@ -44,9 +44,11 @@ exports.deleteAnnouncement = async (req, res) => {
     const id = req.params.id;
     const announcement = await Announcement.findById(id);
     if (typeof announcement.path !== "undefined") {
-      fs.unlinkSync(`uploads/${announcement.path}`);
+      try {
+        fs.unlinkSync(`uploads/announcements/${announcement.path}`);
+      } catch (err) {}
     }
-    console.log("successfully deleted /tmp/hello");
+    console.log("successfully deleted /tmp/hello1");
     await Announcement.findByIdAndRemove(id);
     res.redirect("/announcement");
   } catch (err) {

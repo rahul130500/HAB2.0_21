@@ -4,38 +4,31 @@ const middleware = require("../middleware");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads/announcements/");
+    cb(null, "./uploads/forms/");
   },
   filename: (req, file, cb) => {
     const fileName = file.originalname.replace(/\s/g, "");
     cb(null, Date.now().toString() + fileName);
   },
 });
-const announcementController = require("../controllers/announcement.controller");
+const formController = require("../controllers/form.controller");
+
 const upload = multer({ storage: storage });
 
-router.get("/", middleware.isLoggedIn, announcementController.getAnnouncements);
+router.get("/", middleware.isLoggedIn, formController.getForms);
 
-router.get(
-  "/add",
-  middleware.isLoggedIn,
-  announcementController.addAnnouncementForm
-);
+router.get("/add", middleware.isLoggedIn, formController.addFormForm);
 
 router.post(
   "/",
   middleware.isLoggedIn,
-  upload.single("announcement"),
-  announcementController.postAnnouncement
+  upload.single("form"),
+  formController.postForm
 );
 
-router.get("/:id", announcementController.getOneAnnouncement);
+router.get("/:id", formController.getOneForm);
 
-router.delete(
-  "/:id",
-  middleware.isLoggedIn,
-  announcementController.deleteAnnouncement
-);
+router.delete("/:id", middleware.isLoggedIn, formController.deleteForm);
 
 const compare = (a, b) => {
   return b.creation - a.creation;

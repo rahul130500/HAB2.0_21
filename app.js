@@ -23,6 +23,7 @@ const adminRoutes = require("./routes/admin.routes");
 const noticeRoutes = require("./routes/notice.routes");
 const functionaryRoutes = require("./routes/functionary.routes");
 const announcementRoutes = require("./routes/announcement.routes");
+const formRoutes = require("./routes/form.routes");
 const hostelRoutes = require("./routes/hostel.routes");
 
 app.use(express.json());
@@ -54,6 +55,7 @@ app.use("/notice", noticeRoutes);
 app.use("/announcement", announcementRoutes);
 app.use("/functionary", functionaryRoutes);
 app.use("/hostels", hostelRoutes);
+app.use("/form", formRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
