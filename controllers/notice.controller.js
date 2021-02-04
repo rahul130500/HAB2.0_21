@@ -45,7 +45,6 @@ exports.deleteNotice = async (req, res) => {
     const notice = await Notice.findById(id);
     fs.unlinkSync(`uploads/notice_pdf/${notice.path}`);
     console.log("successfully deleted!");
-
     await Notice.findByIdAndRemove(id);
     return res.redirect("/notice");
   } catch (err) {
