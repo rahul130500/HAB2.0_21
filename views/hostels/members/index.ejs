@@ -1,0 +1,93 @@
+<%- include("../../partials/header.ejs") %>
+<h1 class="text-3xl text-black pb-6">Members</h1>
+<div class="mt-6">
+    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="<%= link %>">Add Members</a>
+</div>
+
+<div class="w-full mt-6 overflow-auto">
+    <div class="bg-white">
+        <table class="min-w-full leading-normal">
+            <thead class="bg-gray-800 text-white">
+                <tr>
+                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                        Name
+                    </th>
+                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                        Position
+                    </th>
+                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                        Email
+                    </th>
+                    
+                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                        Contact
+                    </th>
+                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                        Edit
+                    </th>
+                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                        Delete
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <% members.forEach((member, i)=>{ %>
+                    <tr>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 w-10 h-10">
+                                    <img class="w-full h-full rounded-full"
+                                        src="../uploads/hostel/<%=member.photo %>"
+                                        alt="" />
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        <%= member.Mname %>
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                
+                                    <%= member.position %>
+                                
+                            </p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                
+                                    <%= member.email %>
+                                
+                            </p>
+                        </td>
+
+                        
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">
+                                    
+                                        <%=member.contact %>
+                                    
+                                </p>
+                            </td>
+                            
+
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <a class="hover:text-blue-500" href="/hostels/<%=name%>/<%=member.id%>/updateMember">Edit</a>
+                        </td>
+
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <form class="mx-2" action="/hostels/<%=name%>/<%=member.id%>?_method=DELETE" method="POST"><button class="hover:text-blue-500">Delete</button></form>
+                        </td>
+                    </tr>
+                <% }) %>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include("../../partials/footer.ejs") %> 

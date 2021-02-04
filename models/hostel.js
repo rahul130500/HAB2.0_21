@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const HostelSchema = new mongoose.Schema({
   name:{type:String, required:true},
   pic:{type:String,required:true},
+  contact: {type:Number, length:10,required:true},
   management:[
     {
     Mname:{type:String, required:true},

@@ -25,6 +25,8 @@ router.get(
   hostelController.addMemberForm
 );
 router.get("/addHostel", middleware.isLoggedIn, hostelController.addHostelForm);
+router.get("/:name/:id/updateMember", middleware.isLoggedIn, hostelController.updateMemberForm);
+
 
 router.post(
   "/:name",
@@ -38,6 +40,13 @@ router.delete(
   middleware.isLoggedIn,
   hostelController.deleteMember
 );
+router.patch(
+  "/:name/:id",
+  middleware.isLoggedIn,
+  upload.single("photo"),
+  hostelController.updateMember
+);
+
 router.delete("/:id", middleware.isLoggedIn, hostelController.deleteHostel);
 
 router.post(
@@ -46,8 +55,9 @@ router.post(
   upload.single("pic"),
   hostelController.createHostel
 );
-
+router.get("/:name/updateHostel",middleware.isLoggedIn,hostelController.updateHostelForm);
 router.get("/:name", hostelController.getHostel);
+router.patch("/:name",upload.single("pic"), hostelController.updateHostel);
 router.delete(
   "/:name/deleteAll/members",
   middleware.isLoggedIn,

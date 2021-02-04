@@ -1,0 +1,47 @@
+
+
+<%- include("../../partials/header.ejs") %> 
+<h1 class="text-3xl text-black pb-6">Add Members</h1>
+
+<div class="flex flex-wrap justify-center">
+    <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
+        <p class="text-xl pb-6 flex items-center">
+            <i class="fas fa-list mr-3"></i> Add Members
+        </p>
+        <div class="leading-loose">
+            <form class="p-10 bg-white rounded shadow-xl" action="<%= link %>" method="POST" enctype="multipart/form-data">
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="name">Member Name</label>
+                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text" name="Mname" placeholder="Member Full Name" required>
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="position">Position</label>
+                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="position" type="text" name="position" placeholder="Member Position" required>
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="priority">Priority Number</label>
+                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="priority" type="number" name="priority" placeholder="Member priority" required>
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="contact1">Contact Number</label>
+                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="contact1" name="contact" placeholder="Contact" required></input>
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="email">Email Address</label>
+                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="email" type="email" name="email" placeholder="Member Email" required>
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="photo">Profile Image</label>
+                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="file" id="photo" name="photo" placeholder="image url" required></input>
+                </div>
+    
+                
+                
+                <div class="mt-6">
+                    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include("../../partials/footer.ejs") %> 
