@@ -52,11 +52,4 @@ router.post("/profile", middleware.isLoggedIn, async (req, res) => {
   res.redirect("/profile");
 });
 
-
-
-
-const compare = (a, b) => {
-  return b.creation - a.creation;
-};
-
 module.exports = router;

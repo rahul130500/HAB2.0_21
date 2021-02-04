@@ -5,11 +5,11 @@ const Announcement = require("../models/announcement");
 exports.getNotices = async (req, res) => {
   const notices = await Notice.find({});
   notices.sort(compare);
-  return res.render("notice", { notices });
+  return res.render("notices/index", { notices });
 };
 
 exports.addNoticeForm = (req, res) => {
-  return res.render("notice_add");
+  return res.render("notices/add");
 };
 exports.postNotice = async (req, res) => {
   const { title, description, imp } = req.body;

@@ -4,11 +4,11 @@ const fs = require("fs");
 exports.getFunctionary = async (req, res) => {
   const functionaries = await Functionary.find({});
   functionaries.sort(compare);
-  return res.render("functionary", { functionaries });
+  return res.render("functionary/index", { functionaries });
 };
 
 exports.addFunctionaryForm = (req, res) => {
-  return res.render("functionary_add");
+  return res.render("functionary/add");
 };
 
 exports.postFunctionary = async (req, res) => {
@@ -37,7 +37,7 @@ exports.postFunctionary = async (req, res) => {
 
 exports.getEditForm = async (req, res) => {
   const functionary = await Functionary.findById(req.params.func_id);
-  return res.render("functionary_edit", { functionary });
+  return res.render("functionary/edit", { functionary });
 };
 
 exports.editFunctionary = async (req, res) => {

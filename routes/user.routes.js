@@ -9,7 +9,8 @@ router.get("/", async (req, res) => {
   for (let i = 0; i < notices.length; i++) {
     notices[i].creation = notices[i].creation.toString().split(" ");
   }
-  res.render("home", { notices });
+  //res.render("home", { notices });
+  res.send("Home");
 });
 
 const compare = (a, b) => {

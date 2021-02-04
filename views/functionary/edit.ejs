@@ -1,0 +1,52 @@
+<%- include("../partials/header.ejs") %> 
+
+<h1 class="text-3xl text-black pb-6">Add Functionaries</h1>
+
+<div class="flex flex-wrap justify-center">
+    <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
+        <p class="text-xl pb-6 flex items-center">
+            <i class="fas fa-list mr-3"></i> Add Functionaries
+        </p>
+        <div class="leading-loose">
+            <form class="p-10 bg-white rounded shadow-xl" action="/functionary/<%=functionary.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="name">Full Name</label>
+                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text" name="name" value="<%= functionary.name %>" required>
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="pic">Profile Image</label>
+                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="file" id="pic" name="pic" placeholder="image url"></input>
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="post">Post Name</label>
+                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="text" id="post" name="post" value="<%= functionary.post %>" required></input>
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="priority_number">Priority Number</label>
+                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="number" id="priority" name="priority_number" value="<%= functionary.priority_number %>" required></input>
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="contact1">Contact Line</label>
+                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="contact1" name="contact_line1" value="<%= functionary.contact[0] %>" required></input>
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="contact2">Contact Line</label>
+                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="contact1" name="contact_line2" value="<%= functionary.contact[1] %>" ></input>
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="contact3">Contact Line</label>
+                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="contact1" name="contact_line3" value="<%= functionary.contact[2] %>" ></input>
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="contact4">Contact Line</label>
+                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="contact1" name="contact_line4" value="<%= functionary.contact[3] %>" ></input>
+                </div>
+                <div class="mt-6">
+                    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer.ejs") %> 

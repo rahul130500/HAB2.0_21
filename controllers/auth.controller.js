@@ -1,5 +1,5 @@
 const User = require("../models/user");
-
+const passport = require("passport");
 exports.getLoginPage = (req, res) => {
   res.render("login");
 };

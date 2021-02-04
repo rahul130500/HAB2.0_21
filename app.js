@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const passport = require("passport");
 const session = require("express-session");
+const mongoSanitize = require("express-mongo-sanitize");
 const MongoStore = require("connect-mongo")(session);
 const url = "mongodb://localhost/HAB_DB";
 const app = express();
@@ -31,12 +32,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(methodOverride("_method"));
-
+app.use(mongoSanitize());
 app.use(
   session({
     secret: "Once again rusty is the cutest dog",
     resave: false,
     saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: 180 * 60 * 1000 },
   })
 );
 
@@ -44,6 +47,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.session = req.session;
   next();
 });
 

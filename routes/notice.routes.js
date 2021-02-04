@@ -12,7 +12,6 @@ const storage = multer.diskStorage({
   },
 });
 const noticeController = require("../controllers/notice.controller");
-const announcementController = require("../controllers/announcement.controller");
 const upload = multer({ storage: storage });
 
 router.get("/", middleware.isLoggedIn, noticeController.getNotices);

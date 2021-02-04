@@ -19,9 +19,12 @@ const upload = multer({ storage: storage });
 
 router.get("/", hostelController.getAllHostels);
 
-router.get("/:name/addMember",middleware.isLoggedIn,hostelController.addMemberForm);
-router.get("/addHostel",middleware.isLoggedIn,hostelController.addHostelForm);
-
+router.get(
+  "/:name/addMember",
+  middleware.isLoggedIn,
+  hostelController.addMemberForm
+);
+router.get("/addHostel", middleware.isLoggedIn, hostelController.addHostelForm);
 
 router.post(
   "/:name",
@@ -30,19 +33,25 @@ router.post(
   hostelController.createMember
 );
 
-router.delete("/:name/:id",middleware.isLoggedIn,hostelController.deleteMember);
-router.delete("/:id",middleware.isLoggedIn,hostelController.deleteHostel);
-
-
-
+router.delete(
+  "/:name/:id",
+  middleware.isLoggedIn,
+  hostelController.deleteMember
+);
+router.delete("/:id", middleware.isLoggedIn, hostelController.deleteHostel);
 
 router.post(
   "/",
-  middleware.isLoggedIn,upload.single("pic"), hostelController.createHostel);
+  middleware.isLoggedIn,
+  upload.single("pic"),
+  hostelController.createHostel
+);
 
-  
 router.get("/:name", hostelController.getHostel);
-router.delete("/:name/deleteAll/members",middleware.isLoggedIn, hostelController.deleteHostelMembers);
+router.delete(
+  "/:name/deleteAll/members",
+  middleware.isLoggedIn,
+  hostelController.deleteHostelMembers
+);
 
-
-  module.exports=router;
+module.exports = router;
