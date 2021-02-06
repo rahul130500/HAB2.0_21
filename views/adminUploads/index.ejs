@@ -1,0 +1,48 @@
+<%- include("../partials/header.ejs") %>
+<h1 class="text-3xl text-black pb-6">Image Uploads</h1>
+<div class="mt-6">
+    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="<%= link %>">Add Images</a>
+</div>
+
+<div class="w-full mt-6 overflow-auto">
+    <div class="bg-white">
+                
+                
+                    <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+                        <% uploads.forEach((upload, i)=>{ %>
+                        <div class="rounded overflow-hidden shadow-lg">
+                          <img class="w-full" src="../uploads/adminUploads/<%=upload.image %>" alt="">
+                          <div class="px-6 py-4 flex justify-between">
+                            <span class="inline-block"><div class="font-bold text-xl mb-2"><%= upload.image_name.substring(0, 10) + "..." %></div> </span>
+                            <span class="inline-block"><div class="inline-flex">
+                                <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded-l" href="/uploads/<%=upload.id%>/updateUpload">Edit</a>
+                                <form class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded-r" action="/uploads/<%=upload.id%>?_method=DELETE" method="POST"><button class="hover:text-blue-500">Delete</button></form>   
+                                    </div>
+                            </span>         
+                          </div> 
+                        </div>
+                        <% }) %>
+                    </div>
+                
+    </div>
+</div>
+<% if(uploads.length!=0){ %>
+    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" onclick="document.getElementById('id01').style.display='block'">Delete All Images</button>
+
+    <div id="id01" class="modal">
+      
+      <form action="/uploads/delete/allUploads?_method=DELETE" method="POST" class="modal-content">
+        <div class="container">
+          <h1>Delete All Images</h1>
+          <p>Are you sure you want to delete all the images?</p>
+    
+          <div class="clearfix">
+            <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" onclick="document.getElementById('id01').style.display='none'" type="button">Cancel</button>
+           <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit" >Delete</button>
+          </div>
+        </div>
+    </form>
+    </div>
+<% } %>
+
+<%- include("../partials/footer.ejs") %> 

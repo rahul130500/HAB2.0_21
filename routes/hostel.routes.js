@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get("/", hostelController.getAllHostels);
+router.get("/",middleware.isLoggedIn, hostelController.getAllHostels);
 
 router.get(
   "/:name/addMember",
@@ -59,7 +59,7 @@ router.get("/:name/updateHostel",middleware.isLoggedIn,hostelController.updateHo
 router.get("/:name", hostelController.getHostel);
 router.patch("/:name",upload.single("pic"), hostelController.updateHostel);
 router.delete(
-  "/:name/deleteAll/members",
+  "/:name/delete/allMembers",
   middleware.isLoggedIn,
   hostelController.deleteHostelMembers
 );

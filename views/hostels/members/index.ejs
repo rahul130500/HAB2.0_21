@@ -89,5 +89,24 @@
         </table>
     </div>
 </div>
+<% if(members.length!=0){ %>
+    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" onclick="document.getElementById('id01').style.display='block'">Delete All Members</button>
+
+    <div id="id01" class="modal">
+      
+      <form action="/hostels/<%=name%>/delete/allMembers?_method=DELETE" method="POST" class="modal-content">
+        <div class="container">
+          <h1>Delete All Members</h1>
+          <p>Are you sure you want to delete all the hostel members?</p>
+    
+          <div class="clearfix">
+            <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" onclick="document.getElementById('id01').style.display='none'" type="button">Cancel</button>
+           <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit" >Delete</button>
+          </div>
+        </div>
+    </form>
+    </div>
+<% } %>
+
 
 <%- include("../../partials/footer.ejs") %> 
