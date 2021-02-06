@@ -11,20 +11,45 @@ exports.getNotices = async (req, res) => {
 exports.addNoticeForm = (req, res) => {
   return res.render("notices/add");
 };
+
 exports.postNotice = async (req, res) => {
-  const { title, description, imp } = req.body;
+  const { title, description, imp, link } = req.body;
   const path = req.file.filename;
   var important = 0;
   if (imp != undefined) {
     important = 1;
   }
-  const newNotice = new Notice({ title, description, path });
-  await newNotice.save();
+  if(link != undefined) {
+    const newNotice = new Notice({ title, description, path, link });
+    await newNotice.save();
+  }
+  else {
+    const newNotice = new Notice({ title, description, path });
+    await newNotice.save();
+  }
   if (important) {
     const newAnnouncement = new Announcement({ title, description, path });
     await newAnnouncement.save();
   }
 
+  return res.redirect("/notice");
+};
+
+exports.getEditForm = async (req, res) => {
+  const notice = await Notice.findById(req.params.notice_id);
+  return res.render("notices/edit", { notice });
+};
+
+exports.editNotice = async (req, res) => {
+  const { title, description, link } = req.body;
+
+  const data = { title, description, link };
+  if (req.file) {
+    const notice = `uploads/notices_pdf/${req.file.filename}`;
+    data["notice"] = notice;
+  }
+  console.log(data);
+  await Notice.findByIdAndUpdate(req.params.notice_id, data);
   return res.redirect("/notice");
 };
 

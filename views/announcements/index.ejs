@@ -1,7 +1,7 @@
 <%- include("../partials/header.ejs") %> 
-<h1 class="text-3xl text-black pb-6">Notices</h1>
+<h1 class="text-3xl text-black pb-6">Announcements</h1>
 <div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/notice/add">Add Notices</a>
+    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/announcement/add">Add Announcements</a>
 </div>
 <div class="w-auto mt-6 overflow-auto">
     <div class="bg-white">
@@ -17,17 +17,17 @@
                 </tr>
             </thead>
             <tbody class="text-gray-700">
-                    <%notices.forEach((notice,i)=>{ if(i%2){%>
+                    <%announcements.forEach((announcement,i)=>{ if(i%2){%>
                             <tr class="bg-gray-200">
                         <%}else{%>
                             <tr>
                         <%}%>
-                            <td class="text-left py-3 px-4"><%=  notice.creation.getFullYear()+'/'+(notice.creation.getMonth()+1)+'/'+notice.creation.getDate() %></td>
-                            <td class="w-1/3 text-left py-3 px-4"><%= notice.title %></td>
-                            <td class="w-1/3 text-left py-3 px-4"><%= notice.description.substring(0, 80) + "..." %></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/notice/pdf/<%=notice.id%>" target="_blank">View</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/notice/<%=notice.id%>">Edit</a></td>
-                            <td class="text-left py-3 px-4"><form class="mx-2" action="/notice/<%=notice.id%>?_method=DELETE" method="POST"><button class="hover:text-blue-500">Delete</button></form></td>
+                            <td class="text-left py-3 px-4"><%=  announcement.creation.getFullYear()+'/'+(announcement.creation.getMonth()+1)+'/'+announcement.creation.getDate() %></td>
+                            <td class="w-1/3 text-left py-3 px-4"><%= announcement.title %></td>
+                            <td class="w-1/3 text-left py-3 px-4"><%= announcement.description.substring(0, 80) + "..." %></td>
+                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/announcement/pdf/<%=announcement.id%>" target="_blank">View</a></td>
+                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/announcement/<%=announcement.id%>">Edit</a></td>
+                            <td class="text-left py-3 px-4"><form class="mx-2" action="/announcement/<%=announcement.id%>?_method=DELETE" method="POST"><button class="hover:text-blue-500">Delete</button></form></td>
                            
                         </tr>
                     <% })%>

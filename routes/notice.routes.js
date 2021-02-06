@@ -18,20 +18,15 @@ router.get("/", middleware.isLoggedIn, noticeController.getNotices);
 
 router.get("/add", middleware.isLoggedIn, noticeController.addNoticeForm);
 
-router.post(
-  "/",
-  middleware.isLoggedIn,
-  upload.single("notice"),
-  noticeController.postNotice
-);
+router.post("/", middleware.isLoggedIn, upload.single("notice"), noticeController.postNotice);
 
-router.get("/:notice_id", noticeController.getOneNotice);
+router.get("/:notice_id", noticeController.getEditForm);
 
-router.delete(
-  "/:notice_id",
-  middleware.isLoggedIn,
-  noticeController.deleteNotice
-);
+router.get("/pdf/:notice_id", noticeController.getOneNotice);
+
+router.put("/:notice_id", middleware.isLoggedIn, upload.single("notice"), noticeController.editNotice);
+
+router.delete("/:notice_id", middleware.isLoggedIn, noticeController.deleteNotice);
 
 const compare = (a, b) => {
   return b.creation - a.creation;

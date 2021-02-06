@@ -4,7 +4,7 @@ const middleware = require("../middleware");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads/forms/");
+    cb(null, "./uploads/form_pdf/");
   },
   filename: (req, file, cb) => {
     const fileName = file.originalname.replace(/\s/g, "");
@@ -19,14 +19,13 @@ router.get("/", middleware.isLoggedIn, formController.getForms);
 
 router.get("/add", middleware.isLoggedIn, formController.addFormForm);
 
-router.post(
-  "/",
-  middleware.isLoggedIn,
-  upload.single("form"),
-  formController.postForm
-);
+router.post("/", middleware.isLoggedIn, upload.single("form"), formController.postForm);
 
-router.get("/:id", formController.getOneForm);
+router.get("/:id", formController.getEditForm);
+
+router.get("/pdf/:id", formController.getOneForm);
+
+router.put("/:id", middleware.isLoggedIn, upload.single("form"), formController.editForm);
 
 router.delete("/:id", middleware.isLoggedIn, formController.deleteForm);
 
