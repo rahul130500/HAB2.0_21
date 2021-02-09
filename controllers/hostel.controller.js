@@ -32,7 +32,6 @@ exports.addHostelForm = (req, res) => {
 };
 exports.updateHostelForm = async(req, res) => {
   const hostel=await Hostel.findOne({name: req.params.name});
-
   res.render("hostels/edit",{link:"/hostels/"+req.params.name,hostel});
 };
 exports.updateMemberForm = async(req, res) => {
@@ -48,7 +47,7 @@ exports.updateMemberForm = async(req, res) => {
     mb=member[0];
    
 
-  res.render("hostels/members/edit",{link:"/hostels/"+req.params.name+"/"+id,mb});
+  res.render("hostels/members/edit",{link:"/hostels/"+req.params.name+"/"+id,mb,name});
 };
 exports.updateHostel=async(req,res)=>{
   const hostel=await Hostel.findOne({name: req.params.name});
