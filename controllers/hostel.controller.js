@@ -11,13 +11,13 @@ exports.getHostel = async (req, res, next) => {
   const hostel = await Hostel.findOne({ name: req.params.name });
 
   if (hostel == null) {
-    res.status(404).json({
+    return res.status(404).json({
       status: "not found",
       data: {
         data: hostel,
       },
     });
-    return next();
+    next();
   }
   const name = req.params.name;
   const members = hostel.management;

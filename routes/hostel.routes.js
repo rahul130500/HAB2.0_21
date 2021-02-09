@@ -17,11 +17,13 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get("/:name", hostelController.getHostel);
 
 router.get("/",middleware.isLoggedIn, hostelController.getAllHostels);
 
 router.get("/addHostel", middleware.isLoggedIn, hostelController.addHostelForm);
+
+router.get("/:name", hostelController.getHostel);
+
 
 router.post(
   "/",
