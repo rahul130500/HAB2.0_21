@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const funcController = require("../controllers/functionary.controller");
 const multer = require("multer");
+const middleware = require("../middleware");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./uploads/functionary_images");
@@ -13,11 +14,25 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-router.get("/", funcController.getFunctionary);
-router.get("/add", funcController.addFunctionaryForm);
-router.post("/", upload.single("pic"), funcController.postFunctionary);
-router.get("/:func_id", funcController.getEditForm);
-router.put("/:func_id", upload.single("pic"), funcController.editFunctionary);
-router.delete("/:func_id", funcController.deleteFunctionary);
+router.get("/", middleware.isLoggedIn, funcController.getFunctionary);
+router.get("/add", middleware.isLoggedIn, funcController.addFunctionaryForm);
+router.post(
+  "/",
+  middleware.isLoggedIn,
+  upload.single("pic"),
+  funcController.postFunctionary
+);
+router.get("/:func_id", middleware.isLoggedIn, funcController.getEditForm);
+router.put(
+  "/:func_id",
+  middleware.isLoggedIn,
+  upload.single("pic"),
+  funcController.editFunctionary
+);
+router.delete(
+  "/:func_id",
+  middleware.isLoggedIn,
+  funcController.deleteFunctionary
+);
 
 module.exports = router;

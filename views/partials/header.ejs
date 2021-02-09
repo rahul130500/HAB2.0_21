@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Admin Template</title>
+    <title>HAB Admin Panel</title>
     <meta name="author" content="David Grzyb">
     <meta name="description" content="">
 
@@ -20,20 +20,21 @@
         .nav-item:hover { background: #1947ee; }
         .account-link:hover { background: #3d68ff; }
     </style>
-    <link rel="stylesheet" href="../../css/hostelg.css">
+    <link rel="stylesheet" href="/css/hostelg.css">
+    <link rel="stylesheet" href="/css/alert.css" />
 </head>
 <body class="bg-gray-100 font-family-karla flex">
 
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
-            <a href="/admin" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-            <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+            <a href="/admin" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">HAB Admin</a>
+            <!-- <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                 <i class="fas fa-plus mr-3"></i> New Report
-            </button>
+            </button> -->
         </div>
         <nav class="text-white text-base font-semibold pt-3">
             <a href="/admin" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-tachometer-alt mr-3"></i>
+                <i class="fas fa-users-cog mr-3"></i>
                 Admin
             </a>
             <a href="/notice" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
@@ -41,34 +42,30 @@
                 Notices
             </a>
             <a href="/announcement" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-table mr-3"></i>
+                <i class="fas fa-bullhorn mr-3"></i>
                 Announcements
             </a>
             <a href="/form" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-align-left mr-3"></i>
+                <i class="fab fa-wpforms mr-3"></i>
                 Forms
             </a>
             <a href="/functionary" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-tablet-alt mr-3"></i>
+                <i class="fas fa-users mr-3"></i>
                 Functionaries
             </a>
             <a href="/hostels" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-calendar mr-3"></i>
+                <i class="fas fa-hotel mr-3"></i>
                 Hostels
             </a>
             <a href="/links" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-tablet-alt mr-3"></i>
+                <i class="fas fa-link mr-3"></i>
                 Links
             </a>
             <a href="/uploads" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-tablet-alt mr-3"></i>
+                <i class="fas fa-upload mr-3"></i>
                 Uploads
             </a>
         </nav>
-        <!-- <a href="#" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
-            <i class="fas fa-arrow-circle-up mr-3"></i>
-            Upgrade to Pro!
-        </a> -->
     </aside>
 
     <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
@@ -101,7 +98,7 @@
             <!-- Dropdown Nav -->
             <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
                 <a href="/admin" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-tachometer-alt mr-3"></i>
+                    <i class="fas fa-users-cog mr-3"></i>
                     Admin
                 </a>
                 <a href="/notice" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
@@ -109,27 +106,27 @@
                     Notices
                 </a>
                 <a href="/announcement" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-table mr-3"></i>
+                    <i class="fas fa-bullhorn mr-3"></i>
                     Announcements
                 </a>
                 <a href="/form" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-align-left mr-3"></i>
+                    <i class="fab fa-wpforms mr-3"></i>
                     Forms
                 </a>
                 <a href="/functionary" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-calendar mr-3"></i>
+                    <i class="fas fa-users mr-3"></i>
                     Functionaries
                 </a> 
                 <a href="/hostels" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-tablet-alt mr-3"></i>
+                    <i class="fas fa-hotel mr-3"></i>
                     Hostels
                 </a>
                 <a href="/links" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-calendar mr-3"></i>
+                    <i class="fas fa-link mr-3"></i>
                     Links
                 </a>
                 <a href="/uploads" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-calendar mr-3"></i>
+                    <i class="fas fa-upload mr-3"></i>
                     Uploads
                 </a>  
                 <!--<a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
@@ -155,4 +152,6 @@
 
         <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
             <main class="w-full flex-grow p-6">
+
+            <%- include("./flash.ejs") %>
                 
