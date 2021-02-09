@@ -11,14 +11,13 @@ exports.addFormForm = (req, res) => {
   res.render("forms/add");
 };
 exports.postForm = async (req, res) => {
-  const { title, description } = req.body;
-  const path = req.file.filename;
-  const link=req.body.link;
-  if(link != undefined) {
-    const newForm = new Form({ title, description, path, link });
-    await newForm.save();
-  } else {
+  const { title, description, link } = req.body;
+  if (typeof req.file !== "undefined") { 
+    const path = req.file.filename;
     const newForm = new Form({ title, description, path });
+    await newForm.save();
+  } else if(link != undefined) {
+    const newForm = new Form({ title, description, path: link});
     await newForm.save();
   }
   res.redirect("/form");

@@ -1,3 +1,23 @@
+<script>
+    function myfunction() {
+      var input1, filter1, table, tr, td, a2, a3, i;
+      input1 = document.getElementById("mySearch1");
+      filter1 = input1.value.toUpperCase();
+      table = document.getElementById("myMenu");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        a2 = td[1].innerHTML.toUpperCase();
+        a3 = td[2].innerHTML.toUpperCase();
+        if ((a2.indexOf(filter1) > -1) || (a3.indexOf(filter1) > -1)) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+</script>
+
 </main>
     
 <footer class="w-full bg-white text-right p-4">

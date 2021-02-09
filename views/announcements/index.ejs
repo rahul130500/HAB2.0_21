@@ -2,6 +2,7 @@
 <h1 class="text-3xl text-black pb-6">Announcements</h1>
 <div class="mt-6">
     <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/announcement/add">Add Announcements</a>
+    <input type="text" id="mySearch1" onkeyup="myfunction()" placeholder="Search ... ">
 </div>
 <div class="w-auto mt-6 overflow-auto">
     <div class="bg-white">
@@ -16,7 +17,7 @@
                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Delete</td>
                 </tr>
             </thead>
-            <tbody class="text-gray-700">
+            <tbody class="text-gray-700" id="myMenu">
                     <%announcements.forEach((announcement,i)=>{ if(i%2){%>
                             <tr class="bg-gray-200">
                         <%}else{%>

@@ -17,8 +17,7 @@ exports.addNoticeForm = async (req, res) => {
 };
 
 exports.postNotice = async (req, res) => {
-  const { title, description,category, imp, link } = req.body;
-  const path = req.file.filename;
+  var { title, description,category, imp, link } = req.body;
   var important = 0;
   if (imp != undefined) {
     important = 1;
@@ -26,12 +25,14 @@ exports.postNotice = async (req, res) => {
   const name=req.body.category;
   name = name.toLowerCase();
 
-  if(link != undefined) {
-    const newNotice = new Notice({ title, description, path,category, link });
+  if (typeof req.file !== "undefined") {
+    const path = req.file.filename;
+    link=path;
+    const newNotice = new Notice({ title, description, category, path });
     await newNotice.save();
   }
-  else {
-    const newNotice = new Notice({ title, description,category, path });
+  else if(link != undefined) {
+    const newNotice = new Notice({ title, description, category, path: link });
     await newNotice.save();
   }
   if (important) {
