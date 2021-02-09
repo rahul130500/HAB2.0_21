@@ -6,9 +6,12 @@ const passport = require("passport");
 const session = require("express-session");
 const mongoSanitize = require("express-mongo-sanitize");
 const MongoStore = require("connect-mongo")(session);
+const flash = require("connect-flash");
 const url = "mongodb://localhost/HAB_DB";
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+
 
 require("./config/passport")(passport);
 
@@ -26,7 +29,7 @@ const functionaryRoutes = require("./routes/functionary.routes");
 const announcementRoutes = require("./routes/announcement.routes");
 const formRoutes = require("./routes/form.routes");
 const hostelRoutes = require("./routes/hostel.routes");
-const adminUploadRoutes=require("./routes/adminUploads.routes");
+const adminUploadRoutes = require("./routes/adminUploads.routes");
 const linkRoutes = require("./routes/link.routes");
 
 app.use(express.json());
@@ -44,6 +47,12 @@ app.use(
     cookie: { maxAge: 180 * 60 * 1000 },
   })
 );
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -64,6 +73,7 @@ app.use("/hostels", hostelRoutes);
 app.use("/uploads", adminUploadRoutes);
 app.use("/form", formRoutes);
 app.use("/links", linkRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);

@@ -1,55 +1,55 @@
 const Hostel = require("../models/hostel");
 const fs = require("fs");
 
+exports.getAllHostels = async (req, res, next) => {
+  const hostels = await Hostel.find({});
+
+  return res.render("hostels/index", { hostels, link: "/hostels/addHostel" });
+};
+
 exports.getHostel = async (req, res, next) => {
   const hostel = await Hostel.findOne({ name: req.params.name });
 
   if (hostel == null) {
-    res.status(404).json({
+    return res.status(404).json({
       status: "not found",
       data: {
         data: hostel,
       },
     });
-    return next();
+    next();
   }
   const name = req.params.name;
   const members = hostel.management;
   members.sort((a, b) => (a.priority > b.priority ? 1 : -1));
 
-  res.render("hostels/members/index", {
+  return res.render("hostels/members/index", {
     members,
     link: "/hostels/" + name + "/addMember",
     name,
   });
 };
-exports.addMemberForm = (req, res) => {
-  const name = req.params.name;
-  res.render("hostels/members/add", { link: "/hostels/" + name, name });
-};
+
 exports.addHostelForm = (req, res) => {
-  res.render("hostels/add", { link: "/hostels" });
+  
+  return res.render("hostels/add", { link: "/hostels" });
 };
+
+exports.createHostel = async (req, res) => {
+  var { name,contact } = req.body;
+  name = name.charAt(0).toUpperCase() + name.slice(1);
+  var pic;
+  if (req.file) pic = req.file.filename;
+  const newHostel = new Hostel({ name, pic ,contact});
+  await newHostel.save();
+  return res.redirect("/hostels");
+};
+
 exports.updateHostelForm = async(req, res) => {
   const hostel=await Hostel.findOne({name: req.params.name});
-
-  res.render("hostels/edit",{link:"/hostels/"+req.params.name,hostel});
+  return res.render("hostels/edit",{link:"/hostels/"+req.params.name,hostel});
 };
-exports.updateMemberForm = async(req, res) => {
-  const name = req.params.name;
-    const id = req.params.id;
-    const hostel = await Hostel.findOne({ name: name });
-    
-    
-    var member = hostel.management;
-    member = member.filter(function (object) {
-      return object.id == id;
-    });
-    mb=member[0];
-   
 
-  res.render("hostels/members/edit",{link:"/hostels/"+req.params.name+"/"+id,mb});
-};
 exports.updateHostel=async(req,res)=>{
   const hostel=await Hostel.findOne({name: req.params.name});
   
@@ -69,55 +69,13 @@ if(req.body.name){
     runValidators:true,
   });
 
-  res.redirect("/hostels");
+  return res.redirect("/hostels");
 
 }
-  exports.updateMember=async (req, res)=>{
+
+exports.addMemberForm = (req, res) => {
   const name = req.params.name;
-
-    const hostell = await Hostel.findOne({ name: name });
-
-    const { Mname, position, priority, contact, email } = req.body;
-  const id=req.params.id;
-  var member = hostell.management;
-    member = member.filter(function (object) {
-      return object.id == id;
-    });
-var photo=member[0].photo;
-  
-  if(req.file){
-    
-    if (member[0].photo) {
-      fs.unlinkSync(`uploads/hostel/${member[0].photo}`);
-      console.log("successfully deleted /tmp/hello");
-    }
-    photo=req.file.filename;
-  }
-
-  
-  
-  await Hostel.findOne({name}).then(hostel => {
-    let management = hostel.management.id(id);
-    management.Mname = Mname;
-    management.position=position;
-    management.contact=contact;
-    management.email=email;
-    management.priority=priority;
-    management.photo=photo;
-    return hostel.save();
-});
-return res.redirect("/hostels/"+name);
-
-  }
-
-exports.createHostel = async (req, res) => {
-  var { name,contact } = req.body;
-  name = name.charAt(0).toUpperCase() + name.slice(1);
-  var pic;
-  if (req.file) pic = req.file.filename;
-  const newHostel = new Hostel({ name, pic ,contact});
-  await newHostel.save();
-  return res.redirect("/hostels");
+  return res.render("hostels/members/add", { link: "/hostels/" + name, name });
 };
 
 exports.createMember = async (req, res, next) => {
@@ -143,14 +101,60 @@ exports.createMember = async (req, res, next) => {
     }
   );
 
-  res.redirect("back");
+  return res.redirect("back");
 };
 
-exports.getAllHostels = async (req, res, next) => {
-  const hostels = await Hostel.find({});
+exports.updateMemberForm = async(req, res) => {
+  const name = req.params.name;
+    const id = req.params.id;
+    const hostel = await Hostel.findOne({ name: name });
+    
+    
+    var member = hostel.management;
+    member = member.filter(function (object) {
+      return object.id == id;
+    });
+    mb=member[0];
+   
 
-  res.render("hostels/index", { hostels, link: "/hostels/addHostel" });
+  return res.render("hostels/members/edit",{link:"/hostels/"+req.params.name+"/"+id,mb,name});
 };
+
+exports.updateMember=async (req, res)=>{
+  const name = req.params.name;
+
+    const hostell = await Hostel.findOne({ name: name });
+
+    const { Mname, position, priority, contact, email } = req.body;
+  const id=req.params.id;
+  var member = hostell.management;
+    member = member.filter(function (object) {
+      return object.id == id;
+    });
+var photo=member[0].photo;
+  
+  if(req.file){
+    
+    if (member[0].photo) {
+      fs.unlinkSync(`uploads/hostel/${member[0].photo}`);
+      console.log("successfully deleted /tmp/hello");
+    }
+    photo=req.file.filename;
+  }
+
+  await Hostel.findOne({name}).then(hostel => {
+    let management = hostel.management.id(id);
+    management.Mname = Mname;
+    management.position=position;
+    management.contact=contact;
+    management.email=email;
+    management.priority=priority;
+    management.photo=photo;
+    return hostel.save();
+});
+return res.redirect("/hostels/"+name);
+
+}
 
 exports.deleteMember = async (req, res) => {
   try {
@@ -168,11 +172,11 @@ exports.deleteMember = async (req, res) => {
     }
     hostel.management.pull({ _id: id });
     await hostel.save();
-    res.redirect("/hostels/" + name);
+    return res.redirect("/hostels/" + name);
   } catch (err) {
     // handle the error
     console.log(err);
-    res.redirect("/hostels/" + req.params.name);
+    return res.redirect("/hostels/" + req.params.name);
   }
 };
 
@@ -188,13 +192,14 @@ exports.deleteHostelMembers = async (req, res) => {
     await hostel.save();
     console.log("successfully deleted all members");
 
-    res.redirect("/hostels/" + name);
+    return res.redirect("/hostels/" + name);
   } catch (err) {
     // handle the error
     console.log(err);
-    res.redirect("/hostels/" + req.params.name);
+    return res.redirect("/hostels/" + req.params.name);
   }
 };
+
 exports.deleteHostel = async (req, res) => {
   try {
     const id = req.params.id;
