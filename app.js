@@ -11,6 +11,8 @@ const url = "mongodb://localhost/HAB_DB";
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+
+
 require("./config/passport")(passport);
 
 mongoose.connect(url, {
@@ -71,6 +73,7 @@ app.use("/hostels", hostelRoutes);
 app.use("/uploads", adminUploadRoutes);
 app.use("/form", formRoutes);
 app.use("/links", linkRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);

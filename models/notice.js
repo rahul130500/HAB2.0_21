@@ -5,6 +5,7 @@ const NoticeSchema = new mongoose.Schema({
   description: { type: String },
   path: { type: String, required: true },
   link: { type: String },
+  category:{type:String,required:true},
   creation: { type: Date, default: Date.now },
 });
 

@@ -16,6 +16,7 @@ const upload = multer({ storage: storage });
 
 router.get("/", middleware.isLoggedIn, noticeController.getNotices);
 
+
 router.get("/add", middleware.isLoggedIn, noticeController.addNoticeForm);
 
 router.post("/", middleware.isLoggedIn, upload.single("notice"), noticeController.postNotice);

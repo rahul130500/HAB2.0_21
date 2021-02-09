@@ -18,6 +18,16 @@
                     <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="text" id="description" name="description" value="<%= notice.description %>" required></input>
                 </div>
                 <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="category">Category</label>                       
+                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" list="categories" id="category" type="text" value="<%= notice.category%>" name="category"  required>
+                    <datalist id="categories">
+                <% categories.forEach((category, i)=>{ %>
+                        <option value="<%=category.name%>">
+                    
+                <% }) %>
+                    </datalist>
+                </div>
+                <div class="mt-2">
                     <label class="block text-sm text-gray-600" for="notice"></label>
                     <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="file" id="notice" name="notice" placeholder="image url"></input>
                 </div>

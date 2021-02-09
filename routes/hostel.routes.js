@@ -17,16 +17,30 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+router.get("/:name", hostelController.getHostel);
+
 router.get("/",middleware.isLoggedIn, hostelController.getAllHostels);
+
+router.get("/addHostel", middleware.isLoggedIn, hostelController.addHostelForm);
+
+router.post(
+  "/",
+  middleware.isLoggedIn,
+  upload.single("pic"),
+  hostelController.createHostel
+);
+
+router.get("/:name/updateHostel",middleware.isLoggedIn,hostelController.updateHostelForm);
+
+router.patch("/:name",upload.single("pic"), hostelController.updateHostel);
 
 router.get(
   "/:name/addMember",
   middleware.isLoggedIn,
   hostelController.addMemberForm
 );
-router.get("/addHostel", middleware.isLoggedIn, hostelController.addHostelForm);
-router.get("/:name/:id/updateMember", middleware.isLoggedIn, hostelController.updateMemberForm);
 
+router.get("/:name/:id/updateMember", middleware.isLoggedIn, hostelController.updateMemberForm);
 
 router.post(
   "/:name",
@@ -49,15 +63,6 @@ router.patch(
 
 router.delete("/:id", middleware.isLoggedIn, hostelController.deleteHostel);
 
-router.post(
-  "/",
-  middleware.isLoggedIn,
-  upload.single("pic"),
-  hostelController.createHostel
-);
-router.get("/:name/updateHostel",middleware.isLoggedIn,hostelController.updateHostelForm);
-router.get("/:name", hostelController.getHostel);
-router.patch("/:name",upload.single("pic"), hostelController.updateHostel);
 router.delete(
   "/:name/delete/allMembers",
   middleware.isLoggedIn,
