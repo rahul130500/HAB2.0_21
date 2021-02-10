@@ -2,80 +2,96 @@ const Notice = require("../models/notice");
 const Category = require("../models/category");
 
 const fs = require("fs");
-const Announcement = require("../models/announcement");
 
 exports.getNotices = async (req, res) => {
-  const notices = await Notice.find({});
-  notices.sort(compare);
-  return res.render("notices/index", { notices });
+  try {
+    const notices = await Notice.find({});
+    notices.sort(compare);
+    return res.render("notices/index", { notices });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
-
 exports.addNoticeForm = async (req, res) => {
-  const categories = await Category.find({});
-  return res.render("notices/add",{categories});
+  try {
+    const categories = await Category.find({});
+    return res.render("notices/add", { categories });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 exports.postNotice = async (req, res) => {
-  var { title, description,category, imp, link } = req.body;
-  var important = 0;
-  if (imp != undefined) {
-    important = 1;
-  }
-  const name=req.body.category;
-  name = name.toLowerCase();
+  try {
+    var { title, description, category, link } = req.body;
+    let name = req.body.category.toLowerCase();
 
-  if (typeof req.file !== "undefined") {
-    const path = req.file.filename;
-    link=path;
-    const newNotice = new Notice({ title, description, category, path });
+    const path = req.file ? req.file.filename : link;
+    const newNotice = new Notice({ title, description, category: name, path });
     await newNotice.save();
-  }
-  else if(link != undefined) {
-    const newNotice = new Notice({ title, description, category, path: link });
-    await newNotice.save();
-  }
-  if (important) {
-    const newAnnouncement = new Announcement({ title, description,category, path });
-    await newAnnouncement.save();
-  }
-  const savedCategory=await Category.find({name:name})
 
-  if(savedCategory.length==0){
-    const newCategory=new Category({name});
-    await newCategory.save();
-  }
+    const savedCategory = await Category.find({ name: name });
 
-  return res.redirect("/notice");
+    if (savedCategory.length == 0) {
+      const newCategory = new Category({ name });
+      await newCategory.save();
+    }
+
+    return res.redirect("/notice");
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 exports.getEditForm = async (req, res) => {
-  const notice = await Notice.findById(req.params.notice_id);
-  return res.render("notices/edit", { notice });
+  try {
+    const notice = await Notice.findById(req.params.notice_id);
+    const categories = await Category.find({});
+
+    return res.render("notices/edit", { notice, categories });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 exports.editNotice = async (req, res) => {
-  const { title, description, link } = req.body;
+  try {
+    var { title, description, category, link } = req.body;
+    let name = category.toLowerCase();
 
-  const data = { title, description, link };
-  if (req.file) {
-    const notice = `uploads/notices_pdf/${req.file.filename}`;
-    data["notice"] = notice;
+    const path = req.file ? req.file.filename : link;
+
+    const savedCategory = await Category.find({ name: name });
+
+    if (savedCategory.length == 0) {
+      const newCategory = new Category({ name });
+      await newCategory.save();
+    }
+
+    const data = { title, description, path, category: name };
+
+    await Notice.findByIdAndUpdate(req.params.notice_id, data);
+
+    return res.redirect("/notice");
+  } catch (error) {
+    console.log(error.message);
   }
-  console.log(data);
-  await Notice.findByIdAndUpdate(req.params.notice_id, data);
-  return res.redirect("/notice");
 };
 
 exports.getOneNotice = async (req, res) => {
-  const id = req.params.notice_id;
-  const notice = await Notice.findById(id);
-  const filePath = "uploads/notice_pdf/" + notice.path;
-  console.log(filePath);
-  fs.readFile(filePath, (err, data) => {
-    res.contentType("application/pdf");
-    return res.send(data);
-  });
+  try {
+    const id = req.params.notice_id;
+    const notice = await Notice.findById(id);
+    const filePath = "uploads/notice_pdf/" + notice.path;
+    console.log(filePath);
+    fs.readFile(filePath, (err, data) => {
+      res.contentType("application/pdf");
+      return res.send(data);
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 exports.deleteNotice = async (req, res) => {

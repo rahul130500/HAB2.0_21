@@ -2,55 +2,71 @@ const Form = require("../models/form");
 const fs = require("fs");
 
 exports.getForms = async (req, res) => {
-  const forms = await Form.find({});
-  forms.sort(compare);
-  res.render("forms/index", { forms });
+  try {
+    const forms = await Form.find({});
+    forms.sort(compare);
+    return res.render("forms/index", { forms });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 exports.addFormForm = (req, res) => {
-  res.render("forms/add");
+  try {
+    return res.render("forms/add");
+  } catch (error) {
+    console.log(error.message);
+  }
 };
+
 exports.postForm = async (req, res) => {
-  const { title, description, link } = req.body;
-  if (typeof req.file !== "undefined") { 
-    const path = req.file.filename;
+  try {
+    const { title, description, link } = req.body;
+    const path = req.file ? req.file.filename : link;
+
     const newForm = new Form({ title, description, path });
     await newForm.save();
-  } else if(link != undefined) {
-    const newForm = new Form({ title, description, path: link});
-    await newForm.save();
+
+    return res.redirect("/form");
+  } catch (error) {
+    console.log(error.message);
   }
-  res.redirect("/form");
 };
 
-
 exports.getEditForm = async (req, res) => {
-  const form = await Form.findById(req.params.id);
-  return res.render("forms/edit", { form });
+  try {
+    const form = await Form.findById(req.params.id);
+    return res.render("forms/edit", { form });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 exports.editForm = async (req, res) => {
-  const { title, description, link } = req.body;
-
-  const data = { title, description, link };
-  if (req.file) {
-    const form = `uploads/form_pdf/${req.file.filename}`;
-    data["form"] = form;
+  try {
+    const { title, description, link } = req.body;
+    const path = req.file ? req.file.filename : link;
+    const data = { title, description, link, path };
+    await Form.findByIdAndUpdate(req.params.id, data);
+    return res.redirect("/form");
+  } catch (error) {
+    console.log(error.message);
   }
-  console.log(data);
-  await Form.findByIdAndUpdate(req.params.id, data);
-  return res.redirect("/form");
 };
 
 exports.getOneForm = async (req, res) => {
-  const id = req.params.id;
-  const form = await Form.findById(id);
-  const filePath = "uploads/form_pdf/" + form.path;
-  console.log(filePath);
-  fs.readFile(filePath, (err, data) => {
-    res.contentType("application/pdf");
-    res.send(data);
-  });
+  try {
+    const id = req.params.id;
+    const form = await Form.findById(id);
+    const filePath = "uploads/form_pdf/" + form.path;
+    console.log(filePath);
+    fs.readFile(filePath, (err, data) => {
+      res.contentType("application/pdf");
+      return res.send(data);
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 exports.deleteForm = async (req, res) => {
@@ -60,11 +76,11 @@ exports.deleteForm = async (req, res) => {
     fs.unlinkSync(`uploads/form_pdf/${form.path}`);
     console.log("successfully deleted /tmp/hello");
     await Form.findByIdAndRemove(id);
-    res.redirect("/form");
+    return res.redirect("/form");
   } catch (err) {
     // handle the error
     console.log(err);
-    res.redirect("/form");
+    return res.redirect("/form");
   }
 };
 
