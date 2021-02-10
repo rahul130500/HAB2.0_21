@@ -7,11 +7,10 @@ const session = require("express-session");
 const mongoSanitize = require("express-mongo-sanitize");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
+const helmet = require("helmet");
 const url = "mongodb://localhost/HAB_DB";
 const app = express();
 const PORT = process.env.PORT || 8080;
-
-
 
 require("./config/passport")(passport);
 
@@ -48,6 +47,7 @@ app.use(
   })
 );
 app.use(flash());
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
@@ -65,15 +65,14 @@ app.use((req, res, next) => {
 app.set("view engine", "ejs");
 
 app.use("/", userRoutes);
-app.use("/", adminRoutes);
-app.use("/notice", noticeRoutes);
-app.use("/announcement", announcementRoutes);
-app.use("/functionary", functionaryRoutes);
-app.use("/hostels", hostelRoutes);
-app.use("/uploads", adminUploadRoutes);
-app.use("/form", formRoutes);
-app.use("/links", linkRoutes);
-
+app.use("/admin", adminRoutes);
+app.use("/admin/notice", noticeRoutes);
+app.use("/admin/announcement", announcementRoutes);
+app.use("/admin/functionary", functionaryRoutes);
+app.use("/admin/hostels", hostelRoutes);
+app.use("/admin/uploads", adminUploadRoutes);
+app.use("/admin/form", formRoutes);
+app.use("/admin/links", linkRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);

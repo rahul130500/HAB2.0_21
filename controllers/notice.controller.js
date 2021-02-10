@@ -25,9 +25,10 @@ exports.addNoticeForm = async (req, res) => {
 exports.postNotice = async (req, res) => {
   try {
     var { title, description, category, link } = req.body;
-    let name = req.body.category.toLowerCase();
+    let name = category.toLowerCase();
 
     const path = req.file ? req.file.filename : link;
+    console.log(path);
     const newNotice = new Notice({ title, description, category: name, path });
     await newNotice.save();
 
@@ -38,7 +39,7 @@ exports.postNotice = async (req, res) => {
       await newCategory.save();
     }
 
-    return res.redirect("/notice");
+    return res.redirect("/admin/notice");
   } catch (error) {
     console.log(error.message);
   }
@@ -61,6 +62,12 @@ exports.editNotice = async (req, res) => {
     let name = category.toLowerCase();
 
     const path = req.file ? req.file.filename : link;
+    let data;
+    if (!req.file && !link) {
+      data = { title, description, category: name };
+    } else {
+      data = { title, description, path, category: name };
+    }
 
     const savedCategory = await Category.find({ name: name });
 
@@ -69,11 +76,9 @@ exports.editNotice = async (req, res) => {
       await newCategory.save();
     }
 
-    const data = { title, description, path, category: name };
-
     await Notice.findByIdAndUpdate(req.params.notice_id, data);
 
-    return res.redirect("/notice");
+    return res.redirect("/admin/notice");
   } catch (error) {
     console.log(error.message);
   }
@@ -98,14 +103,18 @@ exports.deleteNotice = async (req, res) => {
   try {
     const id = req.params.notice_id;
     const notice = await Notice.findById(id);
-    fs.unlinkSync(`uploads/notice_pdf/${notice.path}`);
-    console.log("successfully deleted!");
+    console.log(notice);
+    console.log(`uploads/notice_pdf/${notice.path}`);
+    if (notice.path.indexOf("https://") == -1) {
+      fs.unlinkSync(`uploads/notice_pdf/${notice.path}`);
+      console.log("successfully deleted!");
+    }
     await Notice.findByIdAndRemove(id);
-    return res.redirect("/notice");
+    return res.redirect("/admin/notice");
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/notice");
+    return res.redirect("/admin/notice");
   }
 };
 

@@ -24,5 +24,5 @@ exports.postSignup = (req, res) => {
 
 exports.logout = (req, res) => {
   req.logout();
-  res.redirect("/login");
+  res.redirect("/admin/login");
 };

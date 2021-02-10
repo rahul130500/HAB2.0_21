@@ -31,7 +31,7 @@ exports.postAnnouncement = async (req, res) => {
       await newAnnouncement.save();
     }
 
-    return res.redirect("/announcement");
+    return res.redirect("/admin/announcement");
   } catch (error) {
     console.log(error.message);
   }
@@ -56,7 +56,7 @@ exports.editAnnouncement = async (req, res) => {
       data["path"] = announcement;
     }
     await Announcement.findByIdAndUpdate(req.params.id, data);
-    return res.redirect("/announcement");
+    return res.redirect("/admin/announcement");
   } catch (error) {
     console.log(error.message);
   }
@@ -92,11 +92,11 @@ exports.deleteAnnouncement = async (req, res) => {
       }
     }
     await Announcement.findByIdAndRemove(id);
-    return res.redirect("/announcement");
+    return res.redirect("/admin/announcement");
   } catch (err) {
     // handle the error
     console.log(err.message);
-    return res.redirect("/announcement");
+    return res.redirect("/admin/announcement");
   }
 };
 

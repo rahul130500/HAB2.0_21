@@ -27,7 +27,7 @@ exports.postForm = async (req, res) => {
     const newForm = new Form({ title, description, path });
     await newForm.save();
 
-    return res.redirect("/form");
+    return res.redirect("/admin/form");
   } catch (error) {
     console.log(error.message);
   }
@@ -48,7 +48,7 @@ exports.editForm = async (req, res) => {
     const path = req.file ? req.file.filename : link;
     const data = { title, description, link, path };
     await Form.findByIdAndUpdate(req.params.id, data);
-    return res.redirect("/form");
+    return res.redirect("/admin/form");
   } catch (error) {
     console.log(error.message);
   }
@@ -73,14 +73,17 @@ exports.deleteForm = async (req, res) => {
   try {
     const id = req.params.id;
     const form = await Form.findById(id);
-    fs.unlinkSync(`uploads/form_pdf/${form.path}`);
-    console.log("successfully deleted /tmp/hello");
+
+    if (form.path.indexOf("https://") == -1) {
+      fs.unlinkSync(`uploads/form_pdf/${form.path}`);
+      console.log("successfully deleted /tmp/hello");
+    }
     await Form.findByIdAndRemove(id);
-    return res.redirect("/form");
+    return res.redirect("/admin/form");
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/form");
+    return res.redirect("/admin/form");
   }
 };
 

@@ -1,7 +1,7 @@
 <%- include("../partials/header.ejs") %>
 <h1 class="text-3xl text-black pb-6">Hostels</h1>
 <div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="<%= link %>">Add Hostels</a>
+    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin<%= link %>">Add Hostels</a>
 </div>
 
 <div class="w-full mt-6 overflow-auto">
@@ -33,7 +33,7 @@
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 w-10 h-10">
                                     <img class="w-full h-full rounded-full"
-                                        src="../uploads/hostel/<%= hostel.pic %>"
+                                        src="/uploads/hostel/<%= hostel.pic %>"
                                         alt="" />
                                 </div>
                                 <div class="ml-3">
@@ -54,14 +54,14 @@
                                 </p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <a class="hover:text-blue-500" href="/hostels/<%=hostel.name%>">View Members</a></td>
+                                <a class="hover:text-blue-500" href="/admin/hostels/<%=hostel.name%>">View Members</a></td>
 
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a class="hover:text-blue-500" href="/hostels/<%=hostel.name%>/updateHostel">Edit</a>
+                            <a class="hover:text-blue-500" href="/admin/hostels/<%=hostel.name%>/updateHostel">Edit</a>
                         </td>
 
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <form class="mx-2" action="/hostels/<%=hostel.id%>?_method=DELETE" method="POST"><button class="hover:text-blue-500">Delete</button></form>
+                            <form class="mx-2" action="/admin/hostels/<%=hostel.id%>?_method=DELETE" method="POST"><button class="hover:text-blue-500">Delete</button></form>
                         </td>
                     </tr>
                 <% }) %>

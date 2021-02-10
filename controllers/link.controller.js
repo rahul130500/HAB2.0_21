@@ -25,7 +25,7 @@ exports.postLink = async (req, res) => {
     const newLink = new Link(data);
     await newLink.save();
     req.flash("success", "Successfully added new link");
-    return res.redirect("/links");
+    return res.redirect("/admin/links");
   } catch (error) {
     console.log(error.message);
   }
@@ -46,7 +46,7 @@ exports.editLink = async (req, res) => {
     const update = { name, priority_number: Number(priority_number) };
     await Link.findByIdAndUpdate(req.params.link_id, update);
     req.flash("success", "Successfully editted link");
-    return res.redirect("/links");
+    return res.redirect("/admin/links");
   } catch (error) {
     console.log(error.message);
   }
@@ -56,7 +56,7 @@ exports.deleteLink = async (req, res) => {
   try {
     await Link.findByIdAndRemove(req.params.link_id);
     req.flash("success", "Successfully deleted");
-    res.redirect("/links");
+    res.redirect("/admin/links");
   } catch (error) {
     console.log(error.message);
   }
@@ -95,7 +95,7 @@ exports.postSublink = async (req, res) => {
     link.sublinks.push(newSublink);
     await link.save();
     req.flash("success", "Successfully added new sublink");
-    return res.redirect(`/links/${link_id}/sublinks/add`);
+    return res.redirect(`/admin/links/${link_id}/sublinks/add`);
   } catch (error) {
     console.log(error.message);
   }
@@ -132,7 +132,7 @@ exports.editSublink = async (req, res) => {
     link.sublinks = sublinks;
     await link.save();
     req.flash("success", "Successfully editted sublink");
-    return res.redirect(`/links/${link_id}/sublinks`);
+    return res.redirect(`/admin/links/${link_id}/sublinks`);
   } catch (error) {
     console.log(error.message);
   }
@@ -150,7 +150,7 @@ exports.deleteSublink = async (req, res) => {
     link.sublinks = sublinks;
     await link.save();
     req.flash("success", "Successfully deleted sublink");
-    return res.redirect(`/links/${link_id}/sublinks`);
+    return res.redirect(`/admin/links/${link_id}/sublinks`);
   } catch (error) {
     console.log(error.message);
   }

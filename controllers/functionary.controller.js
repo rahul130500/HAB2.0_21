@@ -32,7 +32,7 @@ exports.postFunctionary = async (req, res) => {
   const newFunctionary = new Functionary(data);
   await newFunctionary.save();
   console.log(data);
-  return res.redirect("/functionary");
+  return res.redirect("/admin/functionary");
 };
 
 exports.getEditForm = async (req, res) => {
@@ -63,7 +63,7 @@ exports.editFunctionary = async (req, res) => {
   }
   console.log(data);
   await Functionary.findByIdAndUpdate(req.params.func_id, data);
-  return res.redirect("/functionary");
+  return res.redirect("/admin/functionary");
 };
 
 exports.deleteFunctionary = async (req, res) => {
@@ -73,11 +73,11 @@ exports.deleteFunctionary = async (req, res) => {
     fs.unlinkSync(`${functionary.pic}`);
     console.log("successfully deleted!");
     await Functionary.findByIdAndRemove(id);
-    return res.redirect("/functionary");
+    return res.redirect("/admin/functionary");
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/functionary");
+    return res.redirect("/admin/functionary");
   }
 };
 
