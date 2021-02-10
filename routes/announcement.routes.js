@@ -20,6 +20,8 @@ router.get("/add", middleware.isLoggedIn, announcementController.addAnnouncement
 
 router.post("/", middleware.isLoggedIn, upload.single("announcement"), announcementController.postAnnouncement);
 
+router.post("/find", middleware.isLoggedIn,upload.single("announcement"), announcementController.findAnnouncement);
+
 router.get("/:id", announcementController.getEditForm);
 
 router.get("/pdf/:id", announcementController.getOneAnnouncement);

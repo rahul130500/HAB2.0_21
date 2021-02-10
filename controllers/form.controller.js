@@ -33,6 +33,23 @@ exports.postForm = async (req, res) => {
   }
 };
 
+exports.findForm = async (req, res) => {
+  try {
+    const val = req.body.mySearch1;
+    Form.find({"$or": [{ "title" : { $regex: val, $options: "i" }},
+     { "description" : { $regex: val, $options: "i" }}]}, (err, forms) => {
+      if(err) {
+        console.log(err);
+      }
+      else {
+        res.render("forms/index", { forms });
+      }
+    })
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 exports.getEditForm = async (req, res) => {
   try {
     const form = await Form.findById(req.params.id);

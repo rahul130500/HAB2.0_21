@@ -21,6 +21,8 @@ router.get("/add", middleware.isLoggedIn, formController.addFormForm);
 
 router.post("/", middleware.isLoggedIn, upload.single("form"), formController.postForm);
 
+router.post("/find", middleware.isLoggedIn, upload.single("form"), formController.findForm);
+
 router.get("/:id", formController.getEditForm);
 
 router.get("/pdf/:id", formController.getOneForm);

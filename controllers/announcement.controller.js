@@ -37,6 +37,16 @@ exports.postAnnouncement = async (req, res) => {
   }
 };
 
+exports.findAnnouncement = async (req, res) => {
+  try {
+    const val = req.body.mySearch1;
+    var announcements = await Announcement.find({"$or": [{ "title" : { $regex: val, $options: "i" }}, { "description" : { $regex: val, $options: "i" }}]});
+    res.render("announcements/index", { announcements });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 exports.getEditForm = async (req, res) => {
   try {
     const announcement = await Announcement.findById(req.params.id);

@@ -2,7 +2,16 @@
 <h1 class="text-3xl text-black pb-6">Notices</h1>
 <div class="mt-6">
     <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/notice/add">Add Notices</a>
-    <input type="text" id="mySearch1" onkeyup="myfunction()" placeholder="Search ... ">
+    <form style="float: right;" action="/admin/notice/find/" method="POST" enctype="multipart/form-data">
+    <select name = "dropdown">
+        <option value = "" selected>-Category-</option>
+        <% categories.forEach((category) => { %>
+            <option value= "<%= category.name %>"> <%= category.name %> </option>
+        <% }) %>
+    </select>
+    <input type="text" name="mySearch1" placeholder="Search ... ">
+    <button type="submit"> Submit </button>
+    </form>
 </div>
 <div class="w-auto mt-6 overflow-auto">
     <div class="bg-white">

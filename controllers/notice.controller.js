@@ -6,8 +6,10 @@ const fs = require("fs");
 exports.getNotices = async (req, res) => {
   try {
     const notices = await Notice.find({});
+    const categories = await Category.find({});
+
     notices.sort(compare);
-    return res.render("notices/index", { notices });
+    return res.render("notices/index", { notices, categories });
   } catch (error) {
     console.log(error.message);
   }
@@ -40,6 +42,19 @@ exports.postNotice = async (req, res) => {
     }
 
     return res.redirect("/admin/notice");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.findNotice = async (req, res) => {
+  try {
+    const val = req.body.mySearch1;
+    const val2 = req.body.dropdown;
+    var notices = await Notice.find({"$and": [{"$or": [{ "title" : { $regex: val, $options: "i" }}, { "description" : { $regex: val, $options: "i" }}]}, {category: val2}]});
+    var categories = await Category.find({});
+    notices.sort(compare);
+    res.render("notices/index", { notices, categories });
   } catch (error) {
     console.log(error.message);
   }

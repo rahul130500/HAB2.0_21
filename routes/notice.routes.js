@@ -21,6 +21,8 @@ router.get("/add", middleware.isLoggedIn, noticeController.addNoticeForm);
 
 router.post("/", middleware.isLoggedIn, upload.single("notice"), noticeController.postNotice);
 
+router.post("/find", middleware.isLoggedIn, upload.single("notice"), noticeController.findNotice);
+
 router.get("/:notice_id", noticeController.getEditForm);
 
 router.get("/pdf/:notice_id", noticeController.getOneNotice);
