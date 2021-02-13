@@ -30,7 +30,7 @@ exports.postNotice = async (req, res) => {
     let name = category.toLowerCase();
 
     const path = req.file ? req.file.filename : link;
-    console.log(path);
+    //console.log(path);
     const newNotice = new Notice({ title, description, category: name, path });
     await newNotice.save();
 
@@ -51,7 +51,17 @@ exports.findNotice = async (req, res) => {
   try {
     const val = req.body.mySearch1;
     const val2 = req.body.dropdown;
-    var notices = await Notice.find({"$and": [{"$or": [{ "title" : { $regex: val, $options: "i" }}, { "description" : { $regex: val, $options: "i" }}]}, {"category": { $regex: val2, $options: "i" }}]});
+    var notices = await Notice.find({
+      $and: [
+        {
+          $or: [
+            { title: { $regex: val, $options: "i" } },
+            { description: { $regex: val, $options: "i" } },
+          ],
+        },
+        { category: { $regex: val2, $options: "i" } },
+      ],
+    });
     var categories = await Category.find({});
     notices.sort(compare);
     res.render("notices/index", { notices, categories });

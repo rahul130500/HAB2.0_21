@@ -21,13 +21,24 @@ exports.addAnnouncementForm = (req, res) => {
 
 exports.postAnnouncement = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, imp } = req.body;
+    const important = imp ? true : false;
+    console.log(important);
     if (typeof req.file !== "undefined") {
       const path = req.file.filename;
-      const newAnnouncement = new Announcement({ title, description, path });
+      const newAnnouncement = new Announcement({
+        title,
+        description,
+        path,
+        important,
+      });
       await newAnnouncement.save();
     } else {
-      const newAnnouncement = new Announcement({ title, description });
+      const newAnnouncement = new Announcement({
+        title,
+        description,
+        important,
+      });
       await newAnnouncement.save();
     }
 
@@ -40,7 +51,12 @@ exports.postAnnouncement = async (req, res) => {
 exports.findAnnouncement = async (req, res) => {
   try {
     const val = req.body.mySearch1;
-    var announcements = await Announcement.find({"$or": [{ "title" : { $regex: val, $options: "i" }}, { "description" : { $regex: val, $options: "i" }}]});
+    var announcements = await Announcement.find({
+      $or: [
+        { title: { $regex: val, $options: "i" } },
+        { description: { $regex: val, $options: "i" } },
+      ],
+    });
     res.render("announcements/index", { announcements });
   } catch (error) {
     console.log(error.message);
@@ -58,12 +74,11 @@ exports.getEditForm = async (req, res) => {
 
 exports.editAnnouncement = async (req, res) => {
   try {
-    const { title, description } = req.body;
-
-    const data = { title, description };
+    const { title, description, imp } = req.body;
+    const important = imp ? true : false;
+    const data = { title, description, important };
     if (req.file) {
-      const announcement = req.file.filename;
-      data["path"] = announcement;
+      data["path"] = req.file.filename;
     }
     await Announcement.findByIdAndUpdate(req.params.id, data);
     return res.redirect("/admin/announcement");

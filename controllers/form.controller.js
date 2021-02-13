@@ -36,15 +36,21 @@ exports.postForm = async (req, res) => {
 exports.findForm = async (req, res) => {
   try {
     const val = req.body.mySearch1;
-    Form.find({"$or": [{ "title" : { $regex: val, $options: "i" }},
-     { "description" : { $regex: val, $options: "i" }}]}, (err, forms) => {
-      if(err) {
-        console.log(err);
+    Form.find(
+      {
+        $or: [
+          { title: { $regex: val, $options: "i" } },
+          { description: { $regex: val, $options: "i" } },
+        ],
+      },
+      (err, forms) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("forms/index", { forms });
+        }
       }
-      else {
-        res.render("forms/index", { forms });
-      }
-    })
+    );
   } catch (error) {
     console.log(error.message);
   }
@@ -63,7 +69,13 @@ exports.editForm = async (req, res) => {
   try {
     const { title, description, link } = req.body;
     const path = req.file ? req.file.filename : link;
-    const data = { title, description, link, path };
+    let data;
+    if (!req.file && !link) {
+      data = { title, description };
+    } else {
+      data = { title, description, path };
+    }
+
     await Form.findByIdAndUpdate(req.params.id, data);
     return res.redirect("/admin/form");
   } catch (error) {

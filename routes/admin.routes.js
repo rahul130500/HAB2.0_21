@@ -3,16 +3,6 @@ const router = express.Router({ mergeParams: true });
 const passport = require("passport");
 const middleware = require("../middleware");
 const User = require("../models/user");
-const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./uploads/");
-  },
-  filename: (req, file, cb) => {
-    const fileName = file.originalname.replace(/\s/g, "");
-    cb(null, Date.now().toString() + fileName);
-  },
-});
 const authController = require("../controllers/auth.controller");
 
 router.get("/login", authController.getLoginPage);
@@ -28,10 +18,13 @@ router.post("/signup", authController.postSignup);
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/admin",
     failureRedirect: "/admin/login",
+    failureFlash: true,
   }),
-  (req, res) => {}
+  (req, res) => {
+    req.flash("success", "Welcome to HAB Portal!");
+    return res.redirect("/admin");
+  }
 );
 
 router.get("/logout", authController.logout);
