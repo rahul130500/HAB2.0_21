@@ -17,6 +17,16 @@
                     <textarea class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded" id="description" name="description" rows="4" required placeholder="Description"></textarea>
                 </div>
                 <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="category">Category</label>                       
+                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" list="categories" id="category" type="text" name="category" placeholder="category" required>
+                    <datalist id="categories">
+                <% categories.forEach((category, i)=>{ %>
+                        <option value="<%=category.name%>">
+                    
+                <% }) %>
+                    </datalist>
+                </div>
+                <div class="mt-2">
                     <label class="block text-sm text-gray-600" for="description"></label>
                     <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="file" name="form" placeholder="image url"></input>
                 </div>

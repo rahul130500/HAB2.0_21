@@ -35,11 +35,11 @@ exports.addHostelForm = (req, res) => {
 };
 
 exports.createHostel = async (req, res) => {
-  var { name, contact } = req.body;
+  var { name, contact1,contact2 } = req.body;
   name = name.charAt(0).toUpperCase() + name.slice(1);
   var pic;
   if (req.file) pic = req.file.filename;
-  const newHostel = new Hostel({ name, pic, contact });
+  const newHostel = new Hostel({ name, pic, contact1, contact2 });
   await newHostel.save();
   return res.redirect("/admin/hostels");
 };
@@ -57,6 +57,9 @@ exports.updateHostel = async (req, res) => {
 
   var name = hostel.name;
   var pic = hostel.pic;
+  var contact1=hostel.contact1;
+  var contact2=hostel.contact2;
+
   if (req.body.name) {
     name = req.body.name;
     name = name.charAt(0).toUpperCase() + name.slice(1);
@@ -65,21 +68,26 @@ exports.updateHostel = async (req, res) => {
     fs.unlinkSync(`uploads/hostel/${hostel.pic}`);
     pic = req.file.filename;
   }
-  const obj = { name, pic };
+  if (req.body.contact1) {
+    contact1 = req.body.contact1;
+  }
+  if (req.body.contact2) {
+    contact2 = req.body.contact2;
+  }
+  const obj = { name, pic,contact1,contact2 };
   await Hostel.findOneAndUpdate(req.params.name, obj, {
     runValidators: true,
   });
 
   return res.redirect("/admin/hostels");
 };
-
 exports.addMemberForm = (req, res) => {
   const name = req.params.name;
   return res.render("hostels/members/add", { link: "/hostels/" + name, name });
 };
 
 exports.createMember = async (req, res, next) => {
-  const { Mname, position, priority, contact, email } = req.body;
+  const { Mname, position, priority, contact1,contact2, email } = req.body;
   const name = req.params.name;
   var photo;
   if (req.file) photo = req.file.filename;
@@ -88,7 +96,8 @@ exports.createMember = async (req, res, next) => {
     position,
     priority,
     photo,
-    contact,
+    contact1,
+    contact2,
     email,
   };
   Hostel.findOneAndUpdate(
@@ -127,7 +136,7 @@ exports.updateMember = async (req, res) => {
 
   const hostell = await Hostel.findOne({ name: name });
 
-  const { Mname, position, priority, contact, email } = req.body;
+  const { Mname, position, priority, contact1,contact2, email } = req.body;
   const id = req.params.id;
   var member = hostell.management;
   member = member.filter(function (object) {
@@ -147,7 +156,8 @@ exports.updateMember = async (req, res) => {
     let management = hostel.management.id(id);
     management.Mname = Mname;
     management.position = position;
-    management.contact = contact;
+    management.contact1 = contact1;
+    management.contact2 = contact2;
     management.email = email;
     management.priority = priority;
     management.photo = photo;

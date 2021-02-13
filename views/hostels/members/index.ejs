@@ -20,7 +20,10 @@
                     </th>
                     
                     <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Contact
+                        Contact Line 1
+                    </th>
+                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                        Contact Line 2 
                     </th>
                     <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
                         Edit
@@ -65,13 +68,20 @@
                         </td>
 
                         
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    
-                                        <%=member.contact %>
-                                    
-                                </p>
-                            </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                
+                                    <%= member.contact1 %>
+                                
+                            </p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                
+                                    <%= member.contact2 %>
+                                
+                            </p>
+                        </td>
                             
 
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
