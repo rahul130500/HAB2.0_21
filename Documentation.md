@@ -99,6 +99,7 @@ Other features
 --------------
 
 The website also has flash messages feature. Whenev you do somthing like login, creating, editing or deleting anything, an appropriate message is displayed.
+In the image below, a message of successful login is displayed
 
 ![Flash](/docs/flash.png)
 
