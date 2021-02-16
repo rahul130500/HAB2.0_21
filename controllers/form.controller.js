@@ -2,7 +2,6 @@ const Form = require("../models/form");
 const fs = require("fs");
 const Category = require("../models/category");
 
-
 exports.getForms = async (req, res) => {
   try {
     const forms = await Form.find({});
@@ -15,7 +14,7 @@ exports.getForms = async (req, res) => {
   }
 };
 
-exports.addFormForm =async (req, res) => {
+exports.addFormForm = async (req, res) => {
   try {
     const categories = await Category.find({});
     return res.render("forms/add", { categories });
@@ -26,12 +25,12 @@ exports.addFormForm =async (req, res) => {
 
 exports.postForm = async (req, res) => {
   try {
-    const { title, description,category, link } = req.body;
+    const { title, description, category, link } = req.body;
     let name = category.toLowerCase();
 
     const path = req.file ? req.file.filename : link;
 
-    const newForm = new Form({ title, description,category: name, path });
+    const newForm = new Form({ title, description, category: name, path });
     await newForm.save();
     const savedCategory = await Category.find({ name: name });
 
@@ -74,7 +73,7 @@ exports.getEditForm = async (req, res) => {
     const form = await Form.findById(req.params.id);
     const categories = await Category.find({});
 
-    return res.render("forms/edit", { form, categories  });
+    return res.render("forms/edit", { form, categories });
   } catch (error) {
     console.log(error.message);
   }
@@ -88,7 +87,7 @@ exports.editForm = async (req, res) => {
     const path = req.file ? req.file.filename : link;
     let data;
     if (!req.file && !link) {
-      data = { title, description , category: name};
+      data = { title, description, category: name };
     } else {
       data = { title, description, path, category: name };
     }

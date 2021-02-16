@@ -1,0 +1,83 @@
+<!DOCTYPE html >
+    <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href='https://fonts.googleapis.com/css?family=Mulish' rel='stylesheet'>
+
+            <link rel="stylesheet" href="css/tailwind.min.css">
+            <link rel="stylesheet" href="css/home.css">
+            <link rel="stylesheet" href="css/base.css">
+            <title>HAB</title>
+            <link rel="icon" href="images/headers/h.svg" type="image/icon type">
+        <style>
+        .loginBtn {
+            background: #E9E9E9;
+            border: 1px solid #8A8886;
+            border-radius: 2px;
+        }
+
+        .tabs {
+            border-left: 1.5px solid #525252;
+        }
+
+
+        .tabStyle {
+            position: relative;
+            color: black;
+        }
+
+        .tabStyle::after {
+             content: "";
+            height: 2px;
+            width: 70%;
+            background-color: #E54F6D;
+            position: absolute;
+            bottom: 0em;
+            left: 50%;
+            transform: translate(-50%);
+        }
+
+        /* CSS for toggling display */
+
+        .show {
+            display: block;
+        }
+
+        /****************************/
+
+        @media only screen and (min-width: 768px) {
+            .profileCard {
+                width: 30%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+        <%- include("./partials/header.ejs") %>
+
+        <%- include("./partials/nav.ejs") %>
+        <%- include("./partials/notice.ejs") %>
+        <%- include("./partials/hostel.ejs") %>
+        <%- include("./partials/functionary.ejs") %>
+
+        <%- include("./partials/utils.ejs") %>
+
+        <%- include("./partials/footer.ejs") %>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="js/tabs.js"></script>
+        <!-- <script src="js/home.js"></script> -->
+        <script src="js/animation/three.js"></script>
+        <script src="js/animation/dat-gui.js"></script>
+        <script src="js/animation/gsap.js"></script>
+        <script src="js/animation/sketch.js"></script>
+        <script src="js/animation/demo1.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #f7f7f7;
+}
+
+/* header */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.cntr {
+  margin: 0 auto;
+  width: 100%;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+}
+#slides1 {
+  display: flex;
+  height: 100%;
+  opacity: 0.95;
+}
+.slide {
+  min-width: 100%;
+  position: relative;
+}
+.slide img {
+  width: 1550px;
+  height: 100%;
+}
+
+.slide-content_hab {
+  /* position: fixed; */
+  /* top: 0%; */
+  margin-left: 150px;
+  top: 600px;
+  transform: translateY(-350%);
+  font-size: 30px;
+  color: white;
+  width: 40%;
+}
+.ha {
+  /* position: fixed; */
+  margin-top: 50px;
+  font-size: 50px;
+
+  font-family: "Mulish";
+  font-weight: 1000;
+  padding-left: 120px;
+}
+#pc {
+  float: left;
+  width: 18%;
+}
+#content_hab {
+  position: absolute;
+  bottom: 2%;
+  right: 5%;
+  transform: translateY(-50%);
+  /* font-size: 20px; */
+  font-weight: 10em;
+  /* color: white; */
+  width: 25%;
+  padding: 20px;
+  color: white;
+  font-family: "Mulish";
+  /* background-color: rgb(97, 97, 97); */
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+}
+.hs {
+  float: left;
+  width: 6%;
+  margin-top: 2px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+#content_hab h2 {
+  padding-bottom: 10px;
+}
+#content_hab p {
+  margin-top: 10px;
+}
+#span {
+  padding-top: 10px;
+}
+#bn {
+  position: absolute;
+  bottom: 4%;
+  right: 5%;
+  /* transform: translateY(-50%); */
+  width: 12%;
+  /* padding: 20px; */
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.ar {
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 10px;
+  float: left;
+}
+.lar {
+  font-size: 18px;
+  padding: 10px;
+  padding-top: 5px;
+  font-family: "Mulish";
+}
+
+#sect {
+  margin-top: 10px;
+}
+@media (max-width: 450px) {
+  .slide img {
+    width: 100%;
+    height: 70%;
+  }
+}
+
+/* header ends */
+
+#top {
+  background-image: url(img/hostel.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 90vh;
+  min-width: 100%;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+#top .carde {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  z-index: 3;
+}
+
+#top .title {
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  z-index: 4;
+}
