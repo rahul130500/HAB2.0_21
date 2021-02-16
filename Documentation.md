@@ -71,7 +71,7 @@ You can also edit and delete individual hostel members, or you can delete all th
 
 ![Members](/docs/members.png)
 
-Viewing, creating, editing and deleting links and theri sublinks
+Viewing, creating, editing and deleting links and their sublinks
 -----------------------------------------------------------------
 
 (Description).To view links, click on the links tab. Here you can create, edit and delete links.
