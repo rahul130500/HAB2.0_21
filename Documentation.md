@@ -18,7 +18,7 @@ Once logged in you will be brought to a front page (admin panel) where you can g
 ![Admin dashboard](/docs/admin.png)
 
 Viewing, creating, editing and deleting notices
-------------------------------------------------
+-----------------------------------------------
 
 To view notices, click on the notices tabs. You will see a list of all the current notices. You can view the notice using the view button which will open the pdf or link for the notice. You can also search for a particular notice usuing keywords, or filter from the given categories.
 You can also delete the existing notices by clicking on delete button next to the corresponding notice.
@@ -35,21 +35,21 @@ You can edit the notices by clicking on the edit button.
 
 
 Viewing, creating, editing and deleting announcements
-------------------------------------------------------
+-----------------------------------------------------
 
 To view announcements, click on the announcements tab. The working of this page is similar to notices, where you can create, view, search, edit and delete announcements.
 
 ![Announcements](/docs/announcements.png)
 
 Viewing, creating, editing and deleting forms
-----------------------------------------------
+---------------------------------------------
 
 To view forms, click on the forms tab. The working of this page is similar to notices, where you can create, view, search, edit and delete forms.
 
 ![Forms](/docs/forms.png)
 
 Viewing, creating, editing and deleting functionaries
-----------------------------------------------
+-----------------------------------------------------
 
 Functionaries are the members of Hostel Affairs Board. To view functionaries, click on the functionaries tab. Here you can see all the details of the functionaries like image, name, post, contact details.
 
@@ -72,7 +72,7 @@ You can also edit and delete individual hostel members, or you can delete all th
 ![Members](/docs/members.png)
 
 Viewing, creating, editing and deleting links and their sublinks
------------------------------------------------------------------
+----------------------------------------------------------------
 
 (Description).To view links, click on the links tab. Here you can create, edit and delete links.
 
@@ -85,11 +85,25 @@ You can also view the sublinks of each link by clicking on 'view' button, where 
 
 
 Viewing, creating, editing and deleting carousel images for user website
--------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 These are the images the users will see in the background while logging in. 
 You can add, edit, delete these images, or delete all the images at once if required.
 
 ![Uploads](/docs/uploads.png)
+
+![Delete](/docs/delete.png)
+
+
+Other features
+--------------
+
+The website also has flash messages feature. Whenev you do somthing like login, creating, editing or deleting anything, an appropriate message is displayed.
+
+![Flash](/docs/flash.png)
+
+
+
+
 
 
