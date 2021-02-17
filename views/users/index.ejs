@@ -1,0 +1,36 @@
+<%- include("../partials/header.ejs") %> 
+
+<h1 class="text-3xl text-black pb-6">Users</h1>
+
+<div class="w-full mt-6 overflow-auto">
+    <div class="bg-white">
+        <table class="min-w-full leading-normal">
+            <thead class="bg-gray-800 text-white">
+                <tr>
+                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">Name</th>
+                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">Email</th>
+                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">Admin</th>
+                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">Change Status</th>
+                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">Delete</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-gray-700">
+                <%users.forEach((user,i)=>{ if(user.username!==currentUser.username){ if(i%2){%>
+                        <tr class="bg-gray-200">
+                    <%}else{%>
+                        <tr>
+                    <%}%>
+                        <td class="text-left py-3 px-4"><%=  user.name %></td>
+                        <td class="text-left py-3 px-4"><%=  user.username %></td>
+                        <td class="text-left py-3 px-4"><%= user.isAdmin ? "YES" : "NO" %></td>
+                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/admin/users/<%=user.id%>/changeAdminStatus"><%= user.isAdmin ? "Remove Admin" : "Make Admin" %></a></td>
+                        <td class="text-left py-3 px-4"><form class="mx-2" action="/admin/users/<%=user.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form></td>
+                    </tr>
+                <% }})%>  
+        </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include("../partials/footer.ejs") %> 

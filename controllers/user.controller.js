@@ -7,7 +7,7 @@ exports.getHome = async (req, res) => {
   let announcement = await Announcement.find({});
   let uploads = await AdminUpload.find({});
   notices.sort(compare);
-  return res.render("users/home", { notices, announcement, uploads });
+  return res.render("home/index", { notices, announcement, uploads });
 };
 
 const compare = (a, b) => {

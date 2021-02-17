@@ -1,6 +1,4 @@
-var middlewareObj = {};
-
-middlewareObj.isLoggedIn = function (req, res, next) {
+exports.isLoggedIn = function (req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
@@ -8,4 +6,11 @@ middlewareObj.isLoggedIn = function (req, res, next) {
   return res.redirect("/admin/login");
 };
 
-module.exports = middlewareObj;
+exports.isAdmin = function (req, res, next) {
+  if (req.user.isAdmin) {
+    return next();
+  }
+  req.flash("info", "You are unauthorized!");
+  //req.logout();
+  return res.redirect("/admin");
+};

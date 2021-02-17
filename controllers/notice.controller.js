@@ -30,17 +30,28 @@ exports.postNotice = async (req, res) => {
     let name = category.toLowerCase();
 
     const path = req.file ? req.file.filename : link;
+    if (!path) {
+      req.flash("error", "You need to add notice pdf or link!");
+      return res.redirect("/admin/notice/add");
+    }
     //console.log(path);
-    const newNotice = new Notice({ title, description, category: name, path });
-    await newNotice.save();
-
+    const newNotice = await new Notice({
+      title,
+      description,
+      category: name,
+      path,
+    }).save();
+    if (!newNotice) {
+      req.flash("error", "Unable to add new notice");
+      res.redirect("/admin/notice/add");
+    }
     const savedCategory = await Category.find({ name: name });
 
     if (savedCategory.length == 0) {
       const newCategory = new Category({ name });
       await newCategory.save();
     }
-
+    req.flash("success", "Successfully added new notice");
     return res.redirect("/admin/notice");
   } catch (error) {
     console.log(error.message);
@@ -101,8 +112,16 @@ exports.editNotice = async (req, res) => {
       await newCategory.save();
     }
 
-    await Notice.findByIdAndUpdate(req.params.notice_id, data);
+    const updatedNotice = await Notice.findByIdAndUpdate(
+      req.params.notice_id,
+      data
+    );
 
+    if (!updatedNotice) {
+      req.flash("error", "Unable to edit notice");
+      return res.redirect("/admin/notice");
+    }
+    req.flash("success", "Successfully editted notice");
     return res.redirect("/admin/notice");
   } catch (error) {
     console.log(error.message);
@@ -128,13 +147,12 @@ exports.deleteNotice = async (req, res) => {
   try {
     const id = req.params.notice_id;
     const notice = await Notice.findById(id);
-    console.log(notice);
-    console.log(`uploads/notice_pdf/${notice.path}`);
     if (notice.path.indexOf("https://") == -1) {
       fs.unlinkSync(`uploads/notice_pdf/${notice.path}`);
       console.log("successfully deleted!");
     }
     await Notice.findByIdAndRemove(id);
+    req.flash("success", "Successfully deleted notice");
     return res.redirect("/admin/notice");
   } catch (err) {
     // handle the error

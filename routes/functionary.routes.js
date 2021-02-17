@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const funcController = require("../controllers/functionary.controller");
 const multer = require("multer");
-const middleware = require("../middleware");
+const { isLoggedIn, isAdmin } = require("../middleware");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./uploads/functionary_images");
@@ -14,24 +14,27 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-router.get("/", middleware.isLoggedIn, funcController.getFunctionary);
-router.get("/add", middleware.isLoggedIn, funcController.addFunctionaryForm);
+router.get("/", isLoggedIn, isAdmin, funcController.getFunctionary);
+router.get("/add", isLoggedIn, isAdmin, funcController.addFunctionaryForm);
 router.post(
   "/",
-  middleware.isLoggedIn,
+  isLoggedIn,
+  isAdmin,
   upload.single("pic"),
   funcController.postFunctionary
 );
-router.get("/:func_id", middleware.isLoggedIn, funcController.getEditForm);
+router.get("/:func_id", isLoggedIn, isAdmin, funcController.getEditForm);
 router.put(
   "/:func_id",
-  middleware.isLoggedIn,
+  isLoggedIn,
+  isAdmin,
   upload.single("pic"),
   funcController.editFunctionary
 );
 router.delete(
   "/:func_id",
-  middleware.isLoggedIn,
+  isLoggedIn,
+  isAdmin,
   funcController.deleteFunctionary
 );
 

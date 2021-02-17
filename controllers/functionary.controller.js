@@ -31,7 +31,7 @@ exports.postFunctionary = async (req, res) => {
   };
   const newFunctionary = new Functionary(data);
   await newFunctionary.save();
-  console.log(data);
+  req.flash("success", "Successfully added new functionary");
   return res.redirect("/admin/functionary");
 };
 
@@ -61,8 +61,17 @@ exports.editFunctionary = async (req, res) => {
     const pic = `uploads/functionary_images/${req.file.filename}`;
     data["pic"] = pic;
   }
-  console.log(data);
-  await Functionary.findByIdAndUpdate(req.params.func_id, data);
+  //console.log(data);
+  const updatedFunctionary = await Functionary.findByIdAndUpdate(
+    req.params.func_id,
+    data
+  );
+  if (!updatedFunctionary) {
+    req.flash("error", "Unable to edit functionary");
+    //return res.redirect("/admin/")
+  } else {
+    req.flash("success", "Successfully editted functionary");
+  }
   return res.redirect("/admin/functionary");
 };
 
@@ -73,6 +82,7 @@ exports.deleteFunctionary = async (req, res) => {
     fs.unlinkSync(`${functionary.pic}`);
     console.log("successfully deleted!");
     await Functionary.findByIdAndRemove(id);
+    req.flash("success", "Successfully deleted functionary");
     return res.redirect("/admin/functionary");
   } catch (err) {
     // handle the error

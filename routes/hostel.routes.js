@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const router = express.Router({ mergeParams: true });
-const middleware = require("../middleware");
+const { isLoggedIn, isAdmin } = require("../middleware");
 const authController = require("../controllers/auth.controller");
 const hostelController = require("../controllers/hostel.controller");
 const multer = require("multer");
@@ -17,57 +17,66 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+router.get("/", isLoggedIn, isAdmin, hostelController.getAllHostels);
 
-router.get("/",middleware.isLoggedIn, hostelController.getAllHostels);
-
-router.get("/addHostel", middleware.isLoggedIn, hostelController.addHostelForm);
+router.get("/addHostel", isLoggedIn, isAdmin, hostelController.addHostelForm);
 
 router.get("/:name", hostelController.getHostel);
 
-
 router.post(
   "/",
-  middleware.isLoggedIn,
+  isLoggedIn,
+  isAdmin,
   upload.single("pic"),
   hostelController.createHostel
 );
 
-router.get("/:name/updateHostel",middleware.isLoggedIn,hostelController.updateHostelForm);
+router.get(
+  "/:name/updateHostel",
+  isLoggedIn,
+  isAdmin,
+  hostelController.updateHostelForm
+);
 
-router.patch("/:name",upload.single("pic"), hostelController.updateHostel);
+router.patch("/:name", upload.single("pic"), hostelController.updateHostel);
 
 router.get(
   "/:name/addMember",
-  middleware.isLoggedIn,
+  isLoggedIn,
+  isAdmin,
   hostelController.addMemberForm
 );
 
-router.get("/:name/:id/updateMember", middleware.isLoggedIn, hostelController.updateMemberForm);
+router.get(
+  "/:name/:id/updateMember",
+  isLoggedIn,
+  isAdmin,
+  hostelController.updateMemberForm
+);
 
 router.post(
   "/:name",
-  middleware.isLoggedIn,
+  isLoggedIn,
+  isAdmin,
   upload.single("photo"),
   hostelController.createMember
 );
 
-router.delete(
-  "/:name/:id",
-  middleware.isLoggedIn,
-  hostelController.deleteMember
-);
+router.delete("/:name/:id", isLoggedIn, isAdmin, hostelController.deleteMember);
 router.patch(
   "/:name/:id",
-  middleware.isLoggedIn,
+  isLoggedIn,
+  isAdmin,
   upload.single("photo"),
   hostelController.updateMember
 );
 
-router.delete("/:id", middleware.isLoggedIn, hostelController.deleteHostel);
+router.delete("/:id", isLoggedIn, isAdmin, hostelController.deleteHostel);
 
 router.delete(
   "/:name/delete/allMembers",
-  middleware.isLoggedIn,
+  isLoggedIn,
+  isAdmin,
   hostelController.deleteHostelMembers
 );
 

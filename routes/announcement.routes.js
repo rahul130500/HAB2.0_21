@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-const middleware = require("../middleware");
+const { isLoggedIn, isAdmin } = require("../middleware");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -14,24 +14,48 @@ const storage = multer.diskStorage({
 const announcementController = require("../controllers/announcement.controller");
 const upload = multer({ storage: storage });
 
-router.get("/", middleware.isLoggedIn, announcementController.getAnnouncements);
+router.get("/", isLoggedIn, isAdmin, announcementController.getAnnouncements);
 
-router.get("/add", middleware.isLoggedIn, announcementController.addAnnouncementForm);
+router.get(
+  "/add",
+  isLoggedIn,
+  isAdmin,
+  announcementController.addAnnouncementForm
+);
 
-router.post("/", middleware.isLoggedIn, upload.single("announcement"), announcementController.postAnnouncement);
+router.post(
+  "/",
+  isLoggedIn,
+  isAdmin,
+  upload.single("announcement"),
+  announcementController.postAnnouncement
+);
 
-router.post("/find", middleware.isLoggedIn,upload.single("announcement"), announcementController.findAnnouncement);
+router.post(
+  "/find",
+  isLoggedIn,
+  isAdmin,
+  upload.single("announcement"),
+  announcementController.findAnnouncement
+);
 
-router.get("/:id", announcementController.getEditForm);
+router.get("/:id", isLoggedIn, isAdmin, announcementController.getEditForm);
 
 router.get("/pdf/:id", announcementController.getOneAnnouncement);
 
-router.put("/:id", middleware.isLoggedIn, upload.single("announcement"), announcementController.editAnnouncement);
+router.put(
+  "/:id",
+  isLoggedIn,
+  isAdmin,
+  upload.single("announcement"),
+  announcementController.editAnnouncement
+);
 
-router.delete("/:id", middleware.isLoggedIn, announcementController.deleteAnnouncement);
-
-const compare = (a, b) => {
-  return b.creation - a.creation;
-};
+router.delete(
+  "/:id",
+  isLoggedIn,
+  isAdmin,
+  announcementController.deleteAnnouncement
+);
 
 module.exports = router;

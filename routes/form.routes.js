@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-const middleware = require("../middleware");
+const { isLoggedIn, isAdmin } = require("../middleware");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -15,21 +15,39 @@ const formController = require("../controllers/form.controller");
 
 const upload = multer({ storage: storage });
 
-router.get("/", middleware.isLoggedIn, formController.getForms);
+router.get("/", isLoggedIn, isAdmin, formController.getForms);
 
-router.get("/add", middleware.isLoggedIn, formController.addFormForm);
+router.get("/add", isLoggedIn, isAdmin, formController.addFormForm);
 
-router.post("/", middleware.isLoggedIn, upload.single("form"), formController.postForm);
+router.post(
+  "/",
+  isLoggedIn,
+  isAdmin,
+  upload.single("form"),
+  formController.postForm
+);
 
-router.post("/find", middleware.isLoggedIn, upload.single("form"), formController.findForm);
+router.post(
+  "/find",
+  isLoggedIn,
+  isAdmin,
+  upload.single("form"),
+  formController.findForm
+);
 
 router.get("/:id", formController.getEditForm);
 
 router.get("/pdf/:id", formController.getOneForm);
 
-router.put("/:id", middleware.isLoggedIn, upload.single("form"), formController.editForm);
+router.put(
+  "/:id",
+  isLoggedIn,
+  isAdmin,
+  upload.single("form"),
+  formController.editForm
+);
 
-router.delete("/:id", middleware.isLoggedIn, formController.deleteForm);
+router.delete("/:id", isLoggedIn, isAdmin, formController.deleteForm);
 
 const compare = (a, b) => {
   return b.creation - a.creation;

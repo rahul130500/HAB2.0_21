@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-const middleware = require("../middleware");
+const { isAdmin, isLoggedIn } = require("../middleware");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -14,22 +14,44 @@ const storage = multer.diskStorage({
 const noticeController = require("../controllers/notice.controller");
 const upload = multer({ storage: storage });
 
-router.get("/", middleware.isLoggedIn, noticeController.getNotices);
+router.get("/", isLoggedIn, isAdmin, noticeController.getNotices);
 
+router.get("/add", isLoggedIn, isAdmin, noticeController.addNoticeForm);
 
-router.get("/add", middleware.isLoggedIn, noticeController.addNoticeForm);
+router.post(
+  "/",
+  isLoggedIn,
+  isAdmin,
+  upload.single("notice"),
+  noticeController.postNotice
+);
 
-router.post("/", middleware.isLoggedIn, upload.single("notice"), noticeController.postNotice);
-
-router.post("/find", middleware.isLoggedIn, upload.single("notice"), noticeController.findNotice);
+router.post(
+  "/find",
+  isLoggedIn,
+  isAdmin,
+  upload.single("notice"),
+  noticeController.findNotice
+);
 
 router.get("/:notice_id", noticeController.getEditForm);
 
 router.get("/pdf/:notice_id", noticeController.getOneNotice);
 
-router.put("/:notice_id", middleware.isLoggedIn, upload.single("notice"), noticeController.editNotice);
+router.put(
+  "/:notice_id",
+  isLoggedIn,
+  isAdmin,
+  upload.single("notice"),
+  noticeController.editNotice
+);
 
-router.delete("/:notice_id", middleware.isLoggedIn, noticeController.deleteNotice);
+router.delete(
+  "/:notice_id",
+  isLoggedIn,
+  isAdmin,
+  noticeController.deleteNotice
+);
 
 const compare = (a, b) => {
   return b.creation - a.creation;
