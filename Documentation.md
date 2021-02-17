@@ -13,19 +13,19 @@ Log in to your account using the same email and password you used to signup.
 
 ![Login](/docs/login.png)
 
-Once logged in you will be brought to a front page (admin panel) where you can get started on creating notices, announcements, hostels and hostel members. On the hand side of the page you will see the respective tabs for doing so.
+Once logged in you will be brought to the front page (admin panel) where you can get started on creating notices, announcements, hostels and hostel members. On the left hand side of the page you will see the respective tabs for doing so.
 
 ![Admin dashboard](/docs/admin.png)
 
 Viewing, creating, editing and deleting notices
 -----------------------------------------------
 
-To view notices, click on the notices tabs. You will see a list of all the current notices. You can view the notice using the view button which will open the pdf or link for the notice. You can also search for a particular notice usuing keywords, or filter from the given categories.
+To view notices, click on the notices tabs. You will see a list of all the current notices. You can view the notice using the view button which will open the pdf or link for the notice. You can also search for a particular notice using keywords, or filter from the given categories.
 You can also delete the existing notices by clicking on delete button next to the corresponding notice.
 
 ![Notices](/docs/notices.png)
 
-You can also create new notices by clicking on the 'Add Notice' button on the top left, where you will be redirected to a form where you can enter the information as required.
+You can also create new notices by clicking on the 'Add Notice' button on the top left, where you will be redirected to a form where you can enter the information as required. Please note that while creating notices, you are allowed to upload either a pdf, or a link, not both.
 
 ![Add](/docs/add.png)
 
@@ -37,14 +37,14 @@ You can edit the notices by clicking on the edit button.
 Viewing, creating, editing and deleting announcements
 -----------------------------------------------------
 
-To view announcements, click on the announcements tab. The working of this page is similar to notices, where you can create, view, search, edit and delete announcements.
+To view announcements, click on the announcements tab. The working of this page is similar to notices, where you can create, view, search, edit and delete announcements. Please note that while creating notices, you are allowed to upload either a pdf, or a link, not both.
 
 ![Announcements](/docs/announcements.png)
 
 Viewing, creating, editing and deleting forms
 ---------------------------------------------
 
-To view forms, click on the forms tab. The working of this page is similar to notices, where you can create, view, search, edit and delete forms.
+To view forms, click on the forms tab. The working of this page is similar to notices, where you can create, view, search, edit and delete forms. Please note that while creating notices, you are allowed to upload either a pdf, or a link, not both.
 
 ![Forms](/docs/forms.png)
 
@@ -98,7 +98,7 @@ You can add, edit, delete these images, or delete all the images at once if requ
 Other features
 --------------
 
-The website also has flash messages feature. Whenev you do somthing like login, creating, editing or deleting anything, an appropriate message is displayed.
+The website also has flash messages feature. Whenever you do somthing like login, creating, editing or deleting anything, an appropriate message is displayed.
 In the image below, a message of successful login is displayed
 
 ![Flash](/docs/flash.png)
