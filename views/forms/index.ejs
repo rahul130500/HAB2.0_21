@@ -3,6 +3,12 @@
 <div class="mt-6">
     <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/form/add">Add Forms</a>
     <form style="float: right;" action="/admin/form/find/" method="POST" enctype="multipart/form-data">
+    <select class="w-50 h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" name = "dropdown">
+        <option value = "" selected>-Category-</option>
+        <% categories.forEach((category) => { %>
+            <option value= "<%= category.name %>"> <%= category.name %> </option>
+        <% }) %>
+    </select>
     <input type="text" name="mySearch1" placeholder="Search ... ">
     <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit"> Submit </button>
     </form>

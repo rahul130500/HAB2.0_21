@@ -48,21 +48,21 @@ exports.postForm = async (req, res) => {
 exports.findForm = async (req, res) => {
   try {
     const val = req.body.mySearch1;
-    Form.find(
-      {
-        $or: [
-          { title: { $regex: val, $options: "i" } },
-          { description: { $regex: val, $options: "i" } },
-        ],
-      },
-      (err, forms) => {
-        if (err) {
-          console.log(err);
-        } else {
-          res.render("forms/index", { forms });
-        }
-      }
-    );
+    const val2 = req.body.dropdown;
+    var forms = await Form.find({
+      $and: [
+        {
+          $or: [
+            { title: { $regex: val, $options: "i" } },
+            { description: { $regex: val, $options: "i" } },
+          ],
+        },
+        { category: { $regex: val2, $options: "i" } },
+      ],
+    });
+    var categories = await Category.find({});
+    forms.sort(compare);
+    res.render("forms/index", { forms, categories });
   } catch (error) {
     console.log(error.message);
   }
