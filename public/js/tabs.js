@@ -18,10 +18,3 @@ for (let i = 0; i < listOfTabs.length; i++) {
     }
   });
 }
-
-for (let j = 0; j < profileCards.length; j++) {
-  profileCards[j].addEventListener("click", (e) => {
-    // console.log("clicked ", j + 1, "th card", e.target);
-    e.target.children[1].children[3].classList.toggle("show");
-  });
-}

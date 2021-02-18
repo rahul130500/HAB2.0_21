@@ -2,8 +2,7 @@ const Link = require("../models/link");
 
 exports.getAllLinks = async (req, res) => {
   try {
-    const links = await Link.find({});
-    links.sort(compare);
+    const links = await Link.find({}).sort("priority");
     return res.render("links/index", { links });
   } catch (err) {
     console.log(err.message);

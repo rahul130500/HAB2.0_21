@@ -39,13 +39,13 @@ exports.addHostelForm = (req, res) => {
 };
 
 exports.createHostel = async (req, res) => {
-  var { name, contact1,contact2 } = req.body;
+  var { name, contact1, contact2 } = req.body;
   name = name.charAt(0).toUpperCase() + name.slice(1);
   var pic;
   if (req.file) pic = req.file.filename;
   const newHostel = new Hostel({ name, pic, contact1, contact2 });
 
-  const hostel=await newHostel.save();
+  const hostel = await newHostel.save();
   if (!hostel) {
     req.flash("error", "Cannot add hostel");
     return res.redirect("/admin/hostels");
@@ -60,7 +60,7 @@ exports.updateHostelForm = async (req, res) => {
     req.flash("error", "Cannot find this hostel");
     return res.redirect("/admin/hostels");
   }
-  
+
   return res.render("hostels/edit", {
     link: "/admin/hostels/" + req.params.name,
     hostel,
@@ -76,8 +76,8 @@ exports.updateHostel = async (req, res) => {
 
   var name = hostel.name;
   var pic = hostel.pic;
-  var contact1=hostel.contact1;
-  var contact2=hostel.contact2;
+  var contact1 = hostel.contact1;
+  var contact2 = hostel.contact2;
 
   if (req.body.name) {
     name = req.body.name;
@@ -93,8 +93,8 @@ exports.updateHostel = async (req, res) => {
   if (req.body.contact2) {
     contact2 = req.body.contact2;
   }
-  const obj = { name, pic,contact1,contact2 };
-  const hostell=await Hostel.findOneAndUpdate(req.params.name, obj, {
+  const obj = { name, pic, contact1, contact2 };
+  const hostell = await Hostel.findOneAndUpdate(req.params.name, obj, {
     runValidators: true,
   });
   if (!hostell) {
@@ -105,13 +105,14 @@ exports.updateHostel = async (req, res) => {
 
   return res.redirect("/admin/hostels");
 };
+
 exports.addMemberForm = (req, res) => {
   const name = req.params.name;
   return res.render("hostels/members/add", { link: "/hostels/" + name, name });
 };
 
 exports.createMember = async (req, res, next) => {
-  const { Mname, position, priority, contact1,contact2, email } = req.body;
+  const { Mname, position, priority, contact1, contact2, email } = req.body;
   const name = req.params.name;
   var photo;
   if (req.file) photo = req.file.filename;
@@ -124,7 +125,7 @@ exports.createMember = async (req, res, next) => {
     contact2,
     email,
   };
-  const hostel=Hostel.findOneAndUpdate(
+  const hostel = Hostel.findOneAndUpdate(
     { name: name },
     { $push: { management: member } },
     function (error) {
@@ -177,7 +178,7 @@ exports.updateMember = async (req, res) => {
     return res.redirect("/admin/hostels");
   }
 
-  const { Mname, position, priority, contact1,contact2, email } = req.body;
+  const { Mname, position, priority, contact1, contact2, email } = req.body;
   const id = req.params.id;
   var member = hostel.management;
   member = member.filter(function (object) {
@@ -197,7 +198,7 @@ exports.updateMember = async (req, res) => {
     photo = req.file.filename;
   }
 
-  const hostell=await Hostel.findOne({ name }).then((hostel) => {
+  const hostell = await Hostel.findOne({ name }).then((hostel) => {
     let management = hostel.management.id(id);
     management.Mname = Mname;
     management.position = position;
@@ -210,7 +211,7 @@ exports.updateMember = async (req, res) => {
   });
   if (!hostell) {
     req.flash("error", "Cannot update member");
-    return res.redirect("/admin/hostels/"+ name);
+    return res.redirect("/admin/hostels/" + name);
   }
   req.flash("success", "Successfully updated member");
   return res.redirect("/admin/hostels/" + name);
@@ -231,7 +232,7 @@ exports.deleteMember = async (req, res) => {
     });
     if (!member) {
       req.flash("error", "Cannot find member");
-      return res.redirect("/admin/hostels"+name);
+      return res.redirect("/admin/hostels" + name);
     }
 
     if (member[0].photo) {
@@ -260,7 +261,7 @@ exports.deleteHostelMembers = async (req, res) => {
     var members = hostel.management;
     if (!members) {
       req.flash("error", "Cannot find members");
-      return res.redirect("/admin/hostels/"+name);
+      return res.redirect("/admin/hostels/" + name);
     }
     members.forEach((member) => {
       if (member.photo) fs.unlinkSync(`uploads/hostel/${member.photo}`);

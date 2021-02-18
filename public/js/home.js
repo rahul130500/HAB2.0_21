@@ -77,24 +77,24 @@ startSlide();
 function myFunction() {
   var btn = document.getElementById("myButton");
   var im1 = document.getElementById("slides1");
-  var im2 = document.getElementById("content");
-  var bn = document.getElementById("bn");
+  // var im2 = document.getElementById("content_hab");
+  // var bn = document.getElementById("bn");
   var scn = document.getElementById("sect");
   if (btn.innerHTML == "Large View") {
     // btn.value = "large";
     btn.innerHTML = "Small View";
     im1.style.height = "70%";
-    im2.style.width = "22%";
-    im2.style.bottom = "22%";
-    bn.style.bottom = "30%";
+    // im2.style.width = "22%";
+    // im2.style.bottom = "22%";
+    // bn.style.bottom = "30%";
     scn.style.marginTop = "-170px";
   } else {
     // btn.value = "small";
     btn.innerHTML = "Large View";
     im1.style.height = "100%";
-    im2.style.width = "25%";
-    im2.style.bottom = "2%";
-    bn.style.bottom = "2%";
+    // im2.style.width = "25%";
+    // im2.style.bottom = "2%";
+    // bn.style.bottom = "2%";
     scn.style.marginTop = "5px";
   }
 }

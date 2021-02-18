@@ -2,8 +2,7 @@ const Functionary = require("../models/functionary");
 const fs = require("fs");
 
 exports.getFunctionary = async (req, res) => {
-  const functionaries = await Functionary.find({});
-  functionaries.sort(compare);
+  const functionaries = await Functionary.find({}).sort("priority_number");
   return res.render("functionary/index", { functionaries });
 };
 
@@ -91,7 +90,7 @@ exports.deleteFunctionary = async (req, res) => {
   }
 };
 
-const compare = (a, b) => {
-  console.log(a, b);
-  return a.priority_number - b.priority_number;
-};
+// const compare = (a, b) => {
+//   console.log(a, b);
+//   return a.priority_number - b.priority_number;
+// };

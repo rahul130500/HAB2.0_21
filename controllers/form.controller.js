@@ -4,10 +4,10 @@ const Category = require("../models/category");
 
 exports.getForms = async (req, res) => {
   try {
-    const forms = await Form.find({});
+    const forms = await Form.find({}).sort("-creation");
     const categories = await Category.find({});
 
-    forms.sort(compare);
+    //forms.sort(compare);
     return res.render("forms/index", { forms, categories });
   } catch (error) {
     console.log(error.message);
@@ -138,6 +138,6 @@ exports.deleteForm = async (req, res) => {
   }
 };
 
-const compare = (a, b) => {
-  return b.creation - a.creation;
-};
+// const compare = (a, b) => {
+//   return b.creation - a.creation;
+// };

@@ -60,7 +60,7 @@ exports.updateUpload = async (req, res) => {
       image = req.file.filename;
     }
     const obj = { image_name, image };
-    const uploadFile=await AdminUploads.findByIdAndUpdate(id, obj, {
+    const uploadFile = await AdminUploads.findByIdAndUpdate(id, obj, {
       runValidators: true,
     });
     if (!uploadFile) {
@@ -82,7 +82,7 @@ exports.createUpload = async (req, res) => {
     var image;
     if (req.file) image = req.file.filename;
     const newUpload = new AdminUploads({ image_name, image });
-    const upload=await newUpload.save();
+    const upload = await newUpload.save();
     if (!upload) {
       req.flash("error", "Cannot add file");
       return res.redirect("/admin/uploads");
@@ -106,7 +106,7 @@ exports.deleteUpload = async (req, res) => {
 
     console.log("successfully deleted!");
     await AdminUploads.findByIdAndRemove(id);
-    
+
     req.flash("success", "Successfully deleted file");
     return res.redirect("/admin/uploads");
   } catch (err) {
@@ -127,7 +127,7 @@ exports.deleteAllImages = async (req, res) => {
       if (upload.image) fs.unlinkSync(`uploads/adminUploads/${upload.image}`);
     });
     await AdminUploads.deleteMany({});
-    
+
     req.flash("success", "Successfully deleted all files");
 
     console.log("successfully deleted all images");

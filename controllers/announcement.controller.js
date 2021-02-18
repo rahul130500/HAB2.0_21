@@ -3,8 +3,7 @@ const fs = require("fs");
 
 exports.getAnnouncements = async (req, res) => {
   try {
-    const announcements = await Announcement.find({});
-    announcements.sort(compare);
+    const announcements = await Announcement.find({}).sort("-creation");
     return res.render("announcements/index", { announcements });
   } catch (error) {
     console.log(error.message);
@@ -125,6 +124,6 @@ exports.deleteAnnouncement = async (req, res) => {
   }
 };
 
-const compare = (a, b) => {
-  return b.creation - a.creation;
-};
+// const compare = (a, b) => {
+//   return b.creation - a.creation;
+// };
