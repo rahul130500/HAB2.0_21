@@ -5,6 +5,7 @@ const Category = require("../models/category");
 exports.getForms = async (req, res) => {
   try {
     const forms = await Form.find({}).sort("-creation");
+
     const categories = await Category.find({});
 
     //forms.sort(compare);
@@ -30,15 +31,28 @@ exports.postForm = async (req, res) => {
 
     const path = req.file ? req.file.filename : link;
 
-    const newForm = new Form({ title, description, category: name, path });
-    await newForm.save();
+    if (!path) {
+      req.flash("error", "You need to add notice pdf or link!");
+      return res.redirect("/admin/form/add");
+    }
+
+    const newForm = await new Form({
+      title,
+      description,
+      category: name,
+      path,
+    }).save();
+    if (!newForm) {
+      req.flash("error", "Unable to add new form");
+      res.redirect("/admin/form/add");
+    }
     const savedCategory = await Category.find({ name: name });
 
     if (savedCategory.length == 0) {
       const newCategory = new Category({ name });
       await newCategory.save();
     }
-
+    req.flash("success", "Successfully added new form!");
     return res.redirect("/admin/form");
   } catch (error) {
     console.log(error.message);
@@ -59,9 +73,8 @@ exports.findForm = async (req, res) => {
         },
         { category: { $regex: val2, $options: "i" } },
       ],
-    });
+    }).sort("-creation");
     var categories = await Category.find({});
-    forms.sort(compare);
     res.render("forms/index", { forms, categories });
   } catch (error) {
     console.log(error.message);

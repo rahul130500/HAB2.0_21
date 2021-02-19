@@ -40,7 +40,7 @@ exports.postAnnouncement = async (req, res) => {
       });
       await newAnnouncement.save();
     }
-
+    req.flash("success", "Successfully added new announcement!");
     return res.redirect("/admin/announcement");
   } catch (error) {
     console.log(error.message);
@@ -80,6 +80,8 @@ exports.editAnnouncement = async (req, res) => {
       data["path"] = req.file.filename;
     }
     await Announcement.findByIdAndUpdate(req.params.id, data);
+
+    req.flash("success", "Successfully updated announcement!");
     return res.redirect("/admin/announcement");
   } catch (error) {
     console.log(error.message);
@@ -116,6 +118,8 @@ exports.deleteAnnouncement = async (req, res) => {
       }
     }
     await Announcement.findByIdAndRemove(id);
+
+    req.flash("success", "Successfully deleted announcement!");
     return res.redirect("/admin/announcement");
   } catch (err) {
     // handle the error
@@ -123,7 +127,3 @@ exports.deleteAnnouncement = async (req, res) => {
     return res.redirect("/admin/announcement");
   }
 };
-
-// const compare = (a, b) => {
-//   return b.creation - a.creation;
-// };

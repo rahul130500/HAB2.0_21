@@ -1,0 +1,32 @@
+#content_hab {
+  font-weight: 10em;
+  width: 390px;
+  padding: 20px;
+  color: white;
+  font-family: "Mulish";
+  /* background-color: rgb(97, 97, 97); */
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+}
+.hs {
+  float: left;
+  width: 6%;
+  margin-top: 2px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+#content_hab h2 {
+  padding-bottom: 10px;
+}
+#content_hab p {
+  margin-top: 10px;
+}
+#span {
+  padding-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  #content_hab {
+    width: 100%;
+  }
+}

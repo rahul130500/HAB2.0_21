@@ -21,7 +21,6 @@ exports.getHostel = async (req, res, next) => {
         data: hostel,
       },
     });
-    next();
   }
   const name = req.params.name;
   const members = hostel.management;
@@ -39,14 +38,18 @@ exports.addHostelForm = (req, res) => {
 };
 
 exports.createHostel = async (req, res) => {
-  var { name, contact1, contact2 } = req.body;
+  var { name, description, contact1, contact2 } = req.body;
   name = name.charAt(0).toUpperCase() + name.slice(1);
   var pic;
   if (req.file) pic = req.file.filename;
-  const newHostel = new Hostel({ name, pic, contact1, contact2 });
-
-  const hostel = await newHostel.save();
-  if (!hostel) {
+  const newHostel = await new Hostel({
+    name,
+    pic,
+    contact1,
+    contact2,
+    description,
+  }).save();
+  if (!newHostel) {
     req.flash("error", "Cannot add hostel");
     return res.redirect("/admin/hostels");
   }
@@ -60,6 +63,8 @@ exports.updateHostelForm = async (req, res) => {
     req.flash("error", "Cannot find this hostel");
     return res.redirect("/admin/hostels");
   }
+
+  console.log(hostel);
 
   return res.render("hostels/edit", {
     link: "/admin/hostels/" + req.params.name,
@@ -78,6 +83,7 @@ exports.updateHostel = async (req, res) => {
   var pic = hostel.pic;
   var contact1 = hostel.contact1;
   var contact2 = hostel.contact2;
+  var description = hostel.description;
 
   if (req.body.name) {
     name = req.body.name;
@@ -93,7 +99,10 @@ exports.updateHostel = async (req, res) => {
   if (req.body.contact2) {
     contact2 = req.body.contact2;
   }
-  const obj = { name, pic, contact1, contact2 };
+  if (req.body.description) {
+    description = req.body.description;
+  }
+  const obj = { name, pic, contact1, contact2, description };
   const hostell = await Hostel.findOneAndUpdate(req.params.name, obj, {
     runValidators: true,
   });
