@@ -9,10 +9,13 @@
     <link rel="stylesheet" href="/css/hostel.css">
     <title>Hostels</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: "Mulish", sans-serif;
         }
 
         html {
@@ -44,6 +47,7 @@
         }
 
         .tab {
+            display: inline-block;
             padding: 0 0.75rem;
             margin-top: 0.75rem;
             border-right: 1.5px solid #727272;
@@ -73,12 +77,7 @@
 
         .nav_logo {
             width: 50px;
-            opacity: 0;
-            transition: all 0.4s;
-        }
-
-        .sticky_logo {
-            opacity: 1;
+            display: none;
             transition: all 0.4s;
         }
 
@@ -92,6 +91,11 @@
         }
 
         @media only screen and (min-width: 768px) {
+            .sticky_logo {
+                display: block;
+                transition: all 0.4s;
+            }
+
             .hostelProfileCard {
                 width: 30%;
             }
@@ -112,19 +116,23 @@
         <div class="top_content relative w-11/12 md:w-4/5 h-full mx-auto z-10 flex flex-col md:flex-row">
             <div class="top_title w-full h-1/2 md:w-1/2 md:h-full flex justify-start items-center">
                 <img src="/images/headers/logo.svg" alt="logo" class="transform scale-75 mr-0.5 md:mr-1">
-                <h2 class="text-6xl text-white font-black"><%=hostel.name%></h2>
+                <h2 class="text-6xl text-white font-black">
+                    <%=hostel.name%>
+                </h2>
             </div>
             <div class="top_card_container w-full h-1/2 md:w-1/2 md:h-full relative">
-                <div id="content_hab" class="absolute bottom-14 right-0">
+                <div id="content_hab" class="absolute bottom-14 right-0 rounded">
                     <img src="/images/headers/h.svg" alt="img" class="hs">
-                    <h2><%=hostel.name%>, IIT GUWAHATI</h2>
+                    <h2 style="color: #F3F4F7;">
+                        <%=hostel.name%>, IIT GUWAHATI
+                    </h2>
                     <hr>
-                    <p>
+                    <p class="text-xs leading-relaxed font-normal opacity-80">
                         <%=hostel.description%>
                     </p>
                 </div>
                 <!-- change this to the actual button -->
-                <img src="/images/headers/fullscr.png" alt="" onclick="toggleFullscreen();"
+                <img src="/images/headers/fullscr.svg" alt="" onclick="toggleFullscreen();"
                     class="hidden md:inline absolute right-0 bottom-2">
             </div>
         </div>
@@ -135,46 +143,46 @@
             <img id="nav_logo" src="/images/headers/logo2.svg" alt="logo" class="nav_logo hidden md:inline">
             <div class="w-full">
                 <ul class="tabs font-semibold">
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100 tabStyle"><a class="active"
-                            target="_self" href="/hostels/barak">Barak</a>
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100 tabStyle"><a
+                            class="active" target="_self" href="/hostels/barak">Barak</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/brahmaputra">Brahmaputra</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/dhansiri">Dhansiri</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/dibang">Dibang</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/dihing">Dihing</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/disang">Disang</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/kameng">Kameng</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/kapili">Kapili</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/lohit">Lohit</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/manas">Manas</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/Married">Married Scholar's hostel</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/Siang">Siang</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/Subansiri">Subansiri</a>
                     </li>
-                    <li class="tab text-black text-opacity-60 hover:text-opacity-100"><a target="_self"
+                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                             href="/hostels/Umiam">Umiam</a>
                     </li>
                 </ul>
@@ -183,27 +191,38 @@
     </section>
 
     <section id="hostel_management">
-        <div class="container md:px-40 px-5 py-10 mx-auto">
-            <h1 class="mb-10 px-5"><span class="text-lg font-semibold px-5 py-3 bg-white rounded"
+        <div class="container md:px-20 px-5 py-10 mx-auto">
+            <h1 class="mb-10 px-5 text-center"><span class="text-lg font-semibold px-5 py-3 bg-white rounded"
                     style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">HMC
                     Members</span>
             </h1>
             <div class="flex justify-evenly flex-wrap -m-4">
                 <% members.forEach(member=>{%>
                     <div class="hostelProfileCard w-10/12 h-auto m-2 bg-white rounded-sm"
-                        style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
-                        <div class="box-border pointer-events-none border-8 border-white w-full h-64 bg-pink-300">
-                            <img src="/uploads/hostel/<%=member.photo%>" alt="img" class="h-full w-full object-contain rounded-sm">
+                        style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);width: 310px;">
+                        <div class="box-border pointer-events-none border-8 border-white w-full h-64 bg-gray-200">
+                            <img src="/uploads/hostel/<%=member.photo%>" alt="img" class="h-full w-full object-contain">
                         </div>
-                        <div class="hostel_mng_contacts px-3 pt-1 pb-2" data-mail="email-1" data-twitter="twitter_handle">
-                            <p class="text-xl font-semibold"><%=member.Mname%></p>
-                            <p class="py-0.5 text-sm font-normal text-gray-600"><%=member.position%></p>
-                            <p class="py-1 text-sm font-normal text-gray-600"><i class="fas fa-phone-alt mr-2"></i><%=member.contact1%></p>
-                            <p class="py-0.5 text-sm font-normal text-gray-600"><i class="fas fa-phone-alt mr-2"></i><%=member.contact2%></p>
-                            <p class="pt-0.5 pb-1 text-sm font-normal text-gray-600"><i class="fas fa-at mr-2"></i><%=member.email%></p>
+                        <div class="hostel_mng_contacts px-3 pt-1 pb-2" data-mail="email-1"
+                            data-twitter="twitter_handle">
+                            <p class="text-xl font-semibold">
+                                <%=member.Mname%>
+                            </p>
+                            <p class="py-0.5 text-sm font-normal text-gray-600">
+                                <%=member.position%>
+                            </p>
+                            <p class="py-1 text-sm font-normal text-gray-600"><i class="fas fa-phone-alt mr-2"></i>
+                                <%=member.contact1%>
+                            </p>
+                            <p class="py-0.5 text-sm font-normal text-gray-600"><i class="fas fa-phone-alt mr-2"></i>
+                                <%=member.contact2%>
+                            </p>
+                            <p class="pt-0.5 pb-1 text-sm font-normal text-gray-600"><i class="fas fa-at mr-2"></i>
+                                <%=member.email%>
+                            </p>
                         </div>
                     </div>
-                <%})%>
+                    <%})%>
             </div>
         </div>
     </section>
@@ -222,22 +241,22 @@
             </p>
             <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
                 <a class="text-gray-500">
-                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
-                        viewBox="0 0 24 24">
+                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        class="w-5 h-5" viewBox="0 0 24 24">
                         <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                     </svg>
                 </a>
                 <a class="ml-3 text-gray-500">
-                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
-                        viewBox="0 0 24 24">
+                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        class="w-5 h-5" viewBox="0 0 24 24">
                         <path
                             d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
                         </path>
                     </svg>
                 </a>
                 <a class="ml-3 text-gray-500">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        class="w-5 h-5" viewBox="0 0 24 24">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
                         <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                     </svg>
