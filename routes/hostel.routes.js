@@ -21,7 +21,7 @@ router.get("/", isLoggedIn, isAdmin, hostelController.getAllHostels);
 
 router.get("/addHostel", isLoggedIn, isAdmin, hostelController.addHostelForm);
 
-router.get("/:name", hostelController.getHostel);
+router.get("/:id1", hostelController.getHostel);
 
 router.post(
   "/",
@@ -32,49 +32,49 @@ router.post(
 );
 
 router.get(
-  "/:name/updateHostel",
+  "/:id1/updateHostel",
   isLoggedIn,
   isAdmin,
   hostelController.updateHostelForm
 );
 
-router.patch("/:name", upload.single("pic"), hostelController.updateHostel);
+router.patch("/:id1", upload.single("pic"), hostelController.updateHostel);
 
 router.get(
-  "/:name/addMember",
+  "/:id1/addMember",
   isLoggedIn,
   isAdmin,
   hostelController.addMemberForm
 );
 
 router.get(
-  "/:name/:id/updateMember",
+  "/:id1/:id2/updateMember",
   isLoggedIn,
   isAdmin,
   hostelController.updateMemberForm
 );
 
 router.post(
-  "/:name",
+  "/:id1",
   isLoggedIn,
   isAdmin,
   upload.single("photo"),
   hostelController.createMember
 );
 
-router.delete("/:name/:id", isLoggedIn, isAdmin, hostelController.deleteMember);
+router.delete("/:id1/:id2", isLoggedIn, isAdmin, hostelController.deleteMember);
 router.patch(
-  "/:name/:id",
+  "/:id1/:id2",
   isLoggedIn,
   isAdmin,
   upload.single("photo"),
   hostelController.updateMember
 );
 
-router.delete("/:id", isLoggedIn, isAdmin, hostelController.deleteHostel);
+router.delete("/:id1", isLoggedIn, isAdmin, hostelController.deleteHostel);
 
 router.delete(
-  "/:name/delete/allMembers",
+  "/:id1/delete/allMembers",
   isLoggedIn,
   isAdmin,
   hostelController.deleteHostelMembers

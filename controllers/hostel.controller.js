@@ -8,7 +8,8 @@ exports.getAllHostels = async (req, res, next) => {
 };
 
 exports.getHostel = async (req, res, next) => {
-  const hostel = await Hostel.findOne({ name: req.params.name });
+  const id1 = req.params.id1;
+  const hostel = await Hostel.findById(id1);
   if (!hostel) {
     req.flash("error", "Cannot find hostel");
     return res.redirect("/admin/hostels");
@@ -22,13 +23,14 @@ exports.getHostel = async (req, res, next) => {
       },
     });
   }
-  const name = req.params.name;
+  const name=hostel.name;
   const members = hostel.management;
   members.sort((a, b) => (a.priority > b.priority ? 1 : -1));
 
   return res.render("hostels/members/index", {
     members,
-    link: "/hostels/" + name + "/addMember",
+    link: "/hostels/" + id1 + "/addMember",
+    id1,
     name,
   });
 };
@@ -58,22 +60,22 @@ exports.createHostel = async (req, res) => {
 };
 
 exports.updateHostelForm = async (req, res) => {
-  const hostel = await Hostel.findOne({ name: req.params.name });
+  const id1 = req.params.id1;
+  const hostel = await Hostel.findById(id1);
   if (!hostel) {
     req.flash("error", "Cannot find this hostel");
     return res.redirect("/admin/hostels");
   }
 
-  console.log(hostel);
-
   return res.render("hostels/edit", {
-    link: "/admin/hostels/" + req.params.name,
+    link: "/admin/hostels/" + id1,
     hostel,
   });
 };
 
 exports.updateHostel = async (req, res) => {
-  const hostel = await Hostel.findOne({ name: req.params.name });
+  const id1 = req.params.id1;
+  const hostel = await Hostel.findById(id1);
   if (!hostel) {
     req.flash("error", "Cannot find hostel");
     return res.redirect("/admin/hostels");
@@ -103,7 +105,7 @@ exports.updateHostel = async (req, res) => {
     description = req.body.description;
   }
   const obj = { name, pic, contact1, contact2, description };
-  const hostell = await Hostel.findOneAndUpdate(req.params.name, obj, {
+  const hostell = await Hostel.findByIdAndUpdate(id1, obj, {
     runValidators: true,
   });
   if (!hostell) {
@@ -116,13 +118,15 @@ exports.updateHostel = async (req, res) => {
 };
 
 exports.addMemberForm = (req, res) => {
-  const name = req.params.name;
-  return res.render("hostels/members/add", { link: "/hostels/" + name, name });
+  const id1 = req.params.id1;
+
+  return res.render("hostels/members/add", { link: "/hostels/" + id1, id1 });
 };
 
 exports.createMember = async (req, res, next) => {
   const { Mname, position, priority, contact1, contact2, email } = req.body;
-  const name = req.params.name;
+  const id1 = req.params.id1;
+
   var photo;
   if (req.file) photo = req.file.filename;
   const member = {
@@ -134,8 +138,8 @@ exports.createMember = async (req, res, next) => {
     contact2,
     email,
   };
-  const hostel = Hostel.findOneAndUpdate(
-    { name: name },
+  const hostel = Hostel.findByIdAndUpdate(
+    id1,
     { $push: { management: member } },
     function (error) {
       if (error) {
@@ -145,17 +149,17 @@ exports.createMember = async (req, res, next) => {
   );
   if (!hostel) {
     req.flash("error", "Cannot add member");
-    return res.redirect(`/admin/hostels/${name}`);
+    return res.redirect(`/admin/hostels/${id1}`);
   }
   req.flash("success", "Successfully added new member");
 
-  return res.redirect(`/admin/hostels/${name}`);
+  return res.redirect(`/admin/hostels/${id1}`);
 };
 
 exports.updateMemberForm = async (req, res) => {
-  const name = req.params.name;
-  const id = req.params.id;
-  const hostel = await Hostel.findOne({ name: name });
+  const id1 = req.params.id1;
+  const id2 = req.params.id2;
+  const hostel = await Hostel.findById(id1);
   if (!hostel) {
     req.flash("error", "Cannot find hostel");
     return res.redirect("/admin/hostels");
@@ -163,35 +167,35 @@ exports.updateMemberForm = async (req, res) => {
 
   var member = hostel.management;
   member = member.filter(function (object) {
-    return object.id == id;
+    return object.id == id2;
   });
   mb = member[0];
   if (!mb) {
     req.flash("error", "Cannot find member");
-    return res.redirect(`/admin/hostels/${name}`);
+    return res.redirect(`/admin/hostels/${id1}`);
   }
 
   return res.render("hostels/members/edit", {
-    link: "/admin/hostels/" + req.params.name + "/" + id,
+    link: "/admin/hostels/" + id1 + "/" + id2,
     mb,
-    name,
+    id1,
   });
 };
 
 exports.updateMember = async (req, res) => {
-  const name = req.params.name;
+  const id1 = req.params.id1;
 
-  const hostel = await Hostel.findOne({ name: name });
+  const hostel = await Hostel.findById(id1);
   if (!hostel) {
     req.flash("error", "Cannot find hostel");
     return res.redirect("/admin/hostels");
   }
 
   const { Mname, position, priority, contact1, contact2, email } = req.body;
-  const id = req.params.id;
+  const id2 = req.params.id2;
   var member = hostel.management;
   member = member.filter(function (object) {
-    return object.id == id;
+    return object.id == id2;
   });
   if (!member) {
     req.flash("error", "Cannot find member");
@@ -207,8 +211,8 @@ exports.updateMember = async (req, res) => {
     photo = req.file.filename;
   }
 
-  const hostell = await Hostel.findOne({ name }).then((hostel) => {
-    let management = hostel.management.id(id);
+  const hostell = await Hostel.findById(id1).then((hostel) => {
+    let management = hostel.management.id(id2);
     management.Mname = Mname;
     management.position = position;
     management.contact1 = contact1;
@@ -220,49 +224,49 @@ exports.updateMember = async (req, res) => {
   });
   if (!hostell) {
     req.flash("error", "Cannot update member");
-    return res.redirect("/admin/hostels/" + name);
+    return res.redirect("/admin/hostels/" + id1);
   }
   req.flash("success", "Successfully updated member");
-  return res.redirect("/admin/hostels/" + name);
+  return res.redirect("/admin/hostels/" + id1);
 };
 
 exports.deleteMember = async (req, res) => {
   try {
-    const name = req.params.name;
-    const id = req.params.id;
-    const hostel = await Hostel.findOne({ name: name });
+    const id1 = req.params.id1;
+    const id2 = req.params.id2;
+    const hostel = await Hostel.findById(id1);
     if (!hostel) {
       req.flash("error", "Cannot find hostel");
       return res.redirect("/admin/hostels");
     }
     var member = hostel.management;
     member = member.filter(function (object) {
-      return object.id == id;
+      return object.id == id2;
     });
     if (!member) {
       req.flash("error", "Cannot find member");
-      return res.redirect("/admin/hostels" + name);
+      return res.redirect("/admin/hostels" + id1);
     }
 
     if (member[0].photo) {
       fs.unlinkSync(`uploads/hostel/${member[0].photo}`);
       console.log("successfully deleted /tmp/hello");
     }
-    hostel.management.pull({ _id: id });
+    hostel.management.pull({ _id: id2 });
     await hostel.save();
     req.flash("success", "Successfully deleted member");
-    return res.redirect("/admin/hostels/" + name);
+    return res.redirect("/admin/hostels/" + id1);
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/admin/hostels/" + req.params.name);
+    return res.redirect("/admin/hostels/" + req.params.id1);
   }
 };
 
 exports.deleteHostelMembers = async (req, res) => {
   try {
-    const name = req.params.name;
-    const hostel = await Hostel.findOne({ name: name });
+    const id1 = req.params.id1;
+    const hostel = await Hostel.findById(id1);
     if (!hostel) {
       req.flash("error", "Cannot find hostel");
       return res.redirect("/admin/hostels");
@@ -270,7 +274,7 @@ exports.deleteHostelMembers = async (req, res) => {
     var members = hostel.management;
     if (!members) {
       req.flash("error", "Cannot find members");
-      return res.redirect("/admin/hostels/" + name);
+      return res.redirect("/admin/hostels/" + id1);
     }
     members.forEach((member) => {
       if (member.photo) fs.unlinkSync(`uploads/hostel/${member.photo}`);
@@ -280,18 +284,18 @@ exports.deleteHostelMembers = async (req, res) => {
     req.flash("success", "Successfully deleted all members");
     console.log("successfully deleted all members");
 
-    return res.redirect("/admin/hostels/" + name);
+    return res.redirect("/admin/hostels/" + id1);
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/admin/hostels/" + req.params.name);
+    return res.redirect("/admin/hostels/" + req.params.id1);
   }
 };
 
 exports.deleteHostel = async (req, res) => {
   try {
-    const id = req.params.id;
-    const hostel = await Hostel.findById(id);
+    const id1 = req.params.id1;
+    const hostel = await Hostel.findById(id1);
     if (!hostel) {
       req.flash("error", "Cannot find hostel");
       return res.redirect("/admin/hostels");
@@ -303,7 +307,7 @@ exports.deleteHostel = async (req, res) => {
     });
 
     console.log("successfully deleted!");
-    await Hostel.findByIdAndRemove(id);
+    await Hostel.findByIdAndRemove(id1);
     req.flash("success", "Successfully deleted hostel");
 
     return res.redirect("/admin/hostels");

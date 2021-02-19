@@ -85,11 +85,11 @@
                             
 
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a class="hover:text-blue-500" href="/admin/hostels/<%=name%>/<%=member.id%>/updateMember">Edit</a>
+                            <a class="hover:text-blue-500" href="/admin/hostels/<%=id1%>/<%=member.id%>/updateMember">Edit</a>
                         </td>
 
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <form class="mx-2" action="/admin/hostels/<%=name%>/<%=member.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form>
+                            <form class="mx-2" action="/admin/hostels/<%=id1%>/<%=member.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form>
                         </td>
                     </tr>
                 <% }) %>
@@ -104,7 +104,7 @@
 
     <div id="id01" class="modal">
       
-      <form action="/admin/hostels/<%=name%>/delete/allMembers?_method=DELETE" method="POST" class="modal-content">
+      <form action="/admin/hostels/<%=id1%>/delete/allMembers?_method=DELETE" method="POST" class="modal-content">
         <div class="container">
           <h1>Delete All Members</h1>
           <p>Are you sure you want to delete all the hostel members?</p>
