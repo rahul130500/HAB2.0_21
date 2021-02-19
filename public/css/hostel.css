@@ -24,8 +24,24 @@
   padding-top: 10px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
+  .top_title {
+    justify-content: center;
+  }
+
   #content_hab {
+    right: 15%;
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .top_title {
+    justify-content: flex-start;
+  }
+
+  #content_hab {
+    right: 0;
     width: 100%;
   }
 }
