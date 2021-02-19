@@ -8,6 +8,6 @@ const formController = require("../controllers/form.controller");
 router.get("/", userController.getHome);
 router.get("/notices/:notice_id", noticeController.getOneNotice);
 router.get("/forms/:id", formController.getOneForm);
-router.get("/hostels/:name", userController.getOneHostel);
+router.get("/hostels/:hostel_id", userController.getOneHostel);
 
 module.exports = router;

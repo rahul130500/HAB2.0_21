@@ -6,10 +6,29 @@
                
 
         </div>  -->
+        <script>
+          
+            setInterval(function(){ document.getElementById("content").click(); }, 6000);
+
+        </script>
+        <style>
+            .overlay {
+            content: '\A';
+            position: absolute;
+            width: 100%; height:100%;
+            top:0; left:0;
+            background:rgba(0,0,0,0.6);
+            opacity: 0;
+            transition: all 1s;
+            -webkit-transition: all 1s;
+            z-index: 100;
+            }
+        </style>
+        </div>
         <div class="demo-1 slides" id="slides1">
-            <main>
+            <main class = "">
                 <div id="content" class="content">
-                    <div id="slider" data-images='["img/img11.jpg","img/img12.jpg","img/img13.jpg"]'
+                    <div id="slider" class = "" data-images=<%=JSON.stringify(uploadImages)%>
                         data-displacement="">
                     </div>
                 </div>
@@ -17,8 +36,8 @@
                 <section id="top">
                     <div class="top_content relative w-11/12 md:w-4/5 h-full mx-auto z-10 flex flex-col md:flex-row">
                       <div class="top_title w-full  md:w-1/2 md:h-full flex justify-start items-center md:-mt-96 -mt-96">
-                          <img src="images/headers/logo.svg" alt="logo" class="transform md:scale-75 scale-50 md:mr-1">
-                          <h2 class="md:text-6xl text-5xl text-white font-Mulish">Hostel Affairs <br> Board</h2>
+                          <img src="images/headers/logo.svg" alt="logo" class="transform md:scale-90 scale-50 md:mr-1">
+                          <h2 class="md:text-6xl text-5xl text-white font-black" style="font-family: Mulish">Hostel Affairs <br> Board</h2>
                       </div>
                       <div class="top_card_container w-full   md:w-1/2 md:h-full" >
                           <div id="content_hab" class="absolute bottom-4 md:-right-16 ">
@@ -26,7 +45,7 @@
                               <h2>Siang, IIT GUWAHATI</h2>
                               <hr>
                               <p>
-                                  The SiangRiver meets two other major tributaries of Brahmaputra,
+                                  The Siang River meets two other major tributaries of Brahmaputra,
                                   Dibang and Lohit in the west of Sadiya, at a place named Kobo.
                               </p>
                           </div>

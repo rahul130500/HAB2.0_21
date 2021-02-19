@@ -9,21 +9,18 @@
     
         <div class="float-right items-top md:pl-16 pl-8 pb-12 md:pt-0 pt-5 ">
             <div class="md:w-80 w-60 border-2 ">
-                <h1 class="text-align:left  p-3" style=" font-family: Mulish; font-weight: 900">NOTICE BOARD</h1>
+                <h1 class="text-align:left  p-3" style=" font-family: Mulish; font-weight: 900">ANNOUNCEMENTS</h1>
                     <hr class="border-4">
                 <div>
                     <marquee direction="up" height="300" scrollamount="3" onmouseout="start()" onmouseover="stop()">
-                        <ul >
-                            <a href=""><li class="pb-4  px-3" style="color: blue; font-family: Mulish;font-size: 14px;font-weight: 400;text-align: left;">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit</li></a>
-                            <a href=""><li class="pb-4  px-3" style="color: blue; font-family: Mulish;font-size: 14px;font-weight: 400;text-align: left;">
-                                Lorem ipsum dolor sit amet,  adipiscing elit</li></a>
-                            <a href=""><li class="pb-4  px-3" style="color: blue; font-family: Mulish;font-size: 14px;font-weight: 400;text-align: left;">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit</li></a>
-                            <a href=""><li class="pb-4  px-3" style="color: blue; font-family: Mulish;font-size: 14px;font-weight: 400;text-align: left;">
-                                Lorem ipsum dolor sit amet</li></a>
-                            <a href=""><li class="pb-4  px-3" style="color: blue; font-family: Mulish;font-size: 14px;font-weight: 400;text-align: left;">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elithuyyiyi uyiuyuh</li></a>
+                        <ul>
+                            <% announcements.forEach(announcement=>{ %>
+                                <a href="<%=announcement.path%>">
+                                    <li class="pb-4  px-3" style="color: blue; font-family: Mulish;font-size: 14px;font-weight: 400;text-align: left;">
+                                        <%= announcement.title %>
+                                    </li>
+                                </a>
+                            <% }) %>
                         </ul>
                     </marquee>
                 </div>
@@ -43,30 +40,7 @@
         libero viverra, efficitur odio eu, finibus justo. Etiam eu vehicula felis.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis et lorem sit amet vehicula. 
         Etiam vel nibh nec nisi euismod mollis ultrices condimentum velit. Proin velit libero, interdum ac 
-        <br>
-        <br>
-        rhoncus sit amet, pellentesque ac turpis. Quisque ac luctus turpis, vel efficitur ante. Cras convallis 
-        risus vel vehicula dapibus. Donec eget neque fringilla, faucibus mi quis, porttitor magna. 
-        Cras pellentesque leo est, et luctus neque rutrum eu. Aliquam consequat velit sed sem posuere, 
-        vitae sollicitudin mi consequat. Mauris eget ipsum sed dui rutrum fringilla. 
-        Donec varius vehicula magna sit amet auctor. Ut congue vehicula lectus in blandit. 
-        Vivamus suscipit eleifend turpis, nec sodales sem vulputate a. Curabitur pulvinar 
-        libero viverra, efficitur odio eu, finibus justo. Etiam eu vehicula felis.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis et lorem sit amet vehicula. 
-        Etiam vel nibh nec nisi euismod mollis ultrices condimentum velit. Proin velit libero, interdum ac 
-        rhoncus sit amet, pellentesque ac turpis. Quisque ac luctus turpis, vel efficitur ante. Cras convallis 
-        risus vel vehicula dapibus. Donec eget neque fringilla, faucibus mi quis, porttitor magna. 
-        Cras pellentesque leo est, et luctus neque rutrum eu. Aliquam consequat velit sed sem posuere, 
-        vitae sollicitudin mi consequat. Mauris eget ipsum sed dui rutrum fringilla. 
-        Donec varius vehicula magna sit amet auctor. Ut congue vehicula lectus in blandit. 
-        Vivamus suscipit eleifend turpis, nec sodales sem vulputate a. Curabitur pulvinar 
-        libero viverra, efficitur odio eu, finibus justo. Etiam eu vehicula felis
         </div>
-        
-        
-        
-        
-    
     </div>
     <div>
     

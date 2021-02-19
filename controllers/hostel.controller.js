@@ -23,7 +23,7 @@ exports.getHostel = async (req, res, next) => {
       },
     });
   }
-  const name=hostel.name;
+  const name = hostel.name;
   const members = hostel.management;
   members.sort((a, b) => (a.priority > b.priority ? 1 : -1));
 
@@ -153,7 +153,7 @@ exports.createMember = async (req, res, next) => {
   }
   req.flash("success", "Successfully added new member");
 
-  return res.redirect(`/admin/hostels/${id1}`);
+  return res.redirect(`/admin/hostels/${id1}/addMember`);
 };
 
 exports.updateMemberForm = async (req, res) => {

@@ -7,28 +7,34 @@ const Hostel = require("../models/hostel");
 
 exports.getHome = async (req, res) => {
   let notices = await Notice.find({}).sort("-creation");
-  let announcement = await Announcement.find({}).sort("-creation");
+  let announcements = await Announcement.find({}).sort("-creation");
   let forms = await Form.find({}).sort("-creation");
   let uploads = await AdminUpload.find({});
+  let uploadImages = [];
+  uploads.forEach((upload) => {
+    uploadImages.push(`uploads/adminUploads/${upload.image}`);
+  });
+
   let functionaries = await Functionary.find({}).sort("-priority");
 
   return res.render("home/index", {
     notices,
-    announcement,
+    announcements,
     uploads,
     forms,
     functionaries,
+    uploadImages,
   });
 };
 
 exports.getOneHostel = async (req, res) => {
   try {
-    const hostel = await Hostel.findOne({ name: req.params.name });
+    const hostel = await Hostel.findById(req.params.hostel_id);
 
-    if (!hostel) {
-      req.flash("error", "Cannot find hostel");
-      return res.redirect("/");
-    }
+    // if (!hostel) {
+    //   req.flash("error", "Cannot find hostel");
+    //   return res.redirect("/");
+    // }
 
     const members = hostel.management;
     members.sort((a, b) => (a.priority > b.priority ? 1 : -1));

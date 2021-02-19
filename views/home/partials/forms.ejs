@@ -10,20 +10,20 @@
         
                                 <div class="flex-grow">
                                     <div class="flex justify-between">
-                                        <h2 class="tracking-widest text-xs title-font font-medium text-blue-500 mb-1"><%= form.category.toUpperCase() %></h2>
+                                        <h2 class="tracking-widest text-xs title-font font-medium text-blue-600 mb-1 "><%= form.category.toUpperCase() %></h2>
                                         
                                         <h2 class="tracking-widest text-xs title-font font-medium text-blue-500 mb-1"><%= form.creation.getDate()+'/'+(form.creation.getMonth()+1)+'/'+form.creation.getFullYear() %></h2>
                                         
                                     </div>
         
-                                    <h2 class="text-gray-900 text-lg title-font font-medium mb-3"><%= form.title %></h2>
+                                    <h2 class="text-gray-900 text-lg title-font mb-3 font-bold"><%= form.title %></h2>
                                     <p class="leading-relaxed text-base"><%= form.description %></p><br>
         
                                     <button class="inline-flex text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded" style=" color:white">
                                         <% if(form.path.indexOf("https://") == -1) { %>
-                                            <a href="/forms/<%=form.id%>" target="_blank">View More</a>
+                                            <a href="/forms/<%=form.id%>" target="_blank">View Link</a>
                                         <% } else { %>
-                                            <a href="<%=form.path%>" target="_blank">View More</a>
+                                            <a href="<%=form.path%>" target="_blank">View PDF</a>
                                         <% } %>
                                         
                                     </button>
