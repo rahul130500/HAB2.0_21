@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/tailwind.min.css">
     <link rel="stylesheet" href="/css/hostel.css">
     <title>Hostels</title>
+    <link rel="icon" href="images/headers/logo2.svg" type="image/icon type">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -143,48 +144,13 @@
             <img id="nav_logo" src="/images/headers/logo2.svg" alt="logo" class="nav_logo hidden md:inline">
             <div class="w-full">
                 <ul class="tabs font-semibold">
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100 tabStyle"><a
-                            class="active" target="_self" href="/hostels/barak">Barak</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/brahmaputra">Brahmaputra</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/dhansiri">Dhansiri</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/dibang">Dibang</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/dihing">Dihing</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/disang">Disang</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/kameng">Kameng</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/kapili">Kapili</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/lohit">Lohit</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/manas">Manas</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/Married">Married Scholar's hostel</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/Siang">Siang</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/Subansiri">Subansiri</a>
-                    </li>
-                    <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                            href="/hostels/Umiam">Umiam</a>
-                    </li>
+                    <% hostels.forEach(hostel=>{ %>
+                        <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
+                                href="/hostels/<%=hostel.id%>">
+                                <%=hostel.name%>
+                            </a>
+                        </li>
+                        <% }) %>
                 </ul>
             </div>
         </div>
