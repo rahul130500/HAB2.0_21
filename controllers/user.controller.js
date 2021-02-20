@@ -16,6 +16,8 @@ exports.getHome = async (req, res) => {
   });
 
   let functionaries = await Functionary.find({}).sort("-priority");
+  let hostels = await Hostel.find({});
+
 
   return res.render("home/index", {
     notices,
@@ -23,6 +25,7 @@ exports.getHome = async (req, res) => {
     uploads,
     forms,
     functionaries,
+    hostels,
     uploadImages,
   });
 };
