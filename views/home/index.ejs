@@ -1,36 +1,33 @@
-<!DOCTYPE html >
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href='https://fonts.googleapis.com/css?family=Mulish' rel='stylesheet'>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Mulish" rel="stylesheet" />
 
-            <link rel="stylesheet" href="css/tailwind.min.css">
-            <link rel="stylesheet" href="css/home.css">
-            <link rel="stylesheet" href="css/base.css">
-            <title>Hostel Affairs Board - IIT Guwahati</title>
-            <link rel="icon" href="images/headers/logo2.svg" type="image/icon type">
-        <style>
-        .loginBtn {
-            background: #E9E9E9;
-            border: 1px solid #8A8886;
-            border-radius: 2px;
-        }
-
+    <link rel="stylesheet" href="css/tailwind.min.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <title>Hostel Affairs Board - IIT Guwahati</title>
+    <link rel="icon" href="images/headers/logo2.svg" type="image/icon type" />
+    <style>
         .tabs {
+            text-align: center;
             border-left: 1.5px solid #525252;
         }
+
+        .tab {
+            display: inline-block;
+            padding: 0 0.45rem;
+        }
+
         .hostelsnav {
             background-color: transparent;
             transition: all 0.4s;
         }
-        .nav_logo {
-            width: 50px;
-            opacity: 0;
-            transition: all 0.4s;
-        }
+
         .sticky_nav {
             position: fixed;
             top: 0;
@@ -39,14 +36,10 @@
             transition: all 0.4s;
             z-index: 100;
         }
+
         .nav_logo {
             width: 50px;
-            /* opacity: 0; */
-            transition: all 0.4s;
-        }
-
-        .sticky_logo {
-            opacity: 1;
+            display: none;
             transition: all 0.4s;
         }
 
@@ -56,10 +49,10 @@
         }
 
         .tabStyle::after {
-             content: "";
+            content: "";
             height: 2px;
             width: 70%;
-            background-color: #E54F6D;
+            background-color: #e54f6d;
             position: absolute;
             bottom: 0em;
             left: 50%;
@@ -68,7 +61,19 @@
 
         /****************************/
 
+        @media only screen and (max-width: 767px) {
+            .tabs {
+                overflow: auto;
+                white-space: nowrap;
+            }
+        }
+
         @media only screen and (min-width: 768px) {
+            .sticky_logo {
+                display: block;
+                transition: all 0.4s;
+            }
+
             .profileCard {
                 width: 30%;
             }
@@ -77,44 +82,44 @@
 </head>
 
 <body>
-        <%- include("./partials/header.ejs") %>
+    <%- include("./partials/header.ejs") %>
         <%- include("./partials/nav.ejs") %>
-        <%- include("./partials/home.ejs") %>
-        <%- include("./partials/notice.ejs") %>
-        <%- include("./partials/hostel.ejs") %>
-        <%- include("./partials/functionary.ejs") %>
-        <%- include("./partials/forms.ejs") %>
-        <%- include("./partials/utils.ejs") %>
-        <%- include("./partials/footer.ejs") %>
+            <%- include("./partials/home.ejs") %>
+                <%- include("./partials/notice.ejs") %>
+                    <%- include("./partials/hostel.ejs") %>
+                        <%- include("./partials/functionary.ejs") %>
+                            <%- include("./partials/forms.ejs") %>
+                                <%- include("./partials/utils.ejs") %>
+                                    <%- include("./partials/footer.ejs") %>
 
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="js/tabs.js"></script>
-        <script src="js/nav.js"></script>
-        <!-- <script src="js/home.js"></script> -->
-        <script src="js/animation/three.js"></script>
-        <script src="js/animation/dat-gui.js"></script>
-        <script src="js/animation/gsap.js"></script>
-        <script src="js/animation/sketch.js"></script>
-        <script src="js/animation/demo1.js"></script>
-        <script>
-            const navbar = document.getElementById("navigation");
-            const nav_logo = document.getElementById("nav_logo");
-            const sticky = navbar.offsetTop;
+                                        <!-- Compiled and minified JavaScript -->
+                                        <script
+                                            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+                                        <script src="js/tabs.js"></script>
+                                        <script src="js/nav.js"></script>
+                                        <!-- <script src="js/home.js"></script> -->
+                                        <script src="js/animation/three.js"></script>
+                                        <script src="js/animation/dat-gui.js"></script>
+                                        <script src="js/animation/gsap.js"></script>
+                                        <script src="js/animation/sketch.js"></script>
+                                        <script src="js/animation/demo1.js"></script>
+                                        <script>
+                                            const navbar = document.getElementById("navigation");
+                                            const nav_logo = document.getElementById("nav_logo");
+                                            const sticky = navbar.offsetTop;
 
-            function myFunction() {
-            if (window.pageYOffset >= sticky) {
-                navbar.classList.add("sticky_nav");
-                nav_logo.classList.add("sticky_logo");
-            } else {
-                navbar.classList.remove("sticky_nav");
-                nav_logo.classList.remove("sticky_logo");
-            }
-            }
+                                            function myFunction() {
+                                                if (window.pageYOffset >= sticky) {
+                                                    navbar.classList.add("sticky_nav");
+                                                    nav_logo.classList.add("sticky_logo");
+                                                } else {
+                                                    navbar.classList.remove("sticky_nav");
+                                                    nav_logo.classList.remove("sticky_logo");
+                                                }
+                                            }
 
-            document.addEventListener("scroll", myFunction);
-        </script>
-
+                                            document.addEventListener("scroll", myFunction);
+                                        </script>
 </body>
 
 </html>

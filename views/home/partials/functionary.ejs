@@ -1,24 +1,31 @@
 <section id="management">
-    <div class="container md:px-40 px-5 py-20 mx-auto">
+    <div class="container md:px-24 px-5 py-20 mx-auto">
         <div class="flex justify-evenly flex-wrap -m-4">
-    
+
             <% functionaries.forEach(functionary=>{ %>
-            <div class="profileCard w-10/12 h-auto m-2 bg-white rounded-sm"
-                style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
-                <div class="box-border pointer-events-none border-8 border-white w-full h-64 bg-gray-100"
-                    >
-                    <img src="<%=functionary.pic%>" alt="" class="h-full w-full object-contain rounded-sm">
+                <div class="profileCard h-auto m-4 bg-white rounded-sm"
+                    style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);width: 300px;">
+                    <div class="box-border pointer-events-none border-8 border-white w-full h-64 bg-gray-100">
+                        <img src="<%=functionary.pic%>" alt="" class="h-full w-full object-contain rounded-sm">
+                    </div>
+                    <div class="box-border pointer-events-none px-3 pt-1 pb-2">
+                        <p class="text-xl font-semibold">
+                            <%=functionary.name%>
+                        </p>
+                        <p class="py-0.5 text-sm font-normal text-gray-600">
+                            <%=functionary.post%>
+                        </p>
+                        <p class="py-1 text-sm font-normal text-gray-600">
+                            <%=functionary.contact[0]%>
+                        </p>
+                        <p class="py-0.5 text-sm font-normal text-gray-600 border-t">
+                            <%=functionary.contact[1]%>
+                        </p>
+                        <!-- <p class="pt-0.5 pb-1 text-sm font-normal text-gray-600">twitter_handle</p> -->
+
+                    </div>
                 </div>
-                <div class="box-border pointer-events-none px-3 pt-1 pb-2">
-                    <p class="text-xl font-semibold"><%=functionary.name%></p>
-                    <p class="py-0.5 text-sm font-normal text-gray-600"><%=functionary.post%></p>
-                    <p class="py-1 text-sm font-normal text-gray-600"><%=functionary.contact[0]%></p>
-                    <p class="py-0.5 text-sm font-normal text-gray-600 border-t"><%=functionary.contact[1]%></p>
-                    <!-- <p class="pt-0.5 pb-1 text-sm font-normal text-gray-600">twitter_handle</p> -->
-                    
-                </div>
-            </div>
-            <%})%>
+                <%})%>
 
         </div>
     </div>
