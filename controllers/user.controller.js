@@ -30,6 +30,7 @@ exports.getHome = async (req, res) => {
 exports.getOneHostel = async (req, res) => {
   try {
     const hostel = await Hostel.findById(req.params.hostel_id);
+    const hostels = await Hostel.find({});
 
     // if (!hostel) {
     //   req.flash("error", "Cannot find hostel");
@@ -39,7 +40,7 @@ exports.getOneHostel = async (req, res) => {
     const members = hostel.management;
     members.sort((a, b) => (a.priority > b.priority ? 1 : -1));
 
-    return res.render("home/hostels/hostel", { members, hostel });
+    return res.render("home/hostels/hostel", { members, hostel, hostels });
   } catch (error) {
     console.log(error.message);
     return res.redirect("/");

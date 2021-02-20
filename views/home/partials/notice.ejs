@@ -3,32 +3,38 @@
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-24 mx-auto flex flex-wrap">
                 <div class="flex flex-wrap -m-4">
-    
-                    <% notices.forEach(notice=>{ %>
-                        <div class="p-4 lg:w-1/2 md:w-full">
-                            <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col" style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
-        
-                                <div class="flex-grow">
-                                    <div class="flex justify-between">
-                                        <h2 class="tracking-widest text-xs title-font font-medium text-blue-500 mb-1"><%= notice.category.toUpperCase() %></h2>
-                                        <h2 class="tracking-widest text-xs title-font font-medium text-blue-500 mb-1"><%= notice.creation.getDate()+'/'+(notice.creation.getMonth()+1)+'/'+notice.creation.getFullYear() %></h2>
+
+                    <% if(notices.length==0){ %>
+                        <h1>No Notices To Show</h1>
+                    <% }else{ %>
+                        <% notices.forEach(notice=>{ %>
+                            <div class="p-4 lg:w-1/2 md:w-full">
+                                <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col" style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
+            
+                                    <div class="flex-grow">
+                                        <div class="flex justify-between">
+                                            <h2 class="tracking-widest text-xs title-font font-medium text-blue-500 mb-1"><%= notice.category.toUpperCase() %></h2>
+                                            <h2 class="tracking-widest text-xs title-font font-medium text-blue-500 mb-1"><%= notice.creation.getDate()+'/'+(notice.creation.getMonth()+1)+'/'+notice.creation.getFullYear() %></h2>
+                                        </div>
+            
+                                        <h2 class="text-gray-900 text-lg title-font font-bold mb-3"><%= notice.title %></h2>
+                                        <p class="leading-relaxed text-base"><%= notice.description %></p><br>
+            
+                                        <button class="inline-flex text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded" style=" color:white">
+                                            <% if(notice.path.indexOf("https://") == -1) { %>
+                                                <a href="/notices/<%=notice.id%>" target="_blank">VIEW PDF</a>
+                                            <% } else { %>
+                                                <a href="<%=notice.path%>" target="_blank">VIEW LINK</a>
+                                            <% } %>
+                                            
+                                        </button>
                                     </div>
-        
-                                    <h2 class="text-gray-900 text-lg title-font font-bold mb-3"><%= notice.title %></h2>
-                                    <p class="leading-relaxed text-base"><%= notice.description %></p><br>
-        
-                                    <button class="inline-flex text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded" style=" color:white">
-                                        <% if(notice.path.indexOf("https://") == -1) { %>
-                                            <a href="/notices/<%=notice.id%>" target="_blank">VIEW PDF</a>
-                                        <% } else { %>
-                                            <a href="<%=notice.path%>" target="_blank">VIEW LINK</a>
-                                        <% } %>
-                                        
-                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    <% }) %>
+                        <% }) %>
+                    <%}%>
+    
+
     
     
                 </div>
