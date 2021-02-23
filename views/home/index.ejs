@@ -58,6 +58,10 @@
             transform: translate(-50%);
         }
 
+        .dropdown:hover>.dropdown-content {
+            display: block;
+        }
+
         /****************************/
 
         @media only screen and (max-width: 1024px) {
@@ -82,44 +86,45 @@
 
 <body>
     <%- include("./partials/header.ejs") %>
-    <%- include("./partials/nav.ejs") %>
-    <%- include("./partials/home.ejs") %>
-    <%- include("./partials/notice.ejs") %>
-    <%- include("./partials/hostel.ejs") %>
-    <%- include("./partials/functionary.ejs") %>
-    <%- include("./partials/forms.ejs") %>
-    <%- include("./partials/ordinance.ejs") %>
-    <%- include("./partials/utils.ejs") %>
-    <%- include("./partials/footer.ejs") %>
+        <%- include("./partials/nav.ejs") %>
+            <%- include("./partials/home.ejs") %>
+                <%- include("./partials/notice.ejs") %>
+                    <%- include("./partials/hostel.ejs") %>
+                        <%- include("./partials/functionary.ejs") %>
+                            <%- include("./partials/forms.ejs") %>
+                                <%- include("./partials/ordinance.ejs") %>
+                                    <%- include("./partials/utils.ejs") %>
+                                        <%- include("./partials/footer.ejs") %>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/tabs.js"></script>
-    <script src="js/nav.js"></script>
+                                            <!-- Compiled and minified JavaScript -->
+                                            <script
+                                                src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+                                            <script src="js/tabs.js"></script>
+                                            <script src="js/nav.js"></script>
                                             <!-- <script src="js/home.js"></script> -->
-    <script src="js/animation/three.js"></script>
-    <script src="js/animation/dat-gui.js"></script>
-    <script src="js/animation/gsap.js"></script>
-    <script src="js/animation/sketch.js"></script>
-    <script src="js/animation/demo1.js"></script>
-    <script src="/js/all.min.js"></script>
-    <script>
-            const navbar = document.getElementById("navigation");
-            const nav_logo = document.getElementById("nav_logo");
-                                            const sticky = navbar.offsetTop;
+                                            <script src="js/animation/three.js"></script>
+                                            <script src="js/animation/dat-gui.js"></script>
+                                            <script src="js/animation/gsap.js"></script>
+                                            <script src="js/animation/sketch.js"></script>
+                                            <script src="js/animation/demo1.js"></script>
+                                            <script src="/js/all.min.js"></script>
+                                            <script>
+                                                const navbar = document.getElementById("navigation");
+                                                const nav_logo = document.getElementById("nav_logo");
+                                                const sticky = navbar.offsetTop;
 
-            function myFunction() {
-                if (window.pageYOffset >= sticky) {
-                    navbar.classList.add("sticky_nav");
-                    nav_logo.classList.add("sticky_logo");
-                } else {
-                    navbar.classList.remove("sticky_nav");
-                    nav_logo.classList.remove("sticky_logo");
-                }
-            }
+                                                function myFunction() {
+                                                    if (window.pageYOffset >= sticky) {
+                                                        navbar.classList.add("sticky_nav");
+                                                        nav_logo.classList.add("sticky_logo");
+                                                    } else {
+                                                        navbar.classList.remove("sticky_nav");
+                                                        nav_logo.classList.remove("sticky_logo");
+                                                    }
+                                                }
 
-        document.addEventListener("scroll", myFunction);
-    </script>
+                                                document.addEventListener("scroll", myFunction);
+                                            </script>
 </body>
 
 </html>

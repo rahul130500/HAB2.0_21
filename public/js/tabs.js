@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   var instance = M.Tabs.init(el, {});
 });
 
-for (let i = 0; i < listOfTabs.length; i++) {
+for (let i = 0; i < 6; i++) {
   listOfTabs[i].addEventListener("click", (e) => {
     const clickedTab = e.target.parentNode;
     clickedTab.classList.add("tabStyle");
