@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
 
 const AnnouncementSchema = new mongoose.Schema({
-  title: { type: String },
-  description: { type: String, required: true },
-  path: { type: String },
-  important: { type: Boolean },
+  title: { type: String, required: true },
+  important: { type: Boolean, required: true },
   creation: { type: Date, default: Date.now },
 });
 

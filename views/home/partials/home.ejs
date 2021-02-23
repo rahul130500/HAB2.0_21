@@ -12,14 +12,18 @@
                 <h1 class="text-align:left  p-3" style=" font-family: Mulish; font-weight: 900">ANNOUNCEMENTS</h1>
                     <hr class="border-4">
                 <div>
-                    <marquee direction="up" height="300" scrollamount="3" onmouseout="start()" onmouseover="stop()">
+                    <marquee class="p-4" direction="up" height="300" scrollamount="3" onmouseout="start()" onmouseover="stop()">
                         <ul>
                             <% announcements.forEach(announcement=>{ %>
-                                <a href="<%=announcement.path%>">
-                                    <li class="pb-4  px-3" style="color: blue; font-family: Mulish;font-size: 14px;font-weight: 400;text-align: left;">
-                                        <%= announcement.title %>
-                                    </li>
-                                </a>
+                                <li class="pb-4  px-3" style="font-family: Mulish;font-size: 14px;font-weight: 400;text-align: left;"></li>
+                                    <% if(announcement.important){ %>
+                                        <i style="color:red" class="fas fa-exclamation mr-2"></i>
+                                    <% }else{ %>
+                                        <i class="far fa-circle mr-2"></i>
+                                    <% } %>
+                                    <%= announcement.title %>
+                                </li>
+                                
                             <% }) %>
                         </ul>
                     </marquee>
