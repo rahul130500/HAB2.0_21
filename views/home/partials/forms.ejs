@@ -1,43 +1,56 @@
 <section id="forms">
-    <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
-        <section class="text-gray-600 body-font">
-            <div class="container px-5 py-24 mx-auto flex flex-wrap">
-                <div class="flex flex-wrap -m-4">
-    
-                    <% if(forms.length==0){%>
-                        <h1>No Forms To Show</h1>
-                    <% }else{ forms.forEach(form=>{ %>
-                            <div class="p-4 lg:w-1/2 md:w-full">
-                                <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col" style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
-            
-                                    <div class="flex-grow">
-                                        <div class="flex justify-between">
-                                            <h2 class="tracking-widest text-xs title-font font-medium text-blue-600 mb-1 "><%= form.category.toUpperCase() %></h2>
-                                            
-                                            <h2 class="tracking-widest text-xs title-font font-medium text-blue-500 mb-1"><%= form.creation.getDate()+'/'+(form.creation.getMonth()+1)+'/'+form.creation.getFullYear() %></h2>
-                                            
+    <%- include("./category.ejs") %>
+        <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
+
+            <section class="text-gray-600 body-font">
+                <div class="container px-5 py-24 mx-auto flex flex-wrap">
+                    <div class="flex flex-wrap -m-4">
+
+                        <% if(forms.length==0){%>
+                            <h1>No Forms To Show</h1>
+                            <% }else{ forms.forEach(form=>{ %>
+                                <div class="p-4 lg:w-1/2 md:w-full">
+                                    <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col"
+                                        style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
+
+                                        <div class="flex-grow">
+                                            <div class="flex justify-between">
+                                                <h2
+                                                    class="tracking-widest text-xs title-font font-medium text-blue-600 mb-1 ">
+                                                    <%= form.category.toUpperCase() %>
+                                                </h2>
+
+                                                <h2
+                                                    class="tracking-widest text-xs title-font font-medium text-blue-500 mb-1">
+                                                    <%= form.creation.getDate()+'/'+(form.creation.getMonth()+1)+'/'+form.creation.getFullYear()
+                                                        %>
+                                                </h2>
+
+                                            </div>
+
+                                            <h2 class="text-gray-900 text-lg title-font mb-3 font-bold">
+                                                <%= form.title %>
+                                            </h2>
+                                            <p class="leading-relaxed text-base">
+                                                <%= form.description %>
+                                            </p><br>
+
+                                            <button
+                                                class="inline-flex text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded"
+                                                style=" color:white">
+                                                <% if(form.path.indexOf("https://")==-1) { %>
+                                                    <a href="/forms/<%=form.id%>" target="_blank">View Link</a>
+                                                    <% } else { %>
+                                                        <a href="<%=form.path%>" target="_blank">View PDF</a>
+                                                        <% } %>
+
+                                            </button>
                                         </div>
-            
-                                        <h2 class="text-gray-900 text-lg title-font mb-3 font-bold"><%= form.title %></h2>
-                                        <p class="leading-relaxed text-base"><%= form.description %></p><br>
-            
-                                        <button class="inline-flex text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded" style=" color:white">
-                                            <% if(form.path.indexOf("https://") == -1) { %>
-                                                <a href="/forms/<%=form.id%>" target="_blank">View Link</a>
-                                            <% } else { %>
-                                                <a href="<%=form.path%>" target="_blank">View PDF</a>
-                                            <% } %>
-                                            
-                                        </button>
                                     </div>
                                 </div>
-                            </div>
-                        <% })} %>
-
-    
-    
+                                <% })} %>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
 </section>

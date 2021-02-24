@@ -1,0 +1,12 @@
+<section class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
+            <nav class="md:mr-auto md:ml-4 md:pt-12 md:pl-4 flex flex-wrap items-center text-base justify-center">
+                <% categories.forEach(category=>{ %>
+                    <a class="mr-5" style="text-decoration: none; color: inherit; "> <button
+                            class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+                            <%=category.name%>
+                        </button></a>
+                    <% }) %>
+            </nav>
+        </div>
+</section>
