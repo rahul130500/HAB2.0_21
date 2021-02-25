@@ -123,6 +123,66 @@
                                                     }
                                                 }
 
+                                                function myFunction1() {
+                                                  var input1, filter1, table, a2, a3, i, temp;
+                                                  temp= document.getElementsByClassName("active")[0].innerHTML;
+                                                  if(temp == "Notices") {
+                                                    input1 = document.getElementsByClassName("mySearch1")[0];
+                                                    filter1 = input1.value.toUpperCase();
+                                                    table = document.getElementsByClassName("to-search-in-notices");
+                                                    for (i = 0; i < table.length; i++) {
+                                                    a2 = table[i].getElementsByTagName("h2")[2].innerHTML.toUpperCase();
+                                                    a3 = table[i].getElementsByTagName("p")[0].innerHTML.toUpperCase();
+                                                    if ((a2.indexOf(filter1) > -1 || a3.indexOf(filter1) > -1)) {
+                                                      table[i].style.display = "";
+                                                    } else {
+                                                      table[i].style.display = "none";
+                                                    }
+                                                  }
+                                                  }
+                                                  else {
+                                                    input1 = document.getElementsByClassName("mySearch1")[1];
+                                                    filter1 = input1.value.toUpperCase();
+                                                    table = document.getElementsByClassName("to-search-in");
+                                                    for (i = 0; i < table.length; i++) {
+                                                      a2 = table[i].getElementsByTagName("h2")[2].innerHTML.toUpperCase();
+                                                      a3 = table[i].getElementsByTagName("p")[0].innerHTML.toUpperCase();
+                                                      if ((a2.indexOf(filter1) > -1 || a3.indexOf(filter1) > -1)) {
+                                                        table[i].style.display = "";
+                                                      } else {
+                                                        table[i].style.display = "none";
+                                                      }
+                                                    }
+                                                  }
+                                                }
+
+                                                function myFunction2(cate) {
+                                                    var table, a2, a3, i, temp;
+                                                    temp= document.getElementsByClassName("active")[0].innerHTML;
+                                                    if(temp == "Notices") {
+                                                        table = document.getElementsByClassName("to-search-in-notices");
+                                                        for (i = 0; i < table.length; i++) {
+                                                          a2 = table[i].getElementsByTagName("h2")[0].innerHTML.toUpperCase();
+                                                          if ((a2.indexOf(cate) > -1)) {
+                                                            table[i].style.display = "";
+                                                          } else {
+                                                            table[i].style.display = "none";
+                                                          }
+                                                        }
+                                                    }
+                                                    else {
+                                                        table = document.getElementsByClassName("to-search-in");
+                                                        for (i = 0; i < table.length; i++) {
+                                                          a2 = table[i].getElementsByTagName("h2")[0].innerHTML.toUpperCase();
+                                                          if ((a2.indexOf(cate) > -1)) {
+                                                            table[i].style.display = "";
+                                                          } else {
+                                                            table[i].style.display = "none";
+                                                          }
+                                                        }
+                                                    }
+                                                }
+
                                                 document.addEventListener("scroll", myFunction);
                                             </script>
 </body>
