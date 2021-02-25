@@ -46,6 +46,9 @@ app.use(
     cookie: { maxAge: 180 * 60 * 1000 },
   })
 );
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+
 app.use(flash());
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use((req, res, next) => {
