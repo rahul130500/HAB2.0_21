@@ -1,5 +1,5 @@
 <section id="hostels">
-    <section class="text-gray-600 body-font">
+  <!-- <section class="text-gray-600 body-font">
         <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
 
             <nav class="md:mr-auto md:ml-4 md:pt-12 md:pl-4 	flex flex-wrap items-center text-base justify-center">
@@ -26,31 +26,39 @@
 
             </nav>
         </div>
-    </section>
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
-          
-          <div class="flex flex-wrap -m-4">
-            <% if(hostels.length==0){%>
-              <h1>No Hostels To Show</h1>
-              <% }else{hostels.forEach(hostel=>{ %>
-            
+    </section> -->
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+
+      <div class="flex flex-wrap -m-4">
+        <% if(hostels.length==0){%>
+          <h1>No Hostels To Show</h1>
+          <% }else{hostels.forEach(hostel=>{ %>
+
             <div class="p-2 lg:w-1/2">
-              <div class="h-full border-2 rounded-lg border-gray-200 border-opacity-70 p-1 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                
-                  <img alt="hostel" class="rounded-lg w-3/4 md:w-2/3 h-48 md:mr-2 sm:mb-0 mb-4 object-cover"  src="uploads/hostel/<%=hostel.pic%>">
+              <div
+                class="h-full border-2 rounded-lg border-gray-200 border-opacity-70 p-1 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+
+                <img alt="hostel" class="rounded-lg w-3/4 md:w-2/3 h-48 md:mr-2 sm:mb-0 mb-4 object-cover"
+                  src="uploads/hostel/<%=hostel.pic%>">
                 <div class=" px-4">
-                  <h2 class="text-pink-900 text-lg title-font font-medium mb-2 "><%=hostel.name%> Hostel</h2>
-                  
-                  <p class="mb-4 "><%= hostel.description.substring(0, 70) + "..." %></p>
-                  <form action="/hostels/<%=hostel.id%>" method="GET"><button class="inline-flex text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded " style=" color:white ">View more</button></form>
-                  
+                  <h2 class="text-pink-900 text-lg title-font font-medium mb-2 ">
+                    <%=hostel.name%> Hostel
+                  </h2>
+
+                  <p class="mb-4 ">
+                    <%= hostel.description.substring(0, 70) + "..." %>
+                  </p>
+                  <form action="/hostels/<%=hostel.id%>" method="GET"><button
+                      class="inline-flex text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded "
+                      style=" color:white ">View more</button></form>
+
                 </div>
 
               </div>
             </div>
             <% })} %>
-          </div>
-        </div>
-      </section>
+      </div>
+    </div>
+  </section>
 </section>

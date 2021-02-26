@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store" />
     <title>HAB Admin Panel</title>
     <meta name="author" content="David Grzyb">
     <meta name="description" content="">
@@ -12,18 +14,43 @@
     <link rel="stylesheet" href="/css/tailwind.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
-        .font-family-karla { font-family: karla; }
-        .bg-sidebar { background: #3d68ff; }
-        .cta-btn { color: #3d68ff; }
-        .upgrade-btn { background: #1947ee; }
-        .upgrade-btn:hover { background: #0038fd; }
-        .active-nav-link { background: #1947ee; }
-        .nav-item:hover { background: #1947ee; }
-        .account-link:hover { background: #3d68ff; }
+
+        .font-family-karla {
+            font-family: karla;
+        }
+
+        .bg-sidebar {
+            background: #3d68ff;
+        }
+
+        .cta-btn {
+            color: #3d68ff;
+        }
+
+        .upgrade-btn {
+            background: #1947ee;
+        }
+
+        .upgrade-btn:hover {
+            background: #0038fd;
+        }
+
+        .active-nav-link {
+            background: #1947ee;
+        }
+
+        .nav-item:hover {
+            background: #1947ee;
+        }
+
+        .account-link:hover {
+            background: #3d68ff;
+        }
     </style>
     <link rel="stylesheet" href="/css/hostelg.css">
     <link rel="stylesheet" href="/css/alert.css" />
 </head>
+
 <body class="bg-gray-100 font-family-karla flex">
 
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
@@ -35,11 +62,13 @@
                 <i class="fas fa-users-cog mr-3"></i>
                 Admin
             </a>
-            <a href="/admin/notice" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/admin/notice"
+                class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-sticky-note mr-3"></i>
                 Notices
             </a>
-            <a href="/admin/announcement" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/admin/announcement"
+                class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-bullhorn mr-3"></i>
                 Announcements
             </a>
@@ -47,11 +76,13 @@
                 <i class="fab fa-wpforms mr-3"></i>
                 Forms
             </a>
-            <a href="/admin/functionary" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/admin/functionary"
+                class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-users mr-3"></i>
                 Functionaries
             </a>
-            <a href="/admin/hostels" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/admin/hostels"
+                class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-hotel mr-3"></i>
                 Hostels
             </a>
@@ -59,7 +90,8 @@
                 <i class="fas fa-link mr-3"></i>
                 Links
             </a>
-            <a href="/admin/uploads" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/admin/uploads"
+                class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-upload mr-3"></i>
                 Uploads
             </a>
@@ -75,10 +107,12 @@
         <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
             <div class="w-1/2"></div>
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
-                <button @click="isOpen = !isOpen" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
+                <button @click="isOpen = !isOpen"
+                    class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
                     <img src="/images/avatar.png">
                 </button>
-                <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
+                <button x-show="isOpen" @click="isOpen = false"
+                    class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
                     <!-- <a href="/admin/profile" class="block px-4 py-2 account-link hover:text-white">Account</a> -->
                     <a href="/admin/logout" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
@@ -102,35 +136,43 @@
                     <i class="fas fa-users-cog mr-3"></i>
                     Admin
                 </a>
-                <a href="/admin/notice" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="/admin/notice"
+                    class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-sticky-note mr-3"></i>
                     Notices
                 </a>
-                <a href="/admin/announcement" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="/admin/announcement"
+                    class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-bullhorn mr-3"></i>
                     Announcements
                 </a>
-                <a href="/admin/form" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="/admin/form"
+                    class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fab fa-wpforms mr-3"></i>
                     Forms
                 </a>
-                <a href="/admin/functionary" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="/admin/functionary"
+                    class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-users mr-3"></i>
                     Functionaries
-                </a> 
-                <a href="/admin/hostels" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                </a>
+                <a href="/admin/hostels"
+                    class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-hotel mr-3"></i>
                     Hostels
                 </a>
-                <a href="/admin/links" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="/admin/links"
+                    class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-link mr-3"></i>
                     Links
                 </a>
-                <a href="/admin/uploads" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="/admin/uploads"
+                    class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-upload mr-3"></i>
                     Uploads
                 </a>
-                <a href="/admin/users" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="/admin/users"
+                    class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-users mr-3"></i>
                     Users
                 </a>
@@ -142,7 +184,8 @@
                     <i class="fas fa-user mr-3"></i>
                     My Account
                 </a> -->
-                <a href="/admin/logout" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="/admin/logout"
+                    class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     Sign Out
                 </a>
@@ -152,5 +195,4 @@
         <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
             <main class="w-full flex-grow p-6">
 
-            <%- include("./flash.ejs") %>
-                
+                <%- include("./flash.ejs") %>

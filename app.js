@@ -31,8 +31,6 @@ const hostelRoutes = require("./routes/hostel.routes");
 const adminUploadRoutes = require("./routes/adminUploads.routes");
 const linkRoutes = require("./routes/link.routes");
 
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(methodOverride("_method"));
@@ -46,6 +44,7 @@ app.use(
     cookie: { maxAge: 180 * 60 * 1000 },
   })
 );
+
 app.use(flash());
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use((req, res, next) => {
@@ -62,6 +61,15 @@ app.use((req, res, next) => {
   res.locals.session = req.session;
   next();
 });
+
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(
+  bodyParser.urlencoded({
+    limit: "50mb",
+    extended: true,
+    parameterLimit: 50000,
+  })
+);
 
 app.set("view engine", "ejs");
 
