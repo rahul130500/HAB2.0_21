@@ -59,10 +59,6 @@
             transform: translate(-50%);
         }
 
-        .dropdown:hover>.dropdown-content {
-            display: block;
-        }
-
         /****************************/
 
         @media only screen and (max-width: 1024px) {
@@ -134,22 +130,21 @@
                                                         for (i = 0; i < table.length; i++) {
                                                             a2 = table[i].getElementsByTagName("h2")[2].innerHTML.toUpperCase();
                                                             a3 = table[i].getElementsByTagName("p")[0].innerHTML.toUpperCase();
-                                                            if ((a2.indexOf(filter1) > -1 || a3.indexOf(filter1) > -1)) {
+                                                            if (a2.indexOf(filter1) > -1 || a3.indexOf(filter1) > -1) {
                                                                 //table[i].style.display = "";
                                                                 continue;
                                                             } else {
                                                                 table[i].style.display = "none";
                                                             }
                                                         }
-                                                    }
-                                                    else {
+                                                    } else {
                                                         input1 = document.getElementsByClassName("mySearch1")[1];
                                                         filter1 = input1.value.toUpperCase();
                                                         table = document.getElementsByClassName("to-search-in");
                                                         for (i = 0; i < table.length; i++) {
                                                             a2 = table[i].getElementsByTagName("h2")[2].innerHTML.toUpperCase();
                                                             a3 = table[i].getElementsByTagName("p")[0].innerHTML.toUpperCase();
-                                                            if ((a2.indexOf(filter1) > -1 || a3.indexOf(filter1) > -1)) {
+                                                            if (a2.indexOf(filter1) > -1 || a3.indexOf(filter1) > -1) {
                                                                 //table[i].style.display = "";
                                                                 continue;
                                                             } else {
@@ -166,18 +161,17 @@
                                                         table = document.getElementsByClassName("to-search-in-notices");
                                                         for (i = 0; i < table.length; i++) {
                                                             a2 = table[i].getElementsByTagName("h2")[0].innerHTML.toUpperCase();
-                                                            if ((a2.indexOf(cate) > -1)) {
+                                                            if (a2.indexOf(cate) > -1) {
                                                                 table[i].style.display = "";
                                                             } else {
                                                                 table[i].style.display = "none";
                                                             }
                                                         }
-                                                    }
-                                                    else {
+                                                    } else {
                                                         table = document.getElementsByClassName("to-search-in");
                                                         for (i = 0; i < table.length; i++) {
                                                             a2 = table[i].getElementsByTagName("h2")[0].innerHTML.toUpperCase();
-                                                            if ((a2.indexOf(cate) > -1)) {
+                                                            if (a2.indexOf(cate) > -1) {
                                                                 table[i].style.display = "";
                                                             } else {
                                                                 table[i].style.display = "none";
