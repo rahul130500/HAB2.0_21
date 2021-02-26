@@ -1,7 +1,4 @@
 <header>
-    <script>
-        setInterval(function () { document.getElementById("content").click(); }, 6000);
-    </script>
     <style>
         .overlay {
             content: '\A';
@@ -34,13 +31,15 @@
                             Affairs <br> Board</h2>
                     </div>
                     <div class="top_card_container w-full   md:w-1/2 md:h-full">
-                        <div id="content_hab" class="absolute bottom-4 md:-right-16 ">
+                        <div id="content_hab" class="home-card absolute bottom-4 md:-right-16" data-index="0"
+                            data-hostels="<%=JSON.stringify(hostels)%>">
                             <img src="images/headers/h.svg" alt="img" class="hs">
-                            <h2>Siang Hostel, IIT Guwahati</h2>
+                            <h2>Barak</h2>
                             <hr>
                             <p>
-                                The Siang River meets two other major tributaries of Brahmaputra,
-                                Dibang and Lohit in the west of Sadiya, at a place named Kobo.
+                                The Barak River flows 900 kilometres (560 mi) through the states of Manipur, Nagaland,
+                                Mizoram and Assam in India and
+                                into the Bay of Bengal via Bangladesh.
                             </p>
                         </div>
                     </div>

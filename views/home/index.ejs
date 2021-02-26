@@ -106,6 +106,25 @@
                                             <script src="js/animation/demo1.js"></script>
                                             <script src="/js/all.min.js"></script>
                                             <script>
+                                                const card = document.querySelector(".home-card");
+                                                const card_title = document.querySelector(".home-card h2");
+                                                const card_para = document.querySelector(".home-card p");
+                                                let idx = parseInt(card.getAttribute("data-index"));
+                                                const hostels = JSON.parse(card.getAttribute("data-hostels"));
+
+                                                setInterval(function () {
+                                                    document.getElementById("content").click();
+                                                    if (idx == hostels.length) {
+                                                        idx = 0;
+                                                    } else {
+                                                        idx += 1;
+                                                    }
+                                                    card_title.innerText = hostels[idx].name;
+                                                    card_para.innerText = hostels[idx].description;
+                                                    console.log(hostels.length, idx);
+                                                }, 6000);
+                                            </script>
+                                            <script>
                                                 const navbar = document.getElementById("navigation");
                                                 const nav_logo = document.getElementById("nav_logo");
                                                 const sticky = navbar.offsetTop;
