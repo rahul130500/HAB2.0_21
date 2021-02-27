@@ -51,6 +51,7 @@ exports.updateUpload = async (req, res) => {
 
     var image_name = upload.image_name;
     var image = upload.image;
+    var description=upload.description;
     if (req.body.image_name) {
       image_name = req.body.image_name;
       image_name = image_name.charAt(0).toUpperCase() + image_name.slice(1);
@@ -59,7 +60,11 @@ exports.updateUpload = async (req, res) => {
       fs.unlinkSync(`uploads/adminUploads/${upload.image}`);
       image = req.file.filename;
     }
-    const obj = { image_name, image };
+    if (req.body.description) {
+      description = req.body.description;
+    }
+    
+    const obj = { image_name, image, description };
     const uploadFile = await AdminUploads.findByIdAndUpdate(id, obj, {
       runValidators: true,
     });
@@ -77,11 +82,11 @@ exports.updateUpload = async (req, res) => {
 
 exports.createUpload = async (req, res) => {
   try {
-    var { image_name } = req.body;
+    var { image_name, description } = req.body;
     image_name = image_name.charAt(0).toUpperCase() + image_name.slice(1);
     var image;
     if (req.file) image = req.file.filename;
-    const newUpload = new AdminUploads({ image_name, image });
+    const newUpload = new AdminUploads({ image_name, image, description });
     const upload = await newUpload.save();
     if (!upload) {
       req.flash("error", "Cannot add file");
