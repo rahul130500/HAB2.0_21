@@ -7,17 +7,18 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.6);
-            opacity: 0;
-            transition: all 1s;
-            -webkit-transition: all 1s;
-            z-index: 100;
+            background: rgba(0, 0, 0, 0.30);
+            /* opacity: 0; */
+            /* transition: all 1s;
+            -webkit-transition: all 1s; */
+            z-index: 5;
         }
     </style>
     </div>
     <div class="demo-1 slides" id="slides1">
         <main class="">
-            <div id="content" class="content">
+            <div id="content" class="content relative">
+                <div class="overlay"></div>
                 <div id="slider" class="" data-images=<%=JSON.stringify(uploadImages)%>
                     data-displacement="">
                 </div>
@@ -31,11 +32,11 @@
                             Affairs <br> Board</h2>
                     </div>
                     <div class="top_card_container w-full   md:w-1/2 md:h-full">
-                        <div id="content_hab" class="home-card absolute md:bottom-14 bottom-4 md:-right-16"
+                        <div id="content_hab" class="home-card absolute md:bottom-14 bottom-4 md:-right-16 z-10"
                             data-index="0" data-hostels="<%=JSON.stringify(hostels)%>">
                             <img src="images/headers/h.svg" alt="img" class="hs">
                             <h2 style="color: #F3F4F7;">
-                                <%=hostels[0].name%>
+                                <%=hostels[0].name%>, IIT Guwahati
                             </h2>
                             <hr>
                             <p class="text-xs leading-relaxed font-normal opacity-80">
