@@ -150,7 +150,8 @@
     <section id="navigation" class="hostelsnav">
         <div class="md:px-20 lg:px-40 pb-2 flex justify-center">
             <img id="nav_logo" src="/images/headers/logo2.svg" alt="logo" class="nav_logo hidden md:inline">
-            <div class="w-full">
+            <div class="w-full relative">
+                <button id="slideLeft" class="absolute top-0 left-0 h-full z-20">L</button>
                 <ul class="tabs font-semibold">
                     <% hostels.forEach(hostel=>{ %>
                         <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
@@ -160,6 +161,7 @@
                         </li>
                         <% }) %>
                 </ul>
+                <button id="slideRight" class="absolute top-0 right-0 h-full z-20">R</button>
             </div>
         </div>
     </section>
@@ -257,6 +259,26 @@
         const elem = document.getElementById("top");
         const listOfTabs = document.querySelectorAll(".tab a");
         const contacts_divs = document.getElementsByClassName("hostel_mng_contacts");
+        const buttonRight = document.getElementById('slideRight');
+        const buttonLeft = document.getElementById('slideLeft');
+        let scrollAmount = 0;
+        const scrollMin = 0
+        const scrollMax = document.querySelector('.tabs').clientWidth;
+
+        buttonRight.onclick = function () {
+            document.querySelector('.tabs').scrollTo({
+                top: 0,
+                left: Math.max(scrollAmount += 300, scrollMax),
+                behavior: 'smooth'
+            });
+        };
+        buttonLeft.onclick = function () {
+            document.querySelector('.tabs').scrollTo({
+                top: 0,
+                left: Math.min(scrollAmount -= 500, scrollMin),
+                behavior: 'smooth'
+            });
+        };
 
 
         for (let i = 0; i < listOfTabs.length; i++) {
