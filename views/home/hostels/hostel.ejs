@@ -169,10 +169,10 @@
             </button>
             <div class="w-3/4 sm:w-11/12 relative">
                 <button id="slideLeft"
-                    class="absolute top-1 rounded bg-white shadow-lg -left-2 h-full z-20 transform scale-75 opacity-80">
+                    class="absolute top-1 rounded bg-white shadow-lg -left-2 h-full z-20 transform scale-75 opacity-50">
                     <img src="/images/nav/left.svg" alt="Left" class="h-full rounded transform scale-50">
                 </button>
-                <ul class="tabs font-semibold">
+                <ul class="tabs font-semibold sm:px-2.5">
                     <% hostels.forEach(hostel=>{ %>
                         <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
                                 href="/hostels/<%=hostel.id%>" data-hostel_name="<%=hostel.name%>">
@@ -182,7 +182,7 @@
                         <% }) %>
                 </ul>
                 <button id="slideRight"
-                    class="absolute top-1 rounded bg-white shadow-lg -right-2 h-full z-20 transform scale-75 opacity-80">
+                    class="absolute top-1 rounded bg-white shadow-lg -right-2 h-full z-20 transform scale-75 opacity-50">
                     <img src="/images/nav/right.svg" alt="Right" class="h-full rounded transform scale-50">
                 </button>
             </div>
