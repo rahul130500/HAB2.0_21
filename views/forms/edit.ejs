@@ -1,46 +1,53 @@
-<%- include("../partials/header.ejs") %> 
+<%- include("../partials/header.ejs") %>
 
-<h1 class="text-3xl text-black pb-6">Add Forms</h1>
+    <h1 class="text-3xl text-black pb-6">Edit Forms</h1>
 
-<div class="flex flex-wrap justify-center">
-    <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
-        <p class="text-xl pb-6 flex items-center">
-            <i class="fas fa-list mr-3"></i> Add Forms
-        </p>
-        <div class="leading-loose">
-            <form class="p-10 bg-white rounded shadow-xl" action="/admin/form/<%=form.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
-                <div class="mt-2">
-                    <label class="block text-sm text-gray-600" for="title">Title</label>
-                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text" name="title" value="<%= form.title %>" required>
-                </div>
-                <div class="mt-2">
-                    <label class="block text-sm text-gray-600" for="description">Description</label>
-                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="text" id="description" name="description" value="<%= form.description %>" required></input>
-                </div>
-                <div class="mt-2">
-                    <label class="block text-sm text-gray-600" for="category">Category</label>                       
-                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" list="categories" id="category" type="text" value="<%= form.category%>" name="category"  required>
-                    <datalist id="categories">
-                <% categories.forEach((category, i)=>{ %>
-                        <option value="<%=category.name%>">
-                    
-                <% }) %>
-                    </datalist>
-                </div>
-                <div class="mt-2">
-                    <label class="block text-sm text-gray-600" for="form"></label>
-                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="file" id="form" name="form" placeholder="image url"></input>
-                </div>
-                <div class="mt-2">
-                    <label class="block text-sm text-gray-600" for="link">Link</label>
-                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="text" id="link" name="link" value="<%= form.link %>"></input>
-                </div>
-                <div class="mt-6">
-                    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Edit</button>
-                </div>
-            </form>
+    <div class="flex flex-wrap justify-center">
+        <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
+            <p class="text-xl pb-6 flex items-center">
+                <i class="fas fa-list mr-3"></i> Edit Forms
+            </p>
+            <div class="leading-loose">
+                <form class="p-10 bg-white rounded shadow-xl" action="/admin/form/<%=form.id%>?_method=PUT"
+                    method="POST" enctype="multipart/form-data">
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="title">Title</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
+                            name="title" value="<%= form.title %>" required>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="description">Description</label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="text" id="description"
+                            name="description" value="<%= form.description %>" required></input>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="category">Category</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" list="categories"
+                            id="category" type="text" value="<%= form.category%>" name="category" required>
+                        <datalist id="categories">
+                            <% categories.forEach((category, i)=>{ %>
+                                <option value="<%=category.name%>">
+
+                                    <% }) %>
+                        </datalist>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="form"></label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="file" id="form"
+                            name="form" placeholder="image url"></input>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="link">Link</label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="text" id="link"
+                            name="link" value="<%= form.link %>"></input>
+                    </div>
+                    <div class="mt-6">
+                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                            type="submit">Edit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<%- include("../partials/footer.ejs") %> 
+    <%- include("../partials/footer.ejs") %>
