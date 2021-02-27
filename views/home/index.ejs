@@ -20,7 +20,7 @@
 
         .tab {
             display: inline-block;
-            padding: 0 0.75rem;
+            /* padding: 0 0.75rem; */
         }
 
         .hostelsnav {
@@ -184,14 +184,14 @@
                                                 buttonRight.onclick = function () {
                                                     document.querySelector('.tabs').scrollTo({
                                                         top: 0,
-                                                        left: Math.max(scrollAmount += 300, scrollMax),
+                                                        left: Math.max(scrollAmount += 100, scrollMax),
                                                         behavior: 'smooth'
                                                     });
                                                 };
                                                 buttonLeft.onclick = function () {
                                                     document.querySelector('.tabs').scrollTo({
                                                         top: 0,
-                                                        left: Math.min(scrollAmount -= 500, scrollMin),
+                                                        left: Math.min(scrollAmount -= 100, scrollMin),
                                                         behavior: 'smooth'
                                                     });
                                                 };

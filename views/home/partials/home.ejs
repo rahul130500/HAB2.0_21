@@ -1,52 +1,79 @@
 <section id="home">
-    <div class=" container mx-auto md:px-44 px-12 pt-10">
-
-        <div class="float-left items-top p-4 " style="background: #FFFFFF; box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
-            <div style="font-family: Mulish;font-weight: 600;font-size: 20px;">
-                Hostel Affairs Board
-            </div> 
-        </div>
-    
-        <div class="float-right items-top md:pl-16 pl-8 pb-12 md:pt-0 pt-5 ">
-            <div class="md:w-80 w-60 border-2 ">
-                <h1 class="text-align:left  p-3" style=" font-family: Mulish; font-weight: 900">ANNOUNCEMENTS</h1>
-                    <hr class="border-4">
-                <div>
-                    <marquee class="p-4" direction="up" height="300" scrollamount="3" onmouseout="start()" onmouseover="stop()">
-                        <ul>
-                            <% announcements.forEach(announcement=>{ %>
-                                <li class="pb-4  px-3" style="font-family: Mulish;font-size: 14px;font-weight: 400;text-align: left;"></li>
-                                    <% if(announcement.important){ %>
-                                        <i style="color:red" class="fas fa-exclamation mr-2"></i>
-                                    <% }else{ %>
-                                        <i class="far fa-circle mr-2"></i>
-                                    <% } %>
-                                    <%= announcement.title %>
-                                </li>
-                                
-                            <% }) %>
-                        </ul>
-                    </marquee>
-                </div>
-                
+    <div class="px-5 sm:px-12 lg:px-32 py-6 sm:pt-12 sm:pb-16 flex flex-col-reverse sm:flex-row">
+        <div id="home_info" class="w-full sm:w-7/12 my-2 sm:my-0 sm:mx-1 p-4 bg-white rounded"
+            style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
+            <div class="mb-5">
+                <h2 class="text-xl font-semibold">About Us</h2>
+                <p class="mt-4 text-sm font-normal">Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
+                    accusantium
+                    doloremque laudantium,
+                    totam rem aperiam
+                    eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo.
+                </p>
+            </div>
+            <div class="mb-5">
+                <h2 class="text-xl font-semibold">What we do?</h2>
+                <p class="mt-4 text-sm font-normal">
+                    ud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                    reprehenderit in
+                    voluptate velit esse cillum dolore eu fugiat
+                </p>
+            </div>
+            <div class="mb-5">
+                <h2 class="text-xl font-semibold">How to reach us?</h2>
+                <p class="mt-4 text-sm font-normal" contenteditable>
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                    reprehenderit in
+                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit, sed do
+                    ei
+                </p>
             </div>
         </div>
-    
-        <div class=" pt-28 pb-10">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis et lorem sit amet vehicula. 
-        Etiam vel nibh nec nisi euismod mollis ultrices condimentum velit. Proin velit libero, interdum ac 
-        rhoncus sit amet, pellentesque ac turpis. Quisque ac luctus turpis, vel efficitur ante. Cras convallis 
-        risus vel vehicula dapibus. Donec eget neque fringilla, faucibus mi quis, porttitor magna. 
-        Cras pellentesque leo est, et luctus neque rutrum eu. Aliquam consequat velit sed sem posuere, 
-        vitae sollicitudin mi consequat. Mauris eget ipsum sed dui rutrum fringilla. 
-        Donec varius vehicula magna sit amet auctor. Ut congue vehicula lectus in blandit. 
-        Vivamus suscipit eleifend turpis, nec sodales sem vulputate a. Curabitur pulvinar 
-        libero viverra, efficitur odio eu, finibus justo. Etiam eu vehicula felis.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis et lorem sit amet vehicula. 
-        Etiam vel nibh nec nisi euismod mollis ultrices condimentum velit. Proin velit libero, interdum ac 
+        <div id="announcements" class="w-full sm:w-5/12 my-2 sm:my-0 sm:mx-1 p-4 bg-white rounded"
+            style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
+            <div class="heading pb-4" style="border-bottom: 1px solid #DBDBDB;">
+                <h2 class="text-xl font-semibold">News and Events</h2>
+            </div>
+            <div class="specials">
+                <p class="py-2 text-sm font-normal" style="border-bottom: 1px solid #DBDBDB;"><span
+                        class="text-xs text-white rounded px-1 bg-gray-500"
+                        style="background-color:#E54F6D;">Important</span>
+                    Lorem ipsum dolor sit
+                    amet,
+                    consectetur adipiscing</p>
+                <p class="py-2 text-sm font-normal" style="border-bottom: 1px solid #DBDBDB;"><span
+                        class="text-xs text-white rounded px-1 bg-black">New</span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+            </div>
+            <div class="old max-h-60 overflow-hidden">
+                <p class="py-2 text-sm font-normal" style="border-bottom: 1px solid #DBDBDB;">1.aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                    nulla in voluptate velit esse cillum</p>
+                <p class="py-2 text-sm font-normal" style="border-bottom: 1px solid #DBDBDB;">2.aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                    nulla</p>
+                <p class="py-2 text-sm font-normal" style="border-bottom: 1px solid #DBDBDB;">3.aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                    nulla</p>
+                <p class="py-2 text-sm font-normal" style="border-bottom: 1px solid #DBDBDB;">4.aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                    nulla</p>
+                <p class="py-2 text-sm font-normal" style="border-bottom: 1px solid #DBDBDB;">5.aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                    nulla</p>
+                <p class="py-2 text-sm font-normal" style="border-bottom: 1px solid #DBDBDB;">6.aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                    nulla</p>
+            </div>
+            <div class="footer">
+                <p class="pt-2 text-right"><span
+                        class="text-sm font-normal cursor-pointer text-gray-500 hover:text-black" id="toggle_view">+
+                        See More</span>
+                </p>
+            </div>
         </div>
-    </div>
-    <div>
-    
     </div>
 </section>
