@@ -5,11 +5,12 @@ const Form = require("../models/form");
 const Functionary = require("../models/functionary");
 const Hostel = require("../models/hostel");
 const Category = require("../models/category");
-
+const Link = require("../models/link");
 exports.getHome = async (req, res) => {
   let notices = await Notice.find({}).sort("-creation");
   let categories = await Category.find({});
   let announcements = await Announcement.find({}).sort("-creation");
+  let links = await Link.find({}).sort("priority_number");
   let forms = await Form.find({}).sort("-creation");
   let uploads = await AdminUpload.find({});
   let uploadImages = [];
@@ -29,6 +30,7 @@ exports.getHome = async (req, res) => {
     hostels,
     uploadImages,
     categories,
+    links,
   });
 };
 

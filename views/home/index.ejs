@@ -59,6 +59,39 @@
             transform: translate(-50%);
         }
 
+        /* .rotate {
+            -moz-transition: all .5s linear;
+            -webkit-transition: all .5s linear;
+            transition: all .5s linear;
+        } */
+
+        .rotate.down {
+            -moz-transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        .collapsible {
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+
+
+
+        .cnt {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+
         /****************************/
 
         @media only screen and (max-width: 1024px) {
@@ -93,12 +126,16 @@
                                     <%- include("./partials/utils.ejs") %>
                                         <%- include("./partials/footer.ejs") %>
 
-                                            <!-- Compiled and minified JavaScript -->
+                                            <!-- Compiled and minified POF JS -->
+                                            <script
+                                                src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"
+                                                integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ=="
+                                                crossorigin="anonymous"></script>
+                                            <!-- Compiled and minified Materialize JS -->
                                             <script
                                                 src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
                                             <script src="js/nav.js"></script>
-                                            <!-- <script src="js/home.js"></script> -->
+
                                             <script src="js/animation/three.js"></script>
                                             <script src="js/animation/dat-gui.js"></script>
                                             <script src="js/animation/gsap.js"></script>
@@ -200,6 +237,26 @@
                                                 }
 
                                                 document.addEventListener("scroll", myFunction);
+                                            </script>
+
+                                            <script>
+                                                var coll = document.getElementsByClassName("collapsible");
+                                                var i;
+                                                for (i = 0; i < coll.length; i++) {
+                                                    coll[i].addEventListener("click", function () {
+                                                        console.log(this.children[1])
+                                                        this.children[1].children[0].classList.toggle("down")
+                                                        console.log(this.children[1])
+                                                        this.classList.toggle("active");
+                                                        var cnt = this.nextElementSibling;
+
+                                                        if (cnt.style.display === "block") {
+                                                            cnt.style.display = "none";
+                                                        } else {
+                                                            cnt.style.display = "block";
+                                                        }
+                                                    });
+                                                }
                                             </script>
 </body>
 

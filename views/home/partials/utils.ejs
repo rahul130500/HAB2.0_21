@@ -1,40 +1,32 @@
 <section id="utils">
     <div class="container mx-auto px-4 md:px-40 py-16">
-        <p class="h-auto my-5 p-3 bg-white rounded-sm"
-            style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit.
-            Necessitatibus,
-            aperiam!
-        </p>
-        <p class="h-auto my-5 p-3 bg-white rounded-sm"
-            style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit.
-            Necessitatibus,
-            aperiam!
-        </p>
-        <p class="h-auto my-5 p-3 bg-white rounded-sm"
-            style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit.
-            Necessitatibus,
-            aperiam!
-        </p>
-        <p class="h-auto my-5 p-3 bg-white rounded-sm"
-            style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit.
-            Necessitatibus,
-            aperiam!
-        </p>
-        <p class="h-auto my-5 p-3 bg-white rounded-sm"
-            style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit.
-            Necessitatibus,
-            aperiam!
-        </p>
-        <p class="h-auto my-5 p-3 bg-white rounded-sm"
-            style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit.
-            Necessitatibus,
-            aperiam!
-        </p>
+        <%links.forEach(link=>{%>
+            <button class="h-auto my-5 p-3 bg-white rounded-sm w-full text-left collapsible flex justify-between"
+                style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
+                <span>
+                    <%=link.name%>
+                </span>
+
+                <span>
+                    <div class="fa fa-chevron-up rotate down"></div>
+
+                </span>
+            </button>
+            <div class="cnt">
+                <ul class="list-disc pl-5">
+                    <% link.sublinks.forEach(sublink=>{ %>
+                        <li target="_blank" class="py-1"><a href="<%=sublink.url%>" class="hover:text-blue-600">
+                                <%=sublink.name%>
+                            </a></li>
+                        <hr style="border-color:rgb(224, 224, 224)">
+                        <% })%>
+
+                </ul>
+            </div>
+            <%})%>
+
+
+
+
     </div>
 </section>

@@ -31,17 +31,19 @@
                             Affairs <br> Board</h2>
                     </div>
                     <div class="top_card_container w-full   md:w-1/2 md:h-full">
-                        <div id="content_hab" class="home-card absolute bottom-4 md:-right-16" data-index="0"
-                            data-hostels="<%=JSON.stringify(hostels)%>">
+                        <div id="content_hab" class="home-card absolute md:bottom-14 bottom-4 md:-right-16"
+                            data-index="0" data-hostels="<%=JSON.stringify(hostels)%>">
                             <img src="images/headers/h.svg" alt="img" class="hs">
-                            <h2>
+                            <h2 style="color: #F3F4F7;">
                                 <%=hostels[0].name%>
                             </h2>
                             <hr>
-                            <p>
+                            <p class="text-xs leading-relaxed font-normal opacity-80">
                                 <%=hostels[0].description%>
                             </p>
                         </div>
+                        <!-- <img src="/images/headers/fullscr.svg" alt="" onclick="toggleFullscreen();"
+                            class="hidden md:inline absolute -right-10 bottom-2"> -->
                     </div>
                 </div>
             </section>
