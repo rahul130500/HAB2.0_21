@@ -99,7 +99,19 @@
             z-index: 100;
         }
 
-        @media only screen and (min-width: 768px) {
+        #slideLeft:focus,
+        #slideRight:focus {
+            border: none;
+            outline: none;
+        }
+
+        #slideLeft:hover,
+        #slideRight:hover {
+            opacity: 1;
+            transform: scale(0.85);
+        }
+
+        @media only screen and (min-width: 1024px) {
             .sticky_logo {
                 display: block;
                 transition: all 0.4s;
@@ -148,9 +160,18 @@
     </section>
 
     <section id="navigation" class="hostelsnav">
-        <div class="md:px-20 lg:px-40 pb-2 flex justify-center">
-            <img id="nav_logo" src="/images/headers/logo2.svg" alt="logo" class="nav_logo hidden md:inline">
-            <div class="w-full">
+        <div class="md:px-12 lg:px-24 pb-2 flex justify-center">
+            <!-- <img id="nav_logo" src="/images/headers/logo2.svg" alt="logo" class="nav_logo hidden md:inline"> -->
+            <button class="ml-2 sm:ml-0 mr-2 sm:mr-4 mt-2 sm:px-9 w-1/4 sm:w-1/12 flex justify-center items-center"
+                style="background: #FFFFFF;border: 1px solid #8A8886;border-radius: 2px;">
+                <img src="/images/nav/left.svg" alt="back" class="w-3 h-3 sm:w-4 sm:h-4">
+                <a href="/" class="text-xs sm:text-base">HOME</a>
+            </button>
+            <div class="w-3/4 sm:w-11/12 relative">
+                <button id="slideLeft"
+                    class="absolute top-1 rounded bg-white shadow-lg -left-2 h-full z-20 transform scale-75 opacity-80">
+                    <img src="/images/nav/left.svg" alt="Left" class="h-full rounded transform scale-50">
+                </button>
                 <ul class="tabs font-semibold">
                     <% hostels.forEach(hostel=>{ %>
                         <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
@@ -160,6 +181,10 @@
                         </li>
                         <% }) %>
                 </ul>
+                <button id="slideRight"
+                    class="absolute top-1 rounded bg-white shadow-lg -right-2 h-full z-20 transform scale-75 opacity-80">
+                    <img src="/images/nav/right.svg" alt="Right" class="h-full rounded transform scale-50">
+                </button>
             </div>
         </div>
     </section>
@@ -257,6 +282,26 @@
         const elem = document.getElementById("top");
         const listOfTabs = document.querySelectorAll(".tab a");
         const contacts_divs = document.getElementsByClassName("hostel_mng_contacts");
+        const buttonRight = document.getElementById('slideRight');
+        const buttonLeft = document.getElementById('slideLeft');
+        let scrollAmount = 0;
+        const scrollMin = 0
+        const scrollMax = document.querySelector('.tabs').clientWidth;
+
+        buttonRight.onclick = function () {
+            document.querySelector('.tabs').scrollTo({
+                top: 0,
+                left: Math.max(scrollAmount += 300, scrollMax),
+                behavior: 'smooth'
+            });
+        };
+        buttonLeft.onclick = function () {
+            document.querySelector('.tabs').scrollTo({
+                top: 0,
+                left: Math.min(scrollAmount -= 500, scrollMin),
+                behavior: 'smooth'
+            });
+        };
 
 
         for (let i = 0; i < listOfTabs.length; i++) {
@@ -270,10 +315,10 @@
         function myFunction() {
             if (window.pageYOffset >= sticky) {
                 navbar.classList.add("sticky_nav");
-                nav_logo.classList.add("sticky_logo");
+                // nav_logo.classList.add("sticky_logo");
             } else {
                 navbar.classList.remove("sticky_nav");
-                nav_logo.classList.remove("sticky_logo");
+                // nav_logo.classList.remove("sticky_logo");
             }
         }
 

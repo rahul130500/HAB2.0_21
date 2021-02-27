@@ -20,7 +20,7 @@
 
         .tab {
             display: inline-block;
-            padding: 0 0.45rem;
+            padding: 0 0.75rem;
         }
 
         .hostelsnav {
@@ -51,7 +51,7 @@
         .tabStyle::after {
             content: "";
             height: 2px;
-            width: 70%;
+            width: 50%;
             background-color: #e54f6d;
             position: absolute;
             bottom: 0em;
@@ -92,9 +92,36 @@
             background-color: #f1f1f1;
         }
 
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        #slideLeft,
+        #slideRight {
+            display: none;
+        }
+
+        #slideLeft:focus,
+        #slideRight:focus {
+            border: none;
+            outline: none;
+        }
+
+        #slideLeft:hover,
+        #slideRight:hover {
+            opacity: 1;
+            transform: scale(0.85);
+        }
+
         /****************************/
 
-        @media only screen and (max-width: 1024px) {
+        @media only screen and (max-width: 1279px) {
+
+            #slideLeft,
+            #slideRight {
+                display: block;
+            }
+
             .tabs {
                 overflow: auto;
                 white-space: nowrap;
@@ -148,6 +175,26 @@
                                                 const card_para = document.querySelector(".home-card p");
                                                 let idx = parseInt(card.getAttribute("data-index"));
                                                 const hostels = JSON.parse(card.getAttribute("data-hostels"));
+                                                const buttonRight = document.getElementById('slideRight');
+                                                const buttonLeft = document.getElementById('slideLeft');
+                                                let scrollAmount = 0;
+                                                const scrollMin = 0
+                                                const scrollMax = document.querySelector('.tabs').clientWidth;
+
+                                                buttonRight.onclick = function () {
+                                                    document.querySelector('.tabs').scrollTo({
+                                                        top: 0,
+                                                        left: Math.max(scrollAmount += 300, scrollMax),
+                                                        behavior: 'smooth'
+                                                    });
+                                                };
+                                                buttonLeft.onclick = function () {
+                                                    document.querySelector('.tabs').scrollTo({
+                                                        top: 0,
+                                                        left: Math.min(scrollAmount -= 500, scrollMin),
+                                                        behavior: 'smooth'
+                                                    });
+                                                };
 
                                                 setInterval(function () {
                                                     document.getElementById("content").click();
