@@ -99,6 +99,17 @@
             z-index: 100;
         }
 
+        #slideLeft:focus,
+        #slideRight:focus {
+            border: none;
+            outline: none;
+        }
+
+        #slideLeft:hover,
+        #slideRight:hover {
+            opacity: 0.7;
+        }
+
         @media only screen and (min-width: 768px) {
             .sticky_logo {
                 display: block;
@@ -151,7 +162,10 @@
         <div class="md:px-20 lg:px-40 pb-2 flex justify-center">
             <img id="nav_logo" src="/images/headers/logo2.svg" alt="logo" class="nav_logo hidden md:inline">
             <div class="w-full relative">
-                <button id="slideLeft" class="absolute top-0 left-0 h-full z-20">L</button>
+                <button id="slideLeft"
+                    class="absolute top-1 rounded bg-white shadow-lg -left-2 h-full z-20 transform scale-75">
+                    <img src="/images/nav/left.svg" alt="Left" class="h-full rounded transform scale-50">
+                </button>
                 <ul class="tabs font-semibold">
                     <% hostels.forEach(hostel=>{ %>
                         <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
@@ -161,7 +175,10 @@
                         </li>
                         <% }) %>
                 </ul>
-                <button id="slideRight" class="absolute top-0 right-0 h-full z-20">R</button>
+                <button id="slideRight"
+                    class="absolute top-1 rounded bg-white shadow-lg -right-2 h-full z-20 transform scale-75">
+                    <img src="/images/nav/right.svg" alt="Right" class="h-full rounded transform scale-50">
+                </button>
             </div>
         </div>
     </section>
