@@ -135,9 +135,11 @@
     <section id="top">
         <div class="overlay"></div>
         <div class="top_content relative w-11/12 md:w-4/5 h-full mx-auto z-10 flex flex-col md:flex-row">
-            <div class="top_title w-full h-1/2 md:w-1/2 md:h-full flex justify-start items-center">
+            <div
+                class="top_title w-full h-1/2 md:w-1/2 md:h-full flex flex-col sm:flex-row justify-end sm:justify-start items-center">
                 <img src="/images/headers/logo.svg" alt="logo" class="transform scale-75 mr-0.5 md:mr-1">
-                <h2 id="hostel_title" class="text-6xl text-white font-black break-all">
+                <h2 id="hostel_title"
+                    class="text-5xl sm:text-6xl text-center sm:text-left text-white font-black break-all">
                     <%=hostel.name%>
                 </h2>
             </div>
@@ -153,8 +155,14 @@
                     </p>
                 </div>
                 <!-- change this to the actual button -->
-                <img src="/images/headers/fullscr.svg" alt="" onclick="toggleFullscreen();"
-                    class="hidden md:inline absolute right-0 bottom-2">
+                <button
+                    class="hidden md:flex justify-center items-center absolute right-0 bottom-2 w-36 h-10 bg-white rounded focus:outline-none"
+                    onclick="toggleFullscreen();" style="background: rgba(0, 0, 0, 0.4);"><img
+                        src="/images/svg/expand.svg" alt="lrg"><span id="fullscreen_btn"
+                        class="ml-1 text-white font-extralight">Large
+                        view</span></button>
+                <!-- <img src="/images/headers/fullscr.svg" alt="" onclick="toggleFullscreen();"
+                    class="hidden md:inline absolute right-0 bottom-2"> -->
             </div>
         </div>
     </section>
@@ -286,6 +294,7 @@
         const contacts_divs = document.getElementsByClassName("hostel_mng_contacts");
         const buttonRight = document.getElementById('slideRight');
         const buttonLeft = document.getElementById('slideLeft');
+        const full_btn_txt = document.getElementById('fullscreen_btn');
         let scrollAmount = 0;
         const scrollMin = 0
         const scrollMax = document.querySelector('.tabs').clientWidth;
@@ -325,6 +334,12 @@
         }
 
         function toggleFullscreen() {
+            if (full_btn_txt.innerText === "Large view") {
+                full_btn_txt.innerText = "Small view";
+            } else if (full_btn_txt.innerText === "Small view") {
+                full_btn_txt.innerText = "Large view";
+            }
+
             if ((document.fullScreenElement && document.fullScreenElement !== null) ||
                 (!document.mozFullScreen && !document.webkitIsFullScreen)) {
                 if (elem.requestFullscreen) {
