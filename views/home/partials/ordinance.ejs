@@ -1,9 +1,13 @@
 <section id="ordinance">
-  <% if(!ordinance){ %>
-    <h1>No notice to display</h1>
-    <% }else{ %>
-      <a href="<%=ordinance[0].path%>">View</a>
-      <% }%>
+  <div class="flex justify-center px-20 md:px-52 py-24 md:py-20">
+    <% if(ordinance.length===0){ %>
+      <h1>No notice to display</h1>
+      <% }else{ %>
+        <a target="_blank" href="<%=ordinance[0].path%>"><button
+            class="inline-flex text-white text-xl bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded"
+            style=" color:white">View Ordinance</button></a>
+        <% }%>
 
+  </div>
 
 </section>
