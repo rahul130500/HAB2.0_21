@@ -1,18 +1,22 @@
-<section class="text-gray-600 body-font">
+<section class="text-gray-600 body-font md:px-44 md:pt-5">
     <!-- <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center"> -->
-    <div class="md:px-40 py-3 flex content-center">
-        <nav class="md:mr-auto md:ml-4 md:pt-12 md:pl-4 flex flex-wrap items-center text-base justify-center">
+    <div class="flex justify-center grid grid-cols-3 gap-4">
+        <div class="col-span-3 md:col-span-2 text-base px-5 lg:ml-20" id="cat">
             <% categories.forEach(category=>{ %>
-                <a class="mr-5" style="text-decoration: none; color: inherit;"> <button
-                        class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+                <a class=" px-2 md:px-0 " style="text-decoration: none; color: inherit;"> <button
+                        class="cta act bg-gray-200 border-0 py-1  px-3 md:px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
                         onClick="myFunction2('<%=category.name.toUpperCase()%>')">
                         <%=category.name.toUpperCase()%>
                     </button></a>
                 <% }) %>
-        </nav>
-        <form class="d-flex">
-            <input class="mySearch1" onkeyup="myFunction1()" class="form-control me-2" type="search"
-                placeholder="Search" aria-label="Search">
-        </form>
+        </div>
+        <div class="col-span-3 md:col-span-1 text-center">
+            <form>
+                <input class="mySearch1" onkeyup="myFunction1()" class="form-control me-2" type="search"
+                    placeholder="Search" aria-label="Search">
+                </input>
+            </form>
+        </div>
+
     </div>
 </section>

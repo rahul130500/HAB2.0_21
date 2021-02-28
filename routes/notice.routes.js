@@ -53,8 +53,4 @@ router.delete(
   noticeController.deleteNotice
 );
 
-const compare = (a, b) => {
-  return b.creation - a.creation;
-};
-
 module.exports = router;

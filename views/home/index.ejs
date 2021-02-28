@@ -113,7 +113,25 @@
             transform: scale(0.85);
         }
 
+        .cat .act,
+        .cta:hover {
+            background-color: rgb(230, 59, 59);
+            color: white;
+        }
+
+        .mySearch1 {
+            background-image: url("/images/svg/search.svg");
+            background-repeat: no-repeat;
+            background-position: 5px;
+            padding-left: 24px;
+        }
+
         /****************************/
+        @media only screen and (max-width: 600px) {
+            .mySearch1 {
+                width: 80%;
+            }
+        }
 
         @media only screen and (max-width: 1279px) {
 
@@ -153,11 +171,7 @@
                                     <%- include("./partials/utils.ejs") %>
                                         <%- include("./partials/footer.ejs") %>
 
-                                            <!-- Compiled and minified POF JS -->
-                                            <script
-                                                src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"
-                                                integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ=="
-                                                crossorigin="anonymous"></script>
+
                                             <!-- Compiled and minified Materialize JS -->
                                             <script
                                                 src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -174,7 +188,7 @@
                                                 const card_title = document.querySelector(".home-card h2");
                                                 const card_para = document.querySelector(".home-card p");
                                                 let idx = parseInt(card.getAttribute("data-index"));
-                                                const hostels = JSON.parse(card.getAttribute("data-hostels"));
+                                                const uploads = JSON.parse(card.getAttribute("data-uploads"));
                                                 const buttonRight = document.getElementById('slideRight');
                                                 const buttonLeft = document.getElementById('slideLeft');
                                                 let scrollAmount = 0;
@@ -198,13 +212,13 @@
 
                                                 setInterval(function () {
                                                     document.getElementById("content").click();
-                                                    if (idx == hostels.length - 1) {
+                                                    if (idx == uploads.length - 1) {
                                                         idx = 0;
                                                     } else {
                                                         idx += 1;
                                                     }
-                                                    card_title.innerText = hostels[idx].name + ", IIT Guwahati";
-                                                    card_para.innerText = hostels[idx].description;
+                                                    card_title.innerText = uploads[idx].image_name + ", IIT Guwahati";
+                                                    card_para.innerText = uploads[idx].description;
                                                 }, 6000);
                                             </script>
                                             <script>
@@ -257,6 +271,9 @@
                                                 }
 
                                                 function myFunction2(cate) {
+                                                    var header = document.getElementById("cat");
+                                                    var btns = header.getElementsByClassName("cta");
+
                                                     var table, a2, a3, i, temp;
                                                     temp = document.getElementsByClassName("active")[0].innerHTML;
                                                     if (temp == "Notices") {
@@ -304,6 +321,19 @@
                                                     });
                                                 }
                                             </script>
+
+                                            <!-- <script>
+                                                var header = document.getElementById("cat");
+                                                var btns = header.getElementsByClassName("cta");
+                                                console.log(btns.length);
+                                                for (var i = 0; i < btns.length; i++) {
+                                                    btns[i].addEventListener("click", function () {
+                                                        var current = document.getElementsByClassName("act");
+                                                        current[0].className = current[0].className.replace(" act", " ");
+                                                        this.className += " act";
+                                                    });
+                                                }
+                                            </script> -->
 </body>
 
 </html>
