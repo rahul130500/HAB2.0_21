@@ -1,0 +1,35 @@
+<section id="hostels">
+    <section class="text-gray-600 body-font">
+        <div class="container md:px-32 px-5 py-20 mx-auto">
+            <div class="flex justify-evenly flex-wrap -m-4">
+
+                <% hostels.forEach(hostel=>{ %>
+                    <div class="profileCard h-auto m-4 bg-white rounded-sm"
+                        style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);width: 350px;">
+                        <div class="box-border pointer-events-none border-8 border-white w-full h-48 bg-gray-100">
+                            <img alt="hostel" class="rounded-lg w-full h-48 md:mr-2 sm:mb-0 mb-4 object-cover"
+                                src="uploads/hostel/<%=hostel.pic%>">
+                        </div>
+                        <div class="box-border px-3 pt-3 pb-2">
+                            <h2 class="text-gray-900 text-lg title-font font-medium mb-2 ">
+                                <%=hostel.name%> Hostel
+                            </h2>
+                            <p class="mb-4 ">
+                                <%= (hostel.description.length> 70 ? (hostel.description.substring(0, 70) + "...") :
+                                    hostel.description) %>
+                            </p>
+                            <button style=" color:white"
+                                class="inline-flex text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded">
+                                <a href="/hostel/<%=hostel.id%>">View More</a>
+                            </button>
+                            <!-- <p class="pt-0.5 pb-1 text-sm font-normal text-gray-600">twitter_handle</p> -->
+
+                        </div>
+                    </div>
+                    <% }) %>
+
+
+            </div>
+        </div>
+    </section>
+</section>
