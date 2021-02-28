@@ -23,6 +23,7 @@ exports.editOrdinance = async (req, res) => {
     const ordinance = await Ordinance.findByIdAndUpdate(id, {
       path: req.body.path,
     });
+    req.flash("success", "Successfully updated the Ordinance link");
     return res.redirect("/admin/ordinance");
   } catch (error) {
     console.log(error.message);
