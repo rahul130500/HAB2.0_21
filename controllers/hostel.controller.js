@@ -40,15 +40,13 @@ exports.addHostelForm = (req, res) => {
 };
 
 exports.createHostel = async (req, res) => {
-  var { name, description, contact1, contact2 } = req.body;
+  var { name, description } = req.body;
   name = name.charAt(0).toUpperCase() + name.slice(1);
   var pic;
   if (req.file) pic = req.file.filename;
   const newHostel = await new Hostel({
     name,
     pic,
-    contact1,
-    contact2,
     description,
   }).save();
   if (!newHostel) {
@@ -83,8 +81,6 @@ exports.updateHostel = async (req, res) => {
 
   var name = hostel.name;
   var pic = hostel.pic;
-  var contact1 = hostel.contact1;
-  var contact2 = hostel.contact2;
   var description = hostel.description;
 
   if (req.body.name) {
@@ -95,16 +91,10 @@ exports.updateHostel = async (req, res) => {
     fs.unlinkSync(`uploads/hostel/${hostel.pic}`);
     pic = req.file.filename;
   }
-  if (req.body.contact1) {
-    contact1 = req.body.contact1;
-  }
-  if (req.body.contact2) {
-    contact2 = req.body.contact2;
-  }
   if (req.body.description) {
     description = req.body.description;
   }
-  const obj = { name, pic, contact1, contact2, description };
+  const obj = { name, pic, description };
   const hostell = await Hostel.findByIdAndUpdate(id1, obj, {
     runValidators: true,
   });

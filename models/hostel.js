@@ -4,8 +4,6 @@ const HostelSchema = new mongoose.Schema({
   name: { type: String, required: true },
   pic: { type: String, required: true },
   description: { type: String, required: true },
-  contact1: { type: String },
-  contact2: { type: String },
   management: [
     {
       Mname: { type: String, required: true },

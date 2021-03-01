@@ -157,9 +157,10 @@
                 <!-- change this to the actual button -->
                 <button
                     class="hidden md:flex justify-center items-center absolute right-0 bottom-2 w-36 h-10 bg-white rounded focus:outline-none"
-                    onclick="toggleFullscreen();" style="background: rgba(0, 0, 0, 0.4);"><img
-                        src="/images/svg/expand.svg" alt="lrg"><span id="fullscreen_btn"
-                        class="ml-1 text-white font-extralight">Large
+                    onclick="toggleFullscreen();" style="background: rgba(0, 0, 0, 0.4);">
+                    <img src="/images/svg/expand.svg" alt="lrg" style="display: block;" id="lrg">
+                    <img src="/images/svg/contract.svg" alt="con" style="display: none;" id="con">
+                    <span id="fullscreen_btn" class="ml-1 text-white font-extralight">Large
                         view</span></button>
                 <!-- <img src="/images/headers/fullscr.svg" alt="" onclick="toggleFullscreen();"
                     class="hidden md:inline absolute right-0 bottom-2"> -->
@@ -295,6 +296,8 @@
         const buttonRight = document.getElementById('slideRight');
         const buttonLeft = document.getElementById('slideLeft');
         const full_btn_txt = document.getElementById('fullscreen_btn');
+        const large = document.getElementById('lrg');
+        const small = document.getElementById('con');
         let scrollAmount = 0;
         const scrollMin = 0
         const scrollMax = document.querySelector('.tabs').clientWidth;
@@ -335,8 +338,12 @@
 
         function toggleFullscreen() {
             if (full_btn_txt.innerText === "Large view") {
+                large.style.display = 'none';
+                small.style.display = 'block';
                 full_btn_txt.innerText = "Small view";
             } else if (full_btn_txt.innerText === "Small view") {
+                large.style.display = 'block';
+                small.style.display = 'none';
                 full_btn_txt.innerText = "Large view";
             }
 
