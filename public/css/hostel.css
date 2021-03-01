@@ -36,10 +36,6 @@
 }
 
 @media only screen and (max-width: 550px) {
-  .top_title {
-    justify-content: flex-start;
-  }
-
   #content_hab {
     right: 0;
     width: 100%;
