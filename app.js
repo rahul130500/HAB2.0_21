@@ -31,6 +31,9 @@ const adminUploadRoutes = require("./routes/adminUploads.routes");
 const linkRoutes = require("./routes/link.routes");
 const ordinanceRoutes = require("./routes/ordinance.routes");
 
+const aboutRoutes = require("./routes/about.routes");
+
+
 app.use(express.static(__dirname + "/public"));
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(methodOverride("_method"));
@@ -83,6 +86,8 @@ app.use("/admin/uploads", adminUploadRoutes);
 app.use("/admin/form", formRoutes);
 app.use("/admin/links", linkRoutes);
 app.use("/admin/ordinance", ordinanceRoutes);
+app.use("/admin/about", aboutRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);

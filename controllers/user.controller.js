@@ -7,6 +7,7 @@ const Hostel = require("../models/hostel");
 const Category = require("../models/category");
 const Link = require("../models/link");
 const Ordinance = require("../models/ordinance");
+const About = require("../models/about");
 
 exports.getHome = async (req, res) => {
   let notices = await Notice.find({}).sort("-creation");
@@ -16,6 +17,7 @@ exports.getHome = async (req, res) => {
   let forms = await Form.find({}).sort("-creation");
   let uploads = await AdminUpload.find({});
   let ordinance = await Ordinance.find({});
+  let aboutInfos= await About.find({}).sort("priority_number");
   let uploadImages = [];
   uploads.forEach((upload) => {
     uploadImages.push(`uploads/adminUploads/${upload.image}`);
@@ -23,7 +25,7 @@ exports.getHome = async (req, res) => {
 
   let functionaries = await Functionary.find({}).sort("-priority");
   let hostels = await Hostel.find({});
-  console.log(ordinance);
+  
   return res.render("home/index", {
     notices,
     announcements,
@@ -32,6 +34,7 @@ exports.getHome = async (req, res) => {
     functionaries,
     hostels,
     uploadImages,
+    aboutInfos,
     categories,
     links,
     ordinance,

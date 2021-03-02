@@ -2,35 +2,14 @@
     <div id="home_container" class="px-5 sm:px-12 lg:px-32 py-6 sm:pt-12 sm:pb-16 flex flex-col-reverse sm:flex-row">
         <div id="home_info" class="w-full sm:w-7/12 my-2 sm:my-0 sm:mx-1 p-4 bg-white rounded"
             style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
+            <% aboutInfos.forEach(aboutInfo=>{ %>
+
             <div class="mb-5">
-                <h2 class="text-xl font-semibold">About Us</h2>
-                <p class="mt-4 text-sm font-normal">Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-                    accusantium
-                    doloremque laudantium,
-                    totam rem aperiam
-                    eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo.
+                <h2 class="text-xl font-semibold"><%=aboutInfo.title%></h2>
+                <p class="mt-4 text-sm font-normal"><%=aboutInfo.description%>
                 </p>
             </div>
-            <div class="mb-5">
-                <h2 class="text-xl font-semibold">What we do?</h2>
-                <p class="mt-4 text-sm font-normal">
-                    ud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in
-                    voluptate velit esse cillum dolore eu fugiat
-                </p>
-            </div>
-            <div class="mb-5">
-                <h2 class="text-xl font-semibold">How to reach us?</h2>
-                <p class="mt-4 text-sm font-normal">
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in
-                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do
-                    ei
-                </p>
-            </div>
+            <% }) %>
         </div>
         <div id="announcements" class="w-full sm:w-5/12 my-2 sm:my-0 sm:mx-1 p-4 bg-white rounded"
             style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
