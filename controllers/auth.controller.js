@@ -18,6 +18,11 @@ exports.postSignup = async (req, res) => {
       return res.redirect("/admin/signup");
     }
 
+    if (!username.includes("@iitg.ac.in")) {
+      req.flash("error", "Invalid Email!");
+      return res.redirect("/admin/signup");
+    }
+
     const newUser = new User({ username, name });
     const users = await User.find({});
     if (users.length == 0) {
