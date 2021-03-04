@@ -19,6 +19,11 @@ exports.postSignup = async (req, res) => {
     }
 
     const newUser = new User({ username, name });
+    const users = await User.find({});
+    if (users.length > 0) {
+      newUser.isAdmin = true;
+    }
+
     const user = await User.register(newUser, password);
 
     if (!user) {
