@@ -1,9 +1,5 @@
 # HAB website User Guide
 
-## What is it?
-
-(Description)
-
 ## Logging In for admins
 
 Log in to your account using the same email and password you used to signup.
@@ -63,13 +59,25 @@ You can also edit and delete individual hostel members, or you can delete all th
 
 ## Viewing, creating, editing and deleting links and their sublinks
 
-(Description).To view links, click on the links tab. Here you can create, edit and delete links.
+To view links, click on the links tab. Here you can create, edit and delete links.
 
 ![Links](/docs/links.png)
 
 You can also view the sublinks of each link by clicking on 'view' button, where you will be redirected to another page with all the sublinks listed. You can create, edit or delete sublinks.
 
 ![Sublinks](/docs/sublinks.png)
+
+## Uploading ordinance link
+
+You can edit the ordinance link in the ordinance tab by entering the link. Please note that the link must start with "https://".
+
+![Ordinance](/docs/ordinance.png)
+
+## Viewing, creating, editing and deleting about info
+
+To view links, click on the About Info tab. Here you can create, edit and delete the uploaded about info.
+
+![About](/docs/about.png)
 
 ## Viewing, creating, editing and deleting carousel images for user website
 
@@ -79,6 +87,12 @@ You can add, edit, delete these images, or delete all the images at once if requ
 ![Uploads](/docs/uploads.png)
 
 ![Delete](/docs/delete.png)
+
+## Viewing, creating, editing and deleting users
+
+To view users, click on the Users tab. Here you can view, change status and delete the users.
+
+![Users](/docs/users.png)
 
 ## Other features
 
