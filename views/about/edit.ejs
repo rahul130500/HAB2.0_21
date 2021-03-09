@@ -1,36 +1,40 @@
-<%- include("../partials/header.ejs") %> 
-<h1 class="text-3xl text-black pb-6">Edit Info</h1>
+<%- include("../partials/header.ejs") %>
+    <h1 class="text-3xl text-black pb-6">Edit Home Description</h1>
 
-<div class="flex flex-wrap justify-center">
-    <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
-        <p class="text-xl pb-6 flex items-center">
-            <i class="fas fa-list mr-3"></i> Edit Info
-        </p>
-        <div class="leading-loose">
-            <form class="p-10 bg-white rounded shadow-xl" action="/admin<%= link %>?_method=PATCH" method="POST">
-                <div class="mt-2">
-                    <label class="block text-sm text-gray-600" for="title">Title</label>
-                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="title" type="text" name="title" value="<%=aboutInfo.title%>" required>
-                </div>
-                
-                <div class="mt-2">
-                    <label class="block text-sm text-gray-600" for="description">Description</label>
-                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="text" rows="4" id="description" name="description" value="<%=aboutInfo.description%>" required></input>
-                </div>
-                <div class="mt-2">
-                    <label class="block text-sm text-gray-600" for="Priority">Priority</label>
-                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="Priority" type="text" name="priority_number" value="<%=aboutInfo.priority_number%>" required>
-                </div>
-                
-    
-                
-                <div class="mt-6">
-                    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Save</button>
-                </div>
-                <div class="mt-2"><a class="hover:text-blue-500" href="/admin/about">Go Back</a></div>
-            </form>
-            
+    <div class="flex flex-wrap justify-center">
+        <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
+            <p class="text-xl pb-6 flex items-center">
+                <i class="fas fa-list mr-3"></i> Edit Home Description
+            </p>
+            <div class="leading-loose">
+                <form class="p-10 bg-white rounded shadow-xl" action="/admin<%= link %>?_method=PATCH" method="POST">
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="title">Title</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="title" type="text"
+                            name="title" value="<%=aboutInfo.title%>" required>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="description">Description</label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="text" rows="4"
+                            id="description" name="description" value="<%=aboutInfo.description%>" required></input>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="Priority">Priority</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="Priority" type="text"
+                            name="priority_number" value="<%=aboutInfo.priority_number%>" required>
+                    </div>
+
+
+
+                    <div class="mt-6">
+                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                            type="submit">Save</button>
+                    </div>
+                    <div class="mt-2"><a class="hover:text-blue-500" href="/admin/about">Go Back</a></div>
+                </form>
+
+            </div>
         </div>
     </div>
-</div>
-<%- include("../partials/footer.ejs") %> 
+    <%- include("../partials/footer.ejs") %>

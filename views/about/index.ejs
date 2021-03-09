@@ -1,56 +1,72 @@
-<%- include("../partials/header.ejs") %> 
-<h1 class="text-3xl text-black pb-6">About Info</h1>
+<%- include("../partials/header.ejs") %>
+    <h1 class="text-3xl text-black pb-6">Home Description</h1>
 
-<div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin<%= link %>">Add Info</a>
-</div>
-
-<div class="w-full mt-6 overflow-auto">
-    <div class="bg-white">
-        <table class="min-w-full leading-normal">
-            <thead class="bg-gray-800 text-white">
-                <tr>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">Title</th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">Description</th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">Edit</th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">Delete</th>
-                </tr>
-            </thead>
-            
-            <tbody class="text-gray-700">
-                <%aboutInfos.forEach((aboutInfo,i)=>{ if(i%2){%>
-                        <tr class="bg-gray-200">
-                    <%}else{%>
-                        <tr>
-                    <%}%>
-                        <td class="text-left py-3 px-4"><%=  aboutInfo.title %></td>
-                        <td class="text-left py-3 px-4"><%= aboutInfo.description.substring(0, 80) + "..." %></td>
-                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/admin/about/<%=aboutInfo.id%>/updateAboutInfo">Edit</a></td>
-                        <td class="text-left py-3 px-4"><form class="mx-2" action="/admin/about/<%=aboutInfo.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form></td>
-                    </tr>
-                <% })%>  
-        </tbody>
-        </table>
+    <div class="mt-6">
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin<%= link %>">Add Home
+            Description</a>
     </div>
-</div>
 
-<% if(aboutInfos.length!=0){ %>
-  <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" onclick="document.getElementById('id01').style.display='block'">Delete All Info</button>
+    <div class="w-full mt-6 overflow-auto">
+        <div class="bg-white">
+            <table class="min-w-full leading-normal">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">Title
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Description</th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">Edit
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">Delete
+                        </th>
+                    </tr>
+                </thead>
 
-  <div id="id01" class="modal">
-    
-    <form action="/admin/about/delete/allInfo?_method=DELETE" method="POST" class="modal-content">
-      <div class="container">
-        <h1>Delete All Info</h1>
-        <p>Are you sure you want to delete all the info?</p>
-  
-        <div class="clearfix">
-          <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" onclick="document.getElementById('id01').style.display='none'" type="button">Cancel</button>
-         <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit" >Delete</button>
+                <tbody class="text-gray-700">
+                    <%aboutInfos.forEach((aboutInfo,i)=>{ if(i%2){%>
+                        <tr class="bg-gray-200">
+                            <%}else{%>
+                        <tr>
+                            <%}%>
+                                <td class="text-left py-3 px-4">
+                                    <%= aboutInfo.title %>
+                                </td>
+                                <td class="text-left py-3 px-4">
+                                    <%= aboutInfo.description.substring(0, 80) + "..." %>
+                                </td>
+                                <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
+                                        href="/admin/about/<%=aboutInfo.id%>/updateAboutInfo">Edit</a></td>
+                                <td class="text-left py-3 px-4">
+                                    <form class="mx-2" action="/admin/about/<%=aboutInfo.id%>?_method=DELETE"
+                                        method="POST"><button class="hover:text-red-500">Delete</button></form>
+                                </td>
+                        </tr>
+                        <% })%>
+                </tbody>
+            </table>
         </div>
-      </div>
-  </form>
-  </div>
-<% } %>
+    </div>
 
-<%- include("../partials/footer.ejs") %> 
+    <% if(aboutInfos.length!=0){ %>
+        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+            onclick="document.getElementById('id01').style.display='block'">Delete All Info</button>
+
+        <div id="id01" class="modal">
+
+            <form action="/admin/about/delete/allInfo?_method=DELETE" method="POST" class="modal-content">
+                <div class="container">
+                    <h1>Delete All Info</h1>
+                    <p>Are you sure you want to delete all the info?</p>
+
+                    <div class="clearfix">
+                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                            onclick="document.getElementById('id01').style.display='none'" type="button">Cancel</button>
+                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                            type="submit">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <% } %>
+
+            <%- include("../partials/footer.ejs") %>
