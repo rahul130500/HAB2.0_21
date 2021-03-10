@@ -2,7 +2,7 @@
     <h1 class="text-3xl text-black pb-6">Home Description</h1>
 
     <div class="mt-6">
-        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin<%= link %>">Add Home
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin<%= link %>">Add Home
             Description</a>
     </div>
 
@@ -35,9 +35,9 @@
                                     <%= aboutInfo.description.substring(0, 80) + "..." %>
                                 </td>
                                 <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
-                                        href="/admin/about/<%=aboutInfo.id%>/updateAboutInfo">Edit</a></td>
+                                        href="/hab/admin/about/<%=aboutInfo.id%>/updateAboutInfo">Edit</a></td>
                                 <td class="text-left py-3 px-4">
-                                    <form class="mx-2" action="/admin/about/<%=aboutInfo.id%>?_method=DELETE"
+                                    <form class="mx-2" action="/hab/admin/about/<%=aboutInfo.id%>?_method=DELETE"
                                         method="POST"><button class="hover:text-red-500">Delete</button></form>
                                 </td>
                         </tr>
@@ -53,7 +53,7 @@
 
         <div id="id01" class="modal">
 
-            <form action="/admin/about/delete/allInfo?_method=DELETE" method="POST" class="modal-content">
+            <form action="/hab/admin/about/delete/allInfo?_method=DELETE" method="POST" class="modal-content">
                 <div class="container">
                     <h1>Delete All Info</h1>
                     <p>Are you sure you want to delete all the info?</p>

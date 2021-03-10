@@ -57,6 +57,6 @@ exports.getOneHostel = async (req, res) => {
     return res.render("home/hostels/hostel", { members, hostel, hostels });
   } catch (error) {
     console.log(error.message);
-    return res.redirect("/");
+    return res.redirect("/hab");
   }
 };

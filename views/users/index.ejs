@@ -37,8 +37,8 @@
                             <%}%>
                         
                         </td>
-                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/admin/users/<%=user.id%>/changeAdminStatus"><%= user.isAdmin ? "Remove Admin" : "Make Admin" %></a></td>
-                        <td class="text-left py-3 px-4"><form class="mx-2" action="/admin/users/<%=user.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form></td>
+                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/hab/admin/users/<%=user.id%>/changeAdminStatus"><%= user.isAdmin ? "Remove Admin" : "Make Admin" %></a></td>
+                        <td class="text-left py-3 px-4"><form class="mx-2" action="/hab/admin/users/<%=user.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form></td>
                     </tr>
                 <% }})%>  
         </tbody>

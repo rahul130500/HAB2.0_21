@@ -12,7 +12,7 @@ exports.getOrdinance = async (req, res) => {
     return res.render("ordinance/index", { ordinance: ordinance[0] });
   } catch (error) {
     console.log(error.message);
-    return res.redirect("/admin");
+    return res.redirect("/hab/admin");
   }
 };
 
@@ -24,9 +24,9 @@ exports.editOrdinance = async (req, res) => {
       path: req.body.path,
     });
     req.flash("success", "Successfully updated the Ordinance link");
-    return res.redirect("/admin/ordinance");
+    return res.redirect("/hab/admin/ordinance");
   } catch (error) {
     console.log(error.message);
-    return res.redirect("/admin");
+    return res.redirect("/hab/admin");
   }
 };

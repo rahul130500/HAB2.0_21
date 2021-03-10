@@ -1,8 +1,8 @@
 <%- include("../partials/header.ejs") %> 
 <h1 class="text-3xl text-black pb-6">Forms</h1>
 <div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/form/add">Add Forms</a>
-    <form style="float: right;" action="/admin/form/find/" method="POST" enctype="multipart/form-data">
+    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin/form/add">Add Forms</a>
+    <form style="float: right;" action="/hab/admin/form/find/" method="POST" enctype="multipart/form-data">
     <select class="w-50 h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" name = "dropdown">
         <option value = "" selected>-Category-</option>
         <% categories.forEach((category) => { %>
@@ -39,13 +39,13 @@
                             <td class="text-left py-3 px-4"><%= form.category %></td>
                             <td class="text-left py-3 px-4">
                             <% if(form.path.indexOf("https://") == -1) { %>
-                            <a class="hover:text-blue-500" href="/admin/form/pdf/<%=form.id%>" target="_blank">View</a>
+                            <a class="hover:text-blue-500" href="/hab/admin/form/pdf/<%=form.id%>" target="_blank">View</a>
                             <% } else { %>
                             <a class="hover:text-blue-500" href="<%= form.path %>" target="_blank">View</a>
                             <% } %>
                             </td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/admin/form/<%=form.id%>">Edit</a></td>
-                            <td class="text-left py-3 px-4"><form class="mx-2" action="/admin/form/<%=form.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form></td>
+                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/hab/admin/form/<%=form.id%>">Edit</a></td>
+                            <td class="text-left py-3 px-4"><form class="mx-2" action="/hab/admin/form/<%=form.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form></td>
                            
                         </tr>
                     <% })%>

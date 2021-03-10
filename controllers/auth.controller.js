@@ -15,12 +15,12 @@ exports.postSignup = async (req, res) => {
 
     if (existingUser) {
       req.flash("error", "User already exists!");
-      return res.redirect("/admin/signup");
+      return res.redirect("/hab/admin/signup");
     }
 
     if (!username.includes("@iitg.ac.in")) {
       req.flash("error", "Invalid Email!");
-      return res.redirect("/admin/signup");
+      return res.redirect("/hab/admin/signup");
     }
 
     const newUser = new User({ username, name });
@@ -33,11 +33,11 @@ exports.postSignup = async (req, res) => {
 
     if (!user) {
       req.flash("error", "Signup Failed!");
-      return res.redirect("/admin/signup");
+      return res.redirect("/hab/admin/signup");
     }
     passport.authenticate("local")(req, res, () => {
       req.flash("success", "Welcome to HAB Portal!");
-      return res.redirect("/admin");
+      return res.redirect("/hab/admin");
     });
   } catch (error) {
     console.log(error.message);
@@ -47,7 +47,7 @@ exports.postSignup = async (req, res) => {
 exports.logout = (req, res) => {
   req.logout();
   req.flash("success", "Logged out successfully!");
-  return res.redirect("/admin/login");
+  return res.redirect("/hab/admin/login");
 };
 
 exports.getUsers = async (req, res) => {
@@ -61,15 +61,15 @@ exports.changeAdmin = async (req, res) => {
     const user = await User.findById(id);
     if (!user) {
       req.flash("error", "User doesn't exist!");
-      return res.redirect("/admin/users");
+      return res.redirect("/hab/admin/users");
     }
     user.isAdmin = !user.isAdmin;
     await user.save();
     req.flash("success", "Admin status changed!");
-    return res.redirect("/admin/users");
+    return res.redirect("/hab/admin/users");
   } catch (error) {
     console.log(error.message);
-    return res.redirect("/admin");
+    return res.redirect("/hab/admin");
   }
 };
 
@@ -78,9 +78,9 @@ exports.deleteUser = async (req, res) => {
     const id = req.params.user_id;
     await User.findByIdAndDelete(id);
     req.flash("success", "Successfully deleted user");
-    res.redirect("/admin/users");
+    res.redirect("/hab/admin/users");
   } catch (error) {
     console.log(error.message);
-    return res.redirect("/admin");
+    return res.redirect("/hab/admin");
   }
 };

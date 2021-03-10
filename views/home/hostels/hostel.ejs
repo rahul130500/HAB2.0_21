@@ -174,7 +174,7 @@
             <button class="ml-2 sm:ml-0 mr-2 sm:mr-4 mt-2 sm:px-9 w-1/4 sm:w-1/12 flex justify-center items-center"
                 style="background: #FFFFFF;border: 1px solid #8A8886;border-radius: 2px;">
                 <img src="/images/nav/left.svg" alt="back" class="w-3 h-3 sm:w-4 sm:h-4">
-                <a href="/" class="text-xs sm:text-base">HOME</a>
+                <a href="/hab" class="text-xs sm:text-base">HOME</a>
             </button>
             <div class="w-3/4 sm:w-11/12 relative">
                 <button id="slideLeft"
@@ -184,7 +184,7 @@
                 <ul class="tabs font-semibold sm:px-2.5">
                     <% hostels.forEach(hostel=>{ %>
                         <li class="tab text-black font-bold text-opacity-60 hover:text-opacity-100"><a target="_self"
-                                href="/hostels/<%=hostel.id%>" data-hostel_name="<%=hostel.name%>">
+                                href="/hab/hostels/<%=hostel.id%>" data-hostel_name="<%=hostel.name%>">
                                 <%=hostel.name%>
                             </a>
                         </li>

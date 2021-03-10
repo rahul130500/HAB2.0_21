@@ -28,7 +28,7 @@ exports.updateAboutForm = async (req, res) => {
     const aboutInfo = await About.findById(id);
     if (!aboutInfo) {
       req.flash("error", "Cannot update");
-      return res.redirect("/admin/about");
+      return res.redirect("/hab/admin/about");
     }
 
     return res.render("about/edit", {
@@ -47,7 +47,7 @@ exports.updateAboutInfo = async (req, res) => {
     const aboutInfo = await About.findById(id);
     if (!aboutInfo) {
       req.flash("error", "Cannot find uploaded info");
-      return res.redirect("/admin/about");
+      return res.redirect("/hab/admin/about");
     }
 
     var title = aboutInfo.title;
@@ -71,11 +71,11 @@ exports.updateAboutInfo = async (req, res) => {
     });
     if (!uploadAboutInfo) {
       req.flash("error", "Cannot upload Info");
-      return res.redirect("/admin/about");
+      return res.redirect("/hab/admin/about");
     }
     req.flash("success", "Successfully updated about info");
 
-    return res.redirect("/admin/about");
+    return res.redirect("/hab/admin/about");
   } catch (error) {
     console.log(error.message);
   }
@@ -91,10 +91,10 @@ exports.createAboutInfo = async (req, res) => {
     const aboutInfo = await newAboutInfo.save();
     if (!aboutInfo) {
       req.flash("error", "Cannot add info");
-      return res.redirect("/admin/about");
+      return res.redirect("/hab/admin/about");
     }
     req.flash("success", "Successfully uploaded info");
-    return res.redirect("/admin/about");
+    return res.redirect("/hab/admin/about");
   } catch (error) {
     console.log(error.message);
   }
@@ -106,17 +106,17 @@ exports.deleteAboutInfo = async (req, res) => {
     const aboutInfo = await About.findById(id);
     if (!aboutInfo) {
       req.flash("error", "Cannot find uploaded info");
-      return res.redirect("/admin/about");
+      return res.redirect("/hab/admin/about");
     }
     
     await About.findByIdAndRemove(id);
 
     req.flash("success", "Successfully deleted info");
-    return res.redirect("/admin/about");
+    return res.redirect("/hab/admin/about");
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/admin/about");
+    return res.redirect("/hab/admin/about");
   }
 };
 exports.deleteAllInfo = async (req, res) => {
@@ -124,7 +124,7 @@ exports.deleteAllInfo = async (req, res) => {
     const aboutInfos = await About.find({});
     if (!aboutInfos) {
       req.flash("error", "Cannot find uploaded info");
-      return res.redirect("/admin/about");
+      return res.redirect("/hab/admin/about");
     }
 
     
@@ -132,10 +132,10 @@ exports.deleteAllInfo = async (req, res) => {
 
     req.flash("success", "Successfully deleted all info");
 
-    return res.redirect("/admin/about");
+    return res.redirect("/hab/admin/about");
   } catch (err) {
     // handle the error
     console.log(err);
-    res.redirect("/admin/about");
+    res.redirect("/hab/admin/about");
   }
 };

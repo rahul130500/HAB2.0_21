@@ -1,7 +1,7 @@
 <%- include("../partials/header.ejs") %>
 <h1 class="text-3xl text-black pb-6">Image Uploads</h1>
 <div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin<%= link %>">Add Images</a>
+    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin<%= link %>">Add Images</a>
 </div>
 
 <div class="w-full mt-6 overflow-auto">
@@ -22,7 +22,7 @@
                       class="h-full border-2 rounded-lg border-gray-200 border-opacity-70 p-1 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
       
                       <img alt="upload" class="rounded-lg w-3/4 md:w-2/3 h-48 md:mr-2 sm:mb-0 mb-4 object-cover"
-                        src="../uploads/adminUploads/<%=upload.image%>">
+                        src="/uploads/adminUploads/<%=upload.image%>">
                       <div class=" px-4">
                         <h2 class="text-gray-900 text-lg title-font font-medium mb-2 ">
                           <%=upload.image_name%>
@@ -33,8 +33,8 @@
                             upload.description) %>
                         </p>
                         <span class="inline-block"><div class="inline-flex">
-                          <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded-l" href="/admin/uploads/<%=upload.id%>/updateUpload">Edit</a>
-                          <form class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded-r" action="/admin/uploads/<%=upload.id%>?_method=DELETE" method="POST"><button class="hover:text-blue-500">Delete</button></form>   
+                          <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded-l" href="/hab/admin/uploads/<%=upload.id%>/updateUpload">Edit</a>
+                          <form class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded-r" action="/hab/admin/uploads/<%=upload.id%>?_method=DELETE" method="POST"><button class="hover:text-blue-500">Delete</button></form>   
                               </div>
                       </span> 
       
@@ -55,7 +55,7 @@
 
     <div id="id01" class="modal">
       
-      <form action="/admin/uploads/delete/allUploads?_method=DELETE" method="POST" class="modal-content">
+      <form action="/hab/admin/uploads/delete/allUploads?_method=DELETE" method="POST" class="modal-content">
         <div class="container">
           <h1>Delete All Images</h1>
           <p>Are you sure you want to delete all the images?</p>

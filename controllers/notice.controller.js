@@ -32,7 +32,7 @@ exports.postNotice = async (req, res) => {
     const path = req.file ? req.file.filename : link;
     if (!path) {
       req.flash("error", "You need to add notice pdf or link!");
-      return res.redirect("/admin/notice/add");
+      return res.redirect("/hab/admin/notice/add");
     }
     //console.log(path);
     const newNotice = await new Notice({
@@ -43,7 +43,7 @@ exports.postNotice = async (req, res) => {
     }).save();
     if (!newNotice) {
       req.flash("error", "Unable to add new notice");
-      res.redirect("/admin/notice/add");
+      res.redirect("/hab/admin/notice/add");
     }
     const savedCategory = await Category.find({ name: name });
 
@@ -52,7 +52,7 @@ exports.postNotice = async (req, res) => {
       await newCategory.save();
     }
     req.flash("success", "Successfully added new notice");
-    return res.redirect("/admin/notice");
+    return res.redirect("/hab/admin/notice");
   } catch (error) {
     console.log(error.message);
   }
@@ -119,10 +119,10 @@ exports.editNotice = async (req, res) => {
 
     if (!updatedNotice) {
       req.flash("error", "Unable to edit notice");
-      return res.redirect("/admin/notice");
+      return res.redirect("/hab/admin/notice");
     }
     req.flash("success", "Successfully editted notice");
-    return res.redirect("/admin/notice");
+    return res.redirect("/hab/admin/notice");
   } catch (error) {
     console.log(error.message);
   }
@@ -153,11 +153,11 @@ exports.deleteNotice = async (req, res) => {
     }
     await Notice.findByIdAndRemove(id);
     req.flash("success", "Successfully deleted notice");
-    return res.redirect("/admin/notice");
+    return res.redirect("/hab/admin/notice");
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/admin/notice");
+    return res.redirect("/hab/admin/notice");
   }
 };
 

@@ -1,7 +1,7 @@
 <%- include("../partials/header.ejs") %>
 <h1 class="text-3xl text-black pb-6">Functionaries</h1>
 <div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/functionary/add">Add Functionaries</a>
+    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin/functionary/add">Add Functionaries</a>
 </div>
 
 <div class="w-full mt-6 overflow-auto">
@@ -70,11 +70,11 @@
                         <% } %>
 
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a class="hover:text-blue-500" href="/admin/functionary/<%=functionary.id%>">Edit</a>
+                            <a class="hover:text-blue-500" href="/hab/admin/functionary/<%=functionary.id%>">Edit</a>
                         </td>
 
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <form class="mx-2" action="/admin/functionary/<%=functionary.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form>
+                            <form class="mx-2" action="/hab/admin/functionary/<%=functionary.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form>
                         </td>
                     </tr>
                 <% }) %>

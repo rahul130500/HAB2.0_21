@@ -3,7 +3,7 @@ exports.isLoggedIn = function (req, res, next) {
     return next();
   }
   req.flash("info", "You need to login first!");
-  return res.redirect("/admin/login");
+  return res.redirect("/hab/admin/login");
 };
 
 exports.isAdmin = function (req, res, next) {
@@ -12,5 +12,5 @@ exports.isAdmin = function (req, res, next) {
   }
   req.flash("info", "You are unauthorized!");
   //req.logout();
-  return res.redirect("/admin");
+  return res.redirect("/hab/admin");
 };

@@ -27,7 +27,7 @@ exports.updateUploadForm = async (req, res) => {
     const upload = await AdminUploads.findById(id);
     if (!upload) {
       req.flash("error", "Cannot update");
-      return res.redirect("/admin/uploads");
+      return res.redirect("/hab/admin/uploads");
     }
 
     return res.render("adminUploads/edit", {
@@ -46,7 +46,7 @@ exports.updateUpload = async (req, res) => {
     const upload = await AdminUploads.findById(id);
     if (!upload) {
       req.flash("error", "Cannot find uploaded file");
-      return res.redirect("/admin/uploads");
+      return res.redirect("/hab/admin/uploads");
     }
 
     var image_name = upload.image_name;
@@ -70,11 +70,11 @@ exports.updateUpload = async (req, res) => {
     });
     if (!uploadFile) {
       req.flash("error", "Cannot upload file");
-      return res.redirect("/admin/uploads");
+      return res.redirect("/hab/admin/uploads");
     }
     req.flash("success", "Successfully updated upload file");
 
-    return res.redirect("/admin/uploads");
+    return res.redirect("/hab/admin/uploads");
   } catch (error) {
     console.log(error.message);
   }
@@ -90,10 +90,10 @@ exports.createUpload = async (req, res) => {
     const upload = await newUpload.save();
     if (!upload) {
       req.flash("error", "Cannot add file");
-      return res.redirect("/admin/uploads");
+      return res.redirect("/hab/admin/uploads");
     }
     req.flash("success", "Successfully uploaded file");
-    return res.redirect("/admin/uploads");
+    return res.redirect("/hab/admin/uploads");
   } catch (error) {
     console.log(error.message);
   }
@@ -105,7 +105,7 @@ exports.deleteUpload = async (req, res) => {
     const upload = await AdminUploads.findById(id);
     if (!upload) {
       req.flash("error", "Cannot find uploaded file");
-      return res.redirect("/admin/uploads");
+      return res.redirect("/hab/admin/uploads");
     }
     fs.unlinkSync(`uploads/adminUploads/${upload.image}`);
 
@@ -113,11 +113,11 @@ exports.deleteUpload = async (req, res) => {
     await AdminUploads.findByIdAndRemove(id);
 
     req.flash("success", "Successfully deleted file");
-    return res.redirect("/admin/uploads");
+    return res.redirect("/hab/admin/uploads");
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/admin/uploads");
+    return res.redirect("/hab/admin/uploads");
   }
 };
 exports.deleteAllImages = async (req, res) => {
@@ -125,7 +125,7 @@ exports.deleteAllImages = async (req, res) => {
     const uploads = await AdminUploads.find({});
     if (!uploads) {
       req.flash("error", "Cannot find uploaded files");
-      return res.redirect("/admin/uploads");
+      return res.redirect("/hab/admin/uploads");
     }
 
     uploads.forEach((upload) => {
@@ -137,10 +137,10 @@ exports.deleteAllImages = async (req, res) => {
 
     console.log("successfully deleted all images");
 
-    return res.redirect("/admin/uploads");
+    return res.redirect("/hab/admin/uploads");
   } catch (err) {
     // handle the error
     console.log(err);
-    res.redirect("/admin/uploads");
+    res.redirect("/hab/admin/uploads");
   }
 };

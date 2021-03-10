@@ -2,7 +2,7 @@
 <h1 class="text-3xl text-black pb-6">Links</h1>
 
 <div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/links/add">Add Links</a>
+    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin/links/add">Add Links</a>
 </div>
 
 <div class="w-full mt-6 overflow-auto">
@@ -24,9 +24,9 @@
                         <tr>
                     <%}%>
                         <td class="text-left py-3 px-4"><%=  link.name %></td>
-                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/admin/links/<%=link.id%>/sublinks" >View</a></td>
-                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/admin/links/<%=link.id%>">Edit</a></td>
-                        <td class="text-left py-3 px-4"><form class="mx-2" action="/admin/links/<%=link.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form></td>
+                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/hab/admin/links/<%=link.id%>/sublinks" >View</a></td>
+                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/hab/admin/links/<%=link.id%>">Edit</a></td>
+                        <td class="text-left py-3 px-4"><form class="mx-2" action="/hab/admin/links/<%=link.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form></td>
                     </tr>
                 <% })%>  
         </tbody>

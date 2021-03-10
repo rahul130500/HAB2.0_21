@@ -12,7 +12,7 @@ exports.getHostel = async (req, res, next) => {
   const hostel = await Hostel.findById(id1);
   if (!hostel) {
     req.flash("error", "Cannot find hostel");
-    return res.redirect("/admin/hostels");
+    return res.redirect("/hab/admin/hostels");
   }
 
   if (hostel == null) {
@@ -51,10 +51,10 @@ exports.createHostel = async (req, res) => {
   }).save();
   if (!newHostel) {
     req.flash("error", "Cannot add hostel");
-    return res.redirect("/admin/hostels");
+    return res.redirect("/hab/admin/hostels");
   }
   req.flash("success", "Successfully added new hostel");
-  return res.redirect("/admin/hostels");
+  return res.redirect("/hab/admin/hostels");
 };
 
 exports.updateHostelForm = async (req, res) => {
@@ -62,11 +62,11 @@ exports.updateHostelForm = async (req, res) => {
   const hostel = await Hostel.findById(id1);
   if (!hostel) {
     req.flash("error", "Cannot find this hostel");
-    return res.redirect("/admin/hostels");
+    return res.redirect("/hab/admin/hostels");
   }
 
   return res.render("hostels/edit", {
-    link: "/admin/hostels/" + id1,
+    link: "/hab/admin/hostels/" + id1,
     hostel,
   });
 };
@@ -76,7 +76,7 @@ exports.updateHostel = async (req, res) => {
   const hostel = await Hostel.findById(id1);
   if (!hostel) {
     req.flash("error", "Cannot find hostel");
-    return res.redirect("/admin/hostels");
+    return res.redirect("/hab/admin/hostels");
   }
 
   var name = hostel.name;
@@ -100,11 +100,11 @@ exports.updateHostel = async (req, res) => {
   });
   if (!hostell) {
     req.flash("error", "Cannot add hostel");
-    return res.redirect("/admin/hostels");
+    return res.redirect("/hab/admin/hostels");
   }
   req.flash("success", "Successfully updated hostel");
 
-  return res.redirect("/admin/hostels");
+  return res.redirect("/hab/admin/hostels");
 };
 
 exports.addMemberForm = (req, res) => {
@@ -139,11 +139,11 @@ exports.createMember = async (req, res, next) => {
   );
   if (!hostel) {
     req.flash("error", "Cannot add member");
-    return res.redirect(`/admin/hostels/${id1}`);
+    return res.redirect(`/hab/admin/hostels/${id1}`);
   }
   req.flash("success", "Successfully added new member");
 
-  return res.redirect(`/admin/hostels/${id1}/addMember`);
+  return res.redirect(`/hab/admin/hostels/${id1}/addMember`);
 };
 
 exports.updateMemberForm = async (req, res) => {
@@ -152,7 +152,7 @@ exports.updateMemberForm = async (req, res) => {
   const hostel = await Hostel.findById(id1);
   if (!hostel) {
     req.flash("error", "Cannot find hostel");
-    return res.redirect("/admin/hostels");
+    return res.redirect("/hab/admin/hostels");
   }
 
   var member = hostel.management;
@@ -162,11 +162,11 @@ exports.updateMemberForm = async (req, res) => {
   mb = member[0];
   if (!mb) {
     req.flash("error", "Cannot find member");
-    return res.redirect(`/admin/hostels/${id1}`);
+    return res.redirect(`/hab/admin/hostels/${id1}`);
   }
 
   return res.render("hostels/members/edit", {
-    link: "/admin/hostels/" + id1 + "/" + id2,
+    link: "/hab/admin/hostels/" + id1 + "/" + id2,
     mb,
     id1,
   });
@@ -178,7 +178,7 @@ exports.updateMember = async (req, res) => {
   const hostel = await Hostel.findById(id1);
   if (!hostel) {
     req.flash("error", "Cannot find hostel");
-    return res.redirect("/admin/hostels");
+    return res.redirect("/hab/admin/hostels");
   }
 
   const { Mname, position, priority, contact1, contact2, email } = req.body;
@@ -189,7 +189,7 @@ exports.updateMember = async (req, res) => {
   });
   if (!member) {
     req.flash("error", "Cannot find member");
-    return res.redirect(`/admin/hostels/${name}`);
+    return res.redirect(`/hab/admin/hostels/${name}`);
   }
   var photo = member[0].photo;
 
@@ -214,10 +214,10 @@ exports.updateMember = async (req, res) => {
   });
   if (!hostell) {
     req.flash("error", "Cannot update member");
-    return res.redirect("/admin/hostels/" + id1);
+    return res.redirect("/hab/admin/hostels/" + id1);
   }
   req.flash("success", "Successfully updated member");
-  return res.redirect("/admin/hostels/" + id1);
+  return res.redirect("/hab/admin/hostels/" + id1);
 };
 
 exports.deleteMember = async (req, res) => {
@@ -227,7 +227,7 @@ exports.deleteMember = async (req, res) => {
     const hostel = await Hostel.findById(id1);
     if (!hostel) {
       req.flash("error", "Cannot find hostel");
-      return res.redirect("/admin/hostels");
+      return res.redirect("/hab/admin/hostels");
     }
     var member = hostel.management;
     member = member.filter(function (object) {
@@ -235,7 +235,7 @@ exports.deleteMember = async (req, res) => {
     });
     if (!member) {
       req.flash("error", "Cannot find member");
-      return res.redirect("/admin/hostels" + id1);
+      return res.redirect("/hab/admin/hostels" + id1);
     }
 
     if (member[0].photo) {
@@ -245,11 +245,11 @@ exports.deleteMember = async (req, res) => {
     hostel.management.pull({ _id: id2 });
     await hostel.save();
     req.flash("success", "Successfully deleted member");
-    return res.redirect("/admin/hostels/" + id1);
+    return res.redirect("/hab/admin/hostels/" + id1);
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/admin/hostels/" + req.params.id1);
+    return res.redirect("/hab/admin/hostels/" + req.params.id1);
   }
 };
 
@@ -259,12 +259,12 @@ exports.deleteHostelMembers = async (req, res) => {
     const hostel = await Hostel.findById(id1);
     if (!hostel) {
       req.flash("error", "Cannot find hostel");
-      return res.redirect("/admin/hostels");
+      return res.redirect("/hab/admin/hostels");
     }
     var members = hostel.management;
     if (!members) {
       req.flash("error", "Cannot find members");
-      return res.redirect("/admin/hostels/" + id1);
+      return res.redirect("/hab/admin/hostels/" + id1);
     }
     members.forEach((member) => {
       if (member.photo) fs.unlinkSync(`uploads/hostel/${member.photo}`);
@@ -274,11 +274,11 @@ exports.deleteHostelMembers = async (req, res) => {
     req.flash("success", "Successfully deleted all members");
     console.log("successfully deleted all members");
 
-    return res.redirect("/admin/hostels/" + id1);
+    return res.redirect("/hab/admin/hostels/" + id1);
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/admin/hostels/" + req.params.id1);
+    return res.redirect("/hab/admin/hostels/" + req.params.id1);
   }
 };
 
@@ -288,7 +288,7 @@ exports.deleteHostel = async (req, res) => {
     const hostel = await Hostel.findById(id1);
     if (!hostel) {
       req.flash("error", "Cannot find hostel");
-      return res.redirect("/admin/hostels");
+      return res.redirect("/hab/admin/hostels");
     }
     fs.unlinkSync(`uploads/hostel/${hostel.pic}`);
     var members = hostel.management;
@@ -300,10 +300,10 @@ exports.deleteHostel = async (req, res) => {
     await Hostel.findByIdAndRemove(id1);
     req.flash("success", "Successfully deleted hostel");
 
-    return res.redirect("/admin/hostels");
+    return res.redirect("/hab/admin/hostels");
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/admin/hostels");
+    return res.redirect("/hab/admin/hostels");
   }
 };

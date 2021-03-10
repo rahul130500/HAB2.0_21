@@ -76,17 +76,17 @@ app.use(
 
 app.set("view engine", "ejs");
 
-app.use("/", userRoutes);
-app.use("/admin", adminRoutes);
-app.use("/admin/notice", noticeRoutes);
-app.use("/admin/announcement", announcementRoutes);
-app.use("/admin/functionary", functionaryRoutes);
-app.use("/admin/hostels", hostelRoutes);
-app.use("/admin/uploads", adminUploadRoutes);
-app.use("/admin/form", formRoutes);
-app.use("/admin/links", linkRoutes);
-app.use("/admin/ordinance", ordinanceRoutes);
-app.use("/admin/about", aboutRoutes);
+app.use("/hab", userRoutes);
+app.use("/hab/admin", adminRoutes);
+app.use("/hab/admin/notice", noticeRoutes);
+app.use("/hab/admin/announcement", announcementRoutes);
+app.use("/hab/admin/functionary", functionaryRoutes);
+app.use("/hab/admin/hostels", hostelRoutes);
+app.use("/hab/admin/uploads", adminUploadRoutes);
+app.use("/hab/admin/form", formRoutes);
+app.use("/hab/admin/links", linkRoutes);
+app.use("/hab/admin/ordinance", ordinanceRoutes);
+app.use("/hab/admin/about", aboutRoutes);
 
 
 app.listen(PORT, () => {

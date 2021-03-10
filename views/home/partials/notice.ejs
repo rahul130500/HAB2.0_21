@@ -37,7 +37,7 @@
                                                     class="inline-flex text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded"
                                                     style=" color:white">
                                                     <% if(notice.path.indexOf("https://")==-1) { %>
-                                                        <a href="/notices/<%=notice.id%>" target="_blank">VIEW PDF</a>
+                                                        <a href="/hab/notices/<%=notice.id%>" target="_blank">VIEW PDF</a>
                                                         <% } else { %>
                                                             <a href="<%=notice.path%>" target="_blank">VIEW LINK</a>
                                                             <% } %>

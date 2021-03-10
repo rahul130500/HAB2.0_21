@@ -31,7 +31,7 @@ exports.postFunctionary = async (req, res) => {
   const newFunctionary = new Functionary(data);
   await newFunctionary.save();
   req.flash("success", "Successfully added new functionary");
-  return res.redirect("/admin/functionary");
+  return res.redirect("/hab/admin/functionary");
 };
 
 exports.getEditForm = async (req, res) => {
@@ -71,7 +71,7 @@ exports.editFunctionary = async (req, res) => {
   } else {
     req.flash("success", "Successfully editted functionary");
   }
-  return res.redirect("/admin/functionary");
+  return res.redirect("/hab/admin/functionary");
 };
 
 exports.deleteFunctionary = async (req, res) => {
@@ -82,11 +82,11 @@ exports.deleteFunctionary = async (req, res) => {
     console.log("successfully deleted!");
     await Functionary.findByIdAndRemove(id);
     req.flash("success", "Successfully deleted functionary");
-    return res.redirect("/admin/functionary");
+    return res.redirect("/hab/admin/functionary");
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/admin/functionary");
+    return res.redirect("/hab/admin/functionary");
   }
 };
 

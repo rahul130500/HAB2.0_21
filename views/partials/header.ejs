@@ -55,57 +55,57 @@
 
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
-            <a href="/admin" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">HAB Admin</a>
+            <a href="/hab/admin" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">HAB Admin</a>
         </div>
         <nav class="text-white text-base font-semibold pt-3">
-            <a href="/admin" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/hab/admin" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-users-cog mr-3"></i>
                 Admin
             </a>
-            <a href="/admin/about" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/hab/admin/about" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-info-circle mr-3"></i>
                 Home Description
             </a>
-            <a href="/admin/announcement"
+            <a href="/hab/admin/announcement"
                 class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-bullhorn mr-3"></i>
                 Announcements
             </a>
-            <a href="/admin/form" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/hab/admin/form" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fab fa-wpforms mr-3"></i>
                 Forms
             </a>
-            <a href="/admin/functionary"
+            <a href="/hab/admin/functionary"
                 class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-users mr-3"></i>
                 Functionaries
             </a>
-            <a href="/admin/hostels"
+            <a href="/hab/admin/hostels"
                 class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-hotel mr-3"></i>
                 Hostels
             </a>
-            <a href="/admin/links" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/hab/admin/links" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-link mr-3"></i>
                 Links
             </a>
-            <a href="/admin/notice"
+            <a href="/hab/admin/notice"
                 class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-sticky-note mr-3"></i>
                 Notices
             </a>
-            <a href="/admin/ordinance"
+            <a href="/hab/admin/ordinance"
                 class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-sticky-note mr-3"></i>
                 Ordinance
             </a>
-            <a href="/admin/uploads"
+            <a href="/hab/admin/uploads"
                 class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-upload mr-3"></i>
                 Uploads
             </a>
 
-            <a href="/admin/users" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/hab/admin/users" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-users mr-3"></i>
                 Users
             </a>
@@ -125,7 +125,7 @@
                     class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
                     <!-- <a href="/admin/profile" class="block px-4 py-2 account-link hover:text-white">Account</a> -->
-                    <a href="/admin/logout" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
+                    <a href="/hab/admin/logout" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
                 </div>
             </div>
         </header>
@@ -133,7 +133,7 @@
         <!-- Mobile Header & Nav -->
         <header x-data="{ isOpen: false }" class="w-full bg-sidebar py-5 px-6 sm:hidden">
             <div class="flex items-center justify-between">
-                <a href="/admin" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
+                <a href="/hab/admin" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
                 <button @click="isOpen = !isOpen" class="text-white text-3xl focus:outline-none">
                     <i x-show="!isOpen" class="fas fa-bars"></i>
                     <i x-show="isOpen" class="fas fa-times"></i>
@@ -142,21 +142,21 @@
 
             <!-- Dropdown Nav -->
             <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
-                <a href="/admin" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="/hab/admin" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-users-cog mr-3"></i>
                     Admin
                 </a>
-                <a href="/admin/about"
+                <a href="/hab/admin/about"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-info-circle mr-3"></i>
                     Home Description
                 </a>
-                <a href="/admin/announcement"
+                <a href="/hab/admin/announcement"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-bullhorn mr-3"></i>
                     Announcements
                 </a>
-                <a href="/admin/form"
+                <a href="/hab/admin/form"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fab fa-wpforms mr-3"></i>
                     Forms
@@ -166,33 +166,33 @@
                     <i class="fas fa-users mr-3"></i>
                     Functionaries
                 </a>
-                <a href="/admin/hostels"
+                <a href="/hab/admin/hostels"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-hotel mr-3"></i>
                     Hostels
                 </a>
-                <a href="/admin/links"
+                <a href="/hab/admin/links"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-link mr-3"></i>
                     Links
                 </a>
-                <a href="/admin/notice"
+                <a href="/hab/admin/notice"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-sticky-note mr-3"></i>
                     Notices
                 </a>
-                <a href="/admin/ordinance"
+                <a href="/hab/admin/ordinance"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-link mr-3"></i>
                     Ordinance
                 </a>
-                <a href="/admin/uploads"
+                <a href="/hab/admin/uploads"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-upload mr-3"></i>
                     Uploads
                 </a>
 
-                <a href="/admin/users"
+                <a href="/hab/admin/users"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-users mr-3"></i>
                     Users
@@ -205,7 +205,7 @@
                     <i class="fas fa-user mr-3"></i>
                     My Account
                 </a> -->
-                <a href="/admin/logout"
+                <a href="/hab/admin/logout"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     Sign Out

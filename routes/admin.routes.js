@@ -18,12 +18,12 @@ router.post("/signup", authController.postSignup);
 router.post(
   "/login",
   passport.authenticate("local", {
-    failureRedirect: "/admin/login",
+    failureRedirect: "/hab/admin/login",
     failureFlash: true,
   }),
   (req, res) => {
     req.flash("success", "Welcome to HAB Portal!");
-    return res.redirect("/admin");
+    return res.redirect("/hab/admin");
   }
 );
 
@@ -53,7 +53,7 @@ router.post("/profile", isLoggedIn, isAdmin, async (req, res) => {
   const { name, contact } = req.body;
   const id = req.user.id;
   const user = await User.findByIdAndUpdate(id, { name, contact });
-  res.redirect("admin/profile");
+  res.redirect("/hab/admin/profile");
 });
 
 module.exports = router;

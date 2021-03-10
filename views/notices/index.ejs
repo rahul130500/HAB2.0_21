@@ -1,10 +1,10 @@
 <%- include("../partials/header.ejs") %>
     <h1 class="text-3xl text-black pb-6">Notices</h1>
     <div class="mt-6">
-        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/notice/add">Add
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin/notice/add">Add
             Notices</a>
 
-        <form style="float: right;" action="/admin/notice/find/" method="POST" enctype="multipart/form-data">
+        <form style="float: right;" action="/hab/admin/notice/find/" method="POST" enctype="multipart/form-data">
             <select
                 class="w-50 h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
                 name="dropdown">
@@ -57,7 +57,7 @@
 
                                 <td class="text-left py-3 px-4">
                                     <% if(notice.path.indexOf("https://")==-1) { %>
-                                        <a class="hover:text-blue-500" href="/admin/notice/pdf/<%=notice.id%>"
+                                        <a class="hover:text-blue-500" href="/hab/admin/notice/pdf/<%=notice.id%>"
                                             target="_blank">View</a>
                                         <% } else { %>
                                             <a class="hover:text-blue-500" href="<%= notice.path %>"
@@ -66,9 +66,9 @@
                                 </td>
 
                                 <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
-                                        href="/admin/notice/<%=notice.id%>">Edit</a></td>
+                                        href="/hab/admin/notice/<%=notice.id%>">Edit</a></td>
                                 <td class="text-left py-3 px-4">
-                                    <form class="mx-2" action="/admin/notice/<%=notice.id%>?_method=DELETE"
+                                    <form class="mx-2" action="/hab/admin/notice/<%=notice.id%>?_method=DELETE"
                                         method="POST"><button class="hover:text-red-500">Delete</button></form>
                                 </td>
 

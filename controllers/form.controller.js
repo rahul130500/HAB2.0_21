@@ -33,7 +33,7 @@ exports.postForm = async (req, res) => {
 
     if (!path) {
       req.flash("error", "You need to add notice pdf or link!");
-      return res.redirect("/admin/form/add");
+      return res.redirect("/hab/admin/form/add");
     }
 
     const newForm = await new Form({
@@ -44,7 +44,7 @@ exports.postForm = async (req, res) => {
     }).save();
     if (!newForm) {
       req.flash("error", "Unable to add new form");
-      res.redirect("/admin/form/add");
+      res.redirect("/hab/admin/form/add");
     }
     const savedCategory = await Category.find({ name: name });
 
@@ -53,7 +53,7 @@ exports.postForm = async (req, res) => {
       await newCategory.save();
     }
     req.flash("success", "Successfully added new form!");
-    return res.redirect("/admin/form");
+    return res.redirect("/hab/admin/form");
   } catch (error) {
     console.log(error.message);
   }
@@ -112,7 +112,7 @@ exports.editForm = async (req, res) => {
     }
 
     await Form.findByIdAndUpdate(req.params.id, data);
-    return res.redirect("/admin/form");
+    return res.redirect("/hab/admin/form");
   } catch (error) {
     console.log(error.message);
   }
@@ -143,11 +143,11 @@ exports.deleteForm = async (req, res) => {
       console.log("successfully deleted /tmp/hello");
     }
     await Form.findByIdAndRemove(id);
-    return res.redirect("/admin/form");
+    return res.redirect("/hab/admin/form");
   } catch (err) {
     // handle the error
     console.log(err);
-    return res.redirect("/admin/form");
+    return res.redirect("/hab/admin/form");
   }
 };
 
