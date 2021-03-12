@@ -42,7 +42,7 @@ const ordinanceRoutes = require("./routes/ordinance.routes");
 
 const aboutRoutes = require("./routes/about.routes");
 
-app.use(express.static(__dirname + "/public"));
+app.use("/hab/", express.static(__dirname + "/public"));
 app.use("/hab/uploads", express.static(__dirname + "/uploads"));
 app.use(methodOverride("_method"));
 app.use(mongoSanitize());
@@ -84,7 +84,7 @@ app.use(
 
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => res.redirect("/hab"));
+//app.get("/", (req, res) => res.redirect("/hab"));
 
 app.use("/hab", userRoutes);
 app.use("/hab/admin", adminRoutes);

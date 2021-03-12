@@ -8,10 +8,10 @@
     <title>HAB Admin Panel</title>
     <meta name="author" content="David Grzyb">
     <meta name="description" content="">
-    <link rel="icon" href="/images/headers/logo2.svg" type="image/icon type">
+    <link rel="icon" href="/hab/images/headers/logo2.svg" type="image/icon type">
 
     <!-- Tailwind -->
-    <link rel="stylesheet" href="/css/tailwind.min.css">
+    <link rel="stylesheet" href="/hab/css/tailwind.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
 
@@ -47,8 +47,8 @@
             background: #3d68ff;
         }
     </style>
-    <link rel="stylesheet" href="/css/hostelg.css">
-    <link rel="stylesheet" href="/css/alert.css" />
+    <link rel="stylesheet" href="/hab/css/hostelg.css">
+    <link rel="stylesheet" href="/hab/css/alert.css" />
 </head>
 
 <body class="bg-gray-100 font-family-karla flex">
@@ -123,7 +123,7 @@
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
                 <button @click="isOpen = !isOpen"
                     class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
-                    <img src="/images/avatar.png">
+                    <img src="/hab/images/avatar.png">
                 </button>
                 <button x-show="isOpen" @click="isOpen = false"
                     class="h-full w-full fixed inset-0 cursor-default"></button>
@@ -202,14 +202,7 @@
                     <i class="fas fa-users mr-3"></i>
                     Users
                 </a>
-                <!--<a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-cogs mr-3"></i>
-                    Support
-                </a> -->
-                <!-- <a href="/admin/profile" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-user mr-3"></i>
-                    My Account
-                </a> -->
+
                 <a href="/hab/admin/logout"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-sign-out-alt mr-3"></i>

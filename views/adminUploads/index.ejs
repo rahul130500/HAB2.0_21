@@ -1,72 +1,80 @@
 <%- include("../partials/header.ejs") %>
-<h1 class="text-3xl text-black pb-6">Image Uploads</h1>
-<div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin<%= link %>">Add Images</a>
-</div>
+  <h1 class="text-3xl text-black pb-6">Image Uploads</h1>
+  <div class="mt-6">
+    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin<%= link %>">Add
+      Images</a>
+  </div>
 
-<div class="w-full mt-6 overflow-auto">
+  <div class="w-full mt-6 overflow-auto">
     <div class="bg-white">
-                
-                
-      
-        <section class="text-gray-600 body-font">
-          <div class="container px-5 py-24 mx-auto">
-      
-            <div class="flex flex-wrap -m-4">
-              <% if(uploads.length==0){%>
-                <h1>No Uploads</h1>
-                <% }else{uploads.forEach(upload=>{ %>
-      
-                  <div class="p-2 lg:w-1/2">
-                    <div
-                      class="h-full border-2 rounded-lg border-gray-200 border-opacity-70 p-1 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-      
-                      <img alt="upload" class="rounded-lg w-3/4 md:w-2/3 h-48 md:mr-2 sm:mb-0 mb-4 object-cover"
-                        src="/uploads/adminUploads/<%=upload.image%>">
-                      <div class=" px-4">
-                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2 ">
-                          <%=upload.image_name%>
-                        </h2>
-      
-                        <p class="mb-4 ">
-                          <%= (upload.description.length> 70 ? (upload.description.substring(0, 70) + "...") :
-                            upload.description) %>
-                        </p>
-                        <span class="inline-block"><div class="inline-flex">
-                          <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded-l" href="/hab/admin/uploads/<%=upload.id%>/updateUpload">Edit</a>
-                          <form class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded-r" action="/hab/admin/uploads/<%=upload.id%>?_method=DELETE" method="POST"><button class="hover:text-blue-500">Delete</button></form>   
-                              </div>
-                      </span> 
-      
-                      </div>
-      
+
+
+
+      <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+
+          <div class="flex flex-wrap -m-4">
+            <% if(uploads.length==0){%>
+              <h1>No Uploads</h1>
+              <% }else{uploads.forEach(upload=>{ %>
+
+                <div class="p-2 lg:w-1/2">
+                  <div
+                    class="h-full border-2 rounded-lg border-gray-200 border-opacity-70 p-1 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+
+                    <img alt="upload" class="rounded-lg w-3/4 md:w-2/3 h-48 md:mr-2 sm:mb-0 mb-4 object-cover"
+                      src="/hab/uploads/adminUploads/<%=upload.image%>">
+                    <div class=" px-4">
+                      <h2 class="text-gray-900 text-lg title-font font-medium mb-2 ">
+                        <%=upload.image_name%>
+                      </h2>
+
+                      <p class="mb-4 ">
+                        <%= (upload.description.length> 70 ? (upload.description.substring(0, 70) + "...") :
+                          upload.description) %>
+                      </p>
+                      <span class="inline-block">
+                        <div class="inline-flex">
+                          <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded-l"
+                            href="/hab/admin/uploads/<%=upload.id%>/updateUpload">Edit</a>
+                          <form class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded-r"
+                            action="/hab/admin/uploads/<%=upload.id%>?_method=DELETE" method="POST"><button
+                              class="hover:text-blue-500">Delete</button></form>
+                        </div>
+                      </span>
+
                     </div>
+
                   </div>
-                  <% })} %>
-            </div>
+                </div>
+                <% })} %>
           </div>
-        </section>
-      
-                
+        </div>
+      </section>
+
+
     </div>
-</div>
-<% if(uploads.length!=0){ %>
-    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" onclick="document.getElementById('id01').style.display='block'">Delete All Images</button>
+  </div>
+  <% if(uploads.length!=0){ %>
+    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+      onclick="document.getElementById('id01').style.display='block'">Delete All Images</button>
 
     <div id="id01" class="modal">
-      
+
       <form action="/hab/admin/uploads/delete/allUploads?_method=DELETE" method="POST" class="modal-content">
         <div class="container">
           <h1>Delete All Images</h1>
           <p>Are you sure you want to delete all the images?</p>
-    
+
           <div class="clearfix">
-            <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" onclick="document.getElementById('id01').style.display='none'" type="button">Cancel</button>
-           <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit" >Delete</button>
+            <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+              onclick="document.getElementById('id01').style.display='none'" type="button">Cancel</button>
+            <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+              type="submit">Delete</button>
           </div>
         </div>
-    </form>
+      </form>
     </div>
-<% } %>
+    <% } %>
 
-<%- include("../partials/footer.ejs") %> 
+      <%- include("../partials/footer.ejs") %>

@@ -1,88 +1,93 @@
 <%- include("../partials/header.ejs") %>
-<h1 class="text-3xl text-black pb-6">Functionaries</h1>
-<div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin/functionary/add">Add Functionaries</a>
-</div>
+    <h1 class="text-3xl text-black pb-6">Functionaries</h1>
+    <div class="mt-6">
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+            href="/hab/admin/functionary/add">Add Functionaries</a>
+    </div>
 
-<div class="w-full mt-6 overflow-auto">
-    <div class="bg-white">
-        <table class="min-w-full leading-normal">
-            <thead class="bg-gray-800 text-white">
-                <tr>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Name
-                    </th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Post
-                    </th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Contact Line 1
-                    </th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Contact Line 2
-                    </th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Contact Line 3
-                    </th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Contact Line 4
-                    </th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Edit
-                    </th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Delete
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                <% functionaries.forEach((functionary, i)=>{ %>
+    <div class="w-full mt-6 overflow-auto">
+        <div class="bg-white">
+            <table class="min-w-full leading-normal">
+                <thead class="bg-gray-800 text-white">
                     <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 w-10 h-10">
-                                    <img class="w-full h-full rounded-full"
-                                        src="/<%= functionary.pic %>""
-                                        alt="img" />
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-gray-900 whitespace-no-wrap">
-                                        <%= functionary.name %>
-                                    </p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap"><%= functionary.post %></p>
-                        </td>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Name
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Post
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Contact Line 1
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Contact Line 2
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Contact Line 3
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Contact Line 4
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Edit
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Delete
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                        <% for(let i=0; i<4; i++){ %>
+                    <% functionaries.forEach((functionary, i)=>{ %>
+                        <tr>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 w-10 h-10">
+                                        <img class="w-full h-full rounded-full" src="/hab/<%= functionary.pic %>""
+                                        alt=" img" />
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-gray-900 whitespace-no-wrap">
+                                            <%= functionary.name %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">
-                                    <% if(functionary.contact[i]!==""){ %>
-                                        <%= functionary.contact[i] %>
-                                    <% }else{ %>
-                                        NA
-                                    <% } %>
+                                    <%= functionary.post %>
                                 </p>
                             </td>
-                        <% } %>
 
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a class="hover:text-blue-500" href="/hab/admin/functionary/<%=functionary.id%>">Edit</a>
-                        </td>
+                            <% for(let i=0; i<4; i++){ %>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        <% if(functionary.contact[i]!=="" ){ %>
+                                            <%= functionary.contact[i] %>
+                                                <% }else{ %>
+                                                    NA
+                                                    <% } %>
+                                    </p>
+                                </td>
+                                <% } %>
 
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <form class="mx-2" action="/hab/admin/functionary/<%=functionary.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form>
-                        </td>
-                    </tr>
-                <% }) %>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <a class="hover:text-blue-500"
+                                            href="/hab/admin/functionary/<%=functionary.id%>">Edit</a>
+                                    </td>
+
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <form class="mx-2"
+                                            action="/hab/admin/functionary/<%=functionary.id%>?_method=DELETE"
+                                            method="POST"><button class="hover:text-red-500">Delete</button></form>
+                                    </td>
+                        </tr>
+                        <% }) %>
 
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
-<%- include("../partials/footer.ejs") %> 
+    <%- include("../partials/footer.ejs") %>

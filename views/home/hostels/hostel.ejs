@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Cache-Control" content="no-store" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/tailwind.min.css">
-    <link rel="stylesheet" href="/css/hostel.css">
+    <link rel="stylesheet" href="/hab/css/tailwind.min.css">
+    <link rel="stylesheet" href="/hab/css/hostel.css">
     <title>
         <%=hostel.name%>
     </title>
-    <link rel="icon" href="/images/headers/logo2.svg" type="image/icon type">
+    <link rel="icon" href="/hab/images/headers/logo2.svg" type="image/icon type">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -27,7 +27,7 @@
         }
 
         #top {
-            background-image: url("/uploads/hostel/<%=hostel.pic%>");
+            background-image: url("/hab/uploads/hostel/<%=hostel.pic%>");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -137,7 +137,7 @@
         <div class="top_content relative w-11/12 md:w-4/5 h-full mx-auto z-10 flex flex-col md:flex-row">
             <div
                 class="top_title w-full h-1/2 md:w-1/2 md:h-full flex flex-col sm:flex-row justify-end sm:justify-start items-center">
-                <img src="/images/headers/logo.svg" alt="logo" class="transform scale-75 mr-0.5 md:mr-1">
+                <img src="/hab/images/headers/logo.svg" alt="logo" class="transform scale-75 mr-0.5 md:mr-1">
                 <h2 id="hostel_title"
                     class="text-5xl sm:text-6xl text-center sm:text-left text-white font-black break-all">
                     <%=hostel.name%>
@@ -145,7 +145,7 @@
             </div>
             <div class="top_card_container w-full h-1/2 md:w-1/2 md:h-full relative">
                 <div id="content_hab" class="absolute bottom-14 right-0 rounded">
-                    <img src="/images/headers/h.svg" alt="img" class="hs">
+                    <img src="/hab/images/headers/h.svg" alt="img" class="hs">
                     <h2 style="color: #F3F4F7;">
                         <%=hostel.name%>, IIT GUWAHATI
                     </h2>
@@ -158,8 +158,8 @@
                 <button
                     class="hidden md:flex justify-center items-center absolute right-0 bottom-2 w-36 h-10 bg-white rounded focus:outline-none"
                     onclick="toggleFullscreen();" style="background: rgba(0, 0, 0, 0.4);">
-                    <img src="/images/svg/expand.svg" alt="lrg" style="display: block;" id="lrg">
-                    <img src="/images/svg/contract.svg" alt="con" style="display: none;" id="con">
+                    <img src="/hab/images/svg/expand.svg" alt="lrg" style="display: block;" id="lrg">
+                    <img src="/hab/images/svg/contract.svg" alt="con" style="display: none;" id="con">
                     <span id="fullscreen_btn" class="ml-1 text-white font-extralight">Large
                         view</span></button>
                 <!-- <img src="/images/headers/fullscr.svg" alt="" onclick="toggleFullscreen();"
@@ -173,13 +173,13 @@
             <!-- <img id="nav_logo" src="/images/headers/logo2.svg" alt="logo" class="nav_logo hidden md:inline"> -->
             <button class="ml-2 sm:ml-0 mr-2 sm:mr-4 mt-2 sm:px-9 w-1/4 sm:w-1/12 flex justify-center items-center"
                 style="background: #FFFFFF;border: 1px solid #8A8886;border-radius: 2px;">
-                <img src="/images/nav/left.svg" alt="back" class="w-3 h-3 sm:w-4 sm:h-4">
+                <img src="/hab/images/headers/logo2.svg" alt="back" class="w-3 h-3 sm:w-4 sm:h-4 mr-2">
                 <a href="/hab" class="text-xs sm:text-base">HOME</a>
             </button>
             <div class="w-3/4 sm:w-11/12 relative">
                 <button id="slideLeft"
                     class="absolute top-1 rounded bg-white shadow-lg -left-2 h-full z-20 transform scale-75 opacity-50">
-                    <img src="/images/nav/left.svg" alt="Left" class="h-full rounded transform scale-50">
+                    <img src="/hab/images/nav/left.svg" alt="Left" class="h-full rounded transform scale-50">
                 </button>
                 <ul class="tabs font-semibold sm:px-2.5">
                     <% hostels.forEach(hostel=>{ %>
@@ -192,7 +192,7 @@
                 </ul>
                 <button id="slideRight"
                     class="absolute top-1 rounded bg-white shadow-lg -right-2 h-full z-20 transform scale-75 opacity-50">
-                    <img src="/images/nav/right.svg" alt="Right" class="h-full rounded transform scale-50">
+                    <img src="/hab/images/nav/right.svg" alt="Right" class="h-full rounded transform scale-50">
                 </button>
             </div>
         </div>
@@ -209,7 +209,8 @@
                     <div class="hostelProfileCard w-10/12 h-auto m-2 bg-white rounded-sm"
                         style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);width: 300px;">
                         <div class="box-border pointer-events-none border-8 border-white w-full h-64 bg-gray-200">
-                            <img src="/uploads/hostel/<%=member.photo%>" alt="img" class="h-full w-full object-contain">
+                            <img src="/hab/uploads/hostel/<%=member.photo%>" alt="img"
+                                class="h-full w-full object-contain">
                         </div>
                         <div class="hostel_mng_contacts px-3 pt-1 pb-2" data-mail="email-1"
                             data-twitter="twitter_handle">
@@ -240,8 +241,8 @@
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
                 href="https://www.facebook.com/swciitg">
                 <!-- <img src="/images/nav/hab_logo.svg" alt="hab-logo" class="transform scale-50"> -->
-                <img src="/images/svg/swc-logo.svg" alt="swc-logo" class="mr-3 transform scale-110">
-                <span class="text-xl">IITG Hostel Affairs Board</span>
+                <img src="/hab//images/svg/swc-logo.svg" alt="swc-logo" class="mr-3 transform scale-110">
+                <span class="text-xl">Students' Web Committee</span>
             </a>
             <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-400 sm:py-2 sm:mt-0 mt-4">©
                 2021
@@ -384,7 +385,7 @@
 
         document.addEventListener("scroll", myFunction);
     </script>
-    <script src="/js/all.min.js"></script>
+    <script src="/hab/js/all.min.js"></script>
 </body>
 
 </html>
