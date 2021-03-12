@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
 const methodOverride = require("method-override");
 const passport = require("passport");
 const session = require("express-session");
@@ -7,18 +8,26 @@ const mongoSanitize = require("express-mongo-sanitize");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 const helmet = require("helmet");
-const url = "mongodb://localhost/HAB_DB";
+//const url = "mongodb://localhost/HAB_DB";
+const url = process.env.MONGO_URI;
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 require("./config/passport")(passport);
 
-mongoose.connect(url, {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+mongoose.connect(
+  url,
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  },
+  (err) => {
+    if (err) console.log(err.message);
+    else console.log("Successfully connected to DB!");
+  }
+);
 
 const userRoutes = require("./routes/user.routes");
 const adminRoutes = require("./routes/admin.routes");
@@ -32,7 +41,6 @@ const linkRoutes = require("./routes/link.routes");
 const ordinanceRoutes = require("./routes/ordinance.routes");
 
 const aboutRoutes = require("./routes/about.routes");
-
 
 app.use(express.static(__dirname + "/public"));
 app.use("/uploads", express.static(__dirname + "/uploads"));
@@ -87,7 +95,6 @@ app.use("/hab/admin/form", formRoutes);
 app.use("/hab/admin/links", linkRoutes);
 app.use("/hab/admin/ordinance", ordinanceRoutes);
 app.use("/hab/admin/about", aboutRoutes);
-
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
