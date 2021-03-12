@@ -84,6 +84,8 @@ app.use(
 
 app.set("view engine", "ejs");
 
+app.get("/", (req, res) => res.redirect("/hab"));
+
 app.use("/hab", userRoutes);
 app.use("/hab/admin", adminRoutes);
 app.use("/hab/admin/notice", noticeRoutes);
