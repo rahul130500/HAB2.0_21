@@ -1,122 +1,129 @@
 <%- include("../../partials/header.ejs") %>
-<h1 class="text-3xl text-black pb-6">Members of <%=name%></h1>
-<div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin<%= link %>">Add Members</a>
-</div>
+    <h1 class="text-3xl text-black pb-6">Members of <%=name%>
+    </h1>
+    <div class="mt-6">
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin<%= link %>">Add
+            Members</a>
+    </div>
 
-<div class="w-full mt-6 overflow-auto">
-    <div class="bg-white">
-        <table class="min-w-full leading-normal">
-            <thead class="bg-gray-800 text-white">
-                <tr>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Name
-                    </th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Position
-                    </th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Email
-                    </th>
-                    
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Contact Line 1
-                    </th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Contact Line 2 
-                    </th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Edit
-                    </th>
-                    <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
-                        Delete
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                <% members.forEach((member, i)=>{ %>
+    <div class="w-full mt-6 overflow-auto">
+        <div class="bg-white">
+            <table class="min-w-full leading-normal">
+                <thead class="bg-gray-800 text-white">
                     <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 w-10 h-10">
-                                    <img class="w-full h-full rounded-full"
-                                        src="/uploads/hostel/<%=member.photo %>"
-                                        alt="" />
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-gray-900 whitespace-no-wrap">
-                                        <%= member.Mname %>
-                                    </p>
-                                </div>
-                            </div>
-                        </td>
-                        
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">
-                                
-                                    <%= member.position %>
-                                
-                            </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">
-                                
-                                    <%= member.email %>
-                                
-                            </p>
-                        </td>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Name
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Position
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Email
+                        </th>
 
-                        
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">
-                                
-                                    <%= member.contact1 %>
-                                
-                            </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">
-                                
-                                    <%= member.contact2 %>
-                                
-                            </p>
-                        </td>
-                            
-
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a class="hover:text-blue-500" href="/hab/admin/hostels/<%=id1%>/<%=member.id%>/updateMember">Edit</a>
-                        </td>
-
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <form class="mx-2" action="/hab/admin/hostels/<%=id1%>/<%=member.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form>
-                        </td>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Contact Line 1
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Contact Line 2
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Edit
+                        </th>
+                        <th class="px-5 py-3 border-b-2 text-left text-sm font-semibold uppercase tracking-wider">
+                            Delete
+                        </th>
                     </tr>
-                <% }) %>
+                </thead>
+                <tbody>
+
+                    <% members.forEach((member, i)=>{ %>
+                        <tr>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 w-10 h-10">
+                                        <img class="w-full h-full rounded-full"
+                                            src="/hab/uploads/hostel/<%=member.photo %>" alt="" />
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-gray-900 whitespace-no-wrap">
+                                            <%= member.Mname %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">
+
+                                    <%= member.position %>
+
+                                </p>
+                            </td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">
+
+                                    <%= member.email %>
+
+                                </p>
+                            </td>
 
 
-            </tbody>
-        </table>
-    </div>
-</div>
-<% if(members.length!=0){ %>
-    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" onclick="document.getElementById('id01').style.display='block'">Delete All Members</button>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">
 
-    <div id="id01" class="modal">
-      
-      <form action="/hab/admin/hostels/<%=id1%>/delete/allMembers?_method=DELETE" method="POST" class="modal-content">
-        <div class="container">
-          <h1>Delete All Members</h1>
-          <p>Are you sure you want to delete all the hostel members?</p>
-    
-          <div class="clearfix">
-            <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" onclick="document.getElementById('id01').style.display='none'" type="button">Cancel</button>
-           <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit" >Delete</button>
-          </div>
+                                    <%= member.contact1 %>
+
+                                </p>
+                            </td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">
+
+                                    <%= member.contact2 %>
+
+                                </p>
+                            </td>
+
+
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <a class="hover:text-blue-500"
+                                    href="/hab/admin/hostels/<%=id1%>/<%=member.id%>/updateMember">Edit</a>
+                            </td>
+
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <form class="mx-2" action="/hab/admin/hostels/<%=id1%>/<%=member.id%>?_method=DELETE"
+                                    method="POST"><button class="hover:text-red-500">Delete</button></form>
+                            </td>
+                        </tr>
+                        <% }) %>
+
+
+                </tbody>
+            </table>
         </div>
-    </form>
     </div>
-<% } %>
+    <% if(members.length!=0){ %>
+        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+            onclick="document.getElementById('id01').style.display='block'">Delete All Members</button>
+
+        <div id="id01" class="modal">
+
+            <form action="/hab/admin/hostels/<%=id1%>/delete/allMembers?_method=DELETE" method="POST"
+                class="modal-content">
+                <div class="container">
+                    <h1>Delete All Members</h1>
+                    <p>Are you sure you want to delete all the hostel members?</p>
+
+                    <div class="clearfix">
+                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                            onclick="document.getElementById('id01').style.display='none'" type="button">Cancel</button>
+                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                            type="submit">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <% } %>
 
 
-<%- include("../../partials/footer.ejs") %> 
+            <%- include("../../partials/footer.ejs") %>
