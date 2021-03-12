@@ -43,7 +43,7 @@ const ordinanceRoutes = require("./routes/ordinance.routes");
 const aboutRoutes = require("./routes/about.routes");
 
 app.use(express.static(__dirname + "/public"));
-app.use("/uploads", express.static(__dirname + "/uploads"));
+app.use("/hab/uploads", express.static(__dirname + "/uploads"));
 app.use(methodOverride("_method"));
 app.use(mongoSanitize());
 app.use(
