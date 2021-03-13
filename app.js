@@ -8,8 +8,8 @@ const mongoSanitize = require("express-mongo-sanitize");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 const helmet = require("helmet");
-//const url = "mongodb://localhost/HAB_DB";
-const url = process.env.MONGO_URI;
+const url = "mongodb://localhost/HAB_DB";
+//const url = process.env.MONGO_URI;
 const app = express();
 const PORT = process.env.PORT || 8080;
 
