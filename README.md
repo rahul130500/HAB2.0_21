@@ -1,3 +1,3 @@
 # SWC_HAB_Website
 
-Link to website: [a link](https://www.iitg.ac.in/hab/)
+Link to website: [https://www.iitg.ac.in/hab/](https://www.iitg.ac.in/hab/)
