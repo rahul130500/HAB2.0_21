@@ -19,13 +19,23 @@ exports.addAnnouncementForm = (req, res) => {
 
 exports.postAnnouncement = async (req, res) => {
   try {
-    const { title, imp } = req.body;
+    const { title, imp, link } = req.body;
     const important = imp ? true : false;
     console.log(important);
-    const newAnnouncement = new Announcement({
-      title,
-      important,
-    });
+    var newAnnouncement;
+    const path = req.file ? req.file.filename : link;
+    if (!path) {
+      newAnnouncement = new Announcement({
+        title,
+        important,
+      });
+    } else {
+      newAnnouncement = new Announcement({
+        title,
+        important,
+        link,
+      });
+    }
     await newAnnouncement.save();
     req.flash("success", "Successfully added new announcement!");
     return res.redirect("/hab/admin/announcement");

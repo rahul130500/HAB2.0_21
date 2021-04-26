@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 
 const OrdinanceSchema = new mongoose.Schema({
-  path: {
-    type: String,
-    required: true,
-    default: "NO LINK",
-  },
+  title: { type: String, required: true },
+  description: { type: String },
+  path: { type: String, required: true },
+  category: { type: String, required: true },
   creation: { type: Date, default: Date.now },
 });
 

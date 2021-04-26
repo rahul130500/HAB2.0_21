@@ -15,6 +15,7 @@
                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Date</th>
                     <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Title</th>
                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Important</th>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Link</td>
                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Edit</td>
                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Delete</td>
                 </tr>
@@ -28,6 +29,9 @@
                             <td class="text-left py-3 px-4"><%=  announcement.creation.getFullYear()+'/'+(announcement.creation.getMonth()+1)+'/'+announcement.creation.getDate() %></td>
                             <td class="w-1/3 text-left py-3 px-4"><%= announcement.title %></td>
                             <td class="text-left py-3 px-4"><%= announcement.important ? "YES" : "NO" %></td>
+                            <td class="text-left py-3 px-4">
+                            <a class="hover:text-blue-500" href="<%= announcement.link %>" target="_blank">View</a>
+                            </td>
                             <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/hab/admin/announcement/<%=announcement.id%>">Edit</a></td>
                             <td class="text-left py-3 px-4"><form class="mx-2" action="/hab/admin/announcement/<%=announcement.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form></td>
                            
