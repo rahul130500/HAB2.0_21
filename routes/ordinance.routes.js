@@ -4,53 +4,53 @@ const { isAdmin, isLoggedIn } = require("../middleware");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads/Ordinance_pdf");
+    cb(null, "./uploads/ordinance_pdf");
   },
   filename: (req, file, cb) => {
     const fileName = file.originalname.replace(/\s/g, "");
     cb(null, Date.now().toString() + fileName);
   },
 });
-const OrdinanceController = require("../controllers/Ordinance.controller");
+const ordinanceController = require("../controllers/ordinance.controller");
 const upload = multer({ storage: storage });
 
-router.get("/", isLoggedIn, isAdmin, OrdinanceController.getOrdinances);
+router.get("/", isLoggedIn, isAdmin, ordinanceController.getOrdinances);
 
-router.get("/add", isLoggedIn, isAdmin, OrdinanceController.addOrdinanceForm);
+router.get("/add", isLoggedIn, isAdmin, ordinanceController.addOrdinanceForm);
 
 router.post(
   "/",
   isLoggedIn,
   isAdmin,
-  upload.single("Ordinance"),
-  OrdinanceController.postOrdinance
+  upload.single("ordinance"),
+  ordinanceController.postOrdinance
 );
 
 router.post(
   "/find",
   isLoggedIn,
   isAdmin,
-  upload.single("Ordinance"),
-  OrdinanceController.findOrdinance
+  upload.single("ordinance"),
+  ordinanceController.findOrdinance
 );
 
-router.get("/:Ordinance_id", OrdinanceController.getEditForm);
+router.get("/:ordinance_id", ordinanceController.getEditForm);
 
-router.get("/pdf/:Ordinance_id", OrdinanceController.getOneOrdinance);
+router.get("/pdf/:ordinance_id", ordinanceController.getOneOrdinance);
 
 router.put(
-  "/:Ordinance_id",
+  "/:ordinance_id",
   isLoggedIn,
   isAdmin,
-  upload.single("Ordinance"),
-  OrdinanceController.editOrdinance
+  upload.single("ordinance"),
+  ordinanceController.editOrdinance
 );
 
 router.delete(
-  "/:Ordinance_id",
+  "/:ordinance_id",
   isLoggedIn,
   isAdmin,
-  OrdinanceController.deleteOrdinance
+  ordinanceController.deleteOrdinance
 );
 
 module.exports = router;

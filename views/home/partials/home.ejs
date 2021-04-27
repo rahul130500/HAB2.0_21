@@ -19,6 +19,8 @@
 
             <div class="old_announce max-h-60 overflow-hidden">
                 <% announcements.forEach((announcement, i)=>{ %>
+                    <% if(announcement.link){ %>
+                    <a href="<%=announcement.link%>" >
                     <p class="py-2 text-sm font-normal" style="border-bottom: 1px solid #DBDBDB;">
                         <% if(announcement.important){ %>
                             <span class="text-xs text-white rounded px-1 bg-gray-500"
@@ -28,6 +30,18 @@
                                 <%}%>
                                     <%=announcement.title%>
                     </p>
+                    </a>
+                    <% } else{ %>
+                        <p class="py-2 text-sm font-normal" style="border-bottom: 1px solid #DBDBDB;">
+                            <% if(announcement.important){ %>
+                                <span class="text-xs text-white rounded px-1 bg-gray-500"
+                                    style="background-color:#E54F6D;">Important</span>
+                                <% } if(i<3){%>
+                                    <span class="text-xs text-white rounded px-1 bg-black">New</span>
+                                    <%}%>
+                                        <%=announcement.title%>
+                        </p>
+                    <% } %>
                     <% }) %>
             </div>
 
