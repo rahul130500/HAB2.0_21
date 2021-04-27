@@ -1,7 +1,8 @@
 <%- include("../partials/header.ejs") %>
     <h1 class="text-3xl text-black pb-6">Ordinances</h1>
     <div class="mt-6">
-        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin/ordinance/add">Add
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+            href="/hab/admin/ordinance/add">Add
             Ordinances</a>
 
         <form style="float: right;" action="/hab/admin/ordinance/find/" method="POST" enctype="multipart/form-data">
@@ -49,7 +50,7 @@
                                     <%= ordinance.title %>
                                 </td>
                                 <td class="w-1/3 text-left py-3 px-4">
-                                    <%= ordinance.description.substring(0, 80) + "..." %>
+                                    <%= ordinance.description && ordinance.description.substring(0, 80) + "..." %>
                                 </td>
                                 <td class="text-left py-3 px-4">
                                     <%= ordinance.category %>
@@ -82,4 +83,3 @@
 
 
     <%- include("../partials/footer.ejs") %>
-

@@ -1,57 +1,57 @@
-<section id="ordinances">
-  <%- include("./category.ejs") %>
-      <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
+<section id="ordinance">
+    <%- include("./category.ejs") %>
+        <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
 
-          <section class="text-gray-600 body-font">
-              <div class="container px-5 py-8 md:py-16 mx-auto flex flex-wrap">
-                  <div class="flex flex-wrap -m-4">
+            <section class="text-gray-600 body-font">
+                <div class="container px-5 py-8 md:py-16 mx-auto flex flex-wrap">
+                    <div class="flex flex-wrap -m-4">
 
-                      <% if(ordinances.length==0){%>
-                          <h1>No Ordinances To Show</h1>
-                          <% }else{ ordinances.forEach(ordinance=>{ %>
-                              <div class="p-4 lg:w-1/2 md:w-full to-search-in">
-                                  <div class="ordinance_card flex border-2 rounded-lg border-gray-200 bg-white border-opacity-50 p-8 sm:flex-row flex-col"
-                                      style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
+                        <% if(ordinances.length==0){%>
+                            <h1>No Ordinances To Show</h1>
+                            <% }else{ ordinances.forEach(ordinance=>{ %>
+                                <div class="p-4 lg:w-1/2 md:w-full to-search-in">
+                                    <div class="notice_card flex border-2 rounded-lg border-gray-200 bg-white border-opacity-50 p-8 sm:flex-row flex-col"
+                                        style="box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);">
 
-                                      <div class="flex-grow">
-                                          <div class="flex justify-between">
-                                              <h2
-                                                  class="tracking-widest text-xs title-font font-medium text-blue-600 mb-1 ">
-                                                  <%= ordinance.category.toUpperCase() %>
-                                              </h2>
+                                        <div class="flex-grow">
+                                            <div class="flex justify-between">
+                                                <h2
+                                                    class="tracking-widest text-xs title-font font-medium text-blue-600 mb-1 ">
+                                                    <%= ordinance.category && ordinance.category.toUpperCase() %>
+                                                </h2>
 
-                                              <h2
-                                                  class="tracking-widest text-xs title-font font-medium text-blue-500 mb-1">
-                                                  <%= ordinance.creation.getDate()+'/'+(ordinance.creation.getMonth()+1)+'/'+ordinance.creation.getFullYear()
-                                                      %>
-                                              </h2>
+                                                <h2
+                                                    class="tracking-widest text-xs title-font font-medium text-blue-500 mb-1">
+                                                    <%= ordinance.creation.getDate()+'/'+(ordinance.creation.getMonth()+1)+'/'+ordinance.creation.getFullYear()
+                                                        %>
+                                                </h2>
 
-                                          </div>
+                                            </div>
 
-                                          <h2 class="text-gray-900 text-lg title-font mb-3 font-bold">
-                                              <%= ordinance.title %>
-                                          </h2>
-                                          <p class="leading-relaxed text-base">
-                                              <%= ordinance.description %>
-                                          </p><br>
+                                            <h2 class="text-gray-900 text-lg title-font mb-3 font-bold">
+                                                <%= ordinance.title %>
+                                            </h2>
+                                            <p class="leading-relaxed text-base">
+                                                <%= ordinance.description %>
+                                            </p><br>
 
-                                          <button
-                                              class="inline-flex text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded"
-                                              style=" color:white">
-                                              <% if(ordinance.path.indexOf("https://")==-1) { %>
-                                                  <a href="/hab/ordinances/<%=ordinance.id%>" target="_blank">View Link</a>
-                                                  <% } else { %>
-                                                      <a href="<%=ordinance.path%>" target="_blank">View PDF</a>
-                                                      <% } %>
+                                            <button
+                                                class="inline-flex text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded"
+                                                style=" color:white">
+                                                <% if(ordinance.path.indexOf("https://")==-1) { %>
+                                                    <a href="/hab/ordinances/<%=ordinance.id%>" target="_blank">View
+                                                        Link</a>
+                                                    <% } else { %>
+                                                        <a href="<%=ordinance.path%>" target="_blank">View PDF</a>
+                                                        <% } %>
 
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                              <% })} %>
-                  </div>
-              </div>
-          </section>
-      </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% })} %>
+                    </div>
+                </div>
+            </section>
+        </div>
 </section>
-

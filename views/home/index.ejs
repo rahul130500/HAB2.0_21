@@ -140,7 +140,8 @@
         @media only screen and (max-width: 600px) {
 
             .notice_card,
-            .form_card {
+            .form_card,
+            .ordinance_card {
                 min-width: 20rem;
             }
 
@@ -345,49 +346,6 @@
                                                     });
                                                 }
                                             </script>
-                                            <!-- <script>
-                                                const full_btn_txt = document.getElementById('fullscreen_btn');
-                                                const elem = document.getElementById("top");
-                                                function toggleFullscreen() {
-                                                    if (full_btn_txt.innerText === "Large view") {
-                                                        full_btn_txt.innerText = "Small view";
-                                                    } else if (full_btn_txt.innerText === "Small view") {
-                                                        full_btn_txt.innerText = "Large view";
-                                                    }
-
-                                                    if ((document.fullScreenElement && document.fullScreenElement !== null) ||
-                                                        (!document.mozFullScreen && !document.webkitIsFullScreen)) {
-                                                        if (elem.requestFullscreen) {
-                                                            elem.requestFullscreen();
-                                                        } else if (elem.webkitRequestFullscreen) { /* Safari */
-                                                            elem.webkitRequestFullscreen();
-                                                        } else if (elem.msRequestFullscreen) { /* IE11 */
-                                                            elem.msRequestFullscreen();
-                                                        }
-                                                    } else {
-                                                        if (document.cancelFullScreen) {
-                                                            document.cancelFullScreen();
-                                                        } else if (document.mozCancelFullScreen) {
-                                                            document.mozCancelFullScreen();
-                                                        } else if (document.webkitCancelFullScreen) {
-                                                            document.webkitCancelFullScreen();
-                                                        }
-                                                    }
-                                                }
-                                            </script> -->
-
-                                            <!-- <script>
-                                                var header = document.getElementById("cat");
-                                                var btns = header.getElementsByClassName("cta");
-                                                console.log(btns.length);
-                                                for (var i = 0; i < btns.length; i++) {
-                                                    btns[i].addEventListener("click", function () {
-                                                        var current = document.getElementsByClassName("act");
-                                                        current[0].className = current[0].className.replace(" act", " ");
-                                                        this.className += " act";
-                                                    });
-                                                }
-                                            </script> -->
 </body>
 
 </html>

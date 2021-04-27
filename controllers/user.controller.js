@@ -16,8 +16,8 @@ exports.getHome = async (req, res) => {
   let links = await Link.find({}).sort("priority_number");
   let forms = await Form.find({}).sort("-creation");
   let uploads = await AdminUpload.find({});
-  let ordinance = await Ordinance.find({});
-  let aboutInfos= await About.find({}).sort("priority_number");
+  let ordinances = await Ordinance.find({});
+  let aboutInfos = await About.find({}).sort("priority_number");
   let uploadImages = [];
   uploads.forEach((upload) => {
     uploadImages.push(`uploads/adminUploads/${upload.image}`);
@@ -25,7 +25,7 @@ exports.getHome = async (req, res) => {
 
   let functionaries = await Functionary.find({}).sort("-priority");
   let hostels = await Hostel.find({});
-  
+
   return res.render("home/index", {
     notices,
     announcements,
@@ -37,7 +37,7 @@ exports.getHome = async (req, res) => {
     aboutInfos,
     categories,
     links,
-    ordinance,
+    ordinances,
   });
 };
 
