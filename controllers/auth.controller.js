@@ -1,10 +1,13 @@
 const User = require("../models/user");
 const passport = require("passport");
+
 exports.getLoginPage = (req, res) => {
+  if (req.isAuthenticated()) return res.redirect("/hab/admin");
   return res.render("login");
 };
 
 exports.getSignupPage = (req, res) => {
+  if (req.isAuthenticated()) return res.redirect("/hab/admin");
   return res.render("signup");
 };
 
