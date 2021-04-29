@@ -209,11 +209,11 @@
                                             <script src="/hab/js/animation/demo1.js"></script>
                                             <script src="/hab//js/all.min.js"></script>
                                             <script>
-                                                const card = document.querySelector(".home-card");
-                                                const card_title = document.querySelector(".home-card h2");
-                                                const card_para = document.querySelector(".home-card p");
-                                                let idx = parseInt(card.getAttribute("data-index"));
-                                                const uploads = JSON.parse(card.getAttribute("data-uploads"));
+                                                // const card = document.querySelector(".home-card");
+                                                // const card_title = document.querySelector(".home-card h2");
+                                                // const card_para = document.querySelector(".home-card p");
+                                                // let idx = parseInt(card.getAttribute("data-index"));
+                                                // const uploads = JSON.parse(card.getAttribute("data-uploads"));
                                                 const buttonRight = document.getElementById('slideRight');
                                                 const buttonLeft = document.getElementById('slideLeft');
                                                 let scrollAmount = 0;
@@ -237,13 +237,13 @@
 
                                                 setInterval(function () {
                                                     document.getElementById("content").click();
-                                                    if (idx == uploads.length - 1) {
-                                                        idx = 0;
-                                                    } else {
-                                                        idx += 1;
-                                                    }
-                                                    card_title.innerText = uploads[idx].image_name + ", IIT Guwahati";
-                                                    card_para.innerText = uploads[idx].description;
+                                                    // if (idx == uploads.length - 1) {
+                                                    //     idx = 0;
+                                                    // } else {
+                                                    //     idx += 1;
+                                                    // }
+                                                    // card_title.innerText = uploads[idx].image_name + ", IIT Guwahati";
+                                                    // card_para.innerText = uploads[idx].description;
                                                 }, 6000);
                                             </script>
                                             <script>
