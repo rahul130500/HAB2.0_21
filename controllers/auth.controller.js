@@ -3,7 +3,8 @@ const passport = require("passport");
 
 exports.getLoginPage = (req, res) => {
   if (req.isAuthenticated()) return res.redirect("/hab/admin");
-  return res.render("login");
+  // return res.render("login");
+  return res.redirect("/auth/azureadoauth2");
 };
 
 exports.getSignupPage = (req, res) => {
@@ -38,7 +39,7 @@ exports.postSignup = async (req, res) => {
       req.flash("error", "Signup Failed!");
       return res.redirect("/hab/admin/signup");
     }
-    passport.authenticate("local")(req, res, () => {
+    passport.authenticate("azure_ad_oauth2")(req, res, () => {
       req.flash("success", "Welcome to HAB Portal!");
       return res.redirect("/hab/admin");
     });
@@ -50,7 +51,7 @@ exports.postSignup = async (req, res) => {
 exports.logout = (req, res) => {
   req.logout();
   req.flash("success", "Logged out successfully!");
-  return res.redirect("/hab/admin/login");
+  return res.redirect("/hab/");
 };
 
 exports.getUsers = async (req, res) => {

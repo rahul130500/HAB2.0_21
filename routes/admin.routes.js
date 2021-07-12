@@ -17,8 +17,8 @@ router.post("/signup", authController.postSignup);
 
 router.post(
   "/login",
-  passport.authenticate("local", {
-    failureRedirect: "/hab/admin/login",
+  passport.authenticate("azure_ad_oauth2", {
+    failureRedirect: "/auth/azureadoauth2",
     failureFlash: true,
   }),
   (req, res) => {

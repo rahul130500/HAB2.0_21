@@ -1,33 +1,35 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+
 const methodOverride = require("method-override");
 const passport = require("passport");
 const session = require("express-session");
 const mongoSanitize = require("express-mongo-sanitize");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
+const cookieSession = require("cookie-session");
 const helmet = require("helmet");
 const url = "mongodb://localhost/HAB_DB";
 //const url = process.env.MONGO_URI;
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-require("./config/passport")(passport);
+const passportSetup=require("./config/passport");
 
-mongoose.connect(
-  url,
-  {
+require("dotenv").config();
+const { MONGO_URL } = process.env;
+
+//const NoticeAdd = require("./routes/noticeadd.routes");
+mongoose
+  .connect(MONGO_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-  },
-  (err) => {
-    if (err) console.log(err.message);
-    else console.log("Successfully connected to DB!");
-  }
-);
+  })
+  .then(() => console.log("Successful DB connection"))
+  .catch((err) => console.error("DB connection fail"));
 
 const userRoutes = require("./routes/user.routes");
 const adminRoutes = require("./routes/admin.routes");
@@ -39,7 +41,7 @@ const hostelRoutes = require("./routes/hostel.routes");
 const adminUploadRoutes = require("./routes/adminUploads.routes");
 const linkRoutes = require("./routes/link.routes");
 const ordinanceRoutes = require("./routes/ordinance.routes");
-
+const authRoutes = require("./routes/auth-routes");
 const aboutRoutes = require("./routes/about.routes");
 
 app.use("/hab/", express.static(__dirname + "/public"));
@@ -85,7 +87,7 @@ app.use(
 app.set("view engine", "ejs");
 
 //app.get("/", (req, res) => res.redirect("/hab"));
-
+app.use("/auth", authRoutes);
 app.use("/hab", userRoutes);
 app.use("/hab/admin", adminRoutes);
 app.use("/hab/admin/notice", noticeRoutes);
