@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <title>Admin Panel</title>
+    <meta name="author" content="David Grzyb">
+    <meta name="description" content="">
+    <link rel="icon" href="/public/favicon.ico" type="image/icon type">
+
+    <!-- Tailwind -->
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+        .font-family-karla {
+            font-family: karla;
+        }
+        .bg-sidebar {
+            background: #3d68ff;
+        }
+        .cta-btn {
+            color: #3d68ff;
+        }
+        .upgrade-btn {
+            background: #1947ee;
+        }
+        .upgrade-btn:hover {
+            background: #0038fd;
+        }
+        .active-nav-link {
+            background: #1947ee;
+        }
+        .nav-item:hover {
+            background: #1947ee;
+        }
+
+        .account-link:hover {
+            background: #3d68ff;
+        }
+    </style>
+   
+</head>
+
+<body class="bg-gray-100 font-family-karla flex">
+
+    <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
+        <div class="p-6">
+            <a href="" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
+        </div>
+        <nav class="text-white text-base font-semibold pt-3">
+            <a href="/admin/notice" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-users-cog mr-3"></i>
+                Notices
+            </a>
+            <a href="/admin/mess" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-users-cog mr-3"></i>
+                Mess Information
+            </a>
+            <a href="/admin/hmc" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-users-cog mr-3"></i>
+                HMC Details
+            </a>
+            <a href="/admin/announcements"
+                class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-users-cog mr-3"></i>
+                Hostel Announcement
+            </a>
+            <a href="/admin/personalweb"
+                class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-users-cog mr-3"></i>
+                Hostel Website
+            </a>
+        </nav>
+    </aside>
+
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
+        <!-- Desktop Header -->
+        <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
+            <div class="w-1/2"></div>
+            <div class="relative w-1/2 flex justify-end">
+                    <button class="block px-4 py-2">Hi, User
+                    </button>
+
+            </div>
+        </header>
+
+        <!-- Mobile Header & Nav -->
+        <header x-data="{ isOpen: false }" class="w-full bg-sidebar py-5 px-6 sm:hidden">
+            <div class="flex items-center justify-between">
+                <a href="" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Course Directory Admin</a>
+                <button @click="{isOpen = !isOpen}" class="text-white text-3xl focus:outline-none">
+                    <svg viewBox="0 0 100 80" width="40" height="40" fill="white">
+                        <rect width="100" height="20"></rect>
+                        <rect y="30" width="100" height="20"></rect>
+                        <rect y="60" width="100" height="20"></rect>
+                      </svg>
+                      <!-- <svg x-show="isOpen" class="svg-inline--fa fa-times fa-w-11" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" data-fa-i2svg=""><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg> -->
+                </button>
+            </div>
+            <!-- Dropdown Nav -->
+            <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
+                <a href="/admin/notice"
+                class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <i class="fas fa-users-cog mr-3"></i>
+                Notices
+            </a>
+            <a href="/admin/mess"
+                class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <i class="fas fa-users-cog mr-3"></i>
+                Mess Information
+            </a>
+            <a href="/admin/hmc"
+                class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <i class="fas fa-users-cog mr-3"></i>
+                HMC Details
+            </a>
+            <a href="/admin/personalweb"
+            class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+            <i class="fas fa-users-cog mr-3"></i>
+            Hostel Website
+        </a>
+    </nav>
+    
+</header>
+<div class="w-full h-screen overflow-x-hidden border-t flex flex-col">

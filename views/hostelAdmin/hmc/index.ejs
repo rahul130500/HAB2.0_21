@@ -1,0 +1,51 @@
+<%- include("../partials/header.ejs") %>
+    <h1 class="text-3xl text-black pb-6">HMC</h1>
+    <div class="mt-6">
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/hmc/add">Add
+            HMC Details</a>
+
+        
+
+    </div>
+    <div class="w-auto mt-6 overflow-auto">
+        <div class="bg-white">
+            
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Index</th>
+                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Post</th>
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Contact Number</th>
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Email ID</th>
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Room Number</th>
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Priority Number</th>
+                        <!-- <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">View</th> -->
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Edit</th>
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% hmcdetails.forEach((row,index) => { %>
+                     <tr>
+                        <td class="text-left py-3 px-4"><%= index+1 %></td>
+                        <td class="text-left py-3 px-4"><%= row.name %></td>
+                        <td class="text-left py-3 px-4"><%= row.post %></td>
+                        <td class="text-left py-3 px-4"><%= row.contno %></td>
+                        <td class="text-left py-3 px-4"><%= row.email %></td>
+                        <td class="text-left py-3 px-4"><%= row.roomno %></td>
+                        <td class="text-left py-3 px-4"><%= row.priono %></td>
+                        
+                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
+                            href="/admin/hmc/<%= row._id %> ">Edit</a></td>
+                    
+                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
+                                href="hmc/delete/<%= row._id %> ">Delete</a></td>
+
+                     </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<%- include("../partials/footer.ejs") %>
