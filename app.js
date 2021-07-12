@@ -43,6 +43,7 @@ const linkRoutes = require("./routes/link.routes");
 const ordinanceRoutes = require("./routes/ordinance.routes");
 const authRoutes = require("./routes/auth-routes");
 const aboutRoutes = require("./routes/about.routes");
+const hmcRoutes = require("./routes/hostelRoutes/hmc.routes");
 
 app.use("/hab/", express.static(__dirname + "/public"));
 app.use("/hab/uploads", express.static(__dirname + "/uploads"));
@@ -99,7 +100,8 @@ app.use("/hab/admin/form", formRoutes);
 app.use("/hab/admin/links", linkRoutes);
 app.use("/hab/admin/ordinance", ordinanceRoutes);
 app.use("/hab/admin/about", aboutRoutes);
+app.use("/hab/admin/hostel/:hostelName/hmc",hmcRoutes);
 
-app.listen(PORT, () => {
+app.listen(3000, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
