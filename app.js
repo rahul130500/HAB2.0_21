@@ -21,15 +21,16 @@ require("dotenv").config();
 const { MONGO_URL } = process.env;
 
 //const NoticeAdd = require("./routes/noticeadd.routes");
-mongoose
-  .connect("mongodb://localhost:27017/hab2", {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => console.log("Successful DB connection"))
-  .catch((err) => console.error("DB connection fail"));
+// mongoose
+//   .connect("mongodb://localhost:27017/hab2", {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useFindAndModify: false,
+//   })
+//   .then(() => console.log("Successful DB connection"))
+//   .catch((err) => console.error("DB connection fail"));
+mongoose.connect("mongodb+srv://Harsh:harsh1234@cluster0.bkld1.mongodb.net/habhmc?retryWrites=true&w=majority", {useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false});
 
 const userRoutes = require("./routes/user.routes");
 const adminRoutes = require("./routes/admin.routes");
