@@ -10,23 +10,23 @@ module.exports = (passport) => {
 };
 */
 
-const passport = require('passport');
-const AzureStrategy = require('passport-azure-ad-oauth2').Strategy;
+const passport = require("passport");
+const AzureStrategy = require("passport-azure-ad-oauth2").Strategy;
 
-const User = require('../models/user');
+const User = require("../models/user");
 const { isLoggedIn, isAdmin } = require("../middleware/adminauth");
 const jwt = require("jsonwebtoken");
-require('dotenv').config();
-const { OUTLOOK_CLIENT_ID, OUTLOOK_CLIENT_SECRET} = process.env;
+require("dotenv").config();
+const { OUTLOOK_CLIENT_ID, OUTLOOK_CLIENT_SECRET } = process.env;
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+  done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-    User.findById(id).then((user) => {
-        done(null, user);
-    });
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
 });
 
 passport.use(
@@ -35,7 +35,6 @@ passport.use(
       clientID: OUTLOOK_CLIENT_ID,
       clientSecret: OUTLOOK_CLIENT_SECRET,
       callbackURL: `/auth/azureadoauth2/callback`,
-      
     },
     async (accessToken, refresh_token, params, profile, done) => {
       try {
@@ -44,12 +43,13 @@ passport.use(
 
         const user = await User.findOne({ email: waadProfile.upn });
         if (user) return done(null, user);
-
         const newUser = new User({
-          outlookId: waadProfile.oid,
-          username: waadProfile.name,
+          name: waadProfile.name,
           email: waadProfile.upn,
-          
+          accessToken: accessToken,
+          isAdmin: true,
+          isHostelAdmin: true,
+          hostel: "Umiam",
           // isverified: true,
         });
         if (refresh_token) newUser.refreshToken = refresh_token;
@@ -58,7 +58,6 @@ passport.use(
         if (users.length == 0) {
           newUser.isAdmin = true;
         }
-        
 
         await newUser.save();
         return done(null, newUser);

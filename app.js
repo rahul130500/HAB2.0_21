@@ -15,14 +15,14 @@ const url = "mongodb://localhost/HAB_DB";
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-const passportSetup=require("./config/passport");
+const passportSetup = require("./config/passport");
 
 require("dotenv").config();
 const { MONGO_URL } = process.env;
 
 //const NoticeAdd = require("./routes/noticeadd.routes");
 mongoose
-  .connect(MONGO_URL, {
+  .connect("mongodb://localhost:27017/hab2", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -100,7 +100,7 @@ app.use("/hab/admin/form", formRoutes);
 app.use("/hab/admin/links", linkRoutes);
 app.use("/hab/admin/ordinance", ordinanceRoutes);
 app.use("/hab/admin/about", aboutRoutes);
-app.use("/hab/admin/hostel/:hostelName/hmc",hmcRoutes);
+app.use("/hab/admin/hostel/:hostelName/hmc", hmcRoutes);
 
 app.listen(3000, () => {
   console.log(`Server is running on port ${PORT}.`);
