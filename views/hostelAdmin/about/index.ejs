@@ -1,0 +1,14 @@
+<%- include("../partials/header.ejs") %>
+<h1 class="text-3xl text-black pb-6 pl-3">About</h1>
+
+<div class="mt-6 ml-3">
+    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin/hostel/:hostelName/about/add">Add/Edit About Details</a>
+
+</div>
+
+<h1 class="text-2xl text-black pb-6 pl-3 pt-5">Preview</h1>
+        <p class="pl-3"><%= aboutdetails[0].aboutdetail %></p>
+    
+      
+
+<%- include("../partials/footer.ejs") %>
