@@ -20,23 +20,15 @@ const passportSetup = require("./config/passport");
 require("dotenv").config();
 const { MONGO_URL } = process.env;
 
-//const NoticeAdd = require("./routes/noticeadd.routes");
 mongoose
-  .connect(
-    "mongodb+srv://Harsh:harsh1234@cluster0.bkld1.mongodb.net/habhmc?retryWrites=true&w=majority",
-    {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    }
-  )
+  .connect("mongodb://localhost:27017/hab2", {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
   .then(() => console.log("Successful DB connection"))
   .catch((err) => console.error("DB connection fail"));
-// mongoose.connect(
-//   "mongodb+srv://Harsh:harsh1234@cluster0.bkld1.mongodb.net/habhmc?retryWrites=true&w=majority",
-//   { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
-// );
 
 const userRoutes = require("./routes/user.routes");
 const adminRoutes = require("./routes/admin.routes");
@@ -50,9 +42,10 @@ const linkRoutes = require("./routes/link.routes");
 const ordinanceRoutes = require("./routes/ordinance.routes");
 const authRoutes = require("./routes/auth-routes");
 const aboutRoutes = require("./routes/about.routes");
-const hmcRoutes = require("./routes/hostelRoutes/hmc.routes");
-const personalwebRoutes = require("./routes/hostelRoutes/personalweb-routes");
-const aboutRoute = require("./routes/hostelRoutes/about.routes");
+const hostelProfileRoutes = require("./routes/hostelprofile.routes");
+// const hmcRoutes = require("./routes/hostelRoutes/hmc.routes");
+// const personalwebRoutes = require("./routes/hostelRoutes/personalweb-routes");
+// const aboutRoute = require("./routes/hostelRoutes/about.routes");
 
 app.use("/hab/", express.static(__dirname + "/public"));
 app.use("/hab/uploads", express.static(__dirname + "/uploads"));
@@ -109,9 +102,10 @@ app.use("/hab/admin/form", formRoutes);
 app.use("/hab/admin/links", linkRoutes);
 app.use("/hab/admin/ordinance", ordinanceRoutes);
 app.use("/hab/admin/about", aboutRoutes);
-app.use("/hab/admin/hostel/:hostelName/hmc", hmcRoutes);
-app.use("/hab/admin/hostel/:hostelName/personalweb", personalwebRoutes);
-app.use("/hab/admin/hostel/:hostelName/about", aboutRoute);
+app.use("/hab/admin/hostel/:hostelName", hostelProfileRoutes);
+// app.use("/hab/admin/hostel/:hostelName/hmc", hmcRoutes);
+// app.use("/hab/admin/hostel/:hostelName/personalweb", personalwebRoutes);
+// app.use("/hab/admin/hostel/:hostelName/about", aboutRoute);
 
 app.listen(3000, () => {
   console.log(`Server is running on port ${PORT}.`);

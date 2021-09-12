@@ -9,7 +9,7 @@ const detailsSchema = new mongoose.Schema({
   roomno: { type: String, required: true },
   priono: { type: Number, required: true },
   creation: { type: Date, default: Date.now },
-  hostel: { type: String },
+  hostel: { type: String, required: true },
 });
 
 module.exports = mongoose.model("hmcDetail", detailsSchema);
