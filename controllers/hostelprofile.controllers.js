@@ -19,7 +19,7 @@ exports.getAboutDetails = async (req, res) => {
 exports.addAboutDetails = async (req, res) => {
   try {
     await About.create(req.body);
-    return res.redirect("/hab/admin/hostel/:hostelName/about");
+    return res.redirect(`/hab/admin/hostel/${req.params.hostelName}/about`);
   } catch (err) {
     console.error(err.message);
     return res.json({
@@ -62,7 +62,7 @@ exports.postDetails = async (req, res) => {
       if (err) {
         res.json({ message: err.message, type: "danger" });
       } else {
-        res.redirect("/hab/admin/hostel/:hostelName/hmc");
+        res.redirect(`/hab/admin/hostel/${req.params.hostelName}/hmc`);
       }
     });
   } catch (error) {
@@ -120,7 +120,7 @@ exports.editDetails = async (req, res) => {
       if (err) {
         res.json({ message: err.message });
       } else {
-        res.redirect("/hab/admin/hostel/:hostelName/hmc");
+        res.redirect(`/hab/admin/hostel/${req.params.hostelName}/hmc`);
       }
     }
   );
@@ -139,7 +139,7 @@ exports.deleteDetails = async (req, res) => {
     if (err) {
       res.json({ message: err.message });
     } else {
-      res.redirect("/hab/admin/hostel/:hostelName/hmc");
+      res.redirect(`/hab/admin/hostel/${req.params.hostelName}/hmc`);
     }
   });
 };
@@ -171,4 +171,23 @@ exports.getEditWeb = async (req, res) => {
       }
     }
   });
+};
+
+exports.editWeb = async (req, res) => {
+  const id = req.params.id;
+
+  personalweb.findByIdAndUpdate(
+    id,
+    {
+      name: req.body.name,
+      link: req.body.link,
+    },
+    (err, result) => {
+      if (err) {
+        res.json({ message: err.message });
+      } else {
+        res.redirect(`/hab/admin/hostel/${req.params.hostelName}/personalweb`);
+      }
+    }
+  );
 };
