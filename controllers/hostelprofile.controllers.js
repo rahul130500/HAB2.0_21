@@ -172,3 +172,23 @@ exports.getEditWeb = async (req, res) => {
     }
   });
 };
+
+exports.addHMC = async (req, res) => {
+  const { name, post, image, contno, roomno, email, priono } = req.body;
+  const detail = new hmcDetail({
+    name,
+    post,
+    image,
+    contno,
+    roomno,
+    email,
+    priono,
+  });
+  detail.save((err) => {
+    if (err) {
+      res.json({ message: err.message, type: "danger" });
+    } else {
+      res.redirect("/hab/admin/hostel/:hostelName/hmc");
+    }
+  });
+};

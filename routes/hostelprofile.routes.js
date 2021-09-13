@@ -18,11 +18,15 @@ const upload = multer({
   storage: storage,
 }).single("image");
 
+// Express Router
 const router = express.Router();
+
+// Home page - Check if user is admin and is logged in
 router.get("/", isAdmin, isLoggedIn, (req, res) => {
   res.redirect("/hab/admin");
 });
 
+// Add about
 router.get("/about/add", isLoggedIn, isAdmin, (req, res) => {
   res.render("hostelAdmin/about/add");
 });
@@ -40,24 +44,7 @@ router.get("/about", isLoggedIn, isAdmin, hostelController.getAboutDetails);
 router.get("/hmc", hostelController.getDetails);
 
 //Add user to database
-router.post("/hmc/add", upload, (req, res) => {
-  const detail = new hmcDetail({
-    name: req.body.name,
-    post: req.body.post,
-    image: req.file.filename,
-    contno: req.body.contno,
-    roomno: req.body.roomno,
-    email: req.body.email,
-    priono: req.body.priono,
-  });
-  detail.save((err) => {
-    if (err) {
-      res.json({ message: err.message, type: "danger" });
-    } else {
-      res.redirect("/hab/admin/hostel/:hostelName/hmc");
-    }
-  });
-});
+router.post("/hmc/add", upload, hostelController.postDetails);
 
 router.get("/hmc/add", (req, res) => {
   res.render("hostelAdmin/hmc/add");
@@ -67,40 +54,7 @@ router.get("/hmc/add", (req, res) => {
 router.get("hmc/:id", hostelController.getEditDetails);
 
 //Editing the user
-router.post("hmc/:id", upload, (req, res) => {
-  const id = req.params.id;
-  let new_image = "";
-
-  if (req.file) {
-    new_image = req.file.filename;
-    try {
-      fs.unlinkSync("./uploads/details_img" + req.body.old_image);
-    } catch (err) {
-      console.log(err);
-    }
-  } else {
-    new_image = req.body.old_image;
-  }
-  hmcDetail.findByIdAndUpdate(
-    id,
-    {
-      name: req.body.name,
-      post: req.body.post,
-      image: new_image,
-      contno: req.body.contno,
-      roomno: req.body.roomno,
-      email: req.body.email,
-      priono: req.body.priono,
-    },
-    (err, result) => {
-      if (err) {
-        res.json({ message: err.message });
-      } else {
-        res.redirect("/hab/admin/hostel/:hostelName/hmc");
-      }
-    }
-  );
-});
+router.post("hmc/:id", upload, hostelController.editDetails);
 
 //Delete entry from database
 router.get("/hmc/delete/:id", hostelController.deleteDetails);
@@ -113,23 +67,6 @@ router.get("/personal", hostelController.getWeb);
 
 router.get("/personal/:id", hostelController.getEditWeb);
 
-router.post("/personal/:id", upload, (req, res) => {
-  const id = req.params.id;
-
-  personalweb.findByIdAndUpdate(
-    id,
-    {
-      name: req.body.name,
-      link: req.body.link,
-    },
-    (err, result) => {
-      if (err) {
-        res.json({ message: err.message });
-      } else {
-        res.redirect("/hab/admin/hostel/:hostelName/personalweb");
-      }
-    }
-  );
-});
+router.post("/personal/:id", upload, hostelController.editWeb);
 
 module.exports = router;
