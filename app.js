@@ -107,6 +107,6 @@ app.use("/hab/admin/hostel/:hostelName", hostelProfileRoutes);
 // app.use("/hab/admin/hostel/:hostelName/personalweb", personalwebRoutes);
 // app.use("/hab/admin/hostel/:hostelName/about", aboutRoute);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
