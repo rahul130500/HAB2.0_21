@@ -1,21 +1,49 @@
-<section id="hmc" class="md:mx-28">
+<!-- <section id="hmc">
   <div
     class="
       font-bold
-      flex
-      justify-center
-      md:justify-start
-      text-xl
-      md:text-4xl
-      my-4
-      md:my-20
+      inline-flex flex-col space-y-5 items-start justify-start container mx-auto p-6 sm:py-12 sm:px-36
     "
   >
-    Hostel Management Committee
+  <div class="flex justify-between w-full mb-4 sm:mb-6">
+    <p class="text-2xl sm:text-3xl font-bold">Hostel Management Committee</p>
   </div>
-  <div class="flex-wrap">
-    <%- include("./hmccard.ejs") %><%- include("./hmccard.ejs") %><%-
-    include("./hmccard.ejs") %><%- include("./hmccard.ejs") %><%-
-    include("./hmccard.ejs") %>
+
+    <div class="inline-flex  items-center justify-center container ">
+      <div class ="inline-flex"><%- include("./hmccard.ejs") %><%- include("./hmccard.ejs") %></div>
+      <div class ="inline-flex"><%- include("./hmccard.ejs") %><%- include("./hmccard.ejs") %></div>
+      <div class ="inline-flex"><%- include("./hmccard.ejs") %><%- include("./hmccard.ejs") %></div>
+      
+    </div>
   </div>
-</section>
+ 
+</section> -->
+
+<div
+  class="container mx-auto p-6 sm:py-12 sm:px-36">
+  <div class=" flex-col space-y-8 items-start justify-start">
+  
+    <div class="flex justify-between w-full mb-4 sm:mb-6">
+      <p class="text-2xl sm:text-3xl font-bold">Hostel Management Committee</p>
+    </div>
+
+    <div class="inline-flex  items-start justify-between w-full" >
+      
+    
+      <%- include("./hmccard.ejs") %><%- include("./hmccard.ejs") %>
+    
+  </div>
+  <div class="inline-flex  items-start justify-between w-full" >
+      
+    
+    <%- include("./hmccard.ejs") %><%- include("./hmccard.ejs") %>
+  
+</div>
+<div class="inline-flex  items-start justify-between w-full" >
+      
+    
+  <%- include("./hmccard.ejs") %><%- include("./hmccard.ejs") %>
+
+</div>
+</div>
+</div>
