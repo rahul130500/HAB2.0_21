@@ -334,24 +334,35 @@
     </section>
     <nav class="shadow-lg z-40 w-full overflow-hidden">
       <ul class="px-12 py-7 flex whitespace-nowrap">
-        <li class="text-base hover:text-pink-600 px-8">
-          <a href="#">Home</a>
+        <li
+          class="tab text-base hover:text-pink-600 px-8 tabStyle"
+          class="active"
+        >
+          <button class="focus:outline-none" onclick="ShowAndHide('home')">
+            Home
+          </button>
         </li>
-        <li class="text-base hover:text-pink-600 px-8">
-          <a href="#">Notices</a>
+        <li class="tab text-base hover:text-pink-600 px-8">
+          <button class="focus:outline-none" onclick="ShowAndHide('notice')">
+            Notices
+          </button>
         </li>
-        <li class="text-base hover:text-pink-600 px-8">
-          <a href="#">Mess</a>
+        <li class="tab text-base hover:text-pink-600 px-8">
+          <button class="focus:outline-none" onclick="ShowAndHide('mess')">
+            Mess
+          </button>
         </li>
 
-        <li class="text-base hover:text-pink-600 px-8">
-          <a href="#">HMC</a>
+        <li class="tab text-base hover:text-pink-600 px-8">
+          <button class="focus:outline-none" onclick="ShowAndHide('hmc')">
+            HMC
+          </button>
         </li>
       </ul>
     </nav>
-    <%- include("./partials/hmc.ejs") %>
-    
-   
+    <%- include("./partials/home.ejs") %> <%- include("./partials/notice.ejs")
+    %> <%- include("./partials/mess.ejs") %> <%- include("./partials/hmc.ejs")
+    %>
 
     <!-- <section id="hostel_management">
       <div class="container md:px-20 px-5 py-10 mx-auto">
@@ -540,6 +551,35 @@
       </div>
     </footer>
     <!-- Compiled and minified JavaScript -->
+    <script>
+      // let el = document.querySelector(".tabs");
+      const listOfTab = document.querySelectorAll(".tab button");
+      // const profileCards = document.querySelectorAll(".profileCard");
+
+      // document.addEventListener("DOMContentLoaded", (e) => {
+      //   var instance = M.Tabs.init(el, {});
+      // });
+
+      for (let i = 0; i < listOfTab.length; i++) {
+        listOfTab[i].addEventListener("click", (e) => {
+          const clickedTab = e.target.parentNode;
+          clickedTab.classList.add("tabStyle");
+
+          const tabs = e.target.parentNode.parentNode.children;
+          for (let tab of tabs) {
+            if (tab !== e.target.parentNode && tab.classList[0] !== "indicator")
+              tab.classList.remove("tabStyle");
+          }
+        });
+      }
+    </script>
+    <SCRIPT>
+      function ShowAndHide(sectionname) { var x =
+      document.getElementById(sectionname); var y =
+      document.getElementsByClassName("sectionlist"); for(var
+      i=0;i<y.length;i++){ y[i].style.display='none'; } if (x.style.display ==
+      'none') { x.style.display = 'block'; } }
+    </SCRIPT>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- <script src="js/nav.js"></script> -->
     <script>
