@@ -1,9 +1,11 @@
 const express = require("express");
 
-const { isAdmin, isLoggedIn } = require("../middleware/adminauth");
+const { isAdmin, isLoggedIn } = require("../middleware/index");
 const multer = require("multer");
 const fs = require("fs");
 const hostelController = require("../controllers/hostelprofile.controllers");
+// Express Router
+const router = express.Router();
 
 //image upload
 const storage = multer.diskStorage({
@@ -18,11 +20,8 @@ const upload = multer({
   storage: storage,
 }).single("image");
 
-// Express Router
-const router = express.Router();
-
 // Home page - Check if user is admin and is logged in
-router.get("/", isAdmin, isLoggedIn, (req, res) => {
+router.get("/", isLoggedIn, isAdmin, (req, res) => {
   res.redirect("/hab/admin");
 });
 
@@ -40,33 +39,53 @@ router.post(
 
 router.get("/about", isLoggedIn, isAdmin, hostelController.getAboutDetails);
 
-//Get details from database
-router.get("/hmc", hostelController.getDetails);
+//HMC Routes
+router.get("/hmc", isLoggedIn, isAdmin, hostelController.getDetails);
 
-//Add user to database
-router.post("/hmc/add", upload, hostelController.postDetails);
+router.post(
+  "/hmc/add",
+  isLoggedIn,
+  isAdmin,
+  upload,
+  hostelController.postDetails
+);
 
-router.get("/hmc/add", (req, res) => {
+router.get("/hmc/add", isLoggedIn, isAdmin, (req, res) => {
   res.render("hostelAdmin/hmc/add");
 });
 
-//Get details for editing
-router.get("hmc/:id", hostelController.getEditDetails);
+router.get("/hmc/:id", isLoggedIn, isAdmin, hostelController.getEditDetails);
 
-//Editing the user
-router.post("hmc/:id", upload, hostelController.editDetails);
+router.post(
+  "/hmc/:id",
+  isLoggedIn,
+  isAdmin,
+  upload,
+  hostelController.editDetails
+);
 
-//Delete entry from database
-router.get("/hmc/delete/:id", hostelController.deleteDetails);
+router.get(
+  "/hmc/delete/:id",
+  isLoggedIn,
+  isAdmin,
+  hostelController.deleteDetails
+);
 
-router.get("/personal/add", (req, res) => {
+//Personal Website Routes
+router.get("/personal/add", isLoggedIn, isAdmin, (req, res) => {
   res.render("hostelAdmin/personalweb/add");
 });
 
-router.get("/personal", hostelController.getWeb);
+router.get("/personal", isLoggedIn, isAdmin, hostelController.getWeb);
 
-router.get("/personal/:id", hostelController.getEditWeb);
+router.get("/personal/:id", isLoggedIn, isAdmin, hostelController.getEditWeb);
 
-router.post("/personal/:id", upload, hostelController.editWeb);
+router.post(
+  "/personal/:id",
+  isLoggedIn,
+  isAdmin,
+  upload,
+  hostelController.editWeb
+);
 
 module.exports = router;

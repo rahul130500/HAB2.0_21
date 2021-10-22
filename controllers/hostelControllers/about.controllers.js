@@ -1,3 +1,5 @@
+//Check the hostelprofile.controller file this file is not in use
+
 const About = require("../../models/hostelModels/about.models");
 
 module.exports.getAboutDetails = async (req, res) => {

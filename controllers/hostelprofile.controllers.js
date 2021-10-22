@@ -29,6 +29,7 @@ exports.addAboutDetails = async (req, res) => {
   }
 };
 
+//HMC Controllers
 exports.getDetails = async (req, res) => {
   try {
     // res.render("../views/admin/hmc/index");
@@ -57,6 +58,7 @@ exports.postDetails = async (req, res) => {
       roomno: req.body.roomno,
       email: req.body.email,
       priono: req.body.priono,
+      hostel: req.body.hostelName,
     });
     detail.save((err) => {
       if (err) {
@@ -110,11 +112,12 @@ exports.editDetails = async (req, res) => {
     {
       name: req.body.name,
       post: req.body.post,
-      image: new_image,
+      image: req.file.filename,
       contno: req.body.contno,
       roomno: req.body.roomno,
       email: req.body.email,
       priono: req.body.priono,
+      hostel: req.body.hostelName,
     },
     (err, result) => {
       if (err) {

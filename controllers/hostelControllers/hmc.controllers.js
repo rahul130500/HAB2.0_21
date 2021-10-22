@@ -1,3 +1,4 @@
+//Check the hostelprofile.controller file this file is not in use
 const hmcDetail = require("../../models/hostelModels/hmc.models");
 const fs = require("fs");
 
@@ -8,7 +9,7 @@ exports.getDetails = async (req, res) => {
     if (err) {
       res.json({ message: err.message });
     } else {
-      
+      console.log("error");
       res.render("hostelAdmin/hmc/index", {
         hmcdetails: hmcdetails,
       });
@@ -17,7 +18,6 @@ exports.getDetails = async (req, res) => {
 };
 
 exports.postDetails = async (req, res) => {
- 
   const detail = new hmcDetail({
     name: req.body.name,
     post: req.body.post,
@@ -32,8 +32,8 @@ exports.postDetails = async (req, res) => {
     if (err) {
       res.json({ message: err.message, type: "danger" });
     } else {
-       console.log(req.body);
-       const abc = "/hab/admin/hostel/"+req.body.hostelName+"/hmc";
+      console.log(req.body);
+      const abc = "/hab/admin/hostel/" + req.body.hostelName + "/hmc";
       res.redirect(abc);
     }
   });
@@ -88,8 +88,8 @@ exports.editDetails = async (req, res) => {
         res.json({ message: err.message });
       } else {
         console.log("asdasd");
-       const abc = "/hab/admin/hostel/"+req.body.hostelName+"/hmc";
-      res.redirect(abc);
+        const abc = "/hab/admin/hostel/" + req.body.hostelName + "/hmc";
+        res.redirect(abc);
       }
     }
   );
@@ -108,7 +108,7 @@ exports.deleteDetails = async (req, res) => {
     if (err) {
       res.json({ message: err.message });
     } else {
-      const abc = "/hab/admin/hostel/"+req.body.hostelName+"/hmc";
+      const abc = "/hab/admin/hostel/" + req.body.hostelName + "/hmc";
       res.redirect(abc);
     }
   });
