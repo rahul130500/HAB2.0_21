@@ -1,7 +1,7 @@
 <%- include("../partials/header.ejs") %>
     <h1 class="text-3xl text-black pb-6">HMC</h1>
     <div class="mt-6">
-        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin/hostel/:hostelName/hmc/add">Add
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/hmc/add">Add
             HMC Details</a>
 
         
@@ -21,6 +21,7 @@
                         <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Room Number</th>
                         <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Priority Number</th>
                         <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Hostel Name</th>
+
                         <!-- <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">View</th> -->
                         <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Edit</th>
                         <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th>
@@ -36,13 +37,13 @@
                         <td class="text-left py-3 px-4"><%= row.email %></td>
                         <td class="text-left py-3 px-4"><%= row.roomno %></td>
                         <td class="text-left py-3 px-4"><%= row.priono %></td>
-                        <td class="text-left py-3 px-4"><%= row.hostel %></td>
+                        <td class="text-left py-3 px-4"><%= row.hostelName %></td>
                         
                         <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
-                            href="hmc/edit/<%= row._id %> ">Edit</a></td>
+                            href="/admin/hmc/<%= row._id %> ">Edit</a></td>
                     
                         <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
-                                href="hmc/deletee/<%= row._id %> ">Delete</a></td>
+                                href="hmc/delete/<%= row._id %> ">Delete</a></td>
 
                      </tr>
                     <% }) %>
