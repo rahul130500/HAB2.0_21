@@ -5,10 +5,9 @@ const detailsSchema = new mongoose.Schema({
   post: { type: String, required: true },
   image: { type: String, required: true },
   email: { type: String, required: true },
-  contno: { type: Number, required: true },
-  roomno: { type: String, required: true },
-  priono: { type: Number, required: true },
-  hostel: { type: String},
+  contno: {type: Number,required: true},
+  roomno: {type: Number,required: true},
+  priono: {type: Number,required: true},
   creation: { type: Date, default: Date.now },
   
 });

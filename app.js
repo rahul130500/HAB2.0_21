@@ -21,7 +21,7 @@ require("dotenv").config();
 const { MONGO_URL } = process.env;
 
 mongoose
-  .connect("mongodb://localhost:27017/hab2", {
+  .connect(MONGO_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -43,7 +43,7 @@ const ordinanceRoutes = require("./routes/ordinance.routes");
 const authRoutes = require("./routes/auth-routes");
 const aboutRoutes = require("./routes/about.routes");
 const hostelProfileRoutes = require("./routes/hostelprofile.routes");
-// const hmcRoutes = require("./routes/hostelRoutes/hmc.routes");
+const hmcRoutes = require("./routes/hostelRoutes/hmc.routes");
 // const personalwebRoutes = require("./routes/hostelRoutes/personalweb-routes");
 // const aboutRoute = require("./routes/hostelRoutes/about.routes");
 
@@ -103,7 +103,7 @@ app.use("/hab/admin/links", linkRoutes);
 app.use("/hab/admin/ordinance", ordinanceRoutes);
 app.use("/hab/admin/about", aboutRoutes);
 app.use("/hab/admin/hostel/:hostelName", hostelProfileRoutes);
-// app.use("/hab/admin/hostel/:hostelName/hmc", hmcRoutes);
+app.use("/hab/admin/hostel/:hostelName/hmc", hmcRoutes);
 // app.use("/hab/admin/hostel/:hostelName/personalweb", personalwebRoutes);
 // app.use("/hab/admin/hostel/:hostelName/about", aboutRoute);
 

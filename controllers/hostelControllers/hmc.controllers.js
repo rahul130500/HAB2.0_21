@@ -2,11 +2,13 @@ const hmcDetail = require("../../models/hostelModels/hmc.models");
 const fs = require("fs");
 
 exports.getDetails = async (req, res) => {
+  console.log("hui hui");
   // res.render("../views/admin/hmc/index");
   hmcDetail.find().exec((err, hmcdetails) => {
     if (err) {
       res.json({ message: err.message });
     } else {
+      
       res.render("hostelAdmin/hmc/index", {
         hmcdetails: hmcdetails,
       });
@@ -15,6 +17,7 @@ exports.getDetails = async (req, res) => {
 };
 
 exports.postDetails = async (req, res) => {
+ 
   const detail = new hmcDetail({
     name: req.body.name,
     post: req.body.post,
@@ -23,12 +26,15 @@ exports.postDetails = async (req, res) => {
     roomno: req.body.roomno,
     email: req.body.email,
     priono: req.body.priono,
+    hostel: req.body.hostelName,
   });
   detail.save((err) => {
     if (err) {
       res.json({ message: err.message, type: "danger" });
     } else {
-      res.redirect("/hab/admin/hostel/:hostelName/hmc");
+       console.log(req.body);
+       const abc = "/hab/admin/hostel/"+req.body.hostelName+"/hmc";
+      res.redirect(abc);
     }
   });
 };
@@ -42,6 +48,7 @@ exports.getEditDetails = async (req, res) => {
       if (detail == null) {
         res.redirect("/");
       } else {
+        console.log("asas");
         res.render("hostelAdmin/hmc/edit", {
           detail: detail,
         });
@@ -74,12 +81,15 @@ exports.editDetails = async (req, res) => {
       roomno: req.body.roomno,
       email: req.body.email,
       priono: req.body.priono,
+      hostel: req.body.hostelName,
     },
     (err, result) => {
       if (err) {
         res.json({ message: err.message });
       } else {
-        res.redirect("/hab/admin/hostel/:hostelName/hmc");
+        console.log("asdasd");
+       const abc = "/hab/admin/hostel/"+req.body.hostelName+"/hmc";
+      res.redirect(abc);
       }
     }
   );
@@ -98,7 +108,8 @@ exports.deleteDetails = async (req, res) => {
     if (err) {
       res.json({ message: err.message });
     } else {
-      res.redirect("/hab/admin/hostel/:hostelName/hmc");
+      const abc = "/hab/admin/hostel/"+req.body.hostelName+"/hmc";
+      res.redirect(abc);
     }
   });
 };

@@ -1,10 +1,10 @@
 <%- include("../partials/header.ejs") %>
-    <h1 class="text-3xl text-black pb-6">Add HMC</h1>
+    <h1 class="text-3xl text-black pb-6">Edit HMC</h1>
 
     <div class="flex flex-wrap justify-center">
         <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
             <p class="text-xl pb-6 flex items-center">
-                <i class="fas fa-list mr-3"></i> Add HMC
+                <i class="fas fa-list mr-3"></i> Edit HMC
             </p>
             <div class="flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3" role="alert">
                 <svg class="w-4 h-4 mr-2" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -20,54 +20,56 @@
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="name">Name</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                            name="name" placeholder="Name"></input>
+                            name="name" placeholder="Name" value="<%= detail.name %>">
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="post">Post</label>
                         <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="post" type="text"
-                            name="post"  required placeholder="Post"></input>
+                            name="post"  required placeholder="Post" value="<%= detail.post %> "></input>
                     </div>
                     
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="image">Image</label>
                         <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="image" type="file"
-                            name="image" placeholder="Image url"></input>
+                            name="image" placeholder="Image url" value="<%= detail.image %> "></input>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="image" type="hidden"
+                            name="old_image" placeholder="Image url" value="<%= detail.image %> "></input>
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="contno">Contact Number</label>
                         <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="contno" type="number"
-                            name="contno" placeholder="Contact Number"></input>
+                            name="contno" placeholder="Contact Number" value="<%= detail.contno %> "></input>
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="roomno">Room Number</label>
                         <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="roomno" type="text"
-                            name="roomno" placeholder="Room Number"></input>
+                            name="roomno" placeholder="Room Number" value="<%= detail.roomno %> "></input>
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="email">Email ID</label>
                         <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="email" type="email"
-                            name="email" placeholder="Email ID"></input>
+                            name="email" placeholder="Email ID" value="<%= detail.email %> "></input>
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="priono">Priority Number</label>
                         <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="priono" type="number"
-                            name="priono" placeholder="Priority Number"></input>
+                            name="priono" placeholder="Priority Number" value="<%= detail.priono %> "></input>
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="hostelName">Hostel Name</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="hostelName" type="text"
-                            name="hostelName" placeholder="Hostel Name"></input>
+                            name="hostelName" placeholder="hostelName" value="<%= detail.hostelName  %> ">
                     </div>
 
                    
 
                     <div class="mt-6">
                         <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
-                            type="submit">Add</button>
+                            type="submit">Update</button>
                     </div>
 
                     <div class="mt-2">
-                        <a class="hover:text-blue-500" href="/hab/admin/hostel/:hostelName/hmc">Go Back</a>
+                        <a class="hover:text-blue-500" href="/admin/hmc">Go Back</a>
                     </div>
                 </form>
             </div>
