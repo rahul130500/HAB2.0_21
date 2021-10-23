@@ -18,10 +18,10 @@ const PORT = process.env.PORT || 8080;
 const passportSetup = require("./config/passport");
 
 require("dotenv").config();
-const { MONGO_URL } = process.env;
+const { MONGO_URX } = process.env;
 
 mongoose
-  .connect(MONGO_URL, {
+  .connect(MONGO_URX, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -44,7 +44,8 @@ const authRoutes = require("./routes/auth-routes");
 const aboutRoutes = require("./routes/about.routes");
 const hostelProfileRoutes = require("./routes/hostelprofile.routes");
 const hmcRoutes = require("./routes/hostelRoutes/hmc.routes");
-// const personalwebRoutes = require("./routes/hostelRoutes/personalweb-routes");
+ const personalwebRoutes = require("./routes/hostelRoutes/personalweb-routes");
+ const homeRoutes = require("./routes/hostelRoutes/home.routes");
 // const aboutRoute = require("./routes/hostelRoutes/about.routes");
 
 app.use("/hab/", express.static(__dirname + "/public"));
@@ -103,8 +104,9 @@ app.use("/hab/admin/links", linkRoutes);
 app.use("/hab/admin/ordinance", ordinanceRoutes);
 app.use("/hab/admin/about", aboutRoutes);
 app.use("/hab/admin/hostel/:hostelName", hostelProfileRoutes);
-// app.use("/hab/admin/hostel/:hostelName/hmc", hmcRoutes);
-// app.use("/hab/admin/hostel/:hostelName/personalweb", personalwebRoutes);
+app.use("/hab/admin/hostel/:hostelName/hmc", hmcRoutes);
+ app.use("/hab/admin/hostel/:hostelName/personalweb", personalwebRoutes);
+ app.use("/hab/admin/hostel/:hostelName/home", homeRoutes);
 // app.use("/hab/admin/hostel/:hostelName/about", aboutRoute);
 
 app.listen(PORT, () => {

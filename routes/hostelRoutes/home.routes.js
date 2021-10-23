@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const personalweb = require("../../models/hostelModels/personalweb.models");
+const home = require("../../models/hostelModels/home.models");
 // const { isAdmin, isLoggedIn } = require("../middlewares/adminauth");
 const fs = require("fs");
 const multer = require("multer");
@@ -16,20 +16,20 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
 }).single("image");
-const personalwebController = require("../../controllers/hostelControllers/personalweb.controllers");
+const homeController = require("../../controllers/hostelControllers/home.controllers");
 
 router.get("/add", (req, res) => {
-  res.render("hostelAdmin/personalweb/add");
+  res.render("hostelAdmin/home/add");
 });
 
-router.get("/", personalwebController.getWeb);
+router.get("/", homeController.getWeb);
 
-router.get("/:id", personalwebController.getEditWeb);
+router.get("/:id", homeController.getEditWeb);
 
 router.post("/:id", upload, (req, res) => {
   const id = req.params.id;
 
-  personalweb.findByIdAndUpdate(
+  home.findByIdAndUpdate(
     id,
     {
       name: req.body.name,
@@ -39,7 +39,7 @@ router.post("/:id", upload, (req, res) => {
       if (err) {
         res.json({ message: err.message });
       } else {
-        res.redirect("/hab/admin/hostel/:hostelName/personalweb");
+        res.redirect("/hab/admin/hostel/:hostelName/home");
       }
     }
   );

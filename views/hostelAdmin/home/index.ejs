@@ -1,0 +1,34 @@
+<%- include("../partials/header.ejs") %>
+    <h1 class="text-3xl text-black pb-6">Home</h1>
+    <div class="mt-6">
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/hab/admin/hostel/:hostelName/home/6173e590c6378968cad3f052">Add/Edit website link</a>
+
+    </div>
+    <div class="w-auto mt-6 overflow-auto">
+        <div class="bg-white">
+            
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Index</th>
+                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Link</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <% home.forEach((row,index) => { %>
+                     <tr>
+                         
+                        <td class="text-left py-3 px-4"><%= index+1 %></td>
+                        <td class="text-left py-3 px-4"><%= row.name %></td>
+                        <td class="text-left py-3 px-4"><a href=""><%= row.link %></a></td>
+                        
+
+                     </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<%- include("../partials/footer.ejs") %>
