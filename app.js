@@ -102,7 +102,7 @@ app.use("/hab/admin/form", formRoutes);
 app.use("/hab/admin/links", linkRoutes);
 app.use("/hab/admin/ordinance", ordinanceRoutes);
 app.use("/hab/admin/about", aboutRoutes);
-app.use("/hab/admin/hostel/:hostelName", hostelProfileRoutes);
+app.use("/hab/admin/hostel/", hostelProfileRoutes);
 // app.use("/hab/admin/hostel/:hostelName/hmc", hmcRoutes);
 // app.use("/hab/admin/hostel/:hostelName/personalweb", personalwebRoutes);
 // app.use("/hab/admin/hostel/:hostelName/about", aboutRoute);

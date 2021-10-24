@@ -14,7 +14,7 @@ const passport = require("passport");
 const AzureStrategy = require("passport-azure-ad-oauth2").Strategy;
 
 const User = require("../models/user");
-const { isLoggedIn, isAdmin } = require("../middleware/adminauth");
+
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { OUTLOOK_CLIENT_ID, OUTLOOK_CLIENT_SECRET } = process.env;

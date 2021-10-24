@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { isAdmin, isLoggedIn } = require("../middleware/index");
+const { isHostelAdmin, isLoggedIn } = require("../middleware/index");
 const multer = require("multer");
 const fs = require("fs");
 const hostelController = require("../controllers/hostelprofile.controllers");
@@ -21,45 +21,55 @@ const upload = multer({
 }).single("image");
 
 // Home page - Check if user is admin and is logged in
-router.get("/", isLoggedIn, isAdmin, (req, res) => {
+router.get("/", isLoggedIn, isHostelAdmin, (req, res) => {
   res.redirect("/hab/admin");
 });
 
 // Add about
-router.get("/about/add", isLoggedIn, isAdmin, (req, res) => {
+router.get("/about/add", isLoggedIn, isHostelAdmin, (req, res) => {
   res.render("hostelAdmin/about/add");
 });
 
 router.post(
   "/about/add",
   isLoggedIn,
-  isAdmin,
+  isHostelAdmin,
   hostelController.addAboutDetails
 );
 
-router.get("/about", isLoggedIn, isAdmin, hostelController.getAboutDetails);
+router.get(
+  "/about",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.getAboutDetails
+);
 
 //HMC Routes
-router.get("/hmc", isLoggedIn, isAdmin, hostelController.getDetails);
+router.get("/hmc", isLoggedIn, isHostelAdmin, hostelController.getDetails);
 
 router.post(
   "/hmc/add",
   isLoggedIn,
-  isAdmin,
+  isHostelAdmin,
   upload,
   hostelController.postDetails
 );
 
-router.get("/hmc/add", isLoggedIn, isAdmin, (req, res) => {
+router.get("/hmc/add", isLoggedIn, isHostelAdmin, (req, res) => {
   res.render("hostelAdmin/hmc/add");
 });
 
-router.get("/hmc/:id", isLoggedIn, isAdmin, hostelController.getEditDetails);
+router.get(
+  "/hmc/:id",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.getEditDetails
+);
 
 router.post(
   "/hmc/:id",
   isLoggedIn,
-  isAdmin,
+  isHostelAdmin,
   upload,
   hostelController.editDetails
 );
@@ -67,23 +77,28 @@ router.post(
 router.get(
   "/hmc/delete/:id",
   isLoggedIn,
-  isAdmin,
+  isHostelAdmin,
   hostelController.deleteDetails
 );
 
 //Personal Website Routes
-router.get("/personal/add", isLoggedIn, isAdmin, (req, res) => {
+router.get("/personal/add", isLoggedIn, isHostelAdmin, (req, res) => {
   res.render("hostelAdmin/personalweb/add");
 });
 
-router.get("/personal", isLoggedIn, isAdmin, hostelController.getWeb);
+router.get("/personal", isLoggedIn, isHostelAdmin, hostelController.getWeb);
 
-router.get("/personal/:id", isLoggedIn, isAdmin, hostelController.getEditWeb);
+router.get(
+  "/personal/:id",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.getEditWeb
+);
 
 router.post(
   "/personal/:id",
   isLoggedIn,
-  isAdmin,
+  isHostelAdmin,
   upload,
   hostelController.editWeb
 );

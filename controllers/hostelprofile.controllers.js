@@ -5,7 +5,10 @@ const personalweb = require("../models/hostelModels/personalweb.models");
 
 exports.getAboutDetails = async (req, res) => {
   try {
-    const aboutdetails = await About.find({}).sort({ _id: -1 }).limit(1);
+    const hostel = req.user.hostel;
+    const aboutdetails = await About.find({ hostel })
+      .sort({ _id: -1 })
+      .limit(1);
     return res.render("hostelAdmin/about/index", { aboutdetails });
   } catch (err) {
     console.error(err);
@@ -19,7 +22,7 @@ exports.getAboutDetails = async (req, res) => {
 exports.addAboutDetails = async (req, res) => {
   try {
     await About.create(req.body);
-    return res.redirect(`/hab/admin/hostel/${req.params.hostelName}/about`);
+    return res.redirect(`/hab/admin/hostel/about`);
   } catch (err) {
     console.error(err.message);
     return res.json({
@@ -33,12 +36,14 @@ exports.addAboutDetails = async (req, res) => {
 exports.getDetails = async (req, res) => {
   try {
     // res.render("../views/admin/hmc/index");
-    hmcDetail.find().exec((err, hmcdetails) => {
+    hostel = req.user.hostel;
+    hmcDetail.find({ hostel }).exec((err, hmcdetails) => {
       if (err) {
         res.json({ message: err.message });
       } else {
         res.render("hostelAdmin/hmc/index", {
-          hmcdetails: hmcdetails,
+          hmcdetails,
+          hostel,
         });
       }
     });
@@ -58,13 +63,13 @@ exports.postDetails = async (req, res) => {
       roomno: req.body.roomno,
       email: req.body.email,
       priono: req.body.priono,
-      hostel: req.body.hostelName,
+      hostel: req.user.hostel,
     });
     detail.save((err) => {
       if (err) {
         res.json({ message: err.message, type: "danger" });
       } else {
-        res.redirect(`/hab/admin/hostel/${req.params.hostelName}/hmc`);
+        res.redirect(`/hab/admin/hostel/hmc`);
       }
     });
   } catch (error) {
@@ -117,13 +122,13 @@ exports.editDetails = async (req, res) => {
       roomno: req.body.roomno,
       email: req.body.email,
       priono: req.body.priono,
-      hostel: req.body.hostelName,
+      hostel: req.params.hostelName,
     },
     (err, result) => {
       if (err) {
         res.json({ message: err.message });
       } else {
-        res.redirect(`/hab/admin/hostel/${req.params.hostelName}/hmc`);
+        res.redirect(`/hab/admin/hostel/hmc`);
       }
     }
   );
@@ -142,7 +147,7 @@ exports.deleteDetails = async (req, res) => {
     if (err) {
       res.json({ message: err.message });
     } else {
-      res.redirect(`/hab/admin/hostel/${req.params.hostelName}/hmc`);
+      res.redirect(`/hab/admin/hostel/hmc`);
     }
   });
 };
@@ -189,7 +194,7 @@ exports.editWeb = async (req, res) => {
       if (err) {
         res.json({ message: err.message });
       } else {
-        res.redirect(`/hab/admin/hostel/${req.params.hostelName}/personalweb`);
+        res.redirect(`/hab/admin/hostel/personalweb`);
       }
     }
   );
