@@ -1,0 +1,41 @@
+<% if(success && success.length){ %>
+
+    <div class="flex justify-between text-green-200 shadow-inner rounded p-3 bg-green-500 mb-2">
+        <p class="self-center">
+          <%=success%>
+        </p>
+        <strong class="text-xl align-center cursor-pointer alert-del">&times;</strong>
+      </div>
+
+<% } %>
+
+<% if(error && error.length){ %>
+    <div class="flex justify-between text-red-200 shadow-inner rounded p-3 bg-red-500 mb-2">
+        <p class="self-center"><%= error %></p>
+        <strong class="text-xl align-center cursor-pointer alert-del">&times;</strong>
+    </div>
+<% } %>
+
+<% if(info && info.length){ %>
+  <div class="flex justify-between text-yellow-600 shadow-inner rounded p-3 bg-yellow-300 mb-2">
+      <p class="self-center"><%= info %></p>
+      <strong class="text-xl align-center cursor-pointer alert-del">&times;</strong>
+  </div>
+<% } %>
+
+ 
+   <!-- <div class="flex justify-between text-blue-200 shadow-inner rounded p-3 bg-blue-600">
+     <p class="self-center"><strong>Info </strong>This is Info alert.</p>
+     <strong class="text-xl align-center cursor-pointer alert-del">&times;</strong>
+   </div>
+ 
+   <div class="flex justify-between text-orange-200 shadow-inner rounded p-3 bg-orange-600">
+     <p class="self-center"><strong>Warning </strong>This is Warning alert.</p>
+     <strong class="text-xl align-center cursor-pointer alert-del">&times;</strong>
+   </div>
+
+   <div class="flex justify-between text-red-200 shadow-inner rounded p-3 bg-red-600">
+     <p class="self-center"><strong>Danger </strong>This is Danger alert.</p>
+     <strong class="text-xl align-center cursor-pointer alert-del">&times;</strong>
+   </div> -->
+

@@ -1,0 +1,48 @@
+<%- include("../partials/header.ejs") %>
+
+    <h1 class="text-3xl text-black pb-6">Edit Mess Data</h1>
+
+    <div class="flex flex-wrap justify-center">
+        <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
+            <p class="text-xl pb-6 flex items-center">
+                <i class="fas fa-list mr-3"></i> Edit Mess Data
+            </p>
+           
+            <div class="leading-loose">
+                <form class="p-10 bg-white rounded shadow-xl" action="/admin/mess/<%=mess.id%>?_method=PUT"
+                    method="POST" enctype="multipart/form-data">
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="title">Title</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
+                            name="title" value="<%= mess.title %>" required>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="description">Description</label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="text" id="description"
+                            name="description" value="<%= mess.description %>" required></input>
+                    </div>
+                   
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="mess"></label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="file" id="mess"
+                            name="mess" placeholder="image url"></input>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="link">Link</label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="text" id="link"
+                            name="link" value="<%= mess.link %>"></input>
+                    
+                    <div class="mt-6">
+                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                            type="submit">Edit</button>
+                    </div>
+                    <div class="mt-2">
+                        <a class="hover:text-blue-500" href="/admin/mess">Go Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../partials/footer.ejs") %>
