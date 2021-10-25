@@ -264,7 +264,8 @@
         <p class="text-2xl sm:text-3xl font-bold">Notices</p>
       </div>
 
-      <div class="inline-flex space-x-8 items-start justify-start w-full">
+      <div class="flex-wrap space-x-8 items-start justify-start w-full">
+        <%notices.forEach((notice,i)=>{ %>
         <div
           class="
             inline-flex
@@ -280,7 +281,7 @@
             rounded-lg
             border-gray-300
           "
-          style="width: 562.78px; height: 341px"
+          style="width: 562.78px"
         >
           <div
             class="inline-flex space-x-2.5 items-center justify-start"
@@ -297,7 +298,7 @@
                 text-blue-500
               "
             >
-              Category
+              <%= notice.category %>
             </p>
             <p
               class="
@@ -309,7 +310,8 @@
               "
               style="width: 413.91px; height: 24px"
             >
-              12/12/2020
+              <%=notice.creation.getDate()+'/'+(notice.creation.getMonth()+1)+'/'+notice.creation.getFullYear()
+              %>
             </p>
           </div>
           <p
@@ -321,15 +323,10 @@
               text-gray-800
             "
           >
-            HAB Accomodation Allocation
+            <%= notice.title %>
           </p>
           <p class="text-base leading-7 text-gray-500" style="width: 490.78px">
-            The HAB shall allot accommodation (on availability) to the Institute
-            Project Staff and the delegates/ sponsored persons/trainees from
-            other Institutions/ all others who are authorized to stay in the
-            hostels for specified periods of duration in the hostels. All
-            corroespondence related to accommodation in hostels should be
-            addressed to the Chairman HAB.
+            <%= notice.description %>
           </p>
           <div
             class="inline-flex items-center justify-center"
@@ -340,385 +337,7 @@
             </p>
           </div>
         </div>
-        <div
-          class="
-            inline-flex
-            flex-col
-            space-y-3
-            items-start
-            justify-start
-            px-9
-            py-8
-            bg-white
-            shadow
-            border
-            rounded-lg
-            border-gray-300
-          "
-          style="width: 562.78px; height: 341px"
-        >
-          <div
-            class="inline-flex space-x-2.5 items-center justify-start"
-            style="width: 490.78px; height: 24px"
-          >
-            <p
-              class="
-                w-16
-                h-full
-                text-sm
-                font-bold
-                tracking-wide
-                leading-normal
-                text-blue-500
-              "
-            >
-              Category
-            </p>
-            <p
-              class="
-                text-sm
-                font-bold
-                tracking-wide
-                leading-normal
-                text-right text-blue-500
-              "
-              style="width: 413.91px; height: 24px"
-            >
-              12/12/2020
-            </p>
-          </div>
-          <p
-            class="
-              text-xl
-              font-semibold
-              tracking-wider
-              leading-loose
-              text-gray-800
-            "
-          >
-            HAB Accomodation Allocation
-          </p>
-          <p class="text-base leading-7 text-gray-500" style="width: 490.78px">
-            The HAB shall allot accommodation (on availability) to the Institute
-            Project Staff and the delegates/ sponsored persons/trainees from
-            other Institutions/ all others who are authorized to stay in the
-            hostels for specified periods of duration in the hostels. All
-            corroespondence related to accommodation in hostels should be
-            addressed to the Chairman HAB.
-          </p>
-          <div
-            class="inline-flex items-center justify-center"
-            style="width: 490.78px; height: 19px"
-          >
-            <p class="text-sm font-medium tracking-wider text-gray-400">
-              learn more
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="inline-flex space-x-8 items-start justify-start w-full">
-        <div
-          class="
-            inline-flex
-            flex-col
-            space-y-3
-            items-start
-            justify-start
-            px-9
-            py-8
-            bg-white
-            shadow
-            border
-            rounded-lg
-            border-gray-300
-          "
-          style="width: 562.78px; height: 341px"
-        >
-          <div
-            class="inline-flex space-x-2.5 items-center justify-start"
-            style="width: 490.78px; height: 24px"
-          >
-            <p
-              class="
-                w-16
-                h-full
-                text-sm
-                font-bold
-                tracking-wide
-                leading-normal
-                text-blue-500
-              "
-            >
-              Category
-            </p>
-            <p
-              class="
-                text-sm
-                font-bold
-                tracking-wide
-                leading-normal
-                text-right text-blue-500
-              "
-              style="width: 413.91px; height: 24px"
-            >
-              12/12/2020
-            </p>
-          </div>
-          <p
-            class="
-              text-xl
-              font-semibold
-              tracking-wider
-              leading-loose
-              text-gray-800
-            "
-          >
-            HAB Accomodation Allocation
-          </p>
-          <p class="text-base leading-7 text-gray-500" style="width: 490.78px">
-            The HAB shall allot accommodation (on availability) to the Institute
-            Project Staff and the delegates/ sponsored persons/trainees from
-            other Institutions/ all others who are authorized to stay in the
-            hostels for specified periods of duration in the hostels. All
-            corroespondence related to accommodation in hostels should be
-            addressed to the Chairman HAB.
-          </p>
-          <div
-            class="inline-flex items-center justify-center"
-            style="width: 490.78px; height: 19px"
-          >
-            <p class="text-sm font-medium tracking-wider text-gray-400">
-              learn more
-            </p>
-          </div>
-        </div>
-        <div
-          class="
-            inline-flex
-            flex-col
-            space-y-3
-            items-start
-            justify-start
-            px-9
-            py-8
-            bg-white
-            shadow
-            border
-            rounded-lg
-            border-gray-300
-          "
-          style="width: 562.78px; height: 341px"
-        >
-          <div
-            class="inline-flex space-x-2.5 items-center justify-start"
-            style="width: 490.78px; height: 24px"
-          >
-            <p
-              class="
-                w-16
-                h-full
-                text-sm
-                font-bold
-                tracking-wide
-                leading-normal
-                text-blue-500
-              "
-            >
-              Category
-            </p>
-            <p
-              class="
-                text-sm
-                font-bold
-                tracking-wide
-                leading-normal
-                text-right text-blue-500
-              "
-              style="width: 413.91px; height: 24px"
-            >
-              12/12/2020
-            </p>
-          </div>
-          <p
-            class="
-              text-xl
-              font-semibold
-              tracking-wider
-              leading-loose
-              text-gray-800
-            "
-          >
-            HAB Accomodation Allocation
-          </p>
-          <p class="text-base leading-7 text-gray-500" style="width: 490.78px">
-            The HAB shall allot accommodation (on availability) to the Institute
-            Project Staff and the delegates/ sponsored persons/trainees from
-            other Institutions/ all others who are authorized to stay in the
-            hostels for specified periods of duration in the hostels. All
-            corroespondence related to accommodation in hostels should be
-            addressed to the Chairman HAB.
-          </p>
-          <div
-            class="inline-flex items-center justify-center"
-            style="width: 490.78px; height: 19px"
-          >
-            <p class="text-sm font-medium tracking-wider text-gray-400">
-              learn more
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="inline-flex space-x-8 items-start justify-start w-full">
-        <div
-          class="
-            inline-flex
-            flex-col
-            space-y-3
-            items-start
-            justify-start
-            px-9
-            py-8
-            bg-white
-            shadow
-            border
-            rounded-lg
-            border-gray-300
-          "
-          style="width: 562.78px; height: 341px"
-        >
-          <div
-            class="inline-flex space-x-2.5 items-center justify-start"
-            style="width: 490.78px; height: 24px"
-          >
-            <p
-              class="
-                w-16
-                h-full
-                text-sm
-                font-bold
-                tracking-wide
-                leading-normal
-                text-blue-500
-              "
-            >
-              Category
-            </p>
-            <p
-              class="
-                text-sm
-                font-bold
-                tracking-wide
-                leading-normal
-                text-right text-blue-500
-              "
-              style="width: 413.91px; height: 24px"
-            >
-              12/12/2020
-            </p>
-          </div>
-          <p
-            class="
-              text-xl
-              font-semibold
-              tracking-wider
-              leading-loose
-              text-gray-800
-            "
-          >
-            HAB Accomodation Allocation
-          </p>
-          <p class="text-base leading-7 text-gray-500" style="width: 490.78px">
-            The HAB shall allot accommodation (on availability) to the Institute
-            Project Staff and the delegates/ sponsored persons/trainees from
-            other Institutions/ all others who are authorized to stay in the
-            hostels for specified periods of duration in the hostels. All
-            corroespondence related to accommodation in hostels should be
-            addressed to the Chairman HAB.
-          </p>
-          <div
-            class="inline-flex items-center justify-center"
-            style="width: 490.78px; height: 19px"
-          >
-            <p class="text-sm font-medium tracking-wider text-gray-400">
-              learn more
-            </p>
-          </div>
-        </div>
-        <div
-          class="
-            inline-flex
-            flex-col
-            space-y-3
-            items-start
-            justify-start
-            px-9
-            py-8
-            bg-white
-            shadow
-            border
-            rounded-lg
-            border-gray-300
-          "
-          style="width: 562.78px; height: 341px"
-        >
-          <div
-            class="inline-flex space-x-2.5 items-center justify-start"
-            style="width: 490.78px; height: 24px"
-          >
-            <p
-              class="
-                w-16
-                h-full
-                text-sm
-                font-bold
-                tracking-wide
-                leading-normal
-                text-blue-500
-              "
-            >
-              Category
-            </p>
-            <p
-              class="
-                text-sm
-                font-bold
-                tracking-wide
-                leading-normal
-                text-right text-blue-500
-              "
-              style="width: 413.91px; height: 24px"
-            >
-              12/12/2020
-            </p>
-          </div>
-          <p
-            class="
-              text-xl
-              font-semibold
-              tracking-wider
-              leading-loose
-              text-gray-800
-            "
-          >
-            HAB Accomodation Allocation
-          </p>
-          <p class="text-base leading-7 text-gray-500" style="width: 490.78px">
-            The HAB shall allot accommodation (on availability) to the Institute
-            Project Staff and the delegates/ sponsored persons/trainees from
-            other Institutions/ all others who are authorized to stay in the
-            hostels for specified periods of duration in the hostels. All
-            corroespondence related to accommodation in hostels should be
-            addressed to the Chairman HAB.
-          </p>
-          <div
-            class="inline-flex items-center justify-center"
-            style="width: 490.78px; height: 19px"
-          >
-            <p class="text-sm font-medium tracking-wider text-gray-400">
-              learn more
-            </p>
-          </div>
-        </div>
+        <% }) %>
       </div>
     </div>
   </div>
