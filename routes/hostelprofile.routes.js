@@ -10,7 +10,7 @@ const router = express.Router();
 //image upload
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./uploads/details_img");
+    cb(null, "./uploads/hostel_files");
   },
   filename: function (req, file, cb) {
     cb(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({
   storage: storage,
-}).single("image");
+});
 
 // Home page - Check if user is admin and is logged in
 router.get("/", isLoggedIn, isHostelAdmin, (req, res) => {
@@ -51,7 +51,7 @@ router.post(
   "/hmc/add",
   isLoggedIn,
   isHostelAdmin,
-  upload,
+  upload.single("image"),
   hostelController.postDetails
 );
 
@@ -70,7 +70,7 @@ router.post(
   "/hmc/:id",
   isLoggedIn,
   isHostelAdmin,
-  upload,
+  upload.single("image"),
   hostelController.editDetails
 );
 
@@ -99,8 +99,43 @@ router.post(
   "/personal/:id",
   isLoggedIn,
   isHostelAdmin,
-  upload,
   hostelController.editWeb
+);
+
+router.get("/notice", isLoggedIn, isHostelAdmin, hostelController.getNotices);
+
+router.get(
+  "/notice/add",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.addNoticeForm
+);
+
+router.post(
+  "/notice",
+  isLoggedIn,
+  isHostelAdmin,
+  upload.single("notice"),
+  hostelController.postNotice
+);
+
+router.get("/notice/:notice_id", hostelController.getEditForm);
+
+router.get("/notice/pdf/:notice_id", hostelController.getOneNotice);
+
+router.put(
+  "/notice/:notice_id",
+  isLoggedIn,
+  isHostelAdmin,
+  upload.single("notice"),
+  hostelController.editNotice
+);
+
+router.delete(
+  "/notice/:notice_id",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.deleteNotice
 );
 
 module.exports = router;
