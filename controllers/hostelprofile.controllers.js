@@ -153,7 +153,7 @@ exports.deleteDetails = async (req, res) => {
 };
 
 exports.getWeb = async (req, res) => {
-  personalweb.find().exec((err, personalwebs) => {
+  personalweb.find({ hostel: req.user.hostel }).exec((err, personalwebs) => {
     if (err) {
       res.json({ message: err.message });
     } else {
@@ -164,16 +164,30 @@ exports.getWeb = async (req, res) => {
   });
 };
 
+exports.addpersonalweb = async (req, res) => {
+  try {
+    const link = req.body.link;
+    const website = await new personalweb({
+      hostel: req.user.hostel,
+      link,
+    }).save();
+    res.redirect("/hab/admin/hostel/personalweb");
+  } catch (error) {
+    console.log(error);
+    res.redirect("/hab/admin/hostel/personalweb");
+  }
+};
+
 exports.getEditWeb = async (req, res) => {
   const id = req.params.id;
   personalweb.findById(id, (err, detail) => {
     if (err) {
-      res.redirect("/");
+      res.redirect("/hab/admin/hostel");
     } else {
       if (detail == null) {
-        res.redirect("/");
+        res.redirect("/hab/admin/hostel");
       } else {
-        res.render("hostelAdmin/personalweb/add", {
+        res.render("hostelAdmin/personalweb/edit", {
           detail: detail,
         });
       }
@@ -183,11 +197,10 @@ exports.getEditWeb = async (req, res) => {
 
 exports.editWeb = async (req, res) => {
   const id = req.params.id;
-
   personalweb.findByIdAndUpdate(
     id,
     {
-      name: req.body.name,
+      hostel: req.user.hostel,
       link: req.body.link,
     },
     (err, result) => {
@@ -198,6 +211,16 @@ exports.editWeb = async (req, res) => {
       }
     }
   );
+};
+
+exports.deleteWeb = async (req, res) => {
+  try {
+    await personalweb.findByIdAndRemove(req.params.id);
+    res.redirect("/hab/admin/hostel/personalweb");
+  } catch (error) {
+    console.log(error);
+    res.redirect("/hab/admin/hostel/personalweb");
+  }
 };
 
 //Notice Controllers

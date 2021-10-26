@@ -8,7 +8,11 @@ const Category = require("../models/category");
 const Link = require("../models/link");
 const Ordinance = require("../models/ordinance");
 const About = require("../models/about");
+
+//Hostel Data Models
 const HostelNotice = require("../models/hostelModels/notice");
+const HostelWebsite = require("../models/hostelModels/personalweb.models");
+
 exports.getHome = async (req, res) => {
   let notices = await Notice.find({}).sort("-creation");
   let categories = await Category.find({});
@@ -45,12 +49,16 @@ exports.getOneHostel = async (req, res) => {
   try {
     const hostel = await Hostel.findById(req.params.hostel_id);
     const hostels = await Hostel.find({});
+
     const name = hostel.name;
     // if (!hostel) {
     //   req.flash("error", "Cannot find hostel");
     //   return res.redirect("/");
     // }
+
+    //hostel data
     const notices = await HostelNotice.find({ hostel: name });
+    const website = await HostelWebsite.findOne({ hostel: name });
     const members = hostel.management;
     members.sort((a, b) => (a.priority > b.priority ? 1 : -1));
     return res.render("home/hostels/hostel", {
@@ -58,6 +66,7 @@ exports.getOneHostel = async (req, res) => {
       hostel,
       hostels,
       notices,
+      website,
     });
   } catch (error) {
     console.log(error.message);

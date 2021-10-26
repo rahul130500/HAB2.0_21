@@ -22,7 +22,7 @@ const upload = multer({
 
 // Home page - Check if user is admin and is logged in
 router.get("/", isLoggedIn, isHostelAdmin, (req, res) => {
-  res.redirect("/hab/admin");
+  res.redirect("/hab/admin/hostel/hmc");
 });
 
 // Add about
@@ -82,24 +82,38 @@ router.get(
 );
 
 //Personal Website Routes
-router.get("/personal/add", isLoggedIn, isHostelAdmin, (req, res) => {
+router.get("/personalweb/add", isLoggedIn, isHostelAdmin, (req, res) => {
   res.render("hostelAdmin/personalweb/add");
 });
 
-router.get("/personal", isLoggedIn, isHostelAdmin, hostelController.getWeb);
+router.get("/personalweb", isLoggedIn, isHostelAdmin, hostelController.getWeb);
+
+router.post(
+  "/personalweb/add",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.addpersonalweb
+);
 
 router.get(
-  "/personal/:id",
+  "/personalweb/:id",
   isLoggedIn,
   isHostelAdmin,
   hostelController.getEditWeb
 );
 
 router.post(
-  "/personal/:id",
+  "/personalweb/:id",
   isLoggedIn,
   isHostelAdmin,
   hostelController.editWeb
+);
+
+router.delete(
+  "/personalweb/:id",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.deleteWeb
 );
 
 router.get("/notice", isLoggedIn, isHostelAdmin, hostelController.getNotices);
