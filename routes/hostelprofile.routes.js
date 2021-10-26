@@ -66,7 +66,7 @@ router.get(
   hostelController.getEditDetails
 );
 
-router.post(
+router.put(
   "/hmc/:id",
   isLoggedIn,
   isHostelAdmin,
@@ -101,7 +101,7 @@ router.post(
   isHostelAdmin,
   hostelController.editWeb
 );
-
+// notice route
 router.get("/notice", isLoggedIn, isHostelAdmin, hostelController.getNotices);
 
 router.get(
@@ -137,5 +137,57 @@ router.delete(
   isHostelAdmin,
   hostelController.deleteNotice
 );
+// event routes
+
+router.get("/event", isLoggedIn, isHostelAdmin, hostelController.getEvents);
+
+router.get(
+  "/event/add",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.addEventForm
+);
+
+router.post(
+  "/event",
+  isLoggedIn,
+  isHostelAdmin,
+  upload.single("event"),
+  hostelController.postEvent
+);
+
+router.get("/event/:event_id", hostelController.getEditEvent);
+
+router.get("/event/pdf/:event_id", hostelController.getOneEvent);
+
+router.put(
+  "/event/:event_id",
+  isLoggedIn,
+  isHostelAdmin,
+  upload.single("event"),
+  hostelController.editEvent
+);
+
+router.delete(
+  "/event/:event_id",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.deleteEvent
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
