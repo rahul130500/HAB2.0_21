@@ -18,7 +18,7 @@
   </div>
  
 </section> -->
-<section id="hmc" class="sectionlist" style="display: none">
+<!-- <section id="hmc" class="sectionlist" style="display: none">
   <div class="container mx-auto p-6 sm:py-12 sm:px-36">
     <div class="flex-col space-y-8 items-start justify-start">
       <div class="flex justify-between w-full mb-4 sm:mb-6">
@@ -37,5 +37,111 @@
         <%- include("./hmccard.ejs") %><%- include("./hmccard.ejs") %>
       </div>
     </div>
+  </div>
+</section> -->
+<section id="hmc" class="sectionlist" style="display: none">
+  <div
+    class="
+      font-bold text-xl
+      md:text-4xl md:ml-32
+      my-4
+      mt-10
+      md:my-20
+      flex
+      justify-center
+      md:justify-start
+    "
+  >
+    Hostel Management Committee
+  </div>
+  <div class="flex flex-wrap justify-start mx-8 md:mx-32 mb-10">
+    <% hmclist.forEach((hmc,i)=>{ %>
+    <div
+      style="height: 450px; width: 380px;"
+      class="
+
+        hidden
+        md:block
+        overflow-hidden
+        bg-blue-600
+        rounded-md
+        mb-24
+        mx-4
+        cursor-pointer
+      "
+    >
+      <div class="bg-gray-200 rounded-md">
+        <img
+          style="height: 300px"
+          src="/hab/uploads/hostel_files/<%=hmc.image%>"
+          alt="ProfilePic"
+          class="w-full object-contain"
+        />
+      </div>
+      <div class="ml-3.5 text-2xl text-white font-semibold mt-4"><%= hmc.name %></div>
+      <div class="ml-3.5 text-lg text-white mt-2 mb-2"><%= hmc.post %></div>
+      <svg
+        class="w-full"
+        width="200"
+        height="1"
+        viewBox="0 0 420 1"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line
+          x1="0.5"
+          y1="0.5"
+          x2="419.5"
+          y2="0.500031"
+          stroke="white"
+          stroke-linecap="round"
+        />
+      </svg>
+      <div class="flex justify-between mx-3.5 my-2">
+        <div class="text-sm text-white"><%= hmc.email %></div>
+        <div class="text-sm text-white">+91-<%= hmc.contno %></div>
+      </div>
+    </div>
+    <div class="block md:hidden flex justify-center">
+      <div
+        style="width: 320px"
+        class="bg-blue-600 mt-8 rounded-md cursor-pointer"
+      >
+        <div class="bg-gray-200 flex justify-center">
+          <img
+            src="/hab/uploads/hostel_files/<%=hmc.image%>"
+            alt="ProfilePic"
+            class="h-64 w-auto object-contain rounded-sm"
+          />
+        </div>
+        <div class="h-16">
+          <div class="text-white text-2xl ml-4 pt-1"><%= hmc.name %></div>
+          <div class="text-white text-lg ml-4 pt-1"><%= hmc.post %></div>
+        </div>
+        <svg
+          class="w-full px-4 mt-3"
+          width="360"
+          height="1"
+          viewBox="0 0 360 1"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line
+            x1="0.5"
+            y1="0.5"
+            x2="359.5"
+            y2="0.500031"
+            stroke="white"
+            stroke-linecap="round"
+          />
+        </svg>
+        <div class="h-20">
+          <div class="text-white text-lg ml-4 pt-1"><%= hmc.email %></div>
+          <div class="text-white text-lg ml-4 pt-1"><%= hmc.contno %></div>
+        </div>
+      </div>
+    </div>
+
+   <% }) %>
   </div>
 </section>

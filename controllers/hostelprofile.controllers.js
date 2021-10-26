@@ -107,7 +107,7 @@ exports.editDetails = async (req, res) => {
     try {
       fs.unlinkSync("./uploads/hostel_files/" + req.body.old_image);
     } catch (err) {
-      console.log("")
+      console.log("");
       console.log(err);
     }
   } else {
@@ -123,7 +123,7 @@ exports.editDetails = async (req, res) => {
       roomno: req.body.roomno,
       email: req.body.email,
       priono: req.body.priono,
-      hostel: req.params.hostelName,
+      hostel: req.user.hostel,
     },
     (err, result) => {
       if (err) {
@@ -385,7 +385,6 @@ exports.postEvent = async (req, res) => {
       date,
       path,
       hostel: req.user.hostel,
-      
     }).save();
     if (!newEvent) {
       req.flash("error", "Unable to add new event");
@@ -410,7 +409,7 @@ exports.getEditEvent = async (req, res) => {
 
 exports.editEvent = async (req, res) => {
   try {
-    var {  name, imagepath, date, link  } = req.body;
+    var { name, imagepath, date, link } = req.body;
 
     const path = req.file ? req.file.filename : link;
     let data;
@@ -472,29 +471,6 @@ exports.deleteEvent = async (req, res) => {
     return res.redirect("/hab/admin/hostel/event");
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const compare = (a, b) => {
   return b.creation - a.creation;
