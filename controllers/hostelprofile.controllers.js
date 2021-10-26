@@ -105,8 +105,9 @@ exports.editDetails = async (req, res) => {
   if (req.file) {
     new_image = req.file.filename;
     try {
-      fs.unlinkSync("./uploads/details_img" + req.body.old_image);
+      fs.unlinkSync("./uploads/hostel_files/" + req.body.old_image);
     } catch (err) {
+      console.log("")
       console.log(err);
     }
   } else {
@@ -346,6 +347,154 @@ exports.deleteNotice = async (req, res) => {
     return res.redirect("/hab/admin/hostel/notice");
   }
 };
+
+// Event Controllers
+const Event = require("../models/hostelModels/event");
+
+exports.getEvents = async (req, res) => {
+  try {
+    const events = await Event.find({ hostel: req.user.hostel });
+    events.sort(compare);
+    return res.render("hostelAdmin/event/index", { events });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.addEventForm = async (req, res) => {
+  try {
+    return res.render("hostelAdmin/event/add");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.postEvent = async (req, res) => {
+  try {
+    var { name, imagepath, date, link } = req.body;
+
+    const path = req.file ? req.file.filename : link;
+    if (!path) {
+      req.flash("error", "Please attach your pdf!!");
+      return res.redirect("/hab/admin/hostel/event/add");
+    }
+    //console.log(path);
+    const newEvent = await new Event({
+      name,
+      imagepath,
+      date,
+      path,
+      hostel: req.user.hostel,
+      
+    }).save();
+    if (!newEvent) {
+      req.flash("error", "Unable to add new event");
+      res.redirect("/hab/admin/hostel/event/add");
+    }
+    req.flash("success", "Successfully added new event");
+    return res.redirect("/hab/admin/hostel/event");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.getEditEvent = async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.event_id);
+
+    return res.render("hostelAdmin/event/edit", { event });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.editEvent = async (req, res) => {
+  try {
+    var {  name, imagepath, date, link  } = req.body;
+
+    const path = req.file ? req.file.filename : link;
+    let data;
+    if (!req.file && !link) {
+      data = { name, imagepath, date, hostel: req.user.hostel };
+    } else {
+      data = {
+        name,
+        imagepath,
+        date,
+        path,
+        hostel: req.user.hostel,
+      };
+    }
+    const updatedEvent = await Event.findByIdAndUpdate(
+      req.params.event_id,
+      data
+    );
+
+    if (!updatedEvent) {
+      req.flash("error", "Unable to edit event");
+      return res.redirect("/hab/admin/hostel/event");
+    }
+    req.flash("success", "Successfully editted event");
+    return res.redirect("/hab/admin/hostel/event");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.getOneEvent = async (req, res) => {
+  try {
+    const id = req.params.event_id;
+    const event = await Event.findById(id);
+    const filePath = "uploads/hostel_files/" + event.path;
+    fs.readFile(filePath, (err, data) => {
+      res.contentType("application/pdf");
+      return res.send(data);
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.deleteEvent = async (req, res) => {
+  try {
+    const id = req.params.event_id;
+    const event = await Event.findById(id);
+    if (event.path.indexOf("https://") == -1) {
+      fs.unlinkSync(`uploads/hostel_files/${event.path}`);
+      console.log("successfully deleted!");
+    }
+    await Event.findByIdAndRemove(id);
+    req.flash("success", "Successfully deleted event");
+    return res.redirect("/hab/admin/hostel/event");
+  } catch (err) {
+    // handle the error
+    console.log(err);
+    return res.redirect("/hab/admin/hostel/event");
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const compare = (a, b) => {
   return b.creation - a.creation;
