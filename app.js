@@ -10,7 +10,7 @@ const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 const cookieSession = require("cookie-session");
 const helmet = require("helmet");
-const url = "mongodb://localhost/HAB_DB";
+const url = "mongodb://localhost/hab2";
 //const url = process.env.MONGO_URI;
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -43,6 +43,7 @@ const ordinanceRoutes = require("./routes/ordinance.routes");
 const authRoutes = require("./routes/auth-routes");
 const aboutRoutes = require("./routes/about.routes");
 const hostelProfileRoutes = require("./routes/hostelprofile.routes");
+const messRoutes = require("./routes/mess.routes");
 
 app.use("/hab/", express.static(__dirname + "/public"));
 app.use("/hab/uploads", express.static(__dirname + "/uploads"));
@@ -100,6 +101,7 @@ app.use("/hab/admin/links", linkRoutes);
 app.use("/hab/admin/ordinance", ordinanceRoutes);
 app.use("/hab/admin/about", aboutRoutes);
 app.use("/hab/admin/hostel/", hostelProfileRoutes);
+app.use("/hab/admin/mess",messRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
