@@ -45,41 +45,41 @@ router.get(
 );
 
 //HMC Routes
-router.get("/hmc", isLoggedIn, isHostelAdmin, hostelController.getDetails);
+// router.get("/hmc", isLoggedIn, isHostelAdmin, hostelController.getDetails);
 
-router.post(
-  "/hmc/add",
-  isLoggedIn,
-  isHostelAdmin,
-  upload.single("image"),
-  hostelController.postDetails
-);
+// router.post(
+//   "/hmc/add",
+//   isLoggedIn,
+//   isHostelAdmin,
+//   upload.single("image"),
+//   hostelController.postDetails
+// );
 
-router.get("/hmc/add", isLoggedIn, isHostelAdmin, (req, res) => {
-  res.render("hostelAdmin/hmc/add");
-});
+// router.get("/hmc/add", isLoggedIn, isHostelAdmin, (req, res) => {
+//   res.render("hostelAdmin/hmc/add");
+// });
 
-router.get(
-  "/hmc/:id",
-  isLoggedIn,
-  isHostelAdmin,
-  hostelController.getEditDetails
-);
+// router.get(
+//   "/hmc/:id",
+//   isLoggedIn,
+//   isHostelAdmin,
+//   hostelController.getEditDetails
+// );
 
-router.put(
-  "/hmc/:id",
-  isLoggedIn,
-  isHostelAdmin,
-  upload.single("image"),
-  hostelController.editDetails
-);
+// router.put(
+//   "/hmc/:id",
+//   isLoggedIn,
+//   isHostelAdmin,
+//   upload.single("image"),
+//   hostelController.editDetails
+// );
 
-router.get(
-  "/hmc/delete/:id",
-  isLoggedIn,
-  isHostelAdmin,
-  hostelController.deleteDetails
-);
+// router.get(
+//   "/hmc/delete/:id",
+//   isLoggedIn,
+//   isHostelAdmin,
+//   hostelController.deleteDetails
+// );
 
 //Personal Website Routes
 router.get("/personalweb/add", isLoggedIn, isHostelAdmin, (req, res) => {
@@ -189,5 +189,51 @@ router.delete(
   isHostelAdmin,
   hostelController.deleteEvent
 );
+
+//Hmc Routes
+
+router.get("/hmc", isLoggedIn, isHostelAdmin, hostelController.getHmcDetails);
+
+router.get(
+  "/hmc/add",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.addHmcForm
+);
+
+router.post(
+  "/hmc",
+  isLoggedIn,
+  isHostelAdmin,
+  upload.single("image"),
+  hostelController.postHmcDetails
+);
+router.get("/hmc/:details_id", hostelController.getEditHmcDetailsForm);
+
+router.get("/hmc/pdf/:details_id", hostelController.getOneHmcDetail);
+
+router.put(
+  "/hmc/:details_id",
+  isLoggedIn,
+  isHostelAdmin,
+  upload.single("image"),
+  hostelController.editHmcDetail
+);
+// router.delete(
+//   "/hmc/:details_id",
+//   isLoggedIn,
+//   isHostelAdmin,
+//   hostelController.deleteHmcDetail
+// );
+router.get(
+  "/hmc/delete/:details_id",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.deleteHmcDetail
+);
+
+
+
+
 
 module.exports = router;

@@ -33,125 +33,125 @@ exports.addAboutDetails = async (req, res) => {
 };
 
 //HMC Controllers
-exports.getDetails = async (req, res) => {
-  try {
-    // res.render("../views/admin/hmc/index");
-    hostel = req.user.hostel;
-    hmcDetail.find({ hostel }).exec((err, hmcdetails) => {
-      if (err) {
-        res.json({ message: err.message });
-      } else {
-        res.render("hostelAdmin/hmc/index", {
-          hmcdetails,
-          hostel,
-        });
-      }
-    });
-  } catch (error) {
-    console.log(error);
-    res.redirect("/hab/admin");
-  }
-};
+// exports.getDetails = async (req, res) => {
+//   try {
+//     // res.render("../views/admin/hmc/index");
+//     hostel = req.user.hostel;
+//     hmcDetail.find({ hostel }).exec((err, hmcdetails) => {
+//       if (err) {
+//         res.json({ message: err.message });
+//       } else {
+//         res.render("hostelAdmin/hmc/index", {
+//           hmcdetails,
+//           hostel,
+//         });
+//       }
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.redirect("/hab/admin");
+//   }
+// };
 
-exports.postDetails = async (req, res) => {
-  try {
-    const detail = new hmcDetail({
-      name: req.body.name,
-      post: req.body.post,
-      image: req.file.filename,
-      contno: req.body.contno,
-      roomno: req.body.roomno,
-      email: req.body.email,
-      priono: req.body.priono,
-      hostel: req.user.hostel,
-    });
-    detail.save((err) => {
-      if (err) {
-        res.json({ message: err.message, type: "danger" });
-      } else {
-        res.redirect(`/hab/admin/hostel/hmc`);
-      }
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
+// exports.postDetails = async (req, res) => {
+//   try {
+//     const detail = new hmcDetail({
+//       name: req.body.name,
+//       post: req.body.post,
+//       image: req.file.filename,
+//       contno: req.body.contno,
+//       roomno: req.body.roomno,
+//       email: req.body.email,
+//       priono: req.body.priono,
+//       hostel: req.user.hostel,
+//     });
+//     detail.save((err) => {
+//       if (err) {
+//         res.json({ message: err.message, type: "danger" });
+//       } else {
+//         res.redirect(`/hab/admin/hostel/hmc`);
+//       }
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
-exports.getEditDetails = async (req, res) => {
-  try {
-    const id = req.params.id;
-    hmcDetail.findById(id, (err, detail) => {
-      if (err) {
-        res.redirect("/");
-      } else {
-        if (detail == null) {
-          res.redirect("/");
-        } else {
-          res.render("hostelAdmin/hmc/edit", {
-            detail: detail,
-          });
-        }
-      }
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
+// exports.getEditDetails = async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     hmcDetail.findById(id, (err, detail) => {
+//       if (err) {
+//         res.redirect("/");
+//       } else {
+//         if (detail == null) {
+//           res.redirect("/");
+//         } else {
+//           res.render("hostelAdmin/hmc/edit", {
+//             detail: detail,
+//           });
+//         }
+//       }
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
-exports.editDetails = async (req, res) => {
-  const id = req.params.id;
-  let new_image = "";
+// exports.editDetails = async (req, res) => {
+//   const id = req.params.id;
+//   let new_image = "";
 
-  if (req.file) {
-    new_image = req.file.filename;
-    try {
-      fs.unlinkSync("./uploads/hostel_files/" + req.body.old_image);
-    } catch (err) {
-      console.log("");
-      console.log(err);
-    }
-  } else {
-    new_image = req.body.old_image;
-  }
-  hmcDetail.findByIdAndUpdate(
-    id,
-    {
-      name: req.body.name,
-      post: req.body.post,
-      image: req.file.filename,
-      contno: req.body.contno,
-      roomno: req.body.roomno,
-      email: req.body.email,
-      priono: req.body.priono,
-      hostel: req.user.hostel,
-    },
-    (err, result) => {
-      if (err) {
-        res.json({ message: err.message });
-      } else {
-        res.redirect(`/hab/admin/hostel/hmc`);
-      }
-    }
-  );
-};
+//   if (req.file) {
+//     new_image = req.file.filename;
+//     try {
+//       fs.unlinkSync("./uploads/hostel_files/" + req.body.old_image);
+//     } catch (err) {
+//       console.log("");
+//       console.log(err);
+//     }
+//   } else {
+//     new_image = req.body.old_image;
+//   }
+//   hmcDetail.findByIdAndUpdate(
+//     id,
+//     {
+//       name: req.body.name,
+//       post: req.body.post,
+//       image: req.file.filename,
+//       contno: req.body.contno,
+//       roomno: req.body.roomno,
+//       email: req.body.email,
+//       priono: req.body.priono,
+//       hostel: req.user.hostel,
+//     },
+//     (err, result) => {
+//       if (err) {
+//         res.json({ message: err.message });
+//       } else {
+//         res.redirect(`/hab/admin/hostel/hmc`);
+//       }
+//     }
+//   );
+// };
 
-exports.deleteDetails = async (req, res) => {
-  const id = req.params.id;
-  hmcDetail.findByIdAndRemove(id, (err, result) => {
-    if (result.image != "") {
-      try {
-        fs.unlinkSync("./uploads/details_img/" + result.image);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    if (err) {
-      res.json({ message: err.message });
-    } else {
-      res.redirect(`/hab/admin/hostel/hmc`);
-    }
-  });
-};
+// exports.deleteDetails = async (req, res) => {
+//   const id = req.params.id;
+//   hmcDetail.findByIdAndRemove(id, (err, result) => {
+//     if (result.image != "") {
+//       try {
+//         fs.unlinkSync("./uploads/details_img/" + result.image);
+//       } catch (err) {
+//         console.log(err);
+//       }
+//     }
+//     if (err) {
+//       res.json({ message: err.message });
+//     } else {
+//       res.redirect(`/hab/admin/hostel/hmc`);
+//     }
+//   });
+// };
 
 exports.getWeb = async (req, res) => {
   personalweb.find({ hostel: req.user.hostel }).exec((err, personalwebs) => {
@@ -471,6 +471,171 @@ exports.deleteEvent = async (req, res) => {
     return res.redirect("/hab/admin/hostel/event");
   }
 };
+
+//HMC Controllers
+
+
+const HmcDetail = require("../models/hostelModels/hmc.models");
+
+exports.getHmcDetails = async (req, res) => {
+  try {
+    const details = await HmcDetail.find({ hostel: req.user.hostel });
+    details.sort(compare);
+    return res.render("hostelAdmin/hmc/index", { details });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.addHmcForm = async (req, res) => {
+  try {
+    return res.render("hostelAdmin/hmc/add");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.postHmcDetails = async (req, res) => {
+  try {
+    var { name, post, contno, roomno,email,priono,link } = req.body;
+
+    const image = req.file ? req.file.filename : link;
+    if (!image) {
+      req.flash("error", "Please attach your pdf!!");
+      return res.redirect("/hab/admin/hostel/hmc/add");
+    }
+    //console.log(path);
+    const newHmcDetail = await new HmcDetail({
+      name,
+      post,
+      contno,
+      roomno,
+      email,
+      priono,
+      image,
+      hostel: req.user.hostel,
+    }).save();
+    if (!newHmcDetail) {
+      req.flash("error", "Unable to add new Detail");
+      res.redirect("/hab/admin/hostel/hmc/add");
+    }
+    req.flash("success", "Successfully added new detail");
+    return res.redirect("/hab/admin/hostel/hmc");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.getEditHmcDetailsForm = async (req, res) => {
+  try {
+    const details = await HmcDetail.findById(req.params.details_id);
+
+    return res.render("hostelAdmin/hmc/edit", { details });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.editHmcDetail = async (req, res) => {
+  try {
+    var { name, post, contno, roomno,email,priono,link } = req.body;
+
+    const image = req.file ? req.file.filename : link;
+    let data;
+    if (!req.file && !link) {
+      data = { name, post, contno, roomno,email,priono, hostel: req.user.hostel };
+    } else {
+      data = {
+        name, 
+        post, 
+        contno, 
+        roomno,
+        email,
+        priono,
+        image,
+        hostel: req.user.hostel,
+      };
+    }
+    const updatedHmcDetail = await HmcDetail.findByIdAndUpdate(
+      req.params.details_id,
+      data
+    );
+
+    if (!updatedHmcDetail) {
+      req.flash("error", "Unable to edit detail");
+      return res.redirect("/hab/admin/hostel/hmc");
+    }
+    req.flash("success", "Successfully editted detail");
+    return res.redirect("/hab/admin/hostel/hmc");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.getOneHmcDetail = async (req, res) => {
+  try {
+    const id = req.params.details_id;
+    const details = await HmcDetail.findById(id);
+    const filePath = "uploads/hostel_files/" + details.image;
+    fs.readFile(filePath, (err, data) => {
+      res.contentType("application/pdf");
+      return res.send(data);
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+// exports.deleteHmcDetail = async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const details = await HmcDetail.findById(id);
+//     if (details.image.indexOf("https://") == -1) {
+//       fs.unlinkSync(`uploads/hostel_files/${details.image}`)
+//       console.log("successfully deleted!");
+//     }
+    
+//     await HmcDetail.findByIdAndDelete(id);
+//     req.flash("success", "Successfully deleted detail");
+//     return res.redirect("/hab/admin/hostel/hmc");
+//   } catch (err) {
+//     // handle the error
+//     console.log(err);
+//     return res.redirect("/hab/admin/hostel/hmc");
+//   }
+// };
+
+exports.deleteHmcDetail = async (req, res) => {
+  const id = req.params.details_id;
+  HmcDetail.findByIdAndRemove(id, (err, result) => {
+    if (result.image != "") {
+      try {
+        fs.unlinkSync("./uploads/hostel_files/" + result.image);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    if (err) {
+      res.json({ message: err.message });
+    } else {
+      res.redirect(`/hab/admin/hostel/hmc`);
+    }
+  });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const compare = (a, b) => {
   return b.creation - a.creation;
