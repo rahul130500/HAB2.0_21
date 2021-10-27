@@ -20,54 +20,40 @@
         style="box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px"
       >
         <tbody class="ls">
+          <% forms.forEach((form,i)=>{ %>
           <tr>
-            <td class="w-1/8 ds">No</td>
-            <td class="w-1/2 ds">Subject</td>
-            <td class="w-1/8 ds hidden sm:table-cell">Format</td>
-            <td class="w-1/8 ds hidden sm:table-cell">03/04/2019</td>
+            <td class="w-1/8 ds"><%= form.number %></td>
+            <td class="w-1/2 ds"><%= form.title %></td>
+            <% if(form.path.indexOf("https://")==-1) { %>
+            <td class="w-1/8 ds hidden sm:table-cell">Pdf</td>
+            <% }else{ %>
+            <td class="w-1/8 ds hidden sm:table-cell">Link</td>
+            <% } %>
+            <td class="w-1/8 ds hidden sm:table-cell">
+              <%=form.creation.getDate()+'/'+(form.creation.getMonth()+1)+'/'+form.creation.getFullYear()
+              %>
+            </td>
             <td class="w-1/8">
+              <% if(form.path.indexOf("https://")==-1) { %>
               <a
                 class="hover:text-blue-500 text-blue-500 underline"
-                href=""
+                href="/hab/uploads/hostel_files/<%= form.path %>"
                 rel="noreferrer"
                 target="_blank"
               >
-                View
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td class="w-1/8 ds">No</td>
-            <td class="w-1/2 ds">Subject</td>
-            <td class="w-1/8 ds hidden sm:table-cell">Format</td>
-            <td class="w-1/8 ds hidden sm:table-cell">03/04/2019</td>
-            <td class="w-1/8">
+                View </a
+              ><% }else{ %>
               <a
                 class="hover:text-blue-500 text-blue-500 underline"
-                href=""
+                href="<%= form.path %>"
                 rel="noreferrer"
                 target="_blank"
               >
-                View
-              </a>
+                View </a
+              ><% } %>
             </td>
           </tr>
-          <tr>
-            <td class="w-1/8 ds">No</td>
-            <td class="w-1/2 ds">Subject</td>
-            <td class="w-1/8 ds hidden sm:table-cell">Format</td>
-            <td class="w-1/8 ds hidden sm:table-cell">03/04/2019</td>
-            <td class="w-1/8">
-              <a
-                class="hover:text-blue-500 text-blue-500 underline"
-                href=""
-                rel="noreferrer"
-                target="_blank"
-              >
-                View
-              </a>
-            </td>
-          </tr>
+          <% }) %>
         </tbody>
       </table>
     </div>

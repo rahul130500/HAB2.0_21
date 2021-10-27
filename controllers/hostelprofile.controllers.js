@@ -1,6 +1,7 @@
 const About = require("../models/hostelModels/about.models");
 const hmcDetail = require("../models/hostelModels/hmc.models");
 const fs = require("fs");
+const Mess = require("../models/hostelModels/mess");
 const personalweb = require("../models/hostelModels/personalweb.models");
 
 exports.getAboutDetails = async (req, res) => {
@@ -474,7 +475,6 @@ exports.deleteEvent = async (req, res) => {
 
 //HMC Controllers
 
-
 const HmcDetail = require("../models/hostelModels/hmc.models");
 
 exports.getHmcDetails = async (req, res) => {
@@ -497,7 +497,7 @@ exports.addHmcForm = async (req, res) => {
 
 exports.postHmcDetails = async (req, res) => {
   try {
-    var { name, post, contno, roomno,email,priono,link } = req.body;
+    var { name, post, contno, roomno, email, priono, link } = req.body;
 
     const image = req.file ? req.file.filename : link;
     if (!image) {
@@ -538,17 +538,25 @@ exports.getEditHmcDetailsForm = async (req, res) => {
 
 exports.editHmcDetail = async (req, res) => {
   try {
-    var { name, post, contno, roomno,email,priono,link } = req.body;
+    var { name, post, contno, roomno, email, priono, link } = req.body;
 
     const image = req.file ? req.file.filename : link;
     let data;
     if (!req.file && !link) {
-      data = { name, post, contno, roomno,email,priono, hostel: req.user.hostel };
+      data = {
+        name,
+        post,
+        contno,
+        roomno,
+        email,
+        priono,
+        hostel: req.user.hostel,
+      };
     } else {
       data = {
-        name, 
-        post, 
-        contno, 
+        name,
+        post,
+        contno,
         roomno,
         email,
         priono,
@@ -594,7 +602,7 @@ exports.getOneHmcDetail = async (req, res) => {
 //       fs.unlinkSync(`uploads/hostel_files/${details.image}`)
 //       console.log("successfully deleted!");
 //     }
-    
+
 //     await HmcDetail.findByIdAndDelete(id);
 //     req.flash("success", "Successfully deleted detail");
 //     return res.redirect("/hab/admin/hostel/hmc");
@@ -623,19 +631,121 @@ exports.deleteHmcDetail = async (req, res) => {
   });
 };
 
+//Form Controller
 
+exports.getMessInfo = async (req, res) => {
+  try {
+    const mess = await Mess.find({ hostel: req.user.hostel });
 
+    mess.sort(compare);
+    return res.render("hostelAdmin/mess/index", { mess });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
+exports.addMessForm = async (req, res) => {
+  try {
+    return res.render("hostelAdmin/mess/add");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
+exports.postMess = async (req, res) => {
+  try {
+    var { title, number, link } = req.body;
 
+    const path = req.file ? req.file.filename : link;
+    if (!path) {
+      req.flash("error", "Please attach your pdf!!");
+      return res.redirect("/hab/admin/hostel/form/add");
+    }
+    //console.log(path);
+    const newMess = await new Mess({
+      title,
+      number,
+      path,
+      hostel: req.user.hostel,
+    }).save();
+    if (!newMess) {
+      req.flash("error", "Unable to add new mess data");
+      res.redirect("/hab/admin/hostel/form/add");
+    }
+    req.flash("success", "Successfully added new mess data");
+    return res.redirect("/hab/admin/hostel/form");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
+exports.getMessEditForm = async (req, res) => {
+  try {
+    const mess = await Mess.findById(req.params.mess_id);
 
+    return res.render("hostelAdmin/mess/edit", { mess });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
+exports.editMess = async (req, res) => {
+  try {
+    var { title, number, link } = req.body;
 
+    const path = req.file ? req.file.filename : link;
+    let data;
+    if (!req.file && !link) {
+      data = { title, number, hostel: req.user.hostel };
+    } else {
+      data = { title, number, path, hostel: req.user.hostel };
+    }
 
+    const updatedMess = await Mess.findByIdAndUpdate(req.params.mess_id, data);
 
+    if (!updatedMess) {
+      req.flash("error", "Unable to edit mess data");
+      return res.redirect("/hab/admin/hostel/form");
+    }
+    req.flash("success", "Successfully editted mess data");
+    return res.redirect("/hab/admin/hostel/form");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
+exports.getOneMess = async (req, res) => {
+  try {
+    const id = req.params.mess_id;
+    const mess = await Mess.findById(id);
+    const filePath = "uploads/hostel_files/" + mess.path;
+    console.log(filePath);
+    fs.readFile(filePath, (err, data) => {
+      res.contentType("application/pdf");
+      return res.send(data);
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
+exports.deleteMess = async (req, res) => {
+  try {
+    const id = req.params.mess_id;
+    const mess = await Mess.findById(id);
+    if (mess.path.indexOf("https://") == -1) {
+      fs.unlinkSync(`uploads/hostel_files/${mess.path}`);
+      console.log("successfully deleted!");
+    }
+    await Mess.findByIdAndRemove(id);
+    req.flash("success", "Successfully deleted mess data");
+    return res.redirect("/hab/admin/hostel/form");
+  } catch (err) {
+    // handle the error
+    console.log(err);
+    return res.redirect("/hab/admin/hostel/form");
+  }
+};
 
 const compare = (a, b) => {
   return b.creation - a.creation;

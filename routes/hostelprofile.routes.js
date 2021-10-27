@@ -194,12 +194,7 @@ router.delete(
 
 router.get("/hmc", isLoggedIn, isHostelAdmin, hostelController.getHmcDetails);
 
-router.get(
-  "/hmc/add",
-  isLoggedIn,
-  isHostelAdmin,
-  hostelController.addHmcForm
-);
+router.get("/hmc/add", isLoggedIn, isHostelAdmin, hostelController.addHmcForm);
 
 router.post(
   "/hmc",
@@ -232,8 +227,40 @@ router.get(
   hostelController.deleteHmcDetail
 );
 
+router.get("/form", isLoggedIn, isHostelAdmin, hostelController.getMessInfo);
 
+router.get(
+  "/form/add",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.addMessForm
+);
 
+router.post(
+  "/form",
+  isLoggedIn,
+  isHostelAdmin,
+  upload.single("mess"),
+  hostelController.postMess
+);
 
+router.get("/form/:mess_id", hostelController.getMessEditForm);
+
+router.get("/form/pdf/:mess_id", hostelController.getOneMess);
+
+router.put(
+  "/form/:mess_id",
+  isLoggedIn,
+  isHostelAdmin,
+  upload.single("mess"),
+  hostelController.editMess
+);
+
+router.delete(
+  "/form/:mess_id",
+  isLoggedIn,
+  isHostelAdmin,
+  hostelController.deleteMess
+);
 
 module.exports = router;

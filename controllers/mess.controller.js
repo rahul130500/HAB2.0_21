@@ -1,4 +1,4 @@
-const Mess = require('../models/mess');
+const Mess = require('../models/hostelModels/mess');
 const fs = require("fs");
 
 exports.getMessInfo = async (req, res) => {

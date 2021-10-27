@@ -13,6 +13,7 @@ const About = require("../models/about");
 const HostelNotice = require("../models/hostelModels/notice");
 const HostelWebsite = require("../models/hostelModels/personalweb.models");
 const HMC = require("../models/hostelModels/hmc.models");
+const HostelForm = require("../models/hostelModels/mess");
 
 exports.getHome = async (req, res) => {
   let notices = await Notice.find({}).sort("-creation");
@@ -61,6 +62,7 @@ exports.getOneHostel = async (req, res) => {
     const notices = await HostelNotice.find({ hostel: name });
     const website = await HostelWebsite.findOne({ hostel: name });
     const hmclist = await HMC.find({ hostel: name });
+    const forms = await HostelForm.find({ hostel: name }).sort("-creation");
     hmclist.sort((a, b) => (a.priono > b.priono ? 1 : -1));
     const members = hostel.management;
     members.sort((a, b) => (a.priority > b.priority ? 1 : -1));
@@ -70,7 +72,8 @@ exports.getOneHostel = async (req, res) => {
       hostels,
       notices,
       website,
-      hmclist
+      hmclist,
+      forms,
     });
   } catch (error) {
     console.log(error.message);

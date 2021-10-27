@@ -21,7 +21,7 @@ require("dotenv").config();
 const { MONGO_URX } = process.env;
 
 mongoose
-  .connect(MONGO_URX, {
+  .connect(url, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -101,7 +101,6 @@ app.use("/hab/admin/links", linkRoutes);
 app.use("/hab/admin/ordinance", ordinanceRoutes);
 app.use("/hab/admin/about", aboutRoutes);
 app.use("/hab/admin/hostel/", hostelProfileRoutes);
-app.use("/hab/admin/mess",messRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
