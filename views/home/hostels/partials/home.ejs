@@ -1,6 +1,6 @@
 <section id="home" class="sectionlist" style="display: block">
   <div class="sm:mx-16 md:mx-32 mt-20">
-    <div class="flex-wrap items-center justify-center md:justify-between mb-8">
+    <div class="flex items-center justify-center md:justify-between mb-8">
       <div class="font-bold text-4xl">About Hostel</div>
       <div>
         <% if(website){ %>
@@ -126,4 +126,37 @@
 
     <% }) %>
   </div>
+  <div class="pb-8" style="background-color: #1e2532">
+    <div class="text-white py-8 text-4xl font-bold md:mx-32">
+      Events at <%=hostel.name %> Hostel
+    </div>
+    <div class="splide md:mx-32">
+      <div class="splide__arrows hidden">
+        <button class="splide__arrow splide__arrow--prev"></button>
+        <button class="splide__arrow splide__arrow--next"></button>
+      </div>
+      <div class="splide__track">
+        <ul class="splide__list">
+          <!-- LOOP HERE FOR THE DATES-->
+          <li class="splide__slide"><%- include("./eventcard.ejs") %></li>
+          <li class="splide__slide"><%- include("./eventcard.ejs") %></li>
+          <li class="splide__slide"><%- include("./eventcard.ejs") %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+
+<script>
+  var elms = document.getElementsByClassName("splide");
+  for (var i = 0, len = elms.length; i < len; i++) {
+    const config = {
+      perPage: 1,
+      drag: "free",
+      pagination: false,
+      lazyLoad: "nearby",
+    };
+    new Splide(elms[i], config).mount();
+  }
+</script>
