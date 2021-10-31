@@ -1,18 +1,23 @@
 <section id="notice" class="sectionlist" style="display: none">
-  <div
-    class="
-      font-bold
-      text-xl
-      md:text-4xl md:ml-32
-      my-4
-      mt-10
-      md:my-20
-      flex
-      justify-center
-      md:justify-start
-    "
-  >
-    Notices
+  <div class="flex justify-center md:justify-between items-center">
+    <div
+      class="
+        font-bold
+        text-xl
+        md:text-4xl md:ml-32
+        my-4
+        mt-10
+        md:my-20
+        flex
+        justify-center
+        md:justify-start
+      "
+    >
+      Notices
+    </div>
+    <div class="hidden md:block mr-32 border-2 "> 
+      <input type="text" placeholder="Search" class="focus:outline-none"> 
+    </div>
   </div>
   <div class="mx-8 md:mx-32">
     <div class="flex flex-wrap justify-start">
@@ -31,7 +36,8 @@
           <div class="flex justify-center py-4">
             <a
               class="text-blue-500 underline"
-              href="/hab/uploads/hostel_files/<%=notice.path %>" target="_blank"
+              href="/hab/uploads/hostel_files/<%=notice.path %>"
+              target="_blank"
               >View Notice</a
             >
           </div>
