@@ -21,7 +21,7 @@ require("dotenv").config();
 const { MONGO_URX } = process.env;
 
 mongoose
-  .connect(url, {
+  .connect(MONGO_URX, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,

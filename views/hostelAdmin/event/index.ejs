@@ -41,28 +41,22 @@
         <tr>
           <%}%>
 
-          <td class="w-1/3 text-left py-3 px-4"><%= event.name %></td>
-          <td class="w-1/3 text-left py-3 px-4">
-            <%= event.imagepath %>
+          <td class="w-1/3 text-left py-3 px-4"><%= event.name.substring(0, 80) + "..."  %></td>
+          <td class="w-1/3 text-left py-3 px-4" >
+           <img src="/hab/uploads/hostel_files/<%= event.path %>" alt="" style="height: 8vh;width: 8vw;"> 
           </td>
-          <td class="text-left py-3 px-4"><%= event.date %></td>
+          <td class="text-left py-3 px-4"><%=event.date.getDate()+'/'+(event.date.getMonth()+1)+'/'+event.date.getFullYear()
+            %></td>
 
           <td class="text-left py-3 px-4">
-            <% if(event.path.indexOf("https://")==-1) { %>
+            
             <a
               class="hover:text-blue-500"
-              href="/hab/admin/hostel/event/pdf/<%=event.id%>"
+              href="<%= event.imagepath %>"
               target="_blank"
               >View</a
             >
-            <% } else { %>
-            <a
-              class="hover:text-blue-500"
-              href="<%= event.path %>"
-              target="_blank"
-              >View</a
-            >
-            <% } %>
+           
           </td>
 
           <td class="text-left py-3 px-4">
