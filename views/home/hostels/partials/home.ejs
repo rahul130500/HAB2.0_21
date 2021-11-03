@@ -3,134 +3,84 @@
     <div class="flex flex-wrap flex-row-reverse items-center justify-center md:justify-between mb-8">
       <div>
         <% if(website){ %>
-        <a href="<%= website.link %>" target="_blank"
-          ><button class="border-2 rounded px-6 py-3">
-            Personal Website
-          </button></a
-        ><% }else{%><a href="#"
-          ><button class="border-2 rounded px-6 py-3">
-            Personal Website
-          </button></a
-        ><% } %>
+          <a href="<%= website.link %>" target="_blank"><button class="border-2 rounded px-6 py-3">
+              Personal Website
+            </button></a>
+          <% }else{%><a href="#"><button class="border-2 rounded px-6 py-3">
+                Personal Website
+              </button></a>
+            <% } %>
       </div>
       <div class="font-bold text-4xl ">About Hostel</div>
     </div>
-    <div class="flex justify-center md:justify-start"><%= hostel.description%></div>
+    <div class="flex justify-center md:justify-start">
+      <%= hostel.description%>
+    </div>
   </div>
-  <div
-    class="
-      font-bold
-      text-xl
-      md:text-4xl md:ml-32
-      mt-10
-      md:my-10
-      flex
-      justify-center
-      md:justify-start
-    "
-  >
+  <div class=" font-bold text-xl md:text-4xl md:ml-32 mt-10 md:my-10 flex justify-center md:justify-start">
     Hostel Members
   </div>
   <div class="flex flex-wrap justify-start mx-8 md:mx-32 mb-10">
     <% members.forEach((member,i)=>{ %>
-    <div
-      style="height: 450px; width: 380px"
-      class="
-        hidden
-        md:block
-        overflow-hidden
-        bg-blue-600
-        rounded-md
-        mb-24
-        mx-4
-        cursor-pointer
-      "
-    >
-      <div class="bg-gray-200 rounded-md">
-        <img
-          style="height: 300px"
-          src="/hab/uploads/hostel/<%=member.photo%>"
-          alt="ProfilePic"
-          class="w-full object-contain"
-        />
-      </div>
-      <div class="ml-3.5 text-2xl text-white font-semibold mt-4">
-        <%= member.Mname %>
-      </div>
-      <div class="ml-3.5 text-lg text-white mt-2 mb-2">
-        <%= member.position %>
-      </div>
-      <svg
-        class="w-full"
-        width="200"
-        height="1"
-        viewBox="0 0 420 1"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <line
-          x1="0.5"
-          y1="0.5"
-          x2="419.5"
-          y2="0.500031"
-          stroke="white"
-          stroke-linecap="round"
-        />
-      </svg>
-      <div class="flex justify-between mx-3.5 my-2">
-        <div class="text-sm text-white"><%= member.email %></div>
-        <div class="text-sm text-white">+91-<%= member.contact1 %></div>
-      </div>
-    </div>
-    <div class="block md:hidden flex justify-center">
-      <div
-        style="width: 320px"
-        class="bg-blue-600 mt-8 rounded-md cursor-pointer"
-      >
-        <div class="bg-gray-200 flex justify-center">
-          <img
-            src="/hab/uploads/hostel/<%=member.photo%>"
-            alt="ProfilePic"
-            class="h-64 w-auto object-contain rounded-sm"
-          />
+      <div style="height: 450px; width: 380px"
+        class=" hidden md:block overflow-hidden bg-blue-600 rounded-md mb-24 mx-4 cursor-pointer">
+        <div class="bg-gray-200 rounded-md">
+          <img style="height: 300px" src="/hab/uploads/hostel/<%=member.photo%>" alt="ProfilePic"
+            class="w-full object-contain" />
         </div>
-        <div class="h-16">
-          <div class="text-white text-2xl ml-4 pt-1"><%= member.Mname %></div>
-          <div class="text-white text-lg ml-4 pt-1"><%= member.position %></div>
+        <div class="ml-3.5 text-2xl text-white font-semibold mt-4">
+          <%= member.Mname %>
         </div>
-        <svg
-          class="w-full px-4 mt-3"
-          width="360"
-          height="1"
-          viewBox="0 0 360 1"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <line
-            x1="0.5"
-            y1="0.5"
-            x2="359.5"
-            y2="0.500031"
-            stroke="white"
-            stroke-linecap="round"
-          />
+        <div class="ml-3.5 text-lg text-white mt-2 mb-2">
+          <%= member.position %>
+        </div>
+        <svg class="w-full" width="200" height="1" viewBox="0 0 420 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0.5" y1="0.5" x2="419.5" y2="0.500031" stroke="white" stroke-linecap="round" />
         </svg>
-        <div class="h-20">
-          <div class="text-white text-lg ml-4 pt-1"><%= member.email %></div>
-          <div class="text-white text-lg ml-4 pt-1">
-            +91-<%= member.contact1 %>
+        <div class="flex justify-between mx-3.5 my-2">
+          <div class="text-sm text-white">
+            <%= member.email %>
+          </div>
+          <div class="text-sm text-white">+91-<%= member.contact1 %>
           </div>
         </div>
       </div>
-    </div>
+      <div class="block md:hidden flex justify-center">
+        <div style="width: 320px" class="bg-blue-600 mt-8 rounded-md cursor-pointer">
+          <div class="bg-gray-200 flex justify-center">
+            <img src="/hab/uploads/hostel/<%=member.photo%>" alt="ProfilePic"
+              class="h-64 w-auto object-contain rounded-sm" />
+          </div>
+          <div class="h-16">
+            <div class="text-white text-2xl ml-4 pt-1">
+              <%= member.Mname %>
+            </div>
+            <div class="text-white text-lg ml-4 pt-1">
+              <%= member.position %>
+            </div>
+          </div>
+          <svg class="w-full px-4 mt-3" width="360" height="1" viewBox="0 0 360 1" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <line x1="0.5" y1="0.5" x2="359.5" y2="0.500031" stroke="white" stroke-linecap="round" />
+          </svg>
+          <div class="h-20">
+            <div class="text-white text-lg ml-4 pt-1">
+              <%= member.email %>
+            </div>
+            <div class="text-white text-lg ml-4 pt-1">
+              +91-<%= member.contact1 %>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <% }) %>
+      <% }) %>
   </div>
   <div class="pb-8" style="background-color: #1e2532">
     <div class="text-white py-8 flex justify-center md:justify-start text-xl md:text-4xl font-bold md:mx-32">
       Events at <%=hostel.name %> Hostel
     </div>
-    <div class="splide md:mx-32">
+    <div class="splide md:ml-32">
       <div class="splide__arrows hidden">
         <button class="splide__arrow splide__arrow--prev"></button>
         <button class="splide__arrow splide__arrow--next"></button>
@@ -138,9 +88,9 @@
       <div class="splide__track">
         <ul class="splide__list">
           <!-- LOOP HERE FOR THE DATES-->
-          <li class="splide__slide"><%- include("./eventcard.ejs") %></li>
-          <li class="splide__slide"><%- include("./eventcard.ejs") %></li>
-          <li class="splide__slide"><%- include("./eventcard.ejs") %></li>
+          <li class="splide__slide">
+            <%- include("./eventcard.ejs") %>
+          </li>
         </ul>
       </div>
     </div>

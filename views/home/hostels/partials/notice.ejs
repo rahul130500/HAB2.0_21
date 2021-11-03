@@ -2,7 +2,7 @@
   <nav class="w-full sm:flex mt-14 mb-8">
     <h1 class="font-semibold text-4xl flex flex-grow md:ml-24 mx-6">Notices</h1>
     <ul class=" hidden sm:flex md:mr-24">
-      <li class="inline-block bg-gray-200 py-2 px-4 mx-2 rounded-lg hover:bg-black hover:text-white">
+      <!-- <li class="inline-block bg-gray-200 py-2 px-4 mx-2 rounded-lg hover:bg-black hover:text-white">
         <a href="#" class="text-base">Home</a>
       </li>
       <li class="inline-block bg-gray-200 py-2 px-4 mx-2 rounded-lg hover:bg-black hover:text-white">
@@ -13,9 +13,9 @@
       </li>
       <li class="inline-block bg-gray-200 py-2 px-4 mx-2 rounded-lg hover:bg-black hover:text-white">
         <a href="#" class="text-base">Academics</a>
-      </li>
+      </li> -->
       <li class="py-2 px-1 mr-3">
-        <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
           <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="21">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0.766602H19.4768V20.2436H0V0.766602Z" fill="white" />
           </mask>
@@ -33,7 +33,14 @@
               d="M19.5142 21.4884C19.3232 21.4884 19.1312 21.4154 18.9842 21.2694L15.4602 17.7554C15.1672 17.4624 15.1662 16.9874 15.4592 16.6944C15.7512 16.3994 16.2262 16.4014 16.5202 16.6924L20.0442 20.2074C20.3372 20.5004 20.3382 20.9744 20.0452 21.2674C19.8992 21.4154 19.7062 21.4884 19.5142 21.4884Z"
               fill="#1B212D" />
           </g>
-        </svg>
+        </svg> -->
+        <div class="relative">
+          <input type="text" onkeyup="myFunction1()" type="search"
+            class="h-12 w-80 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none mySearch1"
+            placeholder="Search anything...">
+          <div class="absolute top-3 right-3"> <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
+          </div>
+        </div>
       </li>
     </ul>
   </nav>
@@ -54,7 +61,13 @@
           <%= notice.description%>
         </p>
         <div class="text-center font-normal text-sm text-gray-500 mt-3">
-          <a class="hover:text-black hover:underline cursor-pointer">learn more</a>
+          <% if(notice.path.indexOf("https://")==-1) { %>
+            <a class="hover:text-black hover:underline cursor-pointer"
+              href="/hab/uploads/hostel_files/<%= notice.path %>" target="_blank">View pdf</a>
+            <% } else { %>
+              <a class="hover:text-black hover:underline cursor-pointer" href="<%=notice.path%>" target="_blank">View
+                link</a>
+              <% } %>
         </div>
       </div>
       <% }) %>
