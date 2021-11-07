@@ -54,7 +54,7 @@
   >
     Hostel Management Committee
   </div>
-  <div class="flex flex-wrap justify-start mx-8 md:mx-32 mb-10">
+  <div class="flex flex-wrap justify-start mx-8 md:mx-16 mb-10">
     <% hmclist.forEach((hmc,i)=>{ %>
     <div
       style="height: 450px; width: 380px;"
@@ -66,7 +66,7 @@
         bg-blue-600
         rounded-md
         mb-24
-        mx-4
+        ml-16
         cursor-pointer
       "
     >
@@ -78,8 +78,8 @@
           class="w-full object-contain"
         />
       </div>
-      <div class="ml-3.5 text-2xl text-white font-semibold mt-4"><%= hmc.name %></div>
-      <div class="ml-3.5 text-lg text-white mt-2 mb-2"><%= hmc.post %></div>
+      <div class="ml-8 text-2xl text-white font-semibold mt-4"><%= hmc.name %></div>
+      <div class="ml-8 text-lg text-white mt-2 mb-2"><%= hmc.post %></div>
       <svg
         class="w-full"
         width="200"
@@ -89,15 +89,15 @@
         xmlns="http://www.w3.org/2000/svg"
       >
         <line
-          x1="0.5"
+          x1="26"
           y1="0.5"
-          x2="419.5"
+          x2="394"
           y2="0.500031"
           stroke="white"
           stroke-linecap="round"
         />
       </svg>
-      <div class="flex justify-between mx-3.5 my-2">
+      <div class="flex justify-between ml-8 my-2 mr-8">
         <div class="text-sm text-white"><%= hmc.email %></div>
         <div class="text-sm text-white">+91-<%= hmc.contno %></div>
       </div>
