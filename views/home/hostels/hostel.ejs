@@ -583,6 +583,21 @@
       document.getElementsByClassName("sectionlist"); for(var
       i=0;i<y.length;i++){ y[i].style.display='none'; } if (x.style.display ==
       'none') { x.style.display = 'block'; } }
+
+      function searchHostelNotice() {
+        var text = document.getElementById("searchHostelNotice").value.toUpperCase();
+        var divs = document.getElementById("hostelnotice").children;
+        // console.log(divs[0].value);
+        for(var i=0;i<divs.length;i++) {
+          divs[i].style.display = 'none';
+          for(var j = 1; j < divs[i].children.length-1; j++) {
+            // console.log(divs[i].children[j].innerText);
+            if(divs[i].children[j].innerText.toUpperCase().indexOf(text) != -1) {
+              divs[i].style.display = 'block';
+            }
+          }
+        }
+      }
     </SCRIPT>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- <script src="js/nav.js"></script> -->

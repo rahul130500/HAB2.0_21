@@ -35,7 +35,7 @@
           </g>
         </svg> -->
         <div class="relative">
-          <input type="text" onkeyup="myFunction1()" type="search"
+          <input type="text" onkeyup="searchHostelNotice()" type="search" id="searchHostelNotice" 
             class="h-12 w-80 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none mySearch1"
             placeholder="Search anything...">
           <div class="absolute top-3 right-3"> <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
@@ -45,13 +45,13 @@
     </ul>
   </nav>
   <!-- <div class="mx-8 md:mx-32"> -->
-  <div class=" mx-3 md:container md:mx-auto flex flex-wrap lg:justify-around sm:justify-center">
+  <div class=" mx-3 md:container md:mx-auto flex flex-wrap lg:justify-around sm:justify-center" id="hostelnotice">
     <% notices.forEach((notice,i)=>{ %>
       <!-- single-notice-card -->
       <div class="max-w-xl h-auto m-2 p-9 border-2 rounded-lg shadow-2xl">
         <div class="text-blue-600 font-bold text-sm float-left">category</div>
         <div class="text-blue-600 font-bold text-sm float-right">
-          <%=notice.creation.getDate()+' /'+(notice.creation.getMonth()+1)+'/'+notice.creation.getFullYear()%>
+          <%=notice.creation.getDate()+'/'+(notice.creation.getMonth()+1)+'/'+notice.creation.getFullYear()%>
         </div>
         <br>
         <div class="font-bold text-xl my-3">
