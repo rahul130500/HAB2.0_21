@@ -1,8 +1,8 @@
 <div class="flex flex-row overflow-auto space-x-8">
   <!-- single-event-card -->
   <% events.forEach((event,i)=>{ %>
-    <div class="  flex flex-col bg-blue-500 rounded">
-      <img class="rounded-t-lg max-w-xl max-h-72" src="/hab/uploads/hostel_files/<%= event.path %>" />
+    <div  class=" flex flex-col bg-blue-600 rounded">
+      <img style="width: 850px; height: 420px;" class="bg-gray-200 flex justify-center" src="/hab/uploads/hostel_files/<%= event.path %>" />
       <div class="mt-6 mx-5 text-white">
         <%=event.date.getDate()+' /'+(event.date.getMonth()+1)+'/'+event.date.getFullYear()%>
       </div>

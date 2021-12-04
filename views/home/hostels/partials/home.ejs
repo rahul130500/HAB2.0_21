@@ -1,6 +1,6 @@
 <section id="home" class="sectionlist" style="display: block">
-  <div class="sm:mx-16 md:mx-32 mt-20">
-    <div class="flex flex-wrap flex-row-reverse items-center justify-center md:justify-between mb-8">
+  <div class="sm:mx-16 md:mx-28 mt-4 hidden md:block md:mt-20">
+    <div class="flex flex-wrap flex-row-reverse items-center justify-center md:justify-between mb-2 md:mb-8">
       <div>
         <% if(website){ %>
           <a href="<%= website.link %>" target="_blank"><button class="border-2 rounded px-6 py-3">
@@ -11,16 +11,34 @@
               </button></a>
             <% } %>
       </div>
-      <div class="font-bold text-4xl ">About Hostel</div>
+      <div class="font-bold text-2xl md:text-4xl">About Hostel</div>
     </div>
     <div class="flex justify-center md:justify-start">
       <%= hostel.description%>
     </div>
   </div>
-  <div class=" font-bold text-xl md:text-4xl md:ml-32 mt-10 md:my-10 flex justify-center md:justify-start">
+  <div class="sm:mx-16 md:mx-28 mt-4 block md:hidden md:mt-20">
+    <div class="flex flex-wrap justify-center mb-2">
+      <div>
+        <div class="font-bold text-2xl ">About Hostel</div>
+        <div class="flex justify-center mb-4">
+          <%= hostel.description%>
+        </div>
+        <% if(website){ %>
+          <a href="<%= website.link %>" target="_blank"><button class="border-2 rounded px-6 py-3">
+              Personal Website
+            </button></a>
+          <% }else{%><a href="#"><button class="border-2 rounded px-6 py-3">
+                Personal Website
+              </button></a>
+            <% } %>
+      </div> 
+    </div>
+  </div>
+  <div class=" font-bold text-2xl md:text-4xl md:ml-28 mt-10 md:my-10 flex justify-center md:justify-start">
     Hostel Members
   </div>
-  <div class="flex flex-wrap justify-start mx-8 md:mx-32 mb-10">
+  <div class="flex flex-wrap justify-start mx-8 md:mx-28">
     <% members.forEach((member,i)=>{ %>
       <div style="height: 450px; width: 380px"
         class=" hidden md:block overflow-hidden bg-blue-600 rounded-md mb-24 mx-4 cursor-pointer">
