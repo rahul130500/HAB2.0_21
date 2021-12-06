@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const passport = require("passport");
+const Hostel = require("../models/hostel");
 
 exports.getLoginPage = (req, res) => {
   if (req.isAuthenticated()) return res.redirect("/hab/admin");
@@ -86,5 +87,46 @@ exports.deleteUser = async (req, res) => {
   } catch (error) {
     console.log(error.message);
     return res.redirect("/hab/admin");
+  }
+};
+
+exports.getEditUser = async (req, res) => {
+  try {
+    const id = req.params.user_id;
+    const user = await User.findById(id);
+    const hostels = await Hostel.find({});
+    return res.render("users/edit", { user, hostels });
+  } catch (error) {
+    console.log(error.message);
+    return res.redirect("/hab/admin");
+  }
+};
+
+exports.editUser = async (req, res) => {
+  try {
+    // console.log(req.body);
+    const { hostel } = req.body;
+    let isAdmin = req.body.isAdmin;
+    if (!req.body.isAdmin) {
+      isAdmin = false;
+      // console.log("isadmin");
+    }
+    let isHostelAdmin = req.body.isHostelAdmin;
+    if (!req.body.isHostelAdmin) {
+      isHostelAdmin = false;
+      // console.log("ishosteladmin");
+    }
+    // console.log("final");
+    // console.log(name, email, isAdmin, isHostelAdmin, hostel);
+    await User.findByIdAndUpdate(req.params.user_id, {
+      isAdmin,
+      isHostelAdmin,
+      hostel,
+    });
+    req.flash("success", "User Updated Successfully");
+    res.redirect("/hab/admin/users");
+  } catch (error) {
+    console.log(error.message);
+    res.redirect("/hab/admin");
   }
 };

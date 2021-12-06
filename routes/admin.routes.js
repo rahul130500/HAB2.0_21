@@ -56,4 +56,12 @@ router.post("/profile", isLoggedIn, isAdmin, async (req, res) => {
   res.redirect("/hab/admin/profile");
 });
 
+router.get(
+  "/users/:user_id/edit",
+  isLoggedIn,
+  isAdmin,
+  authController.getEditUser
+);
+router.put("/users/:user_id", isLoggedIn, isAdmin, authController.editUser);
+
 module.exports = router;

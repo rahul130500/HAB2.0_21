@@ -39,18 +39,14 @@ passport.use(
     async (accessToken, refresh_token, params, profile, done) => {
       try {
         var waadProfile = jwt.decode(params.id_token);
-        //console.log(waadProfile);
-
         const user = await User.findOne({ email: waadProfile.upn });
         if (user) return done(null, user);
         const newUser = new User({
           name: waadProfile.name,
           email: waadProfile.upn,
           accessToken: accessToken,
-          isAdmin: true,
-          isHostelAdmin: true,
-          hostel: "Umiam",
-          // isverified: true,
+          isAdmin: false,
+          isHostelAdmin: false,
         });
         if (refresh_token) newUser.refreshToken = refresh_token;
 

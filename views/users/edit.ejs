@@ -1,0 +1,53 @@
+<%- include("../partials/header.ejs") %>
+
+    <h1 class="text-3xl text-black pb-6">Edit User</h1>
+    <div class="flex flex-wrap justify-center">
+        <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
+            <p class="text-xl pb-6 flex items-center">
+                <i class="fas fa-list mr-3"></i> Edit User
+            </p>
+            <div class="leading-loose">
+                <form class="p-10 bg-white rounded shadow-xl" action="/hab/admin/users/<%=user.id%>?_method=PUT"
+                    method="POST">
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="name">Name</label>
+                        <div class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded"><%= user.name %> </div>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="email">email</label>
+                        <div class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded"><%= user.email %></div>
+                    </div>
+                    <div class="mt-2">
+                        
+                        <label class="block text-sm text-gray-600" for="isAdmin">Admin</label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="checkbox" id="isAdmin"
+                            name="isAdmin" value="true"></input>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="isHostelAdmin">Hostel Admin</label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="checkbox" id="isHostelAdmin"
+                            name="isHostelAdmin" value="true"></input>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="description">Hostel Name</label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="text" id="hostel" list="hostels"
+                            name="hostel" value="<%= user.hostel %>" ></input>
+                            <datalist id="hostels">
+                                <% hostels.forEach((hostel, i)=>{ %>
+                                    <option value="<%=hostel.name%>">
+                                <% }) %>
+                            </datalist>
+                    </div>
+                    <div class="mt-6">
+                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                            type="submit">Edit</button>
+                    </div>
+                    <div class="mt-2">
+                        <a class="hover:text-blue-500" href="/hab/admin/users">Go Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../partials/footer.ejs") %>
