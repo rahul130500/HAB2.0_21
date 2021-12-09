@@ -8,6 +8,7 @@ const Category = require("../models/category");
 const Link = require("../models/link");
 const Ordinance = require("../models/ordinance");
 const About = require("../models/about");
+const fs = require('fs');
 
 //Hostel Data Models
 const HostelNotice = require("../models/hostelModels/notice");
@@ -81,5 +82,38 @@ exports.getOneHostel = async (req, res) => {
   } catch (error) {
     console.log(error.message);
     return res.redirect("/hab");
+  }
+};
+
+
+
+exports.getOneNotice = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const notice = await HostelNotice.findById(id);
+    const filePath = "uploads/hostel_files/" + notice.path;
+    console.log(filePath);
+    fs.readFile(filePath, (err, data) => {
+      res.contentType("application/pdf");
+      return res.send(data);
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+exports.getOneForm = async (req, res) => {
+  try {
+    
+    const id = req.params.id;
+    const form = await HostelForm.findById(id);
+    const filePath = "uploads/hostel_files/" + form.path;
+    
+    fs.readFile(filePath, (err, data) => {
+      res.contentType("application/pdf");
+      return res.send(data);
+    });
+  } catch (error) {
+    console.log(error.message);
   }
 };

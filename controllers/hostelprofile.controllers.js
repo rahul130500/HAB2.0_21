@@ -331,6 +331,8 @@ exports.getOneNotice = async (req, res) => {
   }
 };
 
+
+
 exports.deleteNotice = async (req, res) => {
   try {
     const id = req.params.notice_id;
