@@ -46,7 +46,7 @@
         <div class="text-center font-normal text-sm text-gray-500 mt-3">
           <% if(notice.path.indexOf("https://")==-1) { %>
             <a class="hover:text-black hover:underline cursor-pointer"
-              href="/hab/uploads/hostel_files/<%= notice.path %>" target="_blank">View pdf</a>
+              href="/hab/hostels/<%= hostel.id %>/notice/pdf/<%= notice.id %>  " target="_blank">View pdf</a>
             <% } else { %>
               <a class="hover:text-black hover:underline cursor-pointer" href="<%=notice.path%>" target="_blank">View
                 link</a>
