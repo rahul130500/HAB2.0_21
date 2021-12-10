@@ -10,9 +10,8 @@ exports.isAdmin = function (req, res, next) {
   if (req.user.isAdmin) {
     return next();
   } else {
-    req.flash("info", "You are unauthorized!");
     //req.logout();
-    return res.redirect("/hab/admin");
+    return res.redirect("/hab/admin/hostel");
   }
 };
 

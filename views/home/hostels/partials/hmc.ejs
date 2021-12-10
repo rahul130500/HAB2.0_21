@@ -42,11 +42,10 @@
 <section id="hmc" class="sectionlist" style="display: none">
   <div
     class="
-      font-bold text-xl
+      font-bold
+      text-xl
       md:text-4xl md:ml-32
-      my-4
-      mt-10
-      md:my-20
+      mt-8 md:mt-20 mb-6 md:mb-16
       flex
       justify-center
       md:justify-start
@@ -57,15 +56,14 @@
   <div class="flex flex-wrap justify-start mx-8 md:mx-16 mb-10">
     <% hmclist.forEach((hmc,i)=>{ %>
     <div
-      style="height: 450px; width: 380px;"
+      style="height: 450px; width: 380px"
       class="
-
         hidden
         md:block
         overflow-hidden
         bg-blue-600
         rounded-md
-        mb-24
+        mb-20
         ml-16
         cursor-pointer
       "
@@ -78,7 +76,9 @@
           class="w-full object-contain"
         />
       </div>
-      <div class="ml-8 text-2xl text-white font-semibold mt-4"><%= hmc.name %></div>
+      <div class="ml-8 text-2xl text-white font-semibold mt-4">
+        <%= hmc.name %>
+      </div>
       <div class="ml-8 text-lg text-white mt-2 mb-2"><%= hmc.post %></div>
       <svg
         class="w-full"
@@ -142,6 +142,6 @@
       </div>
     </div>
 
-   <% }) %>
+    <% }) %>
   </div>
 </section>

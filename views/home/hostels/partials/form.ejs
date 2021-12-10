@@ -4,9 +4,7 @@
       font-bold
       text-xl
       md:text-4xl md:ml-32
-      my-4
-      mt-10
-      md:mt-20
+      mt-8 md:mt-20 mb-6 md:mb-16
       flex
       justify-center
       md:justify-start
@@ -14,7 +12,7 @@
   >
     Forms
   </div>
-  <div class="container mx-auto p-6  sm:px-36">
+  <div class="container mx-auto pb-6 sm:px-36">
     <table
       class="table-fixed w-full my-4 text-center"
       style="box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px"
@@ -36,7 +34,7 @@
       >
         <tbody class="ls">
           <% forms.forEach((form,i)=>{ %>
-          <tr>
+          <tr class="mb-4">
             <td class="w-1/8 ds"><%= form.number %></td>
             <td class="w-1/2 ds"><%= form.title %></td>
             <% if(form.path.indexOf("https://")==-1) { %>
