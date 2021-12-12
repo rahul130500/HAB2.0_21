@@ -598,6 +598,20 @@
           }
         }
       }
+      function searchHostelForm() {
+        var text = document.getElementById("searchHostelForm").value.toUpperCase();
+        var divs = document.getElementById("hostelform").children;
+       // console.log(divs);
+        for(var i=1;i<divs.length;i++) {
+          divs[i].style.display = 'none';
+          for(var j = 0; j < divs[i].children.length-1; j++) {
+            //console.log(divs[i].children[j].innerText);
+            if(divs[i].children[j].innerText.toUpperCase().indexOf(text) != -1) {
+              divs[i].style.display = 'block';
+            }
+          }
+        }
+      }
     </SCRIPT>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- <script src="js/nav.js"></script> -->

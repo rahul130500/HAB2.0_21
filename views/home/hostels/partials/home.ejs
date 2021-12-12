@@ -94,7 +94,38 @@
 
       <% }) %>
   </div>
-  <div class="pb-8 hidden" style="background-color: #1e2532">
+  <style>
+    @media only screen and (max-width: 600px){
+      .screen1{
+      width: 100%;
+      height: 200px;
+      }
+      .eventcard{
+      width: 100%;
+      height: 300px;
+      margin-left: 10px;
+      }
+      .imagebox{
+      width: 100%;
+      height: 200px;
+      }
+    }
+    @media only screen and (min-width: 600px){
+      .screen1{
+      max-width: 850px;
+      max-height: 420px;
+      }
+      .eventcard{
+      width: 850px;
+      height: 550px;
+      }
+      .imagebox{
+      width: 850px;
+      height: 420px;
+      }
+    }
+  </style>
+  <div class="pb-8 mt-10 md:mt-0" style="background-color: #1e2532">
     <div class="text-white py-8 flex justify-center md:justify-start text-xl md:text-4xl font-bold md:mx-32">
       Events at <%=hostel.name %> Hostel
     </div>
@@ -103,12 +134,34 @@
         <button class="splide__arrow splide__arrow--prev"></button>
         <button class="splide__arrow splide__arrow--next"></button>
       </div>
-      <div class="splide__track">
+      <div class="splide__track mx-4 md:mx-0">
         <ul class="splide__list">
           <!-- LOOP HERE FOR THE DATES-->
-          <li class="splide__slide">
-            <%- include("./eventcard.ejs") %>
-          </li>
+            <% events.forEach((event,i)=>{ %>
+              <li class="splide__slide">
+              <div  class="eventcard carousel flex flex-col bg-blue-600 rounded mr-4 " >
+                <div class="imagebox bg-gray-200 flex justify-center " >
+                  <img class="screen1 object-contain rounded-sm"   src="/hab/uploads/hostel_files/<%= event.path %>" />
+                </div>
+                <div class="mt-6 mx-5 text-white text-sm md:text-xl">
+                  <%=event.date.getDate()+' /'+(event.date.getMonth()+1)+'/'+event.date.getFullYear()%>
+                </div>
+                <div class="flex mx-5 mb-4 justify-between items-center">
+                  <div class="font-bold text-sm md:text-xl text-white">
+                    <%= event.name %>
+                  </div>
+                  <div>
+                    <a href="<%= event.imagepath %>"><svg width="33" height="33" viewBox="0 0 33 33" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M22.184 29.4407H11.2906C6.58398 29.4407 3.41064 26.4127 3.41064 21.894V10.334C3.41064 5.81405 6.58398 2.77405 11.2906 2.77405H22.184C26.904 2.77405 30.0773 5.81405 30.0773 10.334V21.894C30.0773 26.4127 26.904 29.4407 22.184 29.4407ZM19.7706 15.1074H11.304C10.744 15.1074 10.304 15.5607 10.304 16.1074C10.304 16.6674 10.744 17.1074 11.304 17.1074H19.7706L16.464 20.4007C16.2773 20.5874 16.1706 20.854 16.1706 21.1074C16.1706 21.3594 16.2773 21.614 16.464 21.814C16.8506 22.2007 17.4906 22.2007 17.8773 21.814L22.904 16.814C23.2773 16.4407 23.2773 15.774 22.904 15.4007L17.8773 10.4007C17.4906 10.014 16.8506 10.014 16.464 10.4007C16.0773 10.8007 16.0773 11.4274 16.464 11.8274L19.7706 15.1074Z"
+                          fill="white" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div></li>
+              <% }) %>
         </ul>
       </div>
     </div>
@@ -120,8 +173,8 @@
   var elms = document.getElementsByClassName("splide");
   for (var i = 0, len = elms.length; i < len; i++) {
     const config = {
-      perPage: 1,
       drag: "free",
+      autoWidth: true,
       pagination: false,
       lazyLoad: "nearby",
     };
