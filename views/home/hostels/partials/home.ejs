@@ -19,7 +19,7 @@
       </div>
       <div class="font-bold text-2xl md:text-4xl">About Hostel</div>
     </div>
-    <div class="flex justify-center md:justify-start">
+    <div class="flex justify-center md:justify-start text-justify">
       <%= hostel.description%>
     </div>
   </div>
@@ -27,7 +27,7 @@
     <div class="flex flex-wrap justify-center mb-2">
       <div>
         <div class="font-bold text-2xl ">About Hostel</div>
-        <div class="flex justify-center mb-4">
+        <div class="flex justify-center mb-4 text-justify">
           <%= hostel.description%>
         </div>
         <% if(website){ %>
@@ -51,7 +51,7 @@
   <div class="flex flex-wrap justify-start mx-8 md:mx-28">
     <% members.forEach((member,i)=>{ %>
       <div style="height: 450px; width: 380px"
-        class=" hidden md:block overflow-hidden bg-blue-600 rounded-md mb-24 mx-4 cursor-pointer">
+        class=" hidden md:block overflow-hidden bg-blue-600 rounded-md mb-12 mx-4 cursor-pointer">
         <div class="bg-gray-200 rounded-md">
           <img style="height: 300px" src="/hab/uploads/hostel/<%=member.photo%>" alt="ProfilePic"
             class="w-full object-contain" />
