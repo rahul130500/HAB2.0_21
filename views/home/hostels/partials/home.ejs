@@ -3,12 +3,18 @@
     <div class="flex flex-wrap flex-row-reverse items-center justify-center md:justify-between mb-2 md:mb-8">
       <div>
         <% if(website){ %>
-          <a href="<%= website.link %>" target="_blank"><button class="border-2 rounded px-6 py-3">
-              Personal Website
+          <a href="<%= website.link %>" target="_blank">
+            <button class="border-2 rounded px-6 py-3"><div class="flex items-center space-x-2"><p>Personal Website</p><svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.31812" y="1.70996" width="16.6554" height="16.6554" rx="4.16385" fill="#1E2D44"/>
+                <path d="M7.24787 9.36983H12.536L10.4707 7.32121C10.2292 7.07138 10.2292 6.67998 10.4707 6.43015C10.7122 6.18865 11.1119 6.18865 11.3534 6.43015L14.493 9.55304C14.7261 9.78621 14.7261 10.2026 14.493 10.4358L11.3534 13.5587C11.1119 13.8002 10.7122 13.8002 10.4707 13.5587C10.3541 13.4337 10.2875 13.2747 10.2875 13.1173C10.2875 12.9591 10.3541 12.7925 10.4707 12.6759L12.536 10.619H7.24787C6.8981 10.619 6.62329 10.3442 6.62329 9.9944C6.62329 9.65297 6.8981 9.36983 7.24787 9.36983Z" fill="white"/>
+                </svg></div>                
             </button></a>
           <% }else{%><a href="#"><button class="border-2 rounded px-6 py-3">
-                Personal Website
-              </button></a>
+            <button class="border-2 rounded px-6 py-3"><div class="flex items-center space-x-2"><p>Personal Website</p><svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2.31812" y="1.70996" width="16.6554" height="16.6554" rx="4.16385" fill="#1E2D44"/>
+              <path d="M7.24787 9.36983H12.536L10.4707 7.32121C10.2292 7.07138 10.2292 6.67998 10.4707 6.43015C10.7122 6.18865 11.1119 6.18865 11.3534 6.43015L14.493 9.55304C14.7261 9.78621 14.7261 10.2026 14.493 10.4358L11.3534 13.5587C11.1119 13.8002 10.7122 13.8002 10.4707 13.5587C10.3541 13.4337 10.2875 13.2747 10.2875 13.1173C10.2875 12.9591 10.3541 12.7925 10.4707 12.6759L12.536 10.619H7.24787C6.8981 10.619 6.62329 10.3442 6.62329 9.9944C6.62329 9.65297 6.8981 9.36983 7.24787 9.36983Z" fill="white"/>
+              </svg></div>                
+          </button></a>
             <% } %>
       </div>
       <div class="font-bold text-2xl md:text-4xl">About Hostel</div>
@@ -25,12 +31,16 @@
           <%= hostel.description%>
         </div>
         <% if(website){ %>
-          <a href="<%= website.link %>" target="_blank"><button class="border-2 rounded px-6 py-3">
-              Personal Website
-            </button></a>
-          <% }else{%><a href="#"><button class="border-2 rounded px-6 py-3">
-                Personal Website
-              </button></a>
+          <a href="<%= website.link %>" target="_blank"><button class="border-2 rounded px-6 py-3"><div class="flex items-center space-x-2"><p>Personal Website</p><svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.31812" y="1.70996" width="16.6554" height="16.6554" rx="4.16385" fill="#1E2D44"/>
+            <path d="M7.24787 9.36983H12.536L10.4707 7.32121C10.2292 7.07138 10.2292 6.67998 10.4707 6.43015C10.7122 6.18865 11.1119 6.18865 11.3534 6.43015L14.493 9.55304C14.7261 9.78621 14.7261 10.2026 14.493 10.4358L11.3534 13.5587C11.1119 13.8002 10.7122 13.8002 10.4707 13.5587C10.3541 13.4337 10.2875 13.2747 10.2875 13.1173C10.2875 12.9591 10.3541 12.7925 10.4707 12.6759L12.536 10.619H7.24787C6.8981 10.619 6.62329 10.3442 6.62329 9.9944C6.62329 9.65297 6.8981 9.36983 7.24787 9.36983Z" fill="white"/>
+            </svg></div>                
+        </button></a>
+          <% }else{%><a href="#"><button class="border-2 rounded px-6 py-3"><div class="flex items-center space-x-2"><p>Personal Website</p><svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.31812" y="1.70996" width="16.6554" height="16.6554" rx="4.16385" fill="#1E2D44"/>
+            <path d="M7.24787 9.36983H12.536L10.4707 7.32121C10.2292 7.07138 10.2292 6.67998 10.4707 6.43015C10.7122 6.18865 11.1119 6.18865 11.3534 6.43015L14.493 9.55304C14.7261 9.78621 14.7261 10.2026 14.493 10.4358L11.3534 13.5587C11.1119 13.8002 10.7122 13.8002 10.4707 13.5587C10.3541 13.4337 10.2875 13.2747 10.2875 13.1173C10.2875 12.9591 10.3541 12.7925 10.4707 12.6759L12.536 10.619H7.24787C6.8981 10.619 6.62329 10.3442 6.62329 9.9944C6.62329 9.65297 6.8981 9.36983 7.24787 9.36983Z" fill="white"/>
+            </svg></div>                
+        </button></a>
             <% } %>
       </div> 
     </div>
@@ -59,7 +69,7 @@
           <div class="text-sm text-white">
             <%= member.email %>
           </div>
-          <div class="text-sm text-white">+91-<%= member.contact1 %>
+          <div class="text-sm text-white"><%= member.contact1 %>
           </div>
         </div>
       </div>
@@ -86,7 +96,7 @@
               <%= member.email %>
             </div>
             <div class="text-white text-lg ml-4 pt-1">
-              +91-<%= member.contact1 %>
+              <%= member.contact1 %>
             </div>
           </div>
         </div>

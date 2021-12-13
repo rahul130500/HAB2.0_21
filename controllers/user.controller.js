@@ -61,11 +61,11 @@ exports.getOneHostel = async (req, res) => {
     // }
 
     //hostel data
-    const notices = await HostelNotice.find({ hostel: name });
+    const notices = await HostelNotice.find({ hostel: name }).sort("-creation");;
     const website = await HostelWebsite.findOne({ hostel: name });
-    const hmclist = await HMC.find({ hostel: name });
+    const hmclist = await HMC.find({ hostel: name }).sort("priono");
     const forms = await HostelForm.find({ hostel: name }).sort("-creation");
-    const events = await HostelEvent.find({ hostel: name });
+    const events = await HostelEvent.find({ hostel: name }).sort("-date");
     hmclist.sort((a, b) => (a.priono > b.priono ? 1 : -1));
     const members = hostel.management;
     members.sort((a, b) => (a.priority > b.priority ? 1 : -1));
